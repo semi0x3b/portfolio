@@ -9,472 +9,562 @@
 <meta property="og:description" content="인프라 월 비용 56% 절감, 서비스 61종 EKS→OKE 이관, 장애 자동복구·AI 원인분석 체계.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2315171B'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%23E8541E' font-family='monospace' font-weight='700'>;</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230F1319'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%238B7BF7' font-family='monospace' font-weight='700'>;</text></svg>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
 :root {
-  --paper: #F5F3EE;
-  --paper-2: #ECE9E1;
-  --ink: #15171B;
-  --muted: #62666E;
-  --line: #D9D5CB;
-  --accent: #E8541E;
-  --night: #111317;
-  --night-line: #2A2D33;
+  --bg: #0E121A;
+  --bg-soft: #141A25;
+  --card: #18202D;
+  --card-2: #1D2634;
+  --line: #262F3F;
+  --text: #E9EDF5;
+  --muted: #98A2B5;
+  --violet: #8B7BF7;
+  --blue: #4F8DF7;
+  --mint: #34D399;
+  --grad: linear-gradient(100deg, #8B7BF7 0%, #4F8DF7 100%);
   --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --gutter: clamp(20px, 5vw, 64px);
+  --gutter: clamp(20px, 5vw, 56px);
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--sans);
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.75;
   word-break: keep-all;
   overflow-wrap: anywhere;
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
-img, video { max-width: 100%; display: block; }
-.wrap { max-width: 1200px; margin: 0 auto; padding-inline: var(--gutter); }
-.label {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
+img, video { display: block; max-width: 100%; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: var(--gutter); }
+.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+/* 배경 장식 */
+.glow { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.glow i {
+  position: absolute; display: block; border-radius: 50%;
+  filter: blur(120px); opacity: .28;
 }
+.glow i:nth-child(1) { width: 520px; height: 520px; background: #6C5CE7; top: -160px; left: -120px; }
+.glow i:nth-child(2) { width: 460px; height: 460px; background: #2563EB; top: 40%; right: -180px; opacity: .2; }
+body > *:not(.glow) { position: relative; z-index: 1; }
 
 /* nav */
-.nav {
-  position: sticky; top: 0; z-index: 10;
-  background: color-mix(in srgb, var(--paper) 82%, transparent);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent;
-  transition: border-color .2s;
-}
+.nav { position: sticky; top: 0; z-index: 20; background: rgba(14,18,26,.72); backdrop-filter: blur(14px); border-bottom: 1px solid transparent; transition: border-color .2s; }
 .nav.scrolled { border-bottom-color: var(--line); }
-.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.logo { font-family: var(--mono); font-weight: 600; font-size: 18px; text-decoration: none; }
-.logo span { color: var(--accent); }
-.nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
-.nav ul a { text-decoration: none; font-size: 15px; color: var(--muted); }
-.nav ul a:hover { color: var(--ink); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.logo { font-family: var(--mono); font-weight: 600; font-size: 19px; text-decoration: none; }
+.nav ul { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
+.nav ul a { text-decoration: none; font-size: 15px; color: var(--muted); transition: color .2s; }
+.nav ul a:hover { color: var(--text); }
 
 /* hero */
-.hero { padding-block: clamp(72px, 12vw, 150px) clamp(56px, 8vw, 96px); }
-.hero h1 {
-  font-size: clamp(2.3rem, 6.2vw, 5.1rem);
-  line-height: 1.16;
-  letter-spacing: -0.035em;
-  font-weight: 750;
-  margin: 20px 0 32px;
-  text-wrap: balance;
+.hero { display: grid; grid-template-columns: 420px 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; padding-block: clamp(56px, 9vw, 112px) clamp(48px, 7vw, 96px); }
+.avatar { position: relative; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 30% 25%, #1E2739, #121824 70%); border: 2px solid transparent; background-clip: padding-box; }
+.avatar::before {
+  content: ""; position: absolute; inset: -2px; border-radius: 50%;
+  background: var(--grad); z-index: -1;
 }
-h2, h3, h4 { text-wrap: balance; }
-.hero h1 em { font-style: normal; color: var(--accent); }
-.hero p.lead { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--muted); max-width: 40em; margin: 0 0 40px; }
+.avatar .mark { font-family: var(--mono); font-size: clamp(3rem, 7vw, 5rem); font-weight: 600; letter-spacing: -.04em; }
+.avatar .mark span { color: var(--violet); }
+.avatar .sub { font-family: var(--mono); font-size: 12px; letter-spacing: .3em; color: var(--muted); margin-top: 8px; }
+.badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+.badge { font-size: 13px; font-weight: 600; padding: 7px 16px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.02); color: var(--muted); }
+.badge.v { color: var(--violet); border-color: rgba(139,123,247,.45); background: rgba(139,123,247,.1); }
+.badge.b { color: var(--blue); border-color: rgba(79,141,247,.4); background: rgba(79,141,247,.1); }
+.hero h1 { font-size: clamp(2.2rem, 5.4vw, 4rem); line-height: 1.22; letter-spacing: -.035em; font-weight: 750; margin: 0 0 18px; text-wrap: balance; }
+.hero .role { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; margin: 0 0 20px; }
+.hero p.lead { color: var(--muted); max-width: 46em; margin: 0 0 34px; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; }
-.btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 20px; border-radius: 999px;
-  border: 1px solid var(--ink);
-  text-decoration: none; font-weight: 600; font-size: 15px;
-  transition: background .2s, color .2s;
-}
-.btn.primary { background: var(--ink); color: var(--paper); }
-.btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
-.hero-meta {
-  margin-top: clamp(56px, 8vw, 96px);
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-  border-top: 1px solid var(--line); padding-top: 24px;
-}
-.hero-meta div { font-size: 15px; }
-.hero-meta .label { display: block; margin-bottom: 4px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 15px; border: 1px solid var(--line); background: var(--card); transition: transform .2s, border-color .2s, box-shadow .2s; }
+.btn:hover { transform: translateY(-2px); border-color: rgba(139,123,247,.5); }
+.btn.primary { background: var(--grad); border-color: transparent; color: #fff; }
+.btn.primary:hover { box-shadow: 0 16px 34px -16px rgba(107,92,231,.9); }
 
-/* stats */
-.stats { background: var(--night); color: #F2F0EA; padding-block: clamp(56px, 8vw, 88px); }
-.stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
-.stat { padding: 8px 24px; border-left: 1px solid var(--night-line); }
-.stat:first-child { border-left: 0; padding-left: 0; }
-.stat b {
-  display: block;
-  font-size: clamp(2rem, 3.6vw, 3.1rem);
-  font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
-  font-variant-numeric: tabular-nums;
-}
-.stat b small { font-size: .5em; font-weight: 600; margin-left: 2px; }
-.stat .what { margin-top: 12px; font-size: 15px; line-height: 1.5; }
-.stat .how { margin-top: 6px; font-size: 13px; color: #8D9098; line-height: 1.5; }
+/* section */
+section.block { padding-block: clamp(64px, 9vw, 120px) 0; }
+.section-head { text-align: center; margin-bottom: clamp(40px, 6vw, 64px); }
+.section-head h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); letter-spacing: -.03em; margin: 10px 0 12px; font-weight: 750; }
+.section-head p { color: var(--muted); margin: 0; }
 
-/* section heads */
-section.block { padding-block: clamp(80px, 11vw, 136px) 0; }
-.head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: clamp(40px, 6vw, 72px); }
-.head h2 { font-size: clamp(1.9rem, 4vw, 3rem); letter-spacing: -0.03em; line-height: 1.2; margin: 0; font-weight: 700; }
-.head .label b { color: var(--accent); font-weight: 600; }
+/* about */
+.about-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(24px, 4vw, 48px); align-items: center; }
+.about-grid p { color: var(--muted); margin: 0 0 16px; }
+.mini-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.mini {
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  padding: 22px 18px; text-align: center;
+}
+.mini b { display: block; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 750; letter-spacing: -.03em; line-height: 1.2; }
+.mini span { font-size: 13px; color: var(--muted); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+.skill { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; transition: transform .25s, border-color .25s; }
+.skill:hover { transform: translateY(-4px); border-color: rgba(139,123,247,.45); }
+.skill .ico { font-size: 26px; line-height: 1; }
+.skill h3 { font-size: 17px; margin: 14px 0 10px; }
+.skill p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.7; }
 
-/* case studies */
-.case {
-  display: grid; grid-template-columns: 5fr 7fr; gap: clamp(28px, 5vw, 64px);
-  align-items: start;
-  padding-block: clamp(40px, 6vw, 64px);
-  border-top: 1px solid var(--line);
-}
-.case:nth-of-type(even) { grid-template-columns: 7fr 5fr; }
-.case:nth-of-type(even) .case-text { order: 2; }
-.case-text h3 { font-size: clamp(1.45rem, 2.4vw, 1.9rem); letter-spacing: -0.025em; line-height: 1.3; margin: 10px 0 14px; }
-.case-text .role { font-size: 14px; color: var(--muted); margin: 0 0 18px; }
-.case-text ul { margin: 0 0 22px; padding-left: 1.1em; }
-.case-text li { margin-bottom: 8px; }
-.case-text li::marker { color: var(--accent); }
-.result {
-  background: var(--paper-2); border-radius: 14px; padding: 16px 18px;
-  font-size: 15px; line-height: 1.6;
-}
-.result .label { display: block; margin-bottom: 4px; color: var(--accent); }
-.links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; font-size: 14px; }
-.links a { text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; }
-.links a:hover { border-color: var(--accent); color: var(--accent); }
-.media {
-  position: sticky; top: 88px;
-  background: #fff; border: 1px solid var(--line); border-radius: 18px;
-  padding: 10px; box-shadow: 0 24px 60px -32px rgba(21,23,27,.35);
-}
-.media img, .media video { border-radius: 10px; width: 100%; }
-.media button { all: unset; cursor: zoom-in; display: block; }
-.media figcaption { font-size: 13px; color: var(--muted); padding: 10px 6px 2px; }
-.bigfig {
-  position: sticky; top: 88px;
-  background: var(--night); color: #F2F0EA; border-radius: 18px;
-  padding: clamp(28px, 4vw, 44px);
-  display: grid; gap: 28px;
-}
-.bigfig div b { display: block; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; line-height: 1.1; }
-.bigfig div span { font-size: 14px; color: #A3A6AD; }
-.bigfig .arrow { color: var(--accent); }
+/* stat band */
+.band { margin-top: clamp(56px, 8vw, 88px); border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(180deg, rgba(139,123,247,.08), rgba(79,141,247,.03)); padding: clamp(28px, 4vw, 44px); }
+.band-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
+.band-grid div { text-align: center; }
+.band-grid b { display: block; font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 750; letter-spacing: -.03em; line-height: 1.15; }
+.band-grid b small { font-size: .5em; margin-left: 2px; }
+.band-grid span { font-size: 13.5px; color: var(--muted); display: block; margin-top: 8px; line-height: 1.5; }
 
-/* more projects */
-.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.card {
-  border: 1px solid var(--line); border-radius: 16px; padding: 24px;
-  background: color-mix(in srgb, #fff 45%, var(--paper));
-  transition: transform .25s, border-color .25s;
+/* projects */
+.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.project {
+  display: flex; flex-direction: column;
+  background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
 }
-.card:hover { transform: translateY(-3px); border-color: var(--ink); }
-.card h4 { font-size: 18px; margin: 8px 0 10px; letter-spacing: -0.02em; line-height: 1.4; }
-.card p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.6; }
-.card .num { margin-top: 16px; font-weight: 700; font-size: 15px; }
-.card .num span { color: var(--accent); }
-
-/* writing & oss */
-.two { display: grid; grid-template-columns: 7fr 5fr; gap: clamp(32px, 6vw, 80px); }
-.list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.list li { border-bottom: 1px solid var(--line); }
-.list a {
-  display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline;
-  padding: 18px 0; text-decoration: none;
-}
-.list a:hover .t { color: var(--accent); }
-.list .t { font-weight: 600; line-height: 1.5; transition: color .2s; }
-.list .d { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
-.list .s { grid-column: 1 / -1; font-size: 14px; color: var(--muted); margin-top: -8px; line-height: 1.55; }
-.sub { font-size: 20px; margin: 0 0 18px; letter-spacing: -0.02em; }
-
-/* career */
-.timeline { border-top: 1px solid var(--line); }
-.job {
-  display: grid; grid-template-columns: 220px 1fr; gap: 24px;
-  padding: 28px 0; border-bottom: 1px solid var(--line);
-}
-.job .when { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 4px; }
-.job h4 { margin: 0 0 4px; font-size: 20px; letter-spacing: -0.02em; }
-.job .pos { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
-.job p { margin: 0; font-size: 15px; }
-.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 40px; margin-top: 64px; }
-.skills h5 { margin: 0 0 10px; }
+.project:hover { transform: translateY(-6px); border-color: rgba(139,123,247,.5); box-shadow: 0 26px 50px -30px rgba(0,0,0,.9); }
+.project .shot { position: relative; aspect-ratio: 16/10; background: var(--card-2); cursor: zoom-in; border: 0; padding: 0; width: 100%; }
+.project .shot img, .project .shot video { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.project .shot::after { content: "확대"; position: absolute; right: 10px; bottom: 10px; font-size: 11px; font-family: var(--mono); padding: 4px 9px; border-radius: 999px; background: rgba(14,18,26,.82); color: var(--muted); opacity: 0; transition: opacity .2s; }
+.project:hover .shot::after { opacity: 1; }
+.project .body { padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.project .when { font-family: var(--mono); font-size: 12px; color: var(--violet); }
+.project h3 { margin: 0; font-size: 18px; line-height: 1.45; letter-spacing: -.02em; }
+.project p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.7; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chips span { font-size: 13px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: #fff; }
+.chips span { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(79,141,247,.3); background: rgba(79,141,247,.08); color: #9CC0FA; }
+.project .metric { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; font-weight: 600; }
+.project .metric em { font-style: normal; color: var(--mint); }
+.project .links { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; }
+.project .links a { color: var(--blue); text-decoration: none; }
+.project .links a:hover { text-decoration: underline; }
+
+/* timeline */
+.timeline { position: relative; margin-left: 10px; padding-left: 34px; }
+.timeline::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--violet), rgba(79,141,247,.15)); }
+.tl-item { position: relative; margin-bottom: 22px; }
+.tl-item::before { content: ""; position: absolute; left: -34px; top: 26px; width: 10px; height: 10px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 4px rgba(139,123,247,.18); }
+.tl-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: clamp(22px, 3vw, 30px); }
+.tl-card .when { font-family: var(--mono); font-size: 12.5px; color: var(--blue); }
+.tl-card h3 { margin: 8px 0 4px; font-size: 20px; letter-spacing: -.02em; }
+.tl-card .org { color: var(--violet); font-weight: 600; font-size: 15px; margin-bottom: 12px; }
+.tl-card > p { margin: 0 0 14px; color: var(--muted); font-size: 15px; }
+.tl-card ul { margin: 0; padding-left: 1.1em; color: var(--muted); font-size: 14.5px; }
+.tl-card li { margin-bottom: 8px; }
+.tl-card li::marker { color: var(--violet); }
+.tl-card li b { color: var(--text); font-weight: 600; }
+
+/* testimonials */
+.quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.quote { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 16px; transition: transform .25s, border-color .25s; }
+.quote:hover { transform: translateY(-4px); border-color: rgba(139,123,247,.45); }
+.quote .stars { color: #F2C14B; font-size: 14px; letter-spacing: 2px; }
+.quote blockquote { margin: 0; font-size: 14.5px; line-height: 1.8; color: var(--text); }
+.quote .who { margin-top: auto; display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: var(--muted); }
+.quote .who i { width: 34px; height: 34px; border-radius: 50%; background: var(--grad); display: grid; place-items: center; font-style: normal; font-size: 14px; color: #fff; font-weight: 700; }
+.quote-note { text-align: center; color: var(--muted); font-size: 13px; margin-top: 22px; }
+.group-label { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; color: var(--violet); margin: 0 0 16px; display: flex; align-items: center; gap: 12px; }
+.group-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.quotes + .group-label { margin-top: 40px; }
+
+/* lists */
+.two { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(24px, 4vw, 48px); }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: clamp(22px, 3vw, 30px); }
+.panel h3 { margin: 0 0 6px; font-size: 20px; letter-spacing: -.02em; }
+.panel > .eyebrow { display: block; margin-bottom: 18px; }
+.list { list-style: none; margin: 0; padding: 0; }
+.list li + li { border-top: 1px solid var(--line); }
+.list a { display: block; padding: 14px 0; text-decoration: none; }
+.list .t { font-weight: 600; font-size: 15px; line-height: 1.55; display: block; transition: color .2s; }
+.list a:hover .t { color: var(--violet); }
+.list .d { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.list .s { display: block; font-size: 13.5px; color: var(--muted); margin-top: 4px; line-height: 1.6; }
+
+/* stack */
+.stack { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.stack .panel h4 { margin: 0 0 12px; font-size: 15px; }
+.stack .chips span { border-color: var(--line); background: rgba(255,255,255,.03); color: var(--text); }
 
 /* contact */
-.contact { margin-top: clamp(96px, 12vw, 160px); background: var(--night); color: #F2F0EA; padding-block: clamp(72px, 10vw, 120px) 40px; }
-.contact h2 { font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -0.035em; line-height: 1.2; margin: 16px 0 28px; }
-.contact .mail { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--accent); }
-.contact .mail:hover { color: var(--accent); }
-.contact .label { color: #8D9098; }
-.foot { margin-top: 88px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: #8D9098; border-top: 1px solid var(--night-line); padding-top: 24px; }
+.contact { margin-top: clamp(72px, 10vw, 128px); padding-block: clamp(64px, 9vw, 110px) 40px; background: linear-gradient(180deg, rgba(139,123,247,.1), transparent 60%); border-top: 1px solid var(--line); }
+.contact .section-head h2 { margin-bottom: 18px; }
+.contact .cta { justify-content: center; }
+.foot { margin-top: 72px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 22px; }
 .foot a { text-decoration: none; margin-left: 18px; }
-.foot a:hover { color: #fff; }
+.foot a:hover { color: var(--text); }
 
 /* lightbox */
 dialog { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; }
-dialog::backdrop { background: rgba(10,11,13,.86); }
-dialog img { max-height: 90vh; width: auto; border-radius: 8px; background: #fff; }
+dialog::backdrop { background: rgba(6,8,12,.9); }
+dialog img { max-height: 90vh; width: auto; border-radius: 10px; background: #fff; }
 dialog form { position: fixed; top: 16px; right: 16px; }
-dialog button { font: 600 14px var(--sans); background: #fff; border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+dialog button { font: 600 14px var(--sans); background: var(--card); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 8px 15px; cursor: pointer; }
 
 /* reveal */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
-/* responsive */
-@media (max-width: 960px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 0; }
-  .stat { border-left: 0; padding-left: 0; }
-  .stat:last-child { grid-column: 1 / -1; }
-  .case, .case:nth-of-type(even) { grid-template-columns: 1fr; }
-  .case:nth-of-type(even) .case-text { order: 0; }
-  .media, .bigfig { position: static; }
-  .cards { grid-template-columns: repeat(2, 1fr); }
-  .two { grid-template-columns: 1fr; }
-  .skills { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 1000px) {
+  .hero { grid-template-columns: 1fr; text-align: left; }
+  .avatar { width: min(260px, 60vw); }
+  .about-grid, .two { grid-template-columns: 1fr; }
+  .projects, .skills-grid, .stack, .quotes { grid-template-columns: repeat(2, 1fr); }
+  .band-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; }
+  .band-grid div:last-child { grid-column: 1 / -1; }
 }
 @media (max-width: 640px) {
-  body { font-size: 16px; }
   .nav ul { display: none; }
-  .hero-meta { grid-template-columns: 1fr; gap: 14px; }
-  .cards, .skills { grid-template-columns: 1fr; }
-  .job { grid-template-columns: 1fr; gap: 6px; }
-  .head { flex-direction: column; gap: 8px; }
-  .foot a { margin: 0 18px 0 0; }
+  .projects, .skills-grid, .stack, .mini-stats, .quotes { grid-template-columns: 1fr; }
+  .band-grid { grid-template-columns: 1fr; }
+  .timeline { padding-left: 24px; }
+  .tl-item::before { left: -24px; }
+  .foot a { margin: 0 16px 0 0; }
 }
 </style>
 </head>
 <body>
 
+<div class="glow" aria-hidden="true"><i></i><i></i></div>
+
 <nav class="nav" id="nav">
   <div class="wrap">
-    <a class="logo" href="#top">semi<span>;</span></a>
+    <a class="logo grad-text" href="#top">semi;</a>
     <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#writing">Writing</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#career">Career</a></li>
+      <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
 
 <header class="hero wrap" id="top">
-  <div class="label">김세미 · Backend &amp; Infra Engineer · 12 years</div>
-  <h1>장애를 고치고 끝내지 않고,<br><em>다시 안 나게 시스템에</em> 남깁니다.</h1>
-  <p class="lead">백엔드 12년 차입니다. 에듀테크 회사에서 LMS, SaaS, 채용 플랫폼, 실시간 화상 수업, AI 서비스의 백엔드를 FastAPI로 만들고, AWS와 OCI 인프라 구축과 운영도 같이 맡고 있습니다.</p>
-  <div class="cta">
-    <a class="btn primary" href="mailto:vvvva_@naver.com">이메일 보내기</a>
-    <a class="btn" href="https://github.com/semi0x3b" target="_blank" rel="noopener">GitHub</a>
-    <a class="btn" href="https://semi0x3b.github.io" target="_blank" rel="noopener">기술 블로그</a>
+  <!-- 프로필 사진을 쓰려면 이 div 안을 <img src="assets/profile.jpg" alt="김세미"> 로 바꾸면 됩니다 -->
+  <div class="avatar">
+    <div style="text-align:center">
+      <div class="mark">semi<span>;</span></div>
+      <div class="sub">BACKEND · INFRA</div>
+    </div>
   </div>
-  <div class="hero-meta">
-    <div><span class="label">Now</span>멋쟁이사자처럼 · AXP Div 백엔드, 인프라 리드</div>
-    <div><span class="label">Stack</span>Python · FastAPI · PostgreSQL · Kubernetes · Terraform</div>
-    <div><span class="label">Focus</span>서비스 백엔드 · 클라우드 비용 · 신뢰성 · LLM 제품</div>
+  <div>
+    <div class="badges">
+      <span class="badge v">Backend &amp; Infra Engineer</span>
+      <span class="badge b">12 Years</span>
+      <span class="badge">Python · Kubernetes</span>
+    </div>
+    <h1>안녕하세요,<br><span class="grad-text">김세미</span>입니다</h1>
+    <p class="role">서비스 백엔드와 클라우드 인프라를 같이 맡는 개발자</p>
+    <p class="lead">백엔드 12년 차입니다. 에듀테크 회사에서 LMS, SaaS, 채용 플랫폼, 실시간 화상 수업, AI 서비스의 백엔드를 FastAPI로 만들고, AWS와 OCI 인프라 구축과 운영도 같이 맡고 있습니다. 장애는 고치는 데서 끝내지 않고 감지 규칙과 자동복구로 남기고, 원인은 추측하지 않고 로그와 청구서를 재서 찾습니다.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">프로젝트 보기</a>
+      <a class="btn" href="mailto:vvvva_@naver.com">연락하기</a>
+      <a class="btn" href="https://semi0x3b.github.io" target="_blank" rel="noopener">기술 블로그</a>
+    </div>
   </div>
 </header>
 
-<section class="stats" aria-label="핵심 수치">
-  <div class="wrap stats-grid">
-    <div class="stat reveal"><b>56<small>%</small></b><div class="what">인프라 월 비용 절감</div><div class="how">2,228만 → 984만원 / 3년</div></div>
-    <div class="stat reveal"><b>61<small>종</small></b><div class="what">서비스 EKS → OKE 전사 이관</div><div class="how">콘솔뿐이던 인프라를 IaC로</div></div>
-    <div class="stat reveal"><b>25<small>ms</small></b><div class="what">3,000 rps 부하에서 p95</div><div class="how">179만 요청 에러 0건</div></div>
-    <div class="stat reveal"><b>45<small>초</small></b><div class="what">장애 감지부터 자동 복구까지</div><div class="how">사람 개입 없이 재시작</div></div>
-    <div class="stat reveal"><b>23<small>건</small></b><div class="what">개인정보·IDOR 노출 사전 차단</div><div class="how">서비스 11개 repo 전수 감사</div></div>
-  </div>
-</section>
-
 <main>
-<section class="block wrap" id="work">
-  <div class="head">
-    <h2>Selected Work</h2>
-    <div class="label"><b>06</b> case studies</div>
+<section class="block wrap" id="about">
+  <div class="section-head reveal">
+    <div class="eyebrow">About</div>
+    <h2>어떤 개발자인가요</h2>
+    <p>제품의 백엔드를 만들면서, 그 제품이 올라가는 인프라도 함께 책임집니다.</p>
   </div>
 
-  <article class="case">
-    <div class="case-text reveal">
-      <div class="label">Infra · 2026.05 – 07</div>
-      <h3>문서도 IaC도 없던 EKS를 OKE로 옮기고, 인프라 비용을 56% 줄였습니다</h3>
-      <p class="role">인프라 담당 1명 · OCI OKE, Terraform, ArgoCD, Helm, Vault+ESO, Keycloak, Kong</p>
-      <ul>
-        <li>콘솔에만 있던 EKS를 하나씩 확인해 파악하고, tfstate 단일 버킷·sync 정책·자격증명 자동 회전을 규칙으로 세워 OKE를 코드로 구축했습니다.</li>
-        <li>TLS가 DNS에 의존하는 제약 때문에 라우팅 선등록 → DNS 전환 → TLS 승격 순서로 나눠 배포했습니다.</li>
-        <li>로컬 파일에만 있던 DB 시크릿 18종을 Vault로 옮기고, 이관 뒤 남은 로드밸런서·CloudFormation 스택·EIP까지 회수했습니다.</li>
-        <li>그 전에도 청구서를 계정별로 뜯어보며 RDS Extended Support, 쓰지 않던 Firewall·WAF, EKS 버전 과금을 차례로 없앴습니다.</li>
-      </ul>
-      <div class="result"><span class="label">Result</span>DNS 컷오버로 서비스 61종의 prod 트래픽을 넘겼고, 월 인프라 비용은 2,228만원에서 984만원이 됐습니다. 같은 기간 운영 서비스는 오히려 늘었습니다.</div>
-      <div class="links">
-        <a href="https://semi0x3b.github.io/posts/2026-07-27-eks-to-oke-1" target="_blank" rel="noopener">블로그: EKS에서 OKE로 #1 ↗</a>
-        <a href="https://semi0x3b.github.io/posts/2026-08-05-eks-to-oke-2" target="_blank" rel="noopener">#2 컷오버 ↗</a>
-        <a href="https://github.com/semi0x3b/k8s-baseline" target="_blank" rel="noopener">k8s-baseline ↗</a>
-      </div>
+  <div class="about-grid">
+    <div class="reveal">
+      <p>2024년부터 멋쟁이사자처럼 AXP Div에서 부트캠프 LMS, SaaS LMS, 채용 플랫폼, 대학 커뮤니티, 실시간 화상 수업, AI 서비스의 백엔드를 맡고 인프라를 리드하고 있습니다. 문서도 코드도 없이 콘솔에만 있던 AWS 인프라를 실측으로 파악해 OCI로 전사 이관했고, 그 과정에서 3년에 걸쳐 인프라 비용을 절반 아래로 줄였습니다.</p>
+      <p>그 전에는 엠포스에서 광고 데이터·빅데이터 플랫폼과 커머스를 만들고 개발팀을 관리했고, 제이넷과 비즈아이솔루션에서 공공기관·대기업 시스템을 구축했습니다. 자바에서 시작해 지금은 파이썬으로 일합니다.</p>
     </div>
-    <figure class="media reveal" style="margin:0">
-      <button type="button" data-zoom="assets/eks-to-oke.png" aria-label="EKS에서 OKE 이관 다이어그램 크게 보기">
-        <img src="assets/eks-to-oke.png" alt="EKS에서 OKE로의 이관 전후 구성과 3단계 배포 순서 다이어그램" loading="lazy">
-      </button>
-      <figcaption>이관 전후 구성과 3단계 배포 순서 · 클릭하면 크게 볼 수 있습니다</figcaption>
-    </figure>
-  </article>
+    <div class="mini-stats reveal">
+      <div class="mini"><b class="grad-text">12년</b><span>백엔드 경력</span></div>
+      <div class="mini"><b class="grad-text">59건</b><span>참여 프로젝트</span></div>
+      <div class="mini"><b class="grad-text">90+</b><span>사내 기술 문서</span></div>
+    </div>
+  </div>
 
-  <article class="case">
-    <div class="case-text reveal">
-      <div class="label">Reliability · 2026.08 – 09</div>
-      <h3>11분간 아무도 몰랐던 장애를, 45초 자동복구와 AI 원인분석으로 바꿨습니다</h3>
-      <p class="role">FastAPI, Kubernetes, Loki, Alertmanager, LLM(Claude)</p>
-      <ul>
-        <li>외부 API 무응답에 서비스가 11분 멈춘 원인을 단일 이벤트 루프 블로킹으로 찾아 핸들러 94건을 threadpool로 격리했습니다.</li>
-        <li>이벤트 루프가 멈춰도 통과하던 tcpSocket liveness를 prod 25종에서 httpGet으로 바꿔 사람 없이 재시작되게 했습니다.</li>
-        <li>장애 분석 봇은 규칙이 신호를 찾고 LLM은 해석만 맡습니다. 발송 전에 인용 문자열을 기계로 대조해 근거 없는 판정은 자동으로 강등합니다.</li>
-      </ul>
-      <div class="result"><span class="label">Result</span>프로세스를 강제로 멈추는 실험에서 45초 안에 스스로 재시작했고, 외부 API가 멈춘 상태에서도 동시 60요청이 전부 응답했습니다. 봇은 과거 실제 장애 2건을 다시 돌렸을 때 기록된 원인에 도달했습니다.</div>
-      <div class="links">
-        <a href="https://semi0x3b.github.io/posts/2026-09-01-incident-bot-llm-autopsy" target="_blank" rel="noopener">블로그: 장애 로그 부검 봇 ↗</a>
-        <a href="https://github.com/semi0x3b/log-autopsy" target="_blank" rel="noopener">log-autopsy ↗</a>
-      </div>
-    </div>
-    <figure class="media reveal" style="margin:0">
-      <button type="button" data-zoom="assets/incident-response.png" aria-label="장애 대응 체계 다이어그램 크게 보기">
-        <img src="assets/incident-response.png" alt="감지, 자동복구, 원인분석 세 단계로 나눈 장애 대응 체계 다이어그램" loading="lazy">
-      </button>
-      <figcaption>감지 · 자동복구 · 원인분석 3단계 체계</figcaption>
-    </figure>
-  </article>
+  <div class="skills-grid">
+    <div class="skill reveal"><div class="ico">🧩</div><h3>서비스 백엔드</h3><p>FastAPI와 PostgreSQL로 LMS, 채용 플랫폼, 커뮤니티, 결제·정산을 설계하고 2년 넘게 운영합니다.</p></div>
+    <div class="skill reveal"><div class="ico">☁️</div><h3>클라우드 인프라</h3><p>EKS·OKE 쿠버네티스를 Terraform·ArgoCD·Vault로 코드화하고, 청구서를 뜯어 비용을 줄입니다.</p></div>
+    <div class="skill reveal"><div class="ico">🛡️</div><h3>신뢰성·장애 대응</h3><p>probe 표준, 로그 알림 규칙, 자동복구를 넣어 같은 장애가 두 번 나지 않게 남깁니다.</p></div>
+    <div class="skill reveal"><div class="ico">🔐</div><h3>보안·개인정보</h3><p>인증·인가 전수 감사, 암호화 저장과 blind index, 지원 종료 뒤 가림·파기 라이프사이클을 설계합니다.</p></div>
+    <div class="skill reveal"><div class="ico">🤖</div><h3>AI 제품</h3><p>RAG 튜터, 요약노트, 챗봇, 장애 분석 봇을 만들고 환각은 입력 격리·인용 검증으로 막습니다.</p></div>
+    <div class="skill reveal"><div class="ico">📚</div><h3>전파·문서화</h3><p>온보딩 문서와 기술 문서 90여 건, 사내 AI 스킬 24종 배포, 세미나 발표와 인턴 리딩을 했습니다.</p></div>
+  </div>
 
-  <article class="case">
-    <div class="case-text reveal">
-      <div class="label">Product · 2026.04 – 06</div>
-      <h3>채용 플랫폼(ATS)을 새로 만들어 석 달 만에 기업 61곳이 들어왔습니다</h3>
-      <p class="role">팀: 백엔드 1(본인) · 프론트 2 · 기획 1 · FastAPI, PostgreSQL, Redis, OCI, ArgoCD, Keycloak</p>
-      <ul>
-        <li>구직자용 커리어홈과 기업·운영용 백오피스를 각각 web/api로 나눈 4개 서비스로 구성하고, Keycloak SSO로 멋사 홈과 한 세션을 쓰게 했습니다.</li>
-        <li>지원 시점의 이력서를 공고와 묶어 스냅샷으로 저장하고, 그 조합으로 LLM이 이력서 코칭과 모의면접 질문을 만듭니다.</li>
-        <li>개인정보는 암호화 저장에 blind index 검색으로 평문 컬럼을 두지 않았고, 지원이 끝나면 가리고 보유기간이 지나면 파기합니다.</li>
-      </ul>
-      <div class="result"><span class="label">Result</span>2026년 6월 오픈 뒤 석 달 동안 기업 61곳이 공고 132건을 올렸고, 지원 380건과 취업 상담 354건이 플랫폼 안에서 처리됐습니다.</div>
+  <div class="band reveal">
+    <div class="band-grid">
+      <div><b class="grad-text">56<small>%</small></b><span>인프라 월 비용 절감<br>2,228만 → 984만원</span></div>
+      <div><b class="grad-text">61<small>종</small></b><span>서비스 EKS → OKE<br>전사 이관</span></div>
+      <div><b class="grad-text">25<small>ms</small></b><span>3,000 rps 부하에서 p95<br>179만 요청 에러 0건</span></div>
+      <div><b class="grad-text">45<small>초</small></b><span>장애 감지부터<br>자동 복구까지</span></div>
+      <div><b class="grad-text">23<small>건</small></b><span>개인정보·IDOR 노출<br>사전 차단</span></div>
     </div>
-    <figure class="media reveal" style="margin:0">
-      <button type="button" data-zoom="assets/ats-pii-lifecycle.png" aria-label="ATS 개인정보 라이프사이클 다이어그램 크게 보기">
-        <img src="assets/ats-pii-lifecycle.png" alt="ATS 개인정보의 암호화 저장, 가림, 파기 라이프사이클 다이어그램" loading="lazy">
-      </button>
-      <figcaption>지원서 개인정보 라이프사이클: 수집 → 전형 → 가림 → 파기</figcaption>
-    </figure>
-  </article>
-
-  <article class="case">
-    <div class="case-text reveal">
-      <div class="label">AI · 2025.10 – 11</div>
-      <h3>브랜드 캠페인 AI 챗봇, 목표의 7.5배 참여를 장애 없이 받았습니다</h3>
-      <p class="role">팀: 백엔드 3(본인 포함) · 프론트 3 · 디자인 1 · PM 1 · FastAPI, Redis, OpenAI 스트리밍</p>
-      <ul>
-        <li>브랜드 필름 속 캐릭터 백교수의 말투로 대화하는 챗봇 이벤트 백엔드를 온에어 4주 전에 시작해 일정에 맞췄습니다.</li>
-        <li>대화는 로그인 없이 열어 두고, 퀴즈나 숨은 조건으로 추첨권을 받는 순간에만 로그인을 요구해 참여 문턱을 낮췄습니다.</li>
-        <li>메시지마다 응답 상태와 OpenAI 요청 ID를 기록해 장애를 추적할 수 있게 했습니다.</li>
-      </ul>
-      <div class="result"><span class="label">Result</span>이벤트 기간 챗봇 참여 45,253건(목표 6,000건). 캠페인 전후로 부트캠프 지원 완료는 593명에서 1,057명으로 늘었습니다.</div>
-    </div>
-    <figure class="media reveal" style="margin:0">
-      <video src="assets/chatbot-demo.mp4" poster="assets/chatbot-demo-poster.jpg" muted loop playsinline preload="none" aria-label="백교수 챗봇 대화 시연 영상"></video>
-      <figcaption>백교수 챗봇 시연 · 스트리밍 답변과 이스터에그 추첨권</figcaption>
-    </figure>
-  </article>
-
-  <article class="case">
-    <div class="case-text reveal">
-      <div class="label">Performance · 2026.09</div>
-      <h3>100만 DAU를 가정한 부하에서 p95를 1.3초에서 25ms로 낮췄습니다</h3>
-      <p class="role">k6, PgBouncer, PostgreSQL, OKE, Karpenter</p>
-      <ul>
-        <li>100만 DAU를 환산해 3,000 rps 10분, p95 500ms를 목표로 세우고 8회 측정으로 병목을 하나씩 없앴습니다.</li>
-        <li>요청마다 커넥션을 여는 세션, 트랜잭션 안의 메일 발송, 누수 트랜잭션이 차례로 원인이었습니다. 커넥션 예산식을 세워 PgBouncer를 넣었습니다.</li>
-        <li>증설보다 요청당 낭비 40%를 먼저 걷어냈고, 측정 범위를 로드밸런서와 게이트웨이까지 넓혀 대역폭과 요청 제한도 고쳤습니다.</li>
-      </ul>
-      <div class="result"><span class="label">Result</span>3,000 rps 10분 동안 1,792,354건을 에러 없이 처리했고, 검증한 구성을 운영 환경에 그대로 옮겼습니다.</div>
-    </div>
-    <div class="bigfig reveal" aria-label="부하 테스트 결과 수치">
-      <div><b>1.3s <span class="arrow">→</span> 25ms</b><span>p95 응답 시간</span></div>
-      <div><b>94% <span class="arrow">→</span> 7%</b><span>DB CPU</span></div>
-      <div><b>0</b><span>179만 요청 중 에러</span></div>
-    </div>
-  </article>
-
-  <article class="case">
-    <div class="case-text reveal">
-      <div class="label">Realtime · 2025.04 – 2026.03</div>
-      <h3>Zoom 대신 자체 화상수업을 만들어, 100명 넘는 수강생이 카메라를 켜고 수업합니다</h3>
-      <p class="role">팀: 백엔드 1(본인) · 프론트 1 · Jitsi(JVB·Jigasi·Jibri), STT, OCI, Selenium Grid</p>
-      <ul>
-        <li>클라우드 4곳에 같은 구성을 올려 트래픽, 사용률, 비용을 비교한 뒤 환경을 골랐습니다.</li>
-        <li>50명이 넘으면 화면 공유가 검게 뜨던 문제를 JVB의 SSRC 캐시 상한에서 찾았고, 90명 이상 카메라를 켜면 시그널링이 밀리던 문제도 고쳤습니다.</li>
-        <li>OCI 이전 전 Selenium Grid로 4차 부하 검증을 했고, 서버 증설 대신 브리지 분산 설정으로 부하를 약 85% 낮췄습니다.</li>
-      </ul>
-      <div class="result"><span class="label">Result</span>부트캠프 22개 과정, 수강생 900여 명이 수업일 2,500일을 진행했습니다. 쌓인 녹화와 음성 데이터는 뒤이은 AI 서비스의 기반이 됐습니다.</div>
-    </div>
-    <div class="bigfig reveal" aria-label="화상수업 검증 수치">
-      <div><b>152<span class="arrow">명</span></b><span>단일 회의실 8시간 재접속 없이 유지</span></div>
-      <div><b>265<span class="arrow">명</span></b><span>회의실 4개 동시 운영</span></div>
-      <div><b>2,500<span class="arrow">일</span></b><span>라이브룸으로 진행한 수업일</span></div>
-    </div>
-  </article>
+  </div>
 </section>
 
-<section class="block wrap" id="more">
-  <div class="head">
-    <h2>More Projects</h2>
-    <div class="label">2024 – now</div>
+<section class="block wrap" id="projects">
+  <div class="section-head reveal">
+    <div class="eyebrow">Projects</div>
+    <h2>Featured Projects</h2>
+    <p>직접 설계하고 만든 것들 가운데 여섯 가지입니다.</p>
   </div>
-  <div class="cards">
-    <div class="card reveal">
-      <div class="label">AI</div>
-      <h4>AI 학습 플랫폼 백엔드</h4>
-      <p>강의 STT를 임베딩해 쌓는 인덱서 위에 RAG 튜터, 요약노트, 수업 모니터링, 퀴즈 등 AI 도메인 9종을 한 레포로 설계했습니다.</p>
-      <div class="num">운영팀 대응 리드타임 <span>1영업일 이내</span></div>
+
+  <div class="projects">
+    <article class="project reveal">
+      <button type="button" class="shot" data-zoom="assets/eks-to-oke.png" aria-label="EKS에서 OKE 이관 다이어그램 크게 보기">
+        <img src="assets/thumb-eks-to-oke.jpg" alt="EKS에서 OKE로의 이관 전후 구성 다이어그램" loading="lazy">
+      </button>
+      <div class="body">
+        <div class="when">2026.05 – 07 · Infra</div>
+        <h3>EKS → OKE 전사 인프라 이관</h3>
+        <p>콘솔에만 있던 EKS를 실측으로 파악해 IaC로 다시 세우고, 라우팅 선등록 → DNS 전환 → TLS 승격 3단계로 나눠 서비스 61종을 넘겼습니다.</p>
+        <div class="chips"><span>OKE</span><span>Terraform</span><span>ArgoCD</span><span>Vault+ESO</span><span>Kong</span></div>
+        <div class="links">
+          <a href="https://semi0x3b.github.io/posts/2026-07-27-eks-to-oke-1" target="_blank" rel="noopener">이관기 #1 ↗</a>
+          <a href="https://semi0x3b.github.io/posts/2026-08-05-eks-to-oke-2" target="_blank" rel="noopener">#2 컷오버 ↗</a>
+        </div>
+        <div class="metric">월 인프라 비용 <em>2,228만 → 984만원</em></div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <button type="button" class="shot" data-zoom="assets/incident-response.png" aria-label="장애 대응 체계 다이어그램 크게 보기">
+        <img src="assets/thumb-incident-response.jpg" alt="감지, 자동복구, 원인분석 3단계 장애 대응 체계 다이어그램" loading="lazy">
+      </button>
+      <div class="body">
+        <div class="when">2026.08 – 09 · Reliability</div>
+        <h3>장애 자동복구와 AI 원인분석 체계</h3>
+        <p>외부 API 무응답으로 11분 멈춘 장애의 원인을 단일 이벤트 루프 블로킹으로 찾고, 감지·자동복구·원인분석 세 단계를 각각 체계로 남겼습니다.</p>
+        <div class="chips"><span>Kubernetes</span><span>Loki</span><span>Alertmanager</span><span>LLM</span></div>
+        <div class="links">
+          <a href="https://semi0x3b.github.io/posts/2026-09-01-incident-bot-llm-autopsy" target="_blank" rel="noopener">부검 봇 설계 ↗</a>
+          <a href="https://github.com/semi0x3b/log-autopsy" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <div class="metric">사람 없이 <em>45초</em> 안에 자동 복구</div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <button type="button" class="shot" data-zoom="assets/ats-pii-lifecycle.png" aria-label="ATS 개인정보 라이프사이클 다이어그램 크게 보기">
+        <img src="assets/thumb-ats-pii-lifecycle.jpg" alt="지원서 개인정보의 수집, 전형, 가림, 파기 라이프사이클 다이어그램" loading="lazy">
+      </button>
+      <div class="body">
+        <div class="when">2026.04 – 06 · Product</div>
+        <h3>채용 플랫폼(ATS) 신규 구축</h3>
+        <p>구직자 커리어홈과 기업·운영 백오피스를 4개 서비스로 나눠 설계했습니다. 개인정보는 암호화 저장에 blind index로 검색하고, 지원이 끝나면 가리고 보유기간 뒤 파기합니다.</p>
+        <div class="chips"><span>FastAPI</span><span>PostgreSQL</span><span>Keycloak</span><span>kustomize</span></div>
+        <p style="font-size:13.5px">팀 구성: 백엔드 1(본인) · 프론트 2 · 기획 1</p>
+        <div class="metric">오픈 석 달 만에 기업 <em>61곳</em> · 공고 132건</div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <button type="button" class="shot" data-zoom="assets/thumb-chatbot.jpg" aria-label="브랜드 캠페인 챗봇 화면 크게 보기">
+        <video src="assets/chatbot-demo.mp4" poster="assets/thumb-chatbot.jpg" muted loop playsinline preload="none" aria-label="백교수 챗봇 대화 시연"></video>
+      </button>
+      <div class="body">
+        <div class="when">2025.10 – 11 · AI</div>
+        <h3>브랜드 캠페인 AI 챗봇 이벤트</h3>
+        <p>브랜드 필름 속 캐릭터의 말투로 대화하는 챗봇 백엔드를 온에어 4주 전에 시작해 맞췄습니다. 대화는 로그인 없이 열고, 추첨권을 받을 때만 로그인을 요구했습니다.</p>
+        <div class="chips"><span>OpenAI 스트리밍</span><span>Redis</span><span>알림톡</span></div>
+        <p style="font-size:13.5px">팀 구성: 백엔드 3(본인 포함) · 프론트 3 · 디자인 1 · PM 1</p>
+        <div class="metric">참여 <em>45,253건</em> · 목표의 7.5배, 장애 0</div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <button type="button" class="shot" data-zoom="assets/thumb-axp.jpg" aria-label="AXP 플랫폼 소개 페이지 크게 보기">
+        <img src="assets/thumb-axp.jpg" alt="AXP AI 학습 플랫폼 소개 페이지" loading="lazy">
+      </button>
+      <div class="body">
+        <div class="when">2025.09 – 2026.07 · AI</div>
+        <h3>AI 학습 플랫폼 백엔드</h3>
+        <p>강의 STT를 청킹·임베딩해 쌓는 인덱서 위에 RAG 학습 튜터, 요약노트, 수업 모니터링, 퀴즈까지 AI 도메인 9종을 한 레포로 설계해 운영합니다.</p>
+        <div class="chips"><span>pgvector</span><span>RAG·CoT</span><span>SSE</span><span>OpenAI</span></div>
+        <div class="metric">수업 품질 대응 리드타임 <em>1영업일 이내</em></div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <button type="button" class="shot" data-zoom="assets/thumb-oke-architecture.jpg" aria-label="OKE 아키텍처 다이어그램 크게 보기">
+        <img src="assets/thumb-oke-architecture.jpg" alt="OKE 클러스터 아키텍처 다이어그램" loading="lazy">
+      </button>
+      <div class="body">
+        <div class="when">2026.09 · Performance</div>
+        <h3>100만 DAU 대비 부하 대응</h3>
+        <p>3,000 rps 10분, p95 500ms를 목표로 세우고 8회 측정으로 병목을 없앴습니다. 증설보다 요청당 낭비 40%를 먼저 걷어내고 PgBouncer와 Karpenter를 넣었습니다.</p>
+        <div class="chips"><span>k6</span><span>PgBouncer</span><span>Karpenter</span><span>OKE</span></div>
+        <div class="metric">p95 <em>1.3초 → 25ms</em> · DB CPU 94% → 7%</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="block wrap" id="career">
+  <div class="section-head reveal">
+    <div class="eyebrow">Career</div>
+    <h2>경력</h2>
+    <p>2013년부터 백엔드 개발자로 일하고 있습니다.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-card">
+        <div class="when">2024.07 – 현재</div>
+        <h3>Backend Engineer · 인프라 리드</h3>
+        <div class="org">멋쟁이사자처럼 (AXP Div)</div>
+        <p>부트캠프·SaaS LMS, 채용 플랫폼, 대학 커뮤니티, 실시간 화상 수업, AI 서비스의 백엔드를 맡고 인프라 전반을 책임집니다.</p>
+        <ul>
+          <li><b>인프라 비용</b> — 청구서를 계정별로 분석해 유휴 자원을 회수하고 클라우드를 옮겨 월 2,228만원을 984만원으로 줄였습니다. 2025년 한 해에만 연 약 9,300만원.</li>
+          <li><b>화상 수업</b> — Jitsi 기반 라이브룸을 구축해 부트캠프 22개 과정, 수강생 900여 명이 수업일 2,500일을 진행했습니다. 단일 회의실 152명 8시간 유지를 검증했습니다.</li>
+          <li><b>SaaS·국비 운영</b> — 멀티테넌트 LMS를 서울대·K Tech College에 런칭하고, 고용24 출결·수강증명서를 SaaS로 옮겨 한화 브랜딩캠프에 배포했습니다.</li>
+          <li><b>보안</b> — 서비스 11개 repo를 전수 감사해 무인증 개인정보 노출 11건과 IDOR 12건을 막고, 로그인을 HttpOnly 쿠키 발급으로 재설계했습니다.</li>
+          <li><b>AI 전파</b> — Claude Code 멀티에이전트 워크플로우를 도입해 사내 스킬 24종을 레포 26곳에 배포하고 세미나에서 발표했으며, DevOps 인턴 2명을 리딩했습니다.</li>
+        </ul>
+      </div>
     </div>
-    <div class="card reveal">
-      <div class="label">Cost</div>
-      <h4>자체 웹 IDE로 외부 솔루션 대체</h4>
-      <p>강의 플레이어 안에서 Java·Python·JavaScript·C# 코드를 실행하고 채점까지 하는 실습·평가 환경을 만들었습니다.</p>
-      <div class="num">월 운영비 <span>약 95%</span> 절감 · 연 약 6,300만원</div>
+
+    <div class="tl-item reveal">
+      <div class="tl-card">
+        <div class="when">2018.06 – 2024.04</div>
+        <h3>Backend Engineer · 개발팀 관리</h3>
+        <div class="org">엠포스</div>
+        <p>인슈어테크, 디지털 마케팅, 빅데이터 분석, 커머스 플랫폼의 백엔드를 개발했고 2023년부터 팀을 관리했습니다.</p>
+        <ul>
+          <li>광고 데이터 플랫폼 NEO에서 매체 4곳 API로 보고서를 자동 수집해 작성 시간을 1/3로 줄였고, 카카오모먼트 광고 운영 자동화로 효율 20% 상승·관리 업무 50% 감소를 냈습니다.</li>
+          <li>EC2·ECS에서 돌던 배치를 AWS Batch와 Step Functions로 옮겨 실행 비용을 1/600로 낮췄습니다.</li>
+          <li>빅데이터 분석 플랫폼 Datoz를 새로 만들고 DB 설계 가이드·API 표준 같은 프로젝트 표준화를 주도했습니다.</li>
+        </ul>
+      </div>
     </div>
-    <div class="card reveal">
-      <div class="label">Security</div>
-      <h4>전사 인증·인가 감사와 로그인 재설계</h4>
-      <p>서비스 11개 repo를 전수 감사하고, 프론트 JS가 토큰을 넣던 로그인을 백엔드 HttpOnly 쿠키 발급으로 바꿨습니다.</p>
-      <div class="num">노출 <span>23건</span> 차단 · fail-closed 인증 팀 표준화</div>
+
+    <div class="tl-item reveal">
+      <div class="tl-card">
+        <div class="when">2016.05 – 2018.06</div>
+        <h3>Backend Engineer</h3>
+        <div class="org">제이넷</div>
+        <p>공공기관과 도서관 웹 시스템을 구축하고 운영했습니다. Java(eGovFrame), PHP, Oracle을 썼습니다.</p>
+        <ul>
+          <li>평택시립도서관 홈페이지를 다국어 포함 18개 사이트로 개편하고, 청주·구리시립도서관에 도서검색 솔루션을 연동했습니다.</li>
+          <li>경기도교육청 홈페이지 보안 모듈을 교체하고 느린 쿼리를 튜닝했으며, 도서관·관공서 20여 곳을 유지보수했습니다.</li>
+        </ul>
+      </div>
     </div>
-    <div class="card reveal">
-      <div class="label">SaaS</div>
-      <h4>멀티테넌트 SaaS LMS와 국비 과정 운영</h4>
-      <p>와일드카드 도메인과 DNS-01 인증서로 새 기관 개통에 인프라 변경이 없게 했고, 고용24 출결·수강증명서를 SaaS로 옮겼습니다.</p>
-      <div class="num">서울대 · K Tech College · <span>한화 브랜딩캠프</span></div>
-    </div>
-    <div class="card reveal">
-      <div class="label">Community</div>
-      <h4>대학 커뮤니티 서비스</h4>
-      <p>대학별 Zone으로 나눈 실명 커뮤니티에 해커톤 운영, 모임, 채팅, 랭킹 배치와 신고·제재 백오피스까지 백엔드 전체를 만들었습니다.</p>
-      <div class="num">약 <span>7주</span> 만에 오픈</div>
-    </div>
-    <div class="card reveal">
-      <div class="label">LMS</div>
-      <h4>부트캠프·KDC LMS</h4>
-      <p>도메인 무중단 이전, 분할 결제, 취업관리·취업률 KPI를 만들고 2년 넘게 운영합니다. 운영 공수를 줄이는 자동화도 붙였습니다.</p>
-      <div class="num">메인 API <span>2초대 → 약 100ms</span></div>
+
+    <div class="tl-item reveal">
+      <div class="tl-card">
+        <div class="when">2013.01 – 2016.05</div>
+        <h3>Backend Engineer</h3>
+        <div class="org">비즈아이솔루션</div>
+        <p>대기업·공공기관·대학 대상 커뮤니케이션 솔루션(대량메일·설문·푸시)을 개발하고 운영했습니다.</p>
+        <ul>
+          <li>삼성카드 실시간 고객 피드백 서비스를 EAI 연동으로 구축하고, 솔루션을 Cubrid에 포팅해 지원 DB를 늘렸습니다.</li>
+          <li>세션 고정·XSS·계정 암호화 취약점을 고치고 고객사 25여 곳을 매달 유지보수했습니다.</li>
+        </ul>
+      </div>
     </div>
   </div>
+</section>
+
+<section class="block wrap" id="reviews">
+  <div class="section-head reveal">
+    <div class="eyebrow">Testimonials</div>
+    <h2>함께 일한 동료들의 평가</h2>
+    <p>같이 일한 동료와 조직장이 남긴 평가 중 강점 부분입니다.</p>
+  </div>
+
+  <div class="group-label reveal">멋쟁이사자처럼 · 2024–2025 동료 평가</div>
+  <div class="quotes">
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"프로젝트의 목적에 부합하는 구조적 설계와 구현을 신속하고 정확하게 수행할 뿐 아니라, 예상되는 문제점과 그에 대한 해결책까지 선제적으로 제시하는 역량을 보유하고 있습니다. 경험해보지 못한 영역의 업무에 대해서도 거부감 없이 스스로 학습하며 진행하는 자기주도적 성향도 돋보입니다."</blockquote>
+      <div class="who"><i>장</i>멋쟁이사자처럼 · 부서장</div>
+    </div>
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"코드라이언 의존성 제거 및 EKS 버전 업그레이드를 통해 연간 약 9,000만 원 이상의 비용 절감을 실현하고, 라이브룸과 RAG 기반 AI 챗봇을 구축하신 점은 단순한 업무 수행을 넘어 조직의 성과로 기여한 바가 매우 큽니다."</blockquote>
+      <div class="who"><i>장</i>멋쟁이사자처럼 · 부서장</div>
+    </div>
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"단순히 주어진 작업을 처리하는 것을 넘어, 전체 시스템 구조와 운영 환경을 함께 고려하며 안정적인 방향으로 업무를 이끌어 가시는 점이 인상적이었습니다. 복잡한 기술 이슈를 단순히 전달하는 데 그치지 않고, 왜 해당 선택이 필요한지에 대한 맥락까지 함께 설명해 주셨습니다."</blockquote>
+      <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
+    </div>
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"문제 상황에서도 단순 구현, 문제 확인에서 멈추는 것이 아니라 원인–대안–결과를 함께 고민하며, 기술적 선택에 대한 논리적 설명과 설득력이 높습니다. 논의 과정에서도 감정이 아닌 근거 중심으로 커뮤니케이션합니다."</blockquote>
+      <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
+    </div>
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"탄탄한 시스템 설계와 안정적인 API를 제공해 주셔서 프론트엔드 개발이 수월하게 진행되었습니다. 특히 문서화를 꼼꼼하게 해 주셔서 협업하는 과정에서 불필요한 커뮤니케이션 비용이 줄어든 점이 인상적이었습니다."</blockquote>
+      <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
+    </div>
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"다른 사람들 의견을 잘 받아들이면서도, 그걸 그냥 '좋아요'로 끝내지 않고 지금 상황에서 뭐가 최선인지까지 정리해서 방향을 잡아주시는 편이에요. 덕분에 의사결정이 흔들리지 않고, 팀이 더 좋은 선택을 할 수 있게 도와주십니다."</blockquote>
+      <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
+    </div>
+  </div>
+
+  <div class="group-label reveal">엠포스 · 스펙터 평판</div>
+  <div class="quotes">
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"맡은 일에 대해 책임감이 강하고 항상 적극적으로 임합니다. 팀원들의 업무 분장이나 해결방안도 잘 찾아서 제시하며 리드해주고 있습니다. 성능 최적화와 기존에 사용하지 않았던 신규 기술에 관심이 많고 이를 바로 실무에 적용하여 누구나 만족할만한 결과물을 산출해냅니다."</blockquote>
+      <div class="who"><i>동</i>엠포스 · 동료</div>
+    </div>
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"맡은 업무에 대해 분석과 판단력이 뛰어나며 문제를 해결하는 능력이 탁월하며 업무를 해결하는데 있어서 끈기있게 접근하여 해결하는 모습을 보임. 다른 사람의 의견도 잘 듣고 적절한 판단을 통해 합리적으로 문제를 해결함."</blockquote>
+      <div class="who"><i>인</i>엠포스 · 인사권자</div>
+    </div>
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"맡은 일에 대해 최선을 다해 Deadline을 지키는 편이고, 동료들과 비교했을 때 속도감있게 일을 처리합니다. 프로젝트 진행 시 동료에게 신뢰감을 줍니다."</blockquote>
+      <div class="who"><i>인</i>엠포스 · 인사권자</div>
+    </div>
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"일처리가 빠르고 능숙합니다. 개선이 필요한 부분을 놓치지 않고 좋은 방향으로 개선합니다. 업무 효율을 높일 수 있도록 꾸준히 고민하여 발전합니다."</blockquote>
+      <div class="who"><i>동</i>엠포스 · 동료</div>
+    </div>
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"일처리가 빠르고 정확합니다. 귀찮을 수도 있는 일을 늘어지지 않고 빠르게 맡아서 하고 계속해서 더 나은 상황을 만들기 위한 추진력이 좋습니다. 꼼꼼하게 문서화를 잘하고 횡설수설한 말에도 포인트를 잘 잡아줍니다."</blockquote>
+      <div class="who"><i>동</i>엠포스 · 동료</div>
+    </div>
+    <div class="quote reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"맡은 일에 책임을 다하고 업무가 효율적으로 진행되도록 노력하며 딜레이 되지 않도록 합니다. 상황에 대한 판단이 빠르며 동료들과 원활한 커뮤니케이션을 통해 정확한 아웃풋을 도출합니다."</blockquote>
+      <div class="who"><i>동</i>엠포스 · 동료</div>
+    </div>
+  </div>
+  <p class="quote-note">멋쟁이사자처럼은 2024·2025년 인사평가의 동료·조직장 코멘트, 엠포스는 스펙터(SPECTER) 평판 조회 결과에서 발췌했습니다.</p>
 </section>
 
 <section class="block wrap" id="writing">
+  <div class="section-head reveal">
+    <div class="eyebrow">Writing &amp; Open Source</div>
+    <h2>쓴 글과 공개한 코드</h2>
+    <p>일하며 겪은 장애와 설계를 블로그에 기록합니다.</p>
+  </div>
   <div class="two">
-    <div>
-      <div class="head" style="margin-bottom:32px">
-        <h2>Writing</h2>
-        <a class="label" href="https://semi0x3b.github.io" target="_blank" rel="noopener" style="text-decoration:none">전체 글 ↗</a>
-      </div>
+    <div class="panel reveal">
+      <span class="eyebrow">Blog · semi0x3b.github.io</span>
       <ul class="list">
         <li><a href="https://semi0x3b.github.io/posts/2026-09-01-incident-bot-llm-autopsy" target="_blank" rel="noopener"><span class="t">장애 로그 부검 봇 만들기 — LLM에게 로그를 읽히지 않는 설계</span><span class="d">2026.09</span></a></li>
         <li><a href="https://semi0x3b.github.io/posts/2026-09-08-infra-agents-by-role" target="_blank" rel="noopener"><span class="t">인프라 운영을 전문 에이전트 8개로 나눈 이유</span><span class="d">2026.09</span></a></li>
@@ -484,75 +574,39 @@ dialog button { font: 600 14px var(--sans); background: #fff; border: 0; border-
         <li><a href="https://semi0x3b.github.io/posts/2026-07-28-missing-readiness-probe" target="_blank" rel="noopener"><span class="t">HPA가 Pod를 늘릴 때마다 Connection refused가 났어요</span><span class="d">2026.07</span></a></li>
       </ul>
     </div>
-    <div>
-      <div class="head" style="margin-bottom:32px">
-        <h2>Open Source</h2>
-      </div>
+    <div class="panel reveal">
+      <span class="eyebrow">GitHub · semi0x3b</span>
       <ul class="list">
-        <li><a href="https://github.com/semi0x3b/log-autopsy" target="_blank" rel="noopener"><span class="t">log-autopsy</span><span class="d">↗</span><span class="s">장애 알림에 원인 분석을 붙이는 부검 봇. 규칙이 신호를 찾고 LLM은 해석만 합니다.</span></a></li>
-        <li><a href="https://github.com/semi0x3b/fastapi-service-template" target="_blank" rel="noopener"><span class="t">fastapi-service-template</span><span class="d">↗</span><span class="s">FastAPI · SQLAlchemy 2.0 Async · Alembic 서비스 템플릿. 인증, 감사 로그, 테스트, CI 포함.</span></a></li>
-        <li><a href="https://github.com/semi0x3b/k8s-baseline" target="_blank" rel="noopener"><span class="t">k8s-baseline</span><span class="d">↗</span><span class="s">관측 스택 helmfile, ArgoCD 배포 패턴, Vault+ESO, probe 표준을 모은 쿠버네티스 레퍼런스.</span></a></li>
+        <li><a href="https://github.com/semi0x3b/log-autopsy" target="_blank" rel="noopener"><span class="t">log-autopsy</span><span class="s">장애 알림에 원인 분석을 붙이는 부검 봇. 규칙이 신호를 찾고 LLM은 해석만 합니다.</span></a></li>
+        <li><a href="https://github.com/semi0x3b/fastapi-service-template" target="_blank" rel="noopener"><span class="t">fastapi-service-template</span><span class="s">FastAPI · SQLAlchemy 2.0 Async · Alembic 서비스 템플릿. 인증, 감사 로그, 테스트, CI 포함.</span></a></li>
+        <li><a href="https://github.com/semi0x3b/k8s-baseline" target="_blank" rel="noopener"><span class="t">k8s-baseline</span><span class="s">관측 스택 helmfile, ArgoCD 배포 패턴, Vault+ESO, probe 표준을 모은 쿠버네티스 레퍼런스.</span></a></li>
       </ul>
     </div>
   </div>
-</section>
 
-<section class="block wrap" id="career">
-  <div class="head">
-    <h2>Career</h2>
-    <div class="label">2013 – now</div>
-  </div>
-  <div class="timeline">
-    <div class="job reveal">
-      <div class="when">2024.07 – 현재</div>
-      <div>
-        <h4>멋쟁이사자처럼</h4>
-        <div class="pos">Backend Engineer · AXP Div</div>
-        <p>부트캠프 LMS, SaaS LMS, 채용 플랫폼, 대학 커뮤니티, 실시간 화상 수업, AI 서비스의 백엔드를 맡고 인프라를 리드합니다. Claude Code 멀티에이전트 워크플로우를 팀에 도입해 사내 스킬 24종을 레포 26곳에 배포했고, DevOps 인턴 2명을 리딩했습니다.</p>
-      </div>
-    </div>
-    <div class="job reveal">
-      <div class="when">2018.06 – 2024.04</div>
-      <div>
-        <h4>엠포스</h4>
-        <div class="pos">Backend Engineer · 2023년부터 개발팀 관리</div>
-        <p>광고 데이터 플랫폼, 빅데이터 분석 플랫폼, 인슈어테크·커머스를 Django와 AWS 서버리스로 만들었습니다. 배치를 AWS Batch와 Step Functions로 옮겨 실행 비용을 1/600로 낮췄고, 프로젝트 표준화를 주도했습니다.</p>
-      </div>
-    </div>
-    <div class="job reveal">
-      <div class="when">2016.05 – 2018.06</div>
-      <div>
-        <h4>제이넷</h4>
-        <div class="pos">Backend Engineer</div>
-        <p>공공기관과 도서관 웹 시스템을 구축하고 운영했습니다. 평택시립도서관 홈페이지를 18개 사이트로 개편하고 관공서 20여 곳을 유지보수했습니다.</p>
-      </div>
-    </div>
-    <div class="job reveal">
-      <div class="when">2013.01 – 2016.05</div>
-      <div>
-        <h4>비즈아이솔루션</h4>
-        <div class="pos">Backend Engineer</div>
-        <p>대기업·공공기관 대상 커뮤니케이션 솔루션(대량메일·설문·푸시)을 개발했습니다. 삼성카드 실시간 고객 피드백 서비스를 EAI 연동으로 구축했습니다.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="skills">
-    <div><h5 class="label">Language · Framework</h5><div class="chips"><span>Python</span><span>FastAPI</span><span>SQLAlchemy</span><span>Alembic</span></div></div>
-    <div><h5 class="label">Data</h5><div class="chips"><span>PostgreSQL</span><span>pgvector</span><span>Redis</span><span>PgBouncer</span><span>MongoDB</span></div></div>
-    <div><h5 class="label">Infra</h5><div class="chips"><span>Kubernetes</span><span>Terraform</span><span>ArgoCD</span><span>Helm</span><span>Vault+ESO</span><span>Keycloak</span><span>Kong</span><span>GitHub Actions</span></div></div>
-    <div><h5 class="label">Cloud</h5><div class="chips"><span>AWS</span><span>OCI</span><span>KT Cloud</span></div></div>
-    <div><h5 class="label">Realtime · AI</h5><div class="chips"><span>Jitsi</span><span>LiveKit</span><span>STT</span><span>RAG</span><span>OpenAI</span><span>Claude</span></div></div>
-    <div><h5 class="label">Observability · Test</h5><div class="chips"><span>Grafana</span><span>Prometheus</span><span>Loki</span><span>Sentry</span><span>k6</span></div></div>
+  <div class="stack" style="margin-top:20px">
+    <div class="panel reveal"><h4>Language · Framework</h4><div class="chips"><span>Python</span><span>FastAPI</span><span>SQLAlchemy</span><span>Alembic</span></div></div>
+    <div class="panel reveal"><h4>Data</h4><div class="chips"><span>PostgreSQL</span><span>pgvector</span><span>Redis</span><span>PgBouncer</span><span>MongoDB</span></div></div>
+    <div class="panel reveal"><h4>Infra · Cloud</h4><div class="chips"><span>Kubernetes</span><span>Terraform</span><span>ArgoCD</span><span>Helm</span><span>Vault+ESO</span><span>Keycloak</span><span>Kong</span><span>AWS</span><span>OCI</span></div></div>
+    <div class="panel reveal"><h4>Realtime · AI</h4><div class="chips"><span>Jitsi</span><span>LiveKit</span><span>STT</span><span>RAG</span><span>OpenAI</span><span>Claude</span></div></div>
+    <div class="panel reveal"><h4>Observability · Test</h4><div class="chips"><span>Grafana</span><span>Prometheus</span><span>Loki</span><span>Sentry</span><span>k6</span></div></div>
+    <div class="panel reveal"><h4>CI · Tooling</h4><div class="chips"><span>GitHub Actions</span><span>Docker</span><span>kustomize</span><span>Claude Code</span></div></div>
   </div>
 </section>
 </main>
 
 <footer class="contact" id="contact">
   <div class="wrap">
-    <div class="label">Contact</div>
-    <h2>함께 일할 이야기가 있다면<br>편하게 연락 주세요.</h2>
-    <a class="mail" href="mailto:vvvva_@naver.com">vvvva_@naver.com</a>
+    <div class="section-head reveal" style="margin-bottom:28px">
+      <div class="eyebrow">Contact</div>
+      <h2>함께 일할 이야기가 있다면</h2>
+      <p>메일로 편하게 연락 주세요. 이력서와 경력기술서는 요청 주시면 보내 드립니다.</p>
+    </div>
+    <div class="cta reveal">
+      <a class="btn primary" href="mailto:vvvva_@naver.com">vvvva_@naver.com</a>
+      <a class="btn" href="https://github.com/semi0x3b" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://semi0x3b.github.io" target="_blank" rel="noopener">Blog</a>
+    </div>
     <div class="foot">
       <span>© 2026 김세미</span>
       <span><a href="https://github.com/semi0x3b" target="_blank" rel="noopener">GitHub</a><a href="https://semi0x3b.github.io" target="_blank" rel="noopener">Blog</a></span>
@@ -579,7 +633,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: "0px 0px -8% 0px" });
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-// 영상은 화면에 보일 때만 재생
+// 카드 영상은 화면에 보일 때만 재생
 const videoObserver = new IntersectionObserver((entries) => {
   for (const entry of entries) {
     if (entry.isIntersecting) {
@@ -596,8 +650,9 @@ const zoomDialog = document.getElementById("zoom");
 const zoomImage = zoomDialog.querySelector("img");
 document.querySelectorAll("[data-zoom]").forEach((button) => {
   button.addEventListener("click", () => {
+    const thumb = button.querySelector("img, video");
     zoomImage.src = button.dataset.zoom;
-    zoomImage.alt = button.querySelector("img").alt;
+    zoomImage.alt = thumb ? thumb.getAttribute("alt") || "" : "";
     zoomDialog.showModal();
   });
 });

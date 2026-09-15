@@ -166,8 +166,7 @@ section.block { padding-block: clamp(64px, 9vw, 120px) 0; }
 .quote { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 16px; transition: transform .25s, border-color .25s; }
 .quote:hover { transform: translateY(-4px); border-color: rgba(224,160,58,.45); }
 .quote blockquote { margin: 0; font-size: 14.5px; line-height: 1.8; color: var(--text); }
-.quote .who { margin-top: auto; display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: var(--muted); }
-.quote .who i { width: 34px; height: 34px; border-radius: 50%; background: var(--grad); display: grid; place-items: center; font-style: normal; font-size: 14px; color: #fff; font-weight: 700; }
+.quote .who { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--muted); }
 .quote-note { text-align: center; color: var(--muted); font-size: 13px; margin-top: 22px; }
 .group-label { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; color: var(--violet); margin: 0 0 16px; display: flex; align-items: center; gap: 12px; }
 .group-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
@@ -306,8 +305,8 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
       <div><b class="grad-text">56<small>%</small></b><span>인프라 월 비용 절감<br>2,228만 → 984만원</span></div>
       <div><b class="grad-text">61<small>종</small></b><span>서비스 EKS → OKE<br>전사 이관</span></div>
       <div><b class="grad-text">25<small>ms</small></b><span>3,000 rps 부하에서 p95<br>179만 요청 에러 0건</span></div>
-      <div><b class="grad-text">45<small>초</small></b><span>장애 감지부터<br>자동 복구까지</span></div>
-      <div><b class="grad-text">23<small>건</small></b><span>개인정보·IDOR 노출<br>사전 차단</span></div>
+      <div><b class="grad-text">45<small>초</small></b><span>이벤트 루프 행 감지부터<br>자동 재시작까지 최대 소요</span></div>
+      <div><b class="grad-text">23<small>건</small></b><span>무인증 노출 11건 +<br>확정 IDOR 12건 차단</span></div>
     </div>
   </div>
 </section>
@@ -350,7 +349,7 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
           <a href="https://semi0x3b.github.io/posts/2026-09-01-incident-bot-llm-autopsy" target="_blank" rel="noopener">부검 봇 설계 ↗</a>
           <a href="https://github.com/semi0x3b/log-autopsy" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
-        <div class="metric">사람 없이 <em>45초</em> 안에 자동 복구</div>
+        <div class="metric">사람 없이 <em>최대 45초</em> 안에 자동 재시작</div>
       </div>
     </article>
 
@@ -428,7 +427,7 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
           <li><b>인프라 비용</b> — 청구서를 계정별로 분석해 유휴 자원을 회수하고 클라우드를 옮겨 월 2,228만원을 984만원으로 줄였습니다. 2025년 한 해에만 연 약 9,300만원.</li>
           <li><b>화상 수업</b> — Jitsi 기반 라이브룸을 구축해 부트캠프 22개 과정, 수강생 900여 명이 수업일 2,500일을 진행했습니다. 단일 회의실 152명 8시간 유지를 검증했습니다.</li>
           <li><b>SaaS·국비 운영</b> — 멀티테넌트 LMS를 서울대·K Tech College에 런칭하고, 고용24 출결·수강증명서를 SaaS로 옮겨 한화 브랜딩캠프에 배포했습니다.</li>
-          <li><b>보안</b> — 서비스 11개 repo를 전수 감사해 무인증 개인정보 노출 11건과 IDOR 12건을 막고, 로그인을 HttpOnly 쿠키 발급으로 재설계했습니다.</li>
+          <li><b>보안</b> — 서비스 11개 repo와 인프라 미러 2개를 전수 감사해 무인증 개인정보·IDOR 노출 11건, 확정 IDOR 12건, 무인증 토큰 발급 경로를 사고 전에 막았습니다. 로그인은 HttpOnly 쿠키 발급으로 재설계했습니다.</li>
           <li><b>AI 전파</b> — Claude Code 멀티에이전트 워크플로우를 도입해 사내 스킬 24종을 레포 26곳에 배포하고 세미나에서 발표했으며, DevOps 인턴 2명을 리딩했습니다.</li>
         </ul>
       </div>
@@ -487,27 +486,27 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
   <div class="quotes">
     <div class="quote reveal">
       <blockquote>"프로젝트의 목적에 부합하는 구조적 설계와 구현을 신속하고 정확하게 수행할 뿐 아니라, 예상되는 문제점과 그에 대한 해결책까지 선제적으로 제시하는 역량을 보유하고 있습니다. 경험해보지 못한 영역의 업무에 대해서도 거부감 없이 스스로 학습하며 진행하는 자기주도적 성향도 돋보입니다."</blockquote>
-      <div class="who"><i>장</i>멋쟁이사자처럼 · 부서장</div>
+      <div class="who">멋쟁이사자처럼 · 부서장</div>
     </div>
     <div class="quote reveal">
       <blockquote>"코드라이언 의존성 제거 및 EKS 버전 업그레이드를 통해 연간 약 9,000만 원 이상의 비용 절감을 실현하고, 라이브룸과 RAG 기반 AI 챗봇을 구축하신 점은 단순한 업무 수행을 넘어 조직의 성과로 기여한 바가 매우 큽니다."</blockquote>
-      <div class="who"><i>장</i>멋쟁이사자처럼 · 부서장</div>
+      <div class="who">멋쟁이사자처럼 · 부서장</div>
     </div>
     <div class="quote reveal">
       <blockquote>"단순히 주어진 작업을 처리하는 것을 넘어, 전체 시스템 구조와 운영 환경을 함께 고려하며 안정적인 방향으로 업무를 이끌어 가시는 점이 인상적이었습니다. 복잡한 기술 이슈를 단순히 전달하는 데 그치지 않고, 왜 해당 선택이 필요한지에 대한 맥락까지 함께 설명해 주셨습니다."</blockquote>
-      <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
+      <div class="who">멋쟁이사자처럼 · 동료</div>
     </div>
     <div class="quote reveal">
       <blockquote>"문제 상황에서도 단순 구현, 문제 확인에서 멈추는 것이 아니라 원인–대안–결과를 함께 고민하며, 기술적 선택에 대한 논리적 설명과 설득력이 높습니다. 논의 과정에서도 감정이 아닌 근거 중심으로 커뮤니케이션합니다."</blockquote>
-      <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
+      <div class="who">멋쟁이사자처럼 · 동료</div>
     </div>
     <div class="quote reveal">
       <blockquote>"탄탄한 시스템 설계와 안정적인 API를 제공해 주셔서 프론트엔드 개발이 수월하게 진행되었습니다. 특히 문서화를 꼼꼼하게 해 주셔서 협업하는 과정에서 불필요한 커뮤니케이션 비용이 줄어든 점이 인상적이었습니다."</blockquote>
-      <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
+      <div class="who">멋쟁이사자처럼 · 동료</div>
     </div>
     <div class="quote reveal">
       <blockquote>"다른 사람들 의견을 잘 받아들이면서도, 그걸 그냥 '좋아요'로 끝내지 않고 지금 상황에서 뭐가 최선인지까지 정리해서 방향을 잡아주시는 편이에요. 덕분에 의사결정이 흔들리지 않고, 팀이 더 좋은 선택을 할 수 있게 도와주십니다."</blockquote>
-      <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
+      <div class="who">멋쟁이사자처럼 · 동료</div>
     </div>
   </div>
 
@@ -515,27 +514,27 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
   <div class="quotes">
     <div class="quote reveal">
       <blockquote>"맡은 일에 대해 책임감이 강하고 항상 적극적으로 임합니다. 팀원들의 업무 분장이나 해결방안도 잘 찾아서 제시하며 리드해주고 있습니다. 성능 최적화와 기존에 사용하지 않았던 신규 기술에 관심이 많고 이를 바로 실무에 적용하여 누구나 만족할만한 결과물을 산출해냅니다."</blockquote>
-      <div class="who"><i>동</i>엠포스 · 동료</div>
+      <div class="who">엠포스 · 동료</div>
     </div>
     <div class="quote reveal">
       <blockquote>"맡은 업무에 대해 분석과 판단력이 뛰어나며 문제를 해결하는 능력이 탁월하며 업무를 해결하는데 있어서 끈기있게 접근하여 해결하는 모습을 보임. 다른 사람의 의견도 잘 듣고 적절한 판단을 통해 합리적으로 문제를 해결함."</blockquote>
-      <div class="who"><i>인</i>엠포스 · 인사권자</div>
+      <div class="who">엠포스 · 인사권자</div>
     </div>
     <div class="quote reveal">
       <blockquote>"맡은 일에 대해 최선을 다해 Deadline을 지키는 편이고, 동료들과 비교했을 때 속도감있게 일을 처리합니다. 프로젝트 진행 시 동료에게 신뢰감을 줍니다."</blockquote>
-      <div class="who"><i>인</i>엠포스 · 인사권자</div>
+      <div class="who">엠포스 · 인사권자</div>
     </div>
     <div class="quote reveal">
       <blockquote>"일처리가 빠르고 능숙합니다. 개선이 필요한 부분을 놓치지 않고 좋은 방향으로 개선합니다. 업무 효율을 높일 수 있도록 꾸준히 고민하여 발전합니다."</blockquote>
-      <div class="who"><i>동</i>엠포스 · 동료</div>
+      <div class="who">엠포스 · 동료</div>
     </div>
     <div class="quote reveal">
       <blockquote>"일처리가 빠르고 정확합니다. 귀찮을 수도 있는 일을 늘어지지 않고 빠르게 맡아서 하고 계속해서 더 나은 상황을 만들기 위한 추진력이 좋습니다. 꼼꼼하게 문서화를 잘하고 횡설수설한 말에도 포인트를 잘 잡아줍니다."</blockquote>
-      <div class="who"><i>동</i>엠포스 · 동료</div>
+      <div class="who">엠포스 · 동료</div>
     </div>
     <div class="quote reveal">
       <blockquote>"맡은 일에 책임을 다하고 업무가 효율적으로 진행되도록 노력하며 딜레이 되지 않도록 합니다. 상황에 대한 판단이 빠르며 동료들과 원활한 커뮤니케이션을 통해 정확한 아웃풋을 도출합니다."</blockquote>
-      <div class="who"><i>동</i>엠포스 · 동료</div>
+      <div class="who">엠포스 · 동료</div>
     </div>
   </div>
   <p class="quote-note">멋쟁이사자처럼은 2024·2025년 인사평가의 동료·조직장 코멘트, 엠포스는 스펙터(SPECTER) 평판 조회 결과에서 발췌했습니다.</p>

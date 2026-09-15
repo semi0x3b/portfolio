@@ -56,7 +56,9 @@ img, video { display: block; max-width: 100%; }
 /* hero */
 .hero { padding-block: clamp(48px, 8vw, 96px) clamp(40px, 6vw, 72px); }
 .hero-text { max-width: 46em; margin-bottom: clamp(36px, 5vw, 56px); }
-.hero .who { margin: 0 0 22px; font-size: 15px; color: var(--muted); }
+.hero .id { display: flex; align-items: center; gap: 16px; margin: 0 0 26px; }
+.hero .id img { width: 88px; height: 88px; border-radius: 12px; border: 1px solid var(--line); object-fit: cover; flex: none; }
+.hero .who { margin: 0; font-size: 15px; color: var(--muted); }
 .hero h1 { margin: 0 0 24px; font-size: clamp(1.5rem, 3.2vw, 2.5rem); line-height: 1.4; letter-spacing: -.025em; font-weight: 700; text-wrap: balance; }
 .hero h1 span { display: block; }
 .hero h1 span + span { margin-top: .35em; }
@@ -178,7 +180,10 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
 
 <header class="hero wrap" id="top">
   <div class="hero-text">
-    <p class="who">김세미. 백엔드 12년 차로, 서비스 백엔드와 클라우드 인프라를 같이 맡습니다.</p>
+    <div class="id">
+      <img src="assets/profile.jpg" alt="김세미 프로필 사진" width="512" height="512">
+      <p class="who">김세미. 백엔드 12년 차로, 서비스 백엔드와 클라우드 인프라를 같이 맡습니다.</p>
+    </div>
     <h1>
       <span>월 인프라 비용을 <b>2,228만원에서 984만원</b>으로 줄였습니다.</span>
       <span>서비스 <b>61종</b>을 EKS에서 OKE로 전사 이관했습니다.</span>

@@ -9,23 +9,23 @@
 <meta property="og:description" content="인프라 월 비용 56% 절감, 서비스 61종 EKS→OKE 이관, 장애 자동복구·AI 원인분석 체계.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230F1319'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%238B7BF7' font-family='monospace' font-weight='700'>;</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230B1411'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%23E0A03A' font-family='monospace' font-weight='700'>;</text></svg>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
 :root {
-  --bg: #0E121A;
-  --bg-soft: #141A25;
-  --card: #18202D;
-  --card-2: #1D2634;
-  --line: #262F3F;
-  --text: #E9EDF5;
-  --muted: #98A2B5;
-  --violet: #8B7BF7;
-  --blue: #4F8DF7;
-  --mint: #34D399;
-  --grad: linear-gradient(100deg, #8B7BF7 0%, #4F8DF7 100%);
+  --bg: #0B1411;
+  --bg-soft: #0F1A16;
+  --card: #13211C;
+  --card-2: #182A23;
+  --line: #23382F;
+  --text: #E7EDE8;
+  --muted: #94A69B;
+  --violet: #E0A03A;
+  --blue: #79B394;
+  --mint: #E0A03A;
+  --grad: linear-gradient(100deg, #E0A03A 0%, #C98A2C 100%);
   --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --gutter: clamp(20px, 5vw, 56px);
@@ -46,8 +46,8 @@ body {
 a { color: inherit; }
 img, video { display: block; max-width: 100%; }
 .wrap { max-width: 1180px; margin: 0 auto; padding-inline: var(--gutter); }
-.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.grad-text { color: var(--violet); }
+.eyebrow { font-size: 13px; color: var(--muted); }
 
 /* 배경 장식 */
 .glow { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
@@ -55,12 +55,12 @@ img, video { display: block; max-width: 100%; }
   position: absolute; display: block; border-radius: 50%;
   filter: blur(120px); opacity: .28;
 }
-.glow i:nth-child(1) { width: 520px; height: 520px; background: #6C5CE7; top: -160px; left: -120px; }
-.glow i:nth-child(2) { width: 460px; height: 460px; background: #2563EB; top: 40%; right: -180px; opacity: .2; }
+.glow i:nth-child(1) { width: 520px; height: 520px; background: #1C4B3C; top: -160px; left: -120px; }
+.glow i:nth-child(2) { width: 460px; height: 460px; background: #6B4A16; top: 40%; right: -180px; opacity: .14; }
 body > *:not(.glow) { position: relative; z-index: 1; }
 
 /* nav */
-.nav { position: sticky; top: 0; z-index: 20; background: rgba(14,18,26,.72); backdrop-filter: blur(14px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+.nav { position: sticky; top: 0; z-index: 20; background: rgba(11,20,17,.78); backdrop-filter: blur(14px); border-bottom: 1px solid transparent; transition: border-color .2s; }
 .nav.scrolled { border-bottom-color: var(--line); }
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
 .logo { font-family: var(--mono); font-weight: 600; font-size: 19px; text-decoration: none; }
@@ -70,7 +70,7 @@ body > *:not(.glow) { position: relative; z-index: 1; }
 
 /* hero */
 .hero { display: grid; grid-template-columns: 420px 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; padding-block: clamp(56px, 9vw, 112px) clamp(48px, 7vw, 96px); }
-.avatar { position: relative; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 30% 25%, #1E2739, #121824 70%); border: 2px solid transparent; background-clip: padding-box; }
+.avatar { position: relative; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 30% 25%, #1B2F27, #0E1A15 70%); border: 2px solid transparent; background-clip: padding-box; }
 .avatar::before {
   content: ""; position: absolute; inset: -2px; border-radius: 50%;
   background: var(--grad); z-index: -1;
@@ -80,16 +80,16 @@ body > *:not(.glow) { position: relative; z-index: 1; }
 .avatar .sub { font-family: var(--mono); font-size: 12px; letter-spacing: .3em; color: var(--muted); margin-top: 8px; }
 .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
 .badge { font-size: 13px; font-weight: 600; padding: 7px 16px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.02); color: var(--muted); }
-.badge.v { color: var(--violet); border-color: rgba(139,123,247,.45); background: rgba(139,123,247,.1); }
-.badge.b { color: var(--blue); border-color: rgba(79,141,247,.4); background: rgba(79,141,247,.1); }
+.badge.v { color: var(--violet); border-color: rgba(224,160,58,.45); background: rgba(224,160,58,.1); }
+.badge.b { color: var(--blue); border-color: rgba(121,179,148,.4); background: rgba(121,179,148,.1); }
 .hero h1 { font-size: clamp(2.2rem, 5.4vw, 4rem); line-height: 1.22; letter-spacing: -.035em; font-weight: 750; margin: 0 0 18px; text-wrap: balance; }
 .hero .role { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; margin: 0 0 20px; }
 .hero p.lead { color: var(--muted); max-width: 46em; margin: 0 0 34px; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 15px; border: 1px solid var(--line); background: var(--card); transition: transform .2s, border-color .2s, box-shadow .2s; }
-.btn:hover { transform: translateY(-2px); border-color: rgba(139,123,247,.5); }
+.btn:hover { transform: translateY(-2px); border-color: rgba(224,160,58,.5); }
 .btn.primary { background: var(--grad); border-color: transparent; color: #fff; }
-.btn.primary:hover { box-shadow: 0 16px 34px -16px rgba(107,92,231,.9); }
+.btn.primary:hover { box-shadow: 0 16px 34px -16px rgba(224,160,58,.5); }
 
 /* section */
 section.block { padding-block: clamp(64px, 9vw, 120px) 0; }
@@ -109,13 +109,13 @@ section.block { padding-block: clamp(64px, 9vw, 120px) 0; }
 .mini span { font-size: 13px; color: var(--muted); }
 .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
 .skill { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; transition: transform .25s, border-color .25s; }
-.skill:hover { transform: translateY(-4px); border-color: rgba(139,123,247,.45); }
+.skill:hover { transform: translateY(-4px); border-color: rgba(224,160,58,.45); }
 .skill .ico { font-size: 26px; line-height: 1; }
 .skill h3 { font-size: 17px; margin: 14px 0 10px; }
 .skill p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.7; }
 
 /* stat band */
-.band { margin-top: clamp(56px, 8vw, 88px); border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(180deg, rgba(139,123,247,.08), rgba(79,141,247,.03)); padding: clamp(28px, 4vw, 44px); }
+.band { margin-top: clamp(56px, 8vw, 88px); border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(180deg, rgba(224,160,58,.08), rgba(121,179,148,.03)); padding: clamp(28px, 4vw, 44px); }
 .band-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
 .band-grid div { text-align: center; }
 .band-grid b { display: block; font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 750; letter-spacing: -.03em; line-height: 1.15; }
@@ -129,7 +129,7 @@ section.block { padding-block: clamp(64px, 9vw, 120px) 0; }
   background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
   transition: transform .25s, border-color .25s, box-shadow .25s;
 }
-.project:hover { transform: translateY(-6px); border-color: rgba(139,123,247,.5); box-shadow: 0 26px 50px -30px rgba(0,0,0,.9); }
+.project:hover { transform: translateY(-6px); border-color: rgba(224,160,58,.5); box-shadow: 0 26px 50px -30px rgba(0,0,0,.9); }
 .project .shot { position: relative; aspect-ratio: 16/10; background: var(--card-2); cursor: zoom-in; border: 0; padding: 0; width: 100%; }
 .project .shot img, .project .shot video { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
 .project .shot::after { content: "확대"; position: absolute; right: 10px; bottom: 10px; font-size: 11px; font-family: var(--mono); padding: 4px 9px; border-radius: 999px; background: rgba(14,18,26,.82); color: var(--muted); opacity: 0; transition: opacity .2s; }
@@ -139,7 +139,7 @@ section.block { padding-block: clamp(64px, 9vw, 120px) 0; }
 .project h3 { margin: 0; font-size: 18px; line-height: 1.45; letter-spacing: -.02em; }
 .project p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.7; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chips span { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(79,141,247,.3); background: rgba(79,141,247,.08); color: #9CC0FA; }
+.chips span { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(121,179,148,.3); background: rgba(121,179,148,.08); color: #A8C9B6; }
 .project .metric { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; font-weight: 600; }
 .project .metric em { font-style: normal; color: var(--mint); }
 .project .links { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; }
@@ -148,9 +148,9 @@ section.block { padding-block: clamp(64px, 9vw, 120px) 0; }
 
 /* timeline */
 .timeline { position: relative; margin-left: 10px; padding-left: 34px; }
-.timeline::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--violet), rgba(79,141,247,.15)); }
+.timeline::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--violet), rgba(121,179,148,.15)); }
 .tl-item { position: relative; margin-bottom: 22px; }
-.tl-item::before { content: ""; position: absolute; left: -34px; top: 26px; width: 10px; height: 10px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 4px rgba(139,123,247,.18); }
+.tl-item::before { content: ""; position: absolute; left: -34px; top: 26px; width: 10px; height: 10px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 4px rgba(224,160,58,.18); }
 .tl-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: clamp(22px, 3vw, 30px); }
 .tl-card .when { font-family: var(--mono); font-size: 12.5px; color: var(--blue); }
 .tl-card h3 { margin: 8px 0 4px; font-size: 20px; letter-spacing: -.02em; }
@@ -164,8 +164,7 @@ section.block { padding-block: clamp(64px, 9vw, 120px) 0; }
 /* testimonials */
 .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .quote { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 16px; transition: transform .25s, border-color .25s; }
-.quote:hover { transform: translateY(-4px); border-color: rgba(139,123,247,.45); }
-.quote .stars { color: #F2C14B; font-size: 14px; letter-spacing: 2px; }
+.quote:hover { transform: translateY(-4px); border-color: rgba(224,160,58,.45); }
 .quote blockquote { margin: 0; font-size: 14.5px; line-height: 1.8; color: var(--text); }
 .quote .who { margin-top: auto; display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: var(--muted); }
 .quote .who i { width: 34px; height: 34px; border-radius: 50%; background: var(--grad); display: grid; place-items: center; font-style: normal; font-size: 14px; color: #fff; font-weight: 700; }
@@ -193,7 +192,7 @@ section.block { padding-block: clamp(64px, 9vw, 120px) 0; }
 .stack .chips span { border-color: var(--line); background: rgba(255,255,255,.03); color: var(--text); }
 
 /* contact */
-.contact { margin-top: clamp(72px, 10vw, 128px); padding-block: clamp(64px, 9vw, 110px) 40px; background: linear-gradient(180deg, rgba(139,123,247,.1), transparent 60%); border-top: 1px solid var(--line); }
+.contact { margin-top: clamp(72px, 10vw, 128px); padding-block: clamp(64px, 9vw, 110px) 40px; background: linear-gradient(180deg, rgba(224,160,58,.1), transparent 60%); border-top: 1px solid var(--line); }
 .contact .section-head h2 { margin-bottom: 18px; }
 .contact .cta { justify-content: center; }
 .foot { margin-top: 72px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 22px; }
@@ -208,8 +207,7 @@ dialog form { position: fixed; top: 16px; right: 16px; }
 dialog button { font: 600 14px var(--sans); background: var(--card); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 8px 15px; cursor: pointer; }
 
 /* reveal */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.in { opacity: 1; transform: none; }
+.reveal { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
@@ -266,7 +264,7 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
     </div>
     <h1>안녕하세요,<br><span class="grad-text">김세미</span>입니다</h1>
     <p class="role">서비스 백엔드와 클라우드 인프라를 같이 맡는 개발자</p>
-    <p class="lead">백엔드 12년 차입니다. 에듀테크 회사에서 LMS, SaaS, 채용 플랫폼, 실시간 화상 수업, AI 서비스의 백엔드를 FastAPI로 만들고, AWS와 OCI 인프라 구축과 운영도 같이 맡고 있습니다. 장애는 고치는 데서 끝내지 않고 감지 규칙과 자동복구로 남기고, 원인은 추측하지 않고 로그와 청구서를 재서 찾습니다.</p>
+    <p class="lead">백엔드 12년 차입니다. 지금은 에듀테크 회사에서 LMS와 SaaS, 채용 플랫폼, 실시간 화상 수업, AI 서비스의 백엔드를 FastAPI로 만들고 있고, AWS와 OCI 인프라 구축과 운영, 보안과 비용 관리까지 제가 맡고 있습니다.</p>
     <div class="cta">
       <a class="btn primary" href="#projects">프로젝트 보기</a>
       <a class="btn" href="mailto:vvvva_@naver.com">연락하기</a>
@@ -291,7 +289,7 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
     <div class="mini-stats reveal">
       <div class="mini"><b class="grad-text">12년</b><span>백엔드 경력</span></div>
       <div class="mini"><b class="grad-text">59건</b><span>참여 프로젝트</span></div>
-      <div class="mini"><b class="grad-text">90+</b><span>사내 기술 문서</span></div>
+      <div class="mini"><b class="grad-text">4개사</b><span>솔루션 · 공공 · 광고 · 교육</span></div>
     </div>
   </div>
 
@@ -301,7 +299,7 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
     <div class="skill reveal"><div class="ico">🛡️</div><h3>신뢰성·장애 대응</h3><p>probe 표준, 로그 알림 규칙, 자동복구를 넣어 같은 장애가 두 번 나지 않게 남깁니다.</p></div>
     <div class="skill reveal"><div class="ico">🔐</div><h3>보안·개인정보</h3><p>인증·인가 전수 감사, 암호화 저장과 blind index, 지원 종료 뒤 가림·파기 라이프사이클을 설계합니다.</p></div>
     <div class="skill reveal"><div class="ico">🤖</div><h3>AI 제품</h3><p>RAG 튜터, 요약노트, 챗봇, 장애 분석 봇을 만들고 환각은 입력 격리·인용 검증으로 막습니다.</p></div>
-    <div class="skill reveal"><div class="ico">📚</div><h3>전파·문서화</h3><p>온보딩 문서와 기술 문서 90여 건, 사내 AI 스킬 24종 배포, 세미나 발표와 인턴 리딩을 했습니다.</p></div>
+    <div class="skill reveal"><div class="ico">📚</div><h3>전파·문서화</h3><p>백엔드 온보딩 문서와 운영 매뉴얼을 만들고, AI 코딩 도구를 팀에 도입해 세미나에서 공유했습니다.</p></div>
   </div>
 
   <div class="band reveal">
@@ -489,32 +487,26 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
   <div class="group-label reveal">멋쟁이사자처럼 · 2024–2025 동료 평가</div>
   <div class="quotes">
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"프로젝트의 목적에 부합하는 구조적 설계와 구현을 신속하고 정확하게 수행할 뿐 아니라, 예상되는 문제점과 그에 대한 해결책까지 선제적으로 제시하는 역량을 보유하고 있습니다. 경험해보지 못한 영역의 업무에 대해서도 거부감 없이 스스로 학습하며 진행하는 자기주도적 성향도 돋보입니다."</blockquote>
       <div class="who"><i>장</i>멋쟁이사자처럼 · 부서장</div>
     </div>
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"코드라이언 의존성 제거 및 EKS 버전 업그레이드를 통해 연간 약 9,000만 원 이상의 비용 절감을 실현하고, 라이브룸과 RAG 기반 AI 챗봇을 구축하신 점은 단순한 업무 수행을 넘어 조직의 성과로 기여한 바가 매우 큽니다."</blockquote>
       <div class="who"><i>장</i>멋쟁이사자처럼 · 부서장</div>
     </div>
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"단순히 주어진 작업을 처리하는 것을 넘어, 전체 시스템 구조와 운영 환경을 함께 고려하며 안정적인 방향으로 업무를 이끌어 가시는 점이 인상적이었습니다. 복잡한 기술 이슈를 단순히 전달하는 데 그치지 않고, 왜 해당 선택이 필요한지에 대한 맥락까지 함께 설명해 주셨습니다."</blockquote>
       <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
     </div>
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"문제 상황에서도 단순 구현, 문제 확인에서 멈추는 것이 아니라 원인–대안–결과를 함께 고민하며, 기술적 선택에 대한 논리적 설명과 설득력이 높습니다. 논의 과정에서도 감정이 아닌 근거 중심으로 커뮤니케이션합니다."</blockquote>
       <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
     </div>
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"탄탄한 시스템 설계와 안정적인 API를 제공해 주셔서 프론트엔드 개발이 수월하게 진행되었습니다. 특히 문서화를 꼼꼼하게 해 주셔서 협업하는 과정에서 불필요한 커뮤니케이션 비용이 줄어든 점이 인상적이었습니다."</blockquote>
       <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
     </div>
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"다른 사람들 의견을 잘 받아들이면서도, 그걸 그냥 '좋아요'로 끝내지 않고 지금 상황에서 뭐가 최선인지까지 정리해서 방향을 잡아주시는 편이에요. 덕분에 의사결정이 흔들리지 않고, 팀이 더 좋은 선택을 할 수 있게 도와주십니다."</blockquote>
       <div class="who"><i>동</i>멋쟁이사자처럼 · 동료</div>
     </div>
@@ -523,32 +515,26 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
   <div class="group-label reveal">엠포스 · 스펙터 평판</div>
   <div class="quotes">
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"맡은 일에 대해 책임감이 강하고 항상 적극적으로 임합니다. 팀원들의 업무 분장이나 해결방안도 잘 찾아서 제시하며 리드해주고 있습니다. 성능 최적화와 기존에 사용하지 않았던 신규 기술에 관심이 많고 이를 바로 실무에 적용하여 누구나 만족할만한 결과물을 산출해냅니다."</blockquote>
       <div class="who"><i>동</i>엠포스 · 동료</div>
     </div>
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"맡은 업무에 대해 분석과 판단력이 뛰어나며 문제를 해결하는 능력이 탁월하며 업무를 해결하는데 있어서 끈기있게 접근하여 해결하는 모습을 보임. 다른 사람의 의견도 잘 듣고 적절한 판단을 통해 합리적으로 문제를 해결함."</blockquote>
       <div class="who"><i>인</i>엠포스 · 인사권자</div>
     </div>
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"맡은 일에 대해 최선을 다해 Deadline을 지키는 편이고, 동료들과 비교했을 때 속도감있게 일을 처리합니다. 프로젝트 진행 시 동료에게 신뢰감을 줍니다."</blockquote>
       <div class="who"><i>인</i>엠포스 · 인사권자</div>
     </div>
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"일처리가 빠르고 능숙합니다. 개선이 필요한 부분을 놓치지 않고 좋은 방향으로 개선합니다. 업무 효율을 높일 수 있도록 꾸준히 고민하여 발전합니다."</blockquote>
       <div class="who"><i>동</i>엠포스 · 동료</div>
     </div>
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"일처리가 빠르고 정확합니다. 귀찮을 수도 있는 일을 늘어지지 않고 빠르게 맡아서 하고 계속해서 더 나은 상황을 만들기 위한 추진력이 좋습니다. 꼼꼼하게 문서화를 잘하고 횡설수설한 말에도 포인트를 잘 잡아줍니다."</blockquote>
       <div class="who"><i>동</i>엠포스 · 동료</div>
     </div>
     <div class="quote reveal">
-      <div class="stars">★★★★★</div>
       <blockquote>"맡은 일에 책임을 다하고 업무가 효율적으로 진행되도록 노력하며 딜레이 되지 않도록 합니다. 상황에 대한 판단이 빠르며 동료들과 원활한 커뮤니케이션을 통해 정확한 아웃풋을 도출합니다."</blockquote>
       <div class="who"><i>동</i>엠포스 · 동료</div>
     </div>

@@ -55,31 +55,25 @@ img, video { display: block; max-width: 100%; }
 
 /* hero */
 .hero { padding-block: clamp(48px, 8vw, 96px) clamp(40px, 6vw, 72px); }
-.hero-text { max-width: 46em; margin-bottom: clamp(36px, 5vw, 56px); }
 .hero .id { display: flex; align-items: center; gap: 16px; margin: 0 0 26px; }
-.hero .id img { width: 88px; height: 88px; border-radius: 12px; border: 1px solid var(--line); object-fit: cover; flex: none; }
+.hero .id img { width: 88px; height: 88px; border-radius: 50%; border: 1px solid var(--line); object-fit: cover; flex: none; }
 .hero .who { margin: 0; font-size: 15px; color: var(--muted); }
 .hero h1 { margin: 0 0 24px; font-size: clamp(1.5rem, 3.2vw, 2.5rem); line-height: 1.4; letter-spacing: -.025em; font-weight: 700; text-wrap: balance; }
 .hero h1 span { display: block; }
 .hero h1 span + span { margin-top: .35em; }
 .hero h1 b { font-weight: 800; color: var(--accent); }
-.hero .lead { color: var(--muted); max-width: 40em; margin: 0 0 30px; }
+.hero .lead { color: var(--muted); margin: 0 0 30px; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 15px; border: 1px solid var(--line); background: var(--card); transition: border-color .2s; }
 .btn:hover { border-color: rgba(224,160,58,.5); }
 .btn.primary { background: var(--accent); border-color: transparent; color: var(--bg); }
 .btn.primary:hover { background: #E8AD52; }
-.hero-fig { margin: 0; }
-.hero-fig .shot img { width: 100%; height: auto; }
-.hero-fig .shot { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; cursor: zoom-in; }
-.hero-fig figcaption { margin-top: 10px; font-size: 13.5px; color: var(--muted); }
 
 /* section */
 section.block { padding-block: clamp(64px, 9vw, 112px) 0; }
 .section-head { margin-bottom: clamp(28px, 4vw, 44px); }
 .section-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); letter-spacing: -.03em; margin: 0 0 8px; font-weight: 750; }
 .section-head p { color: var(--muted); margin: 0; }
-.prose { max-width: 42em; }
 .prose p { margin: 0 0 16px; }
 
 /* projects */
@@ -107,14 +101,13 @@ section.block { padding-block: clamp(64px, 9vw, 112px) 0; }
 .career .when { color: var(--muted); font-size: 15px; padding-top: 3px; }
 .career h3 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
 .career .role { margin: 2px 0 12px; color: var(--accent); font-weight: 600; font-size: 15px; }
-.career .body { max-width: 62em; }
 .career .body > p { margin: 0 0 12px; color: var(--muted); font-size: 15px; }
 .career ul { margin: 0; padding-left: 1.1em; color: var(--muted); font-size: 14.5px; }
 .career li li { display: list-item; padding: 0; border: 0; margin-bottom: 8px; }
 .career li li::marker { color: var(--accent); }
 
 /* testimonials */
-.pull { margin: 0 0 44px; max-width: 34em; }
+.pull { margin: 0 0 44px; }
 .pull p { margin: 0 0 14px; font-size: clamp(1.2rem, 2.2vw, 1.55rem); line-height: 1.6; letter-spacing: -.015em; font-weight: 500; }
 .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; }
 .quotes blockquote { margin: 0; padding-top: 18px; border-top: 1px solid var(--line); }
@@ -187,7 +180,7 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
     <h1>
       <span>월 인프라 비용을 <b>2,228만원에서 984만원</b>으로 줄였습니다.</span>
       <span>서비스 <b>61종</b>을 EKS에서 OKE로 전사 이관했습니다.</span>
-      <span>이벤트 루프가 멈추면 감지부터 자동 재시작까지 <b>최대 45초</b>입니다.</span>
+      <span>100만 DAU에 대비해 3,000 rps 부하에서 p95를 <b>1.3초에서 25ms</b>로 내렸습니다.</span>
     </h1>
     <p class="lead">지금은 에듀테크 회사에서 LMS와 SaaS, 채용 플랫폼, 실시간 화상 수업, AI 서비스의 백엔드를 FastAPI로 만들고, AWS와 OCI 인프라 구축과 운영, 보안과 비용 관리까지 맡고 있습니다.</p>
     <div class="cta">
@@ -195,12 +188,6 @@ dialog button { font: 600 14px var(--sans); background: var(--card); color: var(
       <a class="btn" href="mailto:vvvva_@naver.com">연락하기</a>
     </div>
   </div>
-  <figure class="hero-fig">
-    <button type="button" class="shot" data-zoom="assets/eks-to-oke.png" aria-label="EKS에서 OKE 이관 다이어그램 크게 보기">
-      <img src="assets/thumb-eks-to-oke.jpg" alt="EKS에서 OKE로의 이관 전후 구성 다이어그램" width="1200" height="607">
-    </button>
-    <figcaption>EKS에서 OKE로 옮기기 전과 후의 구성입니다. 누르면 크게 보입니다.</figcaption>
-  </figure>
 </header>
 
 <main>

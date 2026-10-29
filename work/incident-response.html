@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>장애 자동복구와 AI 원인분석 체계, 김세미</title>
+<meta name="description" content="외부 기관 API 하나 때문에 권한 서비스가 11분 멈춘 장애를 계기로 서비스 25종의 probe를 바꿨습니다. 멈춘 서비스는 이제 45초 안에 재시작됩니다.">
+<link rel="canonical" href="https://semi0x3b.github.io/portfolio/work/incident-response">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://semi0x3b.github.io/portfolio/work/incident-response">
+<meta property="og:title" content="장애 자동복구와 AI 원인분석 체계, 김세미">
+<meta property="og:description" content="서비스 25종 probe를 바꿔 멈춘 서비스가 45초 안에 재시작되게 하고, 장애 분석 봇을 만들었습니다.">
+<meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B1411">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230B1411'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%23E0A03A' font-family='monospace' font-weight='700'>;</text></svg>">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&text=semi%3B0x3bB&display=swap">
+<link rel="stylesheet" href="../site.css">
+<script>
+document.documentElement.classList.add("js");
+// 페이지 전환이 도중에 끊겨도(빠른 뒤로 가기 등) 거부된 promise를 오류로 남기지 않는다
+["pageswap", "pagereveal"].forEach(function (type) {
+  addEventListener(type, function (event) {
+    if (!event.viewTransition) return;
+    event.viewTransition.ready.catch(function () {});
+    event.viewTransition.finished.catch(function () {});
+  });
+});
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.documentElement.classList.add("motion");
+  // site.js가 못 뜨면 숨겨 둔 내용을 되살린다
+  setTimeout(function () { if (!window.__site) document.documentElement.classList.remove("motion"); }, 3000);
+}
+</script>
+<script src="../site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../" aria-label="김세미 포트폴리오 처음으로">semi<span class="logo__end"><span class="semi">;</span><span class="logo__hex" aria-hidden="true">0x3b</span></span></a>
+    <nav class="nav" aria-label="주 메뉴">
+      <ul>
+        <li><a class="commit" href="../#projects" aria-current="page"><span>프로젝트</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="../#career"><span>경력</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="../#reviews"><span>평가</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="../#writing"><span>글</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="#contact"><span>연락</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<article>
+  <header class="case-hero wrap">
+    <div class="case-hero__top">
+      <a class="back commit" href="../#projects"><span>프로젝트 목록</span><span class="commit__semi" aria-hidden="true">;</span></a>
+      <p class="case-hero__when">2026년 8월 ~ 10월</p>
+      <h1 style="view-transition-name: t-incident-response">장애 자동복구와 AI 원인분석 체계</h1>
+      <p class="case-hero__sub">서비스 25종 probe 전환, 장애 부검 봇</p>
+    </div>
+    <div class="case-pair axis">
+      <span class="l pair-before" style="view-transition-name: b-incident-response">전체 정지<span class="sr-only">에서</span></span>
+      <span class="semi" aria-hidden="true">;</span>
+      <div class="r">
+        <span class="pair-after" style="view-transition-name: a-incident-response">60건 모두 응답<span class="sr-only">으로</span></span>
+        <span class="note">외부 API가 응답하지 않는 동안. 앞은 실제 장애(11분 정지), 뒤는 적용 뒤 동시 60요청 시험</span>
+      </div>
+    </div>
+    <dl class="facts">
+      <div class="axis"><dt class="l">기술</dt><dd class="r">FastAPI, Kubernetes, Loki, Alertmanager, LLM</dd></div>
+      <div class="axis"><dt class="l">글과 코드</dt><dd class="r"><a class="link" href="https://semi0x3b.github.io/posts/2026-09-01-incident-bot-llm-autopsy">부검 봇 설계 글</a> <a class="link" href="https://github.com/semi0x3b/log-autopsy">log-autopsy 공개판</a></dd></div>
+    </dl>
+  </header>
+
+  <figure class="figure wrap">
+    <div class="pan">
+    <button type="button" data-zoom="../assets/incident-response.png" aria-label="감지, 자동복구, 원인분석 장애 대응 다이어그램 크게 보기">
+      <img class="diagram" src="../assets/thumb-incident-response.jpg" alt="감지, 자동복구, 원인분석 세 단계로 이어지는 장애 대응 흐름을 그린 다이어그램" width="1200" height="636">
+    </button>
+    </div>
+    <figcaption>장애를 감지하고 자동으로 복구한 뒤 원인을 분석하는 세 단계. 누르면 크게 볼 수 있습니다.</figcaption>
+  </figure>
+
+  <div class="wrap">
+    <section class="chapter axis" data-commit aria-labelledby="problem">
+      <h2 class="l" id="problem">문제</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <p>외부 기관 API(HRD-Net)가 응답하지 않자 권한 서비스 전체가 11분 동안 멈췄습니다. 장애는 사용자 신고로 알았고, 그동안 K8s도 아무 조치를 하지 않았습니다.</p>
+      </div>
+    </section>
+    <section class="chapter axis" data-commit aria-labelledby="work">
+      <h2 class="l" id="work">한 일</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <ul>
+          <li>응답시간이 read timeout 30초의 배수로 쌓이는 분포를 보고, <code>async def</code> 핸들러가 동기 I/O를 실행하는데 워커가 하나라서 이벤트 루프 하나가 전체를 막는 구조라는 것을 찾았습니다. <code>await</code>가 없는 핸들러 94건을 AST로 골라 sync로 바꿔 threadpool에 격리했습니다.</li>
+          <li>tcpSocket liveness는 커널이 소켓 연결을 받아 주기 때문에 이벤트 루프가 멈춰도 통과합니다. 서비스 25종을 httpGet으로 바꾸고, 앱 프로세스를 직접 멈춰서 45초 안에 재시작되는 것을 확인했습니다.</li>
+          <li>장애 분석 봇을 만들었습니다. 규칙이 신호를 찾고 LLM은 해석만 맡으며, 발송 전에 인용 문자열을 원본 로그와 기계로 대조해서 근거 없는 판정은 강등합니다. 봇에는 prod 변경 권한을 주지 않았고 복구는 K8s가 맡도록 나눴습니다.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="chapter axis" data-commit aria-labelledby="result">
+      <h2 class="l" id="result">결과</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <ul>
+          <li>외부 API가 멈춘 동안에도 동시 60 요청이 모두 응답했습니다(QueuePool timeout 0건).</li>
+          <li>25종에 롤아웃한 뒤 probe 오탐으로 재시작한 경우는 0건입니다.</li>
+          <li>과거 실제 장애 2건을 다시 돌리자 봇이 기록된 원인까지 찾아갔습니다. 뒤에 규칙 층을 앞에 두자 2주치 에러 알림 18건 중 9건은 LLM 호출 없이 판정이 끝났습니다.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <nav class="next wrap" aria-label="다음 프로젝트">
+    <div class="axis" data-commit>
+      <p class="l next__label">다음 프로젝트</p><span class="semi" aria-hidden="true">;</span>
+      <a class="r out" href="ats">
+        <span class="next__title commit"><span style="view-transition-name: t-ats">채용 플랫폼(ATS) 신규 구축</span><span class="commit__semi" aria-hidden="true">;</span></span>
+        <span class="next__pair">내보내기 메모리 34.5MB에서 <b>2.1MB</b>로</span>
+      </a>
+    </div>
+  </nav>
+</article>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="contact head axis" data-commit>
+      <h2 class="l">연락</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <p>함께 일할 자리가 있다면 메일 주세요. 이력서와 경력기술서는 요청하시면 보내 드립니다.</p>
+        <a class="contact__mail commit" href="mailto:vvvva_@naver.com"><span>vvvva_@naver.com</span><span class="commit__semi" aria-hidden="true">;</span></a>
+        <ul class="contact__links">
+          <li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>
+          <li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wordmark axis">
+      <span class="wordmark__word l" aria-hidden="true">semi</span><span class="semi" aria-hidden="true">;</span>
+      <p class="colophon r">핸들 <code>semi0x3b</code>의 <code>0x3B</code>는 세미콜론의 ASCII 코드입니다. 이 사이트의 세미콜론은 모두 같은 세로선 위에 있습니다.</p>
+    </div>
+    <div class="foot">
+      <span>© 2026 김세미</span>
+      <a href="#main">맨 위로</a>
+    </div>
+  </div>
+</footer>
+
+<dialog class="zoom" aria-label="그림 크게 보기">
+  <form method="dialog"><button>닫기</button></form>
+  <img alt="" width="1200" height="600">
+</dialog>
+</body>
+</html>

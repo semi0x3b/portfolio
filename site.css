@@ -276,6 +276,15 @@ html.motion [data-commit].is-in .out { clip-path: polygon(-3% -30%, 103% -30%, 1
 .career__body > p { color: var(--muted); }
 .career__body ul { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; font-size: 16px; }
 .career__body li::marker { color: var(--muted); }
+.career__body h4 { margin: 14px 0 -4px; font-size: 17px; font-weight: 600; line-height: 1.4; }
+.career__body h4 span { margin-left: 6px; white-space: nowrap; font-size: 14px; font-weight: 400; color: var(--muted); }
+/* 재직 구간: 회색 선 전체가 2013년부터 지금까지, 칠한 구간이 이 회사. 연도는 구간 양 끝 바깥에 둔다 */
+.tenure { position: relative; height: 18px; margin: 0 44px 14px; font-size: 13px; line-height: 18px; color: var(--muted); background: linear-gradient(var(--line) 0 0) center / 100% 1px no-repeat; }
+.tenure::before { content: ""; position: absolute; top: 6px; height: 6px; left: var(--s); width: var(--w); background: var(--muted); border-radius: 1px; }
+.tenure--now::before { background: var(--ink); }
+.tenure span { position: absolute; top: 0; white-space: nowrap; }
+.tenure span:first-child { right: calc(100% - var(--s) + 8px); }
+.tenure span:last-child { left: calc(var(--s) + var(--w) + 8px); }
 
 /* 동료 평가 */
 .pull { margin: 0 0 clamp(40px, 5vw, 72px); }
@@ -290,11 +299,6 @@ cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-
 .more summary .close, .more[open] summary .open { display: none; }
 .more[open] summary .close { display: inline; }
 .more[open] summary { margin-bottom: clamp(28px, 3vw, 40px); }
-.more--inline { margin-top: 2px; }
-.more--inline summary { font-size: 15px; color: var(--muted); padding-block: 6px; transition: color .25s; }
-.more--inline summary:focus-visible { color: var(--ink); }
-@media (hover: hover) { .more--inline summary:hover { color: var(--ink); } }
-.more--inline[open] summary { margin-bottom: 12px; }
 .source { margin-top: 32px; color: var(--muted); font-size: var(--t-s); }
 
 /* 글과 코드 */

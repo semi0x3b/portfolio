@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>채용 플랫폼(ATS) 신규 구축, 김세미</title>
+<meta name="description" content="수강생과 수료생의 취업을 돕는 채용 플랫폼을 새로 만들어 운영한 기록입니다. 오픈 뒤 석 달 동안 기업 61곳이 공고 132건을 올려 지원 380건이 들어왔습니다.">
+<link rel="canonical" href="https://semi0x3b.github.io/portfolio/work/ats">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://semi0x3b.github.io/portfolio/work/ats">
+<meta property="og:title" content="채용 플랫폼(ATS) 신규 구축, 김세미">
+<meta property="og:description" content="개인정보를 암호화해 저장하는 채용 플랫폼을 열었고 기업 61곳이 공고 132건을 올렸습니다.">
+<meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B1411">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230B1411'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%23E0A03A' font-family='monospace' font-weight='700'>;</text></svg>">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&text=semi%3B0x3bB&display=swap">
+<link rel="stylesheet" href="../site.css">
+<script>
+document.documentElement.classList.add("js");
+// 페이지 전환이 도중에 끊겨도(빠른 뒤로 가기 등) 거부된 promise를 오류로 남기지 않는다
+["pageswap", "pagereveal"].forEach(function (type) {
+  addEventListener(type, function (event) {
+    if (!event.viewTransition) return;
+    event.viewTransition.ready.catch(function () {});
+    event.viewTransition.finished.catch(function () {});
+  });
+});
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.documentElement.classList.add("motion");
+  // site.js가 못 뜨면 숨겨 둔 내용을 되살린다
+  setTimeout(function () { if (!window.__site) document.documentElement.classList.remove("motion"); }, 3000);
+}
+</script>
+<script src="../site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../" aria-label="김세미 포트폴리오 처음으로">semi<span class="logo__end"><span class="semi">;</span><span class="logo__hex" aria-hidden="true">0x3b</span></span></a>
+    <nav class="nav" aria-label="주 메뉴">
+      <ul>
+        <li><a class="commit" href="../#projects" aria-current="page"><span>프로젝트</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="../#career"><span>경력</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="../#reviews"><span>평가</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="../#writing"><span>글</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="#contact"><span>연락</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<article>
+  <header class="case-hero wrap">
+    <div class="case-hero__top">
+      <a class="back commit" href="../#projects"><span>프로젝트 목록</span><span class="commit__semi" aria-hidden="true">;</span></a>
+      <p class="case-hero__when">2026년 4월 ~ 6월 구축, 이후 운영</p>
+      <h1 style="view-transition-name: t-ats">채용 플랫폼(ATS) 신규 구축</h1>
+      <p class="case-hero__sub">구직자 커리어홈과 기업·운영 백오피스</p>
+    </div>
+    <div class="case-pair axis">
+      <span class="l pair-before" style="view-transition-name: b-ats">34.5MB<span class="sr-only">에서</span></span>
+      <span class="semi" aria-hidden="true">;</span>
+      <div class="r">
+        <span class="pair-after" style="view-transition-name: a-ats">2.1MB<span class="sr-only">로</span></span>
+        <span class="note">지원자 1만 행을 내보낼 때 최대 메모리, 암호화 XLSX로 바꾼 전후</span>
+      </div>
+    </div>
+    <dl class="facts">
+      <div class="axis"><dt class="l">팀 구성</dt><dd class="r">백엔드 1(본인), 프론트 2, 기획 1</dd></div>
+      <div class="axis"><dt class="l">기술</dt><dd class="r">FastAPI, PostgreSQL, Keycloak, kustomize, ArgoCD</dd></div>
+    </dl>
+  </header>
+
+  <figure class="figure wrap">
+    <div class="pan">
+    <button type="button" data-zoom="../assets/ats-pii-lifecycle.png" aria-label="지원서 개인정보 라이프사이클 다이어그램 크게 보기">
+      <img class="diagram" src="../assets/thumb-ats-pii-lifecycle.jpg" alt="수집, 전형, 가림, 파기 순서로 이어지는 지원자 개인정보 라이프사이클 다이어그램" width="1200" height="478">
+    </button>
+    </div>
+    <figcaption>지원서 개인정보가 수집, 전형, 가림, 파기를 거치는 흐름. 누르면 크게 볼 수 있습니다.</figcaption>
+  </figure>
+
+  <div class="wrap">
+    <section class="chapter axis" data-commit aria-labelledby="problem">
+      <h2 class="l" id="problem">문제</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <p>수강생과 수료생의 취업을 돕는 채용 플랫폼을 새로 만들어야 했는데, 인프라를 AWS에서 OCI로 옮기는 시기와 겹쳐 앱과 배포 기반을 함께 세워야 했습니다. 지원서에는 이력서와 연락처 같은 개인정보가 담깁니다.</p>
+      </div>
+    </section>
+    <section class="chapter axis" data-commit aria-labelledby="work">
+      <h2 class="l" id="work">한 일</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <ul>
+          <li>구직자용 커리어홈과 기업·운영용 백오피스 두 앱으로 나눠 설계했습니다.</li>
+          <li>개인정보는 암호화해서 저장하고 검색은 blind index(HMAC-SHA256)로 합니다. 부분 일치 검색을 포기하는 대신 평문 컬럼을 하나도 두지 않았습니다.</li>
+          <li>지원이 끝나면 열람 화면 7곳과 다운로드 API를 함께 막았습니다. 상세 화면만 막으면 API를 직접 불러 우회할 수 있어서입니다. 보유기간이 지나면 파일과 DB 행을 한 트랜잭션으로 파기하고, 파기 배치는 D-14와 D-3에 미리 알리며 하루 임계값을 넘으면 멈춥니다.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="chapter axis" data-commit aria-labelledby="result">
+      <h2 class="l" id="result">결과</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <ul>
+          <li>2026년 6월에 첫 prod 릴리스로 열었고, 석 달 동안 기업 61곳이 공고 132건을 올려 지원 380건이 들어왔습니다(2026년 9월 9일 운영 DB 조회).</li>
+          <li>지원자 내보내기를 암호화 XLSX로 바꾸면서 1만 행 기준 최대 메모리를 34.5MB에서 2.1MB로 줄였습니다.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <nav class="next wrap" aria-label="다음 프로젝트">
+    <div class="axis" data-commit>
+      <p class="l next__label">다음 프로젝트</p><span class="semi" aria-hidden="true">;</span>
+      <a class="r out" href="ai-learning">
+        <span class="next__title commit"><span style="view-transition-name: t-ai-learning">AI 학습 플랫폼 백엔드</span><span class="commit__semi" aria-hidden="true">;</span></span>
+        <span class="next__pair">강의 STT로 만든 <b>요약노트 1,132건</b></span>
+      </a>
+    </div>
+  </nav>
+</article>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="contact head axis" data-commit>
+      <h2 class="l">연락</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <p>함께 일할 자리가 있다면 메일 주세요. 이력서와 경력기술서는 요청하시면 보내 드립니다.</p>
+        <a class="contact__mail commit" href="mailto:vvvva_@naver.com"><span>vvvva_@naver.com</span><span class="commit__semi" aria-hidden="true">;</span></a>
+        <ul class="contact__links">
+          <li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>
+          <li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wordmark axis">
+      <span class="wordmark__word l" aria-hidden="true">semi</span><span class="semi" aria-hidden="true">;</span>
+      <p class="colophon r">핸들 <code>semi0x3b</code>의 <code>0x3B</code>는 세미콜론의 ASCII 코드입니다. 이 사이트의 세미콜론은 모두 같은 세로선 위에 있습니다.</p>
+    </div>
+    <div class="foot">
+      <span>© 2026 김세미</span>
+      <a href="#main">맨 위로</a>
+    </div>
+  </div>
+</footer>
+
+<dialog class="zoom" aria-label="그림 크게 보기">
+  <form method="dialog"><button>닫기</button></form>
+  <img alt="" width="1200" height="600">
+</dialog>
+</body>
+</html>

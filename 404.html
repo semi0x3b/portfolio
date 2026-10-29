@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>찾는 페이지가 없습니다, 김세미</title>
+<meta name="description" content="주소가 바뀌었거나 없는 페이지입니다. 김세미의 포트폴리오 처음 화면이나 프로젝트 목록에서 다시 찾아 주세요.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B1411">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230B1411'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%23E0A03A' font-family='monospace' font-weight='700'>;</text></svg>">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&text=semi%3B0x3bB&display=swap">
+<!-- 404는 아무 경로에서나 열리므로 절대 경로를 쓴다 -->
+<link rel="stylesheet" href="/portfolio/site.css">
+<script>
+document.documentElement.classList.add("js");
+// 페이지 전환이 도중에 끊겨도(빠른 뒤로 가기 등) 거부된 promise를 오류로 남기지 않는다
+["pageswap", "pagereveal"].forEach(function (type) {
+  addEventListener(type, function (event) {
+    if (!event.viewTransition) return;
+    event.viewTransition.ready.catch(function () {});
+    event.viewTransition.finished.catch(function () {});
+  });
+});
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.documentElement.classList.add("motion");
+  setTimeout(function () { if (!window.__site) document.documentElement.classList.remove("motion"); }, 3000);
+}
+</script>
+<script src="/portfolio/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/portfolio/" aria-label="김세미 포트폴리오 처음으로">semi<span class="logo__end"><span class="semi">;</span><span class="logo__hex" aria-hidden="true">0x3b</span></span></a>
+    <nav class="nav" aria-label="주 메뉴">
+      <ul>
+        <li><a class="commit" href="/portfolio/#projects"><span>프로젝트</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="/portfolio/#career"><span>경력</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="/portfolio/#reviews"><span>평가</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="/portfolio/#writing"><span>글</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="/portfolio/#contact"><span>연락</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1" class="lost wrap">
+  <div class="axis">
+    <h1 class="l">없는 주소입니다</h1><span class="semi" aria-hidden="true">;</span>
+    <span class="r" aria-hidden="true"><span class="caret"></span></span>
+  </div>
+  <div class="axis">
+    <div class="r prose">
+      <p>세미콜론 뒤가 비어 있습니다. 주소가 바뀌었거나, 아직 쓰지 않은 문장입니다.</p>
+      <div class="actions">
+        <a class="btn btn--primary commit" href="/portfolio/"><span>처음으로</span><span class="commit__semi" aria-hidden="true">;</span></a>
+        <a class="btn commit" href="/portfolio/#projects"><span>프로젝트 목록</span><span class="commit__semi" aria-hidden="true">;</span></a>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

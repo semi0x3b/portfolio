@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 학습 플랫폼 백엔드, 김세미</title>
+<meta name="description" content="라이브 강의의 STT와 강의자료로 RAG 튜터, 요약노트, 수업 모니터링, 퀴즈를 만들었습니다. AI 요약노트는 21개 과정에서 1,132건이 나갔습니다.">
+<link rel="canonical" href="https://semi0x3b.github.io/portfolio/work/ai-learning">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://semi0x3b.github.io/portfolio/work/ai-learning">
+<meta property="og:title" content="AI 학습 플랫폼 백엔드, 김세미">
+<meta property="og:description" content="AI 요약노트 1,132건이 21개 과정에서 2,973회 열람됐습니다.">
+<meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B1411">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230B1411'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%23E0A03A' font-family='monospace' font-weight='700'>;</text></svg>">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&text=semi%3B0x3bB&display=swap">
+<link rel="stylesheet" href="../site.css">
+<script>
+document.documentElement.classList.add("js");
+// 페이지 전환이 도중에 끊겨도(빠른 뒤로 가기 등) 거부된 promise를 오류로 남기지 않는다
+["pageswap", "pagereveal"].forEach(function (type) {
+  addEventListener(type, function (event) {
+    if (!event.viewTransition) return;
+    event.viewTransition.ready.catch(function () {});
+    event.viewTransition.finished.catch(function () {});
+  });
+});
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.documentElement.classList.add("motion");
+  // site.js가 못 뜨면 숨겨 둔 내용을 되살린다
+  setTimeout(function () { if (!window.__site) document.documentElement.classList.remove("motion"); }, 3000);
+}
+</script>
+<script src="../site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../" aria-label="김세미 포트폴리오 처음으로">semi<span class="logo__end"><span class="semi">;</span><span class="logo__hex" aria-hidden="true">0x3b</span></span></a>
+    <nav class="nav" aria-label="주 메뉴">
+      <ul>
+        <li><a class="commit" href="../#projects" aria-current="page"><span>프로젝트</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="../#career"><span>경력</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="../#reviews"><span>평가</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="../#writing"><span>글</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+        <li><a class="commit" href="#contact"><span>연락</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<article>
+  <header class="case-hero wrap">
+    <div class="case-hero__top">
+      <a class="back commit" href="../#projects"><span>프로젝트 목록</span><span class="commit__semi" aria-hidden="true">;</span></a>
+      <p class="case-hero__when">2025년 9월 ~ 2026년 7월</p>
+      <h1 style="view-transition-name: t-ai-learning">AI 학습 플랫폼 백엔드</h1>
+      <p class="case-hero__sub">RAG 튜터, 요약노트, 수업 모니터링, 퀴즈</p>
+    </div>
+    <div class="case-pair axis">
+      <span class="l pair-before" style="view-transition-name: b-ai-learning">강의 STT<span class="sr-only">로 만든</span></span>
+      <span class="semi" aria-hidden="true">;</span>
+      <div class="r">
+        <span class="pair-after" style="view-transition-name: a-ai-learning">요약노트 1,132건</span>
+        <span class="note">쌓이기만 하던 STT를 인덱싱해 21개 과정에 발행, 2,973회 열람</span>
+      </div>
+    </div>
+    <dl class="facts">
+      <div class="axis"><dt class="l">기술</dt><dd class="r">FastAPI, PostgreSQL+pgvector, OpenAI API, SQLAlchemy(Async), SSE</dd></div>
+    </dl>
+  </header>
+
+  <figure class="figure wrap">
+    <button type="button" data-zoom="../assets/thumb-axp.jpg" aria-label="AXP AI 학습 플랫폼 화면 크게 보기">
+      <img src="../assets/thumb-axp.jpg" alt="AXP AI 학습 플랫폼의 랜딩 페이지 화면" width="1200" height="750">
+    </button>
+    <figcaption>AI 학습 플랫폼 AXP의 랜딩 페이지. 누르면 크게 볼 수 있습니다.</figcaption>
+  </figure>
+
+  <div class="wrap">
+    <section class="chapter axis" data-commit aria-labelledby="problem">
+      <h2 class="l" id="problem">문제</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <p>라이브 강의의 STT와 강의자료가 쌓이기만 하고 학습에도 수업 관리에도 쓰이지 않았습니다.</p>
+      </div>
+    </section>
+    <section class="chapter axis" data-commit aria-labelledby="work">
+      <h2 class="l" id="work">한 일</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <ul>
+          <li>FastAPI 레포 하나에 AI 도메인 9종을 두고 하나씩 만들었습니다. STT를 청킹·임베딩해 pgvector에 쌓는 인덱서를 먼저 만들고, 그 위에 RAG 학습 튜터(ALEX)와 요약노트, 수업 모니터링(KAI), 퀴즈를 올렸습니다.</li>
+          <li>튜터는 질문 복잡도에 따라 체인(질문 개선, 답변 검증)을 골라 답합니다. 세부 규칙 중심이던 기획을 가이드라인 중심으로 바꾸자고 제안했고, 목표도 "정확도"에서 "학습 효과"로 다시 잡았습니다.</li>
+          <li>운영 중 장애 2건을 고쳤습니다. 자료가 0건인데 요약이 만들어지던 환각 경로에는 생성 차단 가드를 넣었고, 공유 DB 세션이 aborted 상태로 남아 대화 기록이 사라지던 문제는 즉시 rollback으로 막았습니다.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="chapter axis" data-commit aria-labelledby="result">
+      <h2 class="l" id="result">결과</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <ul>
+          <li>AI 요약노트는 21개 과정에서 1,132건이 나갔고 2,973회 열람됐습니다.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <nav class="next wrap" aria-label="다음 프로젝트">
+    <div class="axis" data-commit>
+      <p class="l next__label">다음 프로젝트</p><span class="semi" aria-hidden="true">;</span>
+      <a class="r out" href="chatbot-event">
+        <span class="next__title commit"><span style="view-transition-name: t-chatbot-event">브랜드 캠페인 AI 챗봇 이벤트</span><span class="commit__semi" aria-hidden="true">;</span></span>
+        <span class="next__pair">목표 6,000건에서 <b>45,253건</b>으로</span>
+      </a>
+    </div>
+  </nav>
+</article>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="contact head axis" data-commit>
+      <h2 class="l">연락</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <p>함께 일할 자리가 있다면 메일 주세요. 이력서와 경력기술서는 요청하시면 보내 드립니다.</p>
+        <a class="contact__mail commit" href="mailto:vvvva_@naver.com"><span>vvvva_@naver.com</span><span class="commit__semi" aria-hidden="true">;</span></a>
+        <ul class="contact__links">
+          <li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>
+          <li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wordmark axis">
+      <span class="wordmark__word l" aria-hidden="true">semi</span><span class="semi" aria-hidden="true">;</span>
+      <p class="colophon r">핸들 <code>semi0x3b</code>의 <code>0x3B</code>는 세미콜론의 ASCII 코드입니다. 이 사이트의 세미콜론은 모두 같은 세로선 위에 있습니다.</p>
+    </div>
+    <div class="foot">
+      <span>© 2026 김세미</span>
+      <a href="#main">맨 위로</a>
+    </div>
+  </div>
+</footer>
+
+<dialog class="zoom" aria-label="그림 크게 보기">
+  <form method="dialog"><button>닫기</button></form>
+  <img alt="" width="1200" height="600">
+</dialog>
+</body>
+</html>

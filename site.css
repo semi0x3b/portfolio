@@ -335,8 +335,6 @@ cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-
   font-size: clamp(64px, calc((var(--axis-n) * 1cqi - var(--g) / 2) / 2.45), 260px);
 }
 .wordmark > .semi { letter-spacing: 0; }
-.colophon { align-self: end; max-width: 28em; padding-left: clamp(16px, 3vw, 56px); color: var(--muted); font-size: var(--t-s); padding-bottom: .4em; }
-.colophon code { font-family: var(--code); font-weight: 800; color: var(--ink); }
 .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-size: var(--t-s); color: var(--muted); }
 .foot a { text-decoration: none; transition: color .25s; }
 .foot ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
@@ -478,7 +476,6 @@ html.motion .caret { animation: blink 1s steps(1) 4; }
   .career > li { row-gap: 16px; }
   .axis > .career__meta { grid-column: 1 / -1; text-align: left; }
   .wordmark__word, .wordmark > .semi { font-size: 3.6rem; }
-  .colophon { margin-top: 20px; padding-left: 0; }
   .entries a { display: flex; flex-direction: column; gap: 2px; }
   .nav a { font-size: 14px; }
   .lost h1, .lost > .axis > .semi, .caret { font-size: 1.75rem; }

@@ -266,20 +266,12 @@ html.motion [data-commit].is-in .out { clip-path: polygon(-3% -30%, 103% -30%, 1
 .prose strong { color: var(--ink); font-weight: 600; }
 
 /* 경력 */
-.scale { margin-bottom: 8px; }
-.scale .l { position: relative; height: 22px; font-size: 13px; color: var(--muted); }
-.scale .l span { white-space: nowrap; position: absolute; top: 0; translate: -50% 0; left: var(--at); }
-.scale .l span:first-child { translate: 0 0; }
-.scale .l span:last-child { translate: -100% 0; }
 .career { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
 .career > li { padding-block: clamp(28px, 3vw, 40px); border-top: 1px solid var(--line); align-items: start; }
 .career__meta { display: grid; gap: 2px; }
 .career__meta h3 { font-size: var(--t-m); line-height: 1.35; letter-spacing: -.02em; }
 .career__role { color: var(--ink); font-size: 16px; }
 .career__when { color: var(--muted); font-size: 15px; }
-.span { position: relative; height: 6px; margin-top: 14px; background: linear-gradient(var(--line) 0 0) center / 100% 1px no-repeat; }
-.span::after { content: ""; position: absolute; top: 0; bottom: 0; left: var(--s); width: var(--w); background: var(--muted); border-radius: 1px; }
-.span--now::after { background: var(--ink); }
 .career__body { display: grid; gap: 14px; max-width: 44em; }
 .career__body > p { color: var(--muted); }
 .career__body ul { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; font-size: 16px; }
@@ -479,10 +471,8 @@ html.motion .caret { animation: blink 1s steps(1) 4; }
   .case-pair .pair-before, .case-pair .pair-after, .case-pair > .semi { font-size: 1.5rem; }
   .pair-after { white-space: normal; }
   .work a::before { clip-path: inset(0 100% 0 0); }
-  .scale { display: none; }
   .career > li { row-gap: 16px; }
   .axis > .career__meta { grid-column: 1 / -1; text-align: left; }
-  .span { max-width: 320px; }
   .wordmark__word, .wordmark > .semi { font-size: 3.6rem; }
   .colophon { margin-top: 20px; padding-left: 0; }
   .entries a { display: flex; flex-direction: column; gap: 2px; }

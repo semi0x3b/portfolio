@@ -363,6 +363,9 @@ cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-
 .facts dt { color: var(--muted); font-size: 15px; }
 .facts dd { margin: 0; font-size: 16px; }
 .facts dd a { margin-right: 16px; }
+.skills { margin-top: clamp(28px, 3vw, 40px); }
+.skills dd { display: grid; gap: 8px; }
+.skills b { margin-right: 6px; font-weight: 600; }
 .figure { margin: 0 0 clamp(56px, 7vw, 104px); }
 .figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(20px, 2.4vw, 32px); margin-bottom: clamp(56px, 7vw, 104px); }
 .figures .figure { margin: 0; }
@@ -475,6 +478,7 @@ html.motion .caret { animation: blink 1s steps(1) 4; }
   .work a::before { clip-path: inset(0 100% 0 0); }
   .career > li { row-gap: 16px; }
   .axis > .career__meta { grid-column: 1 / -1; text-align: left; }
+  .skills > .axis > .l, .skills > .axis > .r { grid-column: 1 / -1; text-align: left; }
   .wordmark__word, .wordmark > .semi { font-size: 3.6rem; }
   .entries a { display: flex; flex-direction: column; gap: 2px; }
   .nav a { font-size: 14px; }

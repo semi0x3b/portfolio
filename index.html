@@ -208,7 +208,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
           <li>문서도 IaC도 없이 콘솔에만 있던 EKS를 실측으로 파악하고 OKE를 Terraform, ArgoCD, Vault로 다시 세워 서비스 61종을 옮겼습니다. 로드밸런서는 23개에서 5개로, 미사용 EIP는 21개에서 0개로 줄었습니다.</li>
           <li>청구서를 계정별로 분석해 유휴 자원을 회수하고, 클라우드 이관과 외부 웹 IDE 교체를 더해 월 인프라 비용을 2,400만원에서 1,000만원으로 줄였습니다.</li>
           <li>외부 API가 응답하지 않자 권한 서비스가 11분 멈춘 원인을 이벤트 루프 블로킹으로 찾아 동기 핸들러 94건을 격리하고, 헬스체크 25종을 바꿔 같은 증상이면 45초 안에 저절로 재시작되게 했습니다. 알림마다 원인 후보와 증거를 붙이는 장애 분석 봇도 만들었습니다.</li>
-          <li>서비스 11개 repo와 인프라 미러 2개를 전수 감사해 무인증 개인정보·IDOR 노출 11건, 확정 IDOR 12건, 무인증 토큰 발급 경로를 사고 전에 막았습니다.</li>
+          <li>서비스 11개 레포의 인증·인가를 전수 감사해 빠진 경로를 사고 전에 막고, 로그인을 HttpOnly 쿠키 방식으로 다시 설계해 홈과 ATS가 한 세션을 쓰게 했습니다.</li>
         </ul>
         <h4>부트캠프·KDC LMS <span>2024 ~ 현재</span></h4>
         <ul>
@@ -251,10 +251,15 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         <ul>
           <li>멋사대학 동아리 커뮤니케이션과 해커톤·프로젝트 아카이빙 서비스의 인증·게시판·모임·채팅·랭킹·백오피스 API와 EKS 배포, CI/CD를 만들어 약 7주 만에 열었습니다.</li>
         </ul>
-        <h4>팀이 쓰는 도구와 문서 <span>2026</span></h4>
+        <h4>Python 서비스 13개 전환 <span>2026, 진행 중</span></h4>
+        <ul>
+          <li>보안 권고가 걸린 의존성 때문에 Python 3.7과 pydantic v1에 묶여 있던 서비스 13개를 Python 3.13으로 올리고 있습니다. 구 서버와 새 서버를 같은 시드 DB에 띄워 모든 라우트의 응답이 같은지를 기준으로 삼아, 클라이언트를 바꾸지 않고 올립니다. 13개 모두 dev까지 반영했고 운영 배포 전입니다.</li>
+        </ul>
+        <h4>팀 도구와 기획 정합 <span>2026</span></h4>
         <ul>
           <li>운영 지식을 코드 옆 lat.md에 두고 CI와 PR에서 갱신을 강제하는 규칙을 만들었습니다. 회사 레포 18곳으로 퍼졌고, 이 문서를 고친 커밋의 3분의 2 이상이 팀원 커밋입니다.</li>
           <li>Claude Code 멀티에이전트 워크플로우를 도입해 사내 스킬 24종을 레포 26곳에 배포하고 세미나에서 발표했으며, DevOps 인턴 2명을 리딩했습니다.</li>
+          <li>기획 문서, 디자인, 코드가 어긋나지 않도록 기획을 기획 레포에서 관리하는 구조로 바꾸는 일에 참여했고, 기획 레포 3곳에 기획 공백과 문서 간 충돌을 정리한 이슈 36건을 선택지와 함께 올렸습니다.</li>
         </ul>
       </div>
     </li>
@@ -336,6 +341,13 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
       </div>
     </li>
   </ol>
+  <dl class="facts skills">
+    <div class="axis"><dt class="l">기술</dt><dd class="r">
+      <p><b>백엔드</b> Python(FastAPI·SQLAlchemy·Alembic), PostgreSQL(+pgvector), Redis, Next.js(필요한 화면 구현)</p>
+      <p><b>인프라·관측</b> Kubernetes(EKS·OKE), Terraform, ArgoCD, Helm, Vault, Keycloak, Kong, GitHub Actions, AWS, OCI, Grafana, Prometheus, Loki, Sentry, k6</p>
+      <p><b>AI</b> OpenAI·Claude API, RAG, LLM 자동 채점·모델 비교, Claude Code(사내 스킬·에이전트 배포)</p>
+    </dd></div>
+  </dl>
 </section>
 
 <section class="block wrap" id="reviews" aria-labelledby="reviews-title">
@@ -437,7 +449,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
     <div class="contact head axis" data-commit>
       <h2 class="l">연락</h2><span class="semi" aria-hidden="true">;</span>
       <div class="r out">
-        <p>함께 일할 자리가 있다면 메일 주세요. 이력서와 경력기술서는 요청하시면 보내 드립니다.</p>
+        <p>함께 일할 자리가 있다면 메일 주세요.</p>
         <a class="contact__mail commit" href="mailto:vvvva_@naver.com"><span>vvvva_@naver.com</span><span class="commit__semi" aria-hidden="true">;</span></a>
         <ul class="contact__links">
           <li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>

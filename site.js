@@ -218,8 +218,15 @@ if (sheet) {
   });
 }
 
-// 팝업 안의 상세: 바깥 링크는 새 탭으로, 다음 프로젝트는 기록 없이 바꾸고, Esc는 팝업을 닫는다
+// 팝업 안의 상세: 바깥 링크는 새 탭으로, 다음 프로젝트는 기록 없이 바꾸고, 끝의 닫기와 Esc는 팝업을 닫는다
 if (root.classList.contains("embedded")) {
+  const closeSheet = () => parent.document.querySelector("dialog.sheet[open]")?.close();
+  const closeLink = document.querySelector("[data-close]");
+  closeLink.textContent = "닫기";
+  closeLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    closeSheet();
+  });
   document.querySelectorAll("a[href^='http']").forEach((link) => {
     link.target = "_blank";
     link.rel = "noopener";
@@ -230,7 +237,7 @@ if (root.classList.contains("embedded")) {
   });
   addEventListener("keydown", (event) => {
     if (event.key !== "Escape" || document.querySelector("dialog[open]")) return;
-    parent.document.querySelector("dialog.sheet[open]")?.close();
+    closeSheet();
   });
 }
 

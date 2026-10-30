@@ -69,7 +69,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
       <span class="semi" aria-hidden="true">;</span>
       <div class="r">
         <span class="pair-after" style="view-transition-name: a-ats">2.1MB<span class="sr-only">로</span></span>
-        <span class="note">지원자 1만 행을 내보낼 때 최대 메모리, 암호화 XLSX로 바꾼 전후</span>
+        <span class="note">지원자 1만 행을 내보낼 때 최대 메모리, 암호화 XLSX로 바꾸기 전과 후</span>
       </div>
     </div>
     <dl class="facts">
@@ -100,7 +100,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         <ul>
           <li>구직자용 커리어홈과 기업·운영용 백오피스 두 앱으로 나눠 설계했습니다.</li>
           <li>개인정보는 암호화해서 저장하고 검색은 blind index(HMAC-SHA256)로 합니다. 부분 일치 검색을 포기하는 대신 평문 컬럼을 하나도 두지 않았습니다.</li>
-          <li>지원이 끝나면 열람 화면 7곳과 다운로드 API를 함께 막았습니다. 상세 화면만 막으면 API를 직접 불러 우회할 수 있어서입니다. 보유기간이 지나면 파일과 DB 행을 한 트랜잭션으로 파기하고, 파기 배치는 D-14와 D-3에 미리 알리며 하루 임계값을 넘으면 멈춥니다.</li>
+          <li>전형이 끝나면 열람 화면 7곳과 다운로드 API를 함께 막습니다. 상세 화면만 막으면 API를 직접 불러 우회할 수 있어서입니다. 보유기간이 지나면 파일과 DB 행을 한 트랜잭션으로 파기하고, 파기 배치는 D-14와 D-3에 미리 알리며 하루 임계값을 넘으면 멈춥니다.</li>
         </ul>
       </div>
     </section>

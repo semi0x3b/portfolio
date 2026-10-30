@@ -98,9 +98,9 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
       <h2 class="l" id="work">한 일</h2><span class="semi" aria-hidden="true">;</span>
       <div class="r out">
         <ul>
-          <li>콘솔과 클러스터를 직접 재서 현행을 파악한 뒤 Terraform, ArgoCD, Vault 기반으로 다시 세웠습니다. gitignore된 로컬 파일에만 있던 DB 시크릿 18종은 Vault와 ESO로 옮겼습니다.</li>
+          <li>콘솔과 클러스터를 직접 조사해 현재 구성을 파악한 뒤 Terraform, ArgoCD, Vault 기반으로 다시 세웠습니다. gitignore된 로컬 파일에만 있던 DB 시크릿 18종은 Vault와 ESO로 옮겼습니다.</li>
           <li>인증서 발급(ACME)이 DNS에 기대고 있어서 컷오버를 라우팅 선등록, DNS 전환, TLS 승격 세 단계로 나눴습니다.</li>
-          <li>구 도메인은 게이트웨이 24시간 트래픽이 0건인 것을 확인한 뒤에 지웠습니다. 이관이 끝났다고 여겨진 뒤에도 트래픽을 다시 재서 아직 쓰이던 API 하나(6시간 3,880건)를 찾아 옮겼고, 그다음에 EKS 노드를 0대로 내렸습니다.</li>
+          <li>구 도메인은 게이트웨이 24시간 트래픽이 0건인 것을 확인한 뒤에 지웠습니다. 이관이 끝났다고 여겨진 뒤에도 트래픽을 다시 측정해 아직 쓰이던 API 하나(6시간 3,880건)를 찾아 옮겼고, 그다음에 EKS 노드를 0대로 내렸습니다.</li>
         </ul>
       </div>
     </section>

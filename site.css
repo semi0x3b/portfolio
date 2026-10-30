@@ -350,20 +350,12 @@ cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-
 
 /* 케이스 */
 .case-hero { padding-block: clamp(28px, 4vw, 56px) clamp(40px, 5vw, 72px); display: grid; gap: clamp(28px, 4vw, 48px); }
-.case-hero__top {
-  display: grid; align-items: baseline; row-gap: 12px;
-  grid-template-columns: minmax(0, calc(var(--axis) - var(--g) / 2)) var(--g) minmax(0, 1fr);
-}
-.case-hero__top > .back { grid-column: 1; grid-row: 1; justify-self: end; }
-.case-hero__top > .case-hero__when { grid-column: 1; grid-row: 2; text-align: right; }
-.case-hero__top > h1 { grid-column: 3; grid-row: 2; }
-.case-hero__top > .case-hero__sub { grid-column: 3; grid-row: 3; }
+.case-hero__top { display: grid; justify-items: start; row-gap: 12px; }
 .back { font-size: 15px; color: var(--muted); }
 .case-hero__when { font-size: 15px; color: var(--muted); }
 .case-hero h1 { font-size: var(--t-xl); line-height: 1.12; letter-spacing: -.035em; text-wrap: balance; }
 .case-hero__sub { font-size: var(--t-m); color: var(--muted); letter-spacing: -.015em; }
-.case-pair .pair-before, .case-pair .pair-after { font-size: var(--t-pair); }
-.case-pair > .semi { font-size: var(--t-pair); }
+.case-pair .pair-before, .case-pair .pair-after, .case-pair > .semi { font-size: min(var(--t-pair), 3.25rem); }
 .case-pair .r { display: grid; gap: 10px; }
 .case-pair .note { font-size: var(--t-s); color: var(--muted); }
 .facts { display: grid; gap: 10px; margin: 0; }
@@ -371,10 +363,22 @@ cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-
 .facts dt { color: var(--muted); font-size: 15px; }
 .facts dd { margin: 0; font-size: 16px; }
 .facts dd a { margin-right: 16px; }
+/* 케이스는 가운데 한 열: 라벨과 본문이 왼쪽·오른쪽을 오가지 않고 같은 왼쪽 선에서 위아래로 이어진다 */
+article .wrap { max-width: calc(760px + var(--margin) * 2); }
+article .axis { grid-template-columns: auto var(--g) minmax(0, 1fr); }
+article .axis > .l { text-align: left; }
+article .axis > .r { grid-column: 1 / -1; margin-top: 14px; }
+/* 전 ; 후는 한 줄, 설명은 그 아래 같은 왼쪽 선에서 */
+article .case-pair { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: .3em; }
+article .case-pair > .r { display: contents; }
+article .case-pair .note { flex-basis: 100%; margin-top: 10px; }
+article .facts > .axis { grid-template-columns: 6.5rem 0 minmax(0, 1fr); }
+article .facts > .axis > .r { grid-column: 3; margin-top: 0; }
 .skills { margin-top: clamp(28px, 3vw, 40px); }
 .skills dd { display: grid; gap: 8px; }
 .skills b { margin-right: 6px; font-weight: 600; }
 .figure { margin: 0 0 clamp(56px, 7vw, 104px); }
+.figure.wrap { margin-inline: auto; }
 .figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(20px, 2.4vw, 32px); margin-bottom: clamp(56px, 7vw, 104px); }
 .figures .figure { margin: 0; }
 .figure:not(.loop-sim) button, .figure .media { position: relative; isolation: isolate; display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; cursor: zoom-in; }
@@ -393,14 +397,14 @@ cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-
   .figure:not(.loop-sim) button:hover { border-color: var(--muted); }
   .figure:not(.loop-sim) button:hover::after { opacity: 1; translate: 0 0; }
 }
-/* 장애 케이스: 수정 전·후 요청 흐름. --p(0~1)가 경과 시간, 점은 --t를 지나면 나타난다 */
-.loop-sim { --p: 1; padding: clamp(20px, 2.6vw, 32px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-.loop-sim__head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-bottom: 24px; }
+/* 장애 케이스: 수정 전·후 요청 흐름을 함께 재생한다. --p(0~1)가 경과 시간, 점은 --t를 지나면 나타난다 */
+.loop-sim__box { --p: 1; padding: clamp(20px, 2.6vw, 32px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.loop-sim__head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-bottom: 12px; }
 .loop-sim__title { font-size: 17px; font-weight: 600; }
-.loop-sim__modes { display: inline-flex; border: 1px solid var(--edge); border-radius: var(--radius); }
-.loop-sim__modes button { padding: 8px 16px; border: 0; background: none; color: var(--muted); font: inherit; font-size: 15px; cursor: pointer; transition: background-color .25s, color .25s; }
-.loop-sim__modes button[aria-pressed="true"] { background: var(--ink); color: var(--ground); font-weight: 600; }
-.loop-sim__modes button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.loop-sim__replay { padding: 6px 14px; border: 1px solid var(--edge); border-radius: var(--radius); background: none; color: var(--ink); font: inherit; font-size: 14px; cursor: pointer; }
+.loop-sim__replay:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.loop-sim__group { grid-column: 1 / -1; margin-top: 12px; font-size: 15px; font-weight: 600; }
+.loop-sim__group ~ .loop-sim__group { margin-top: 16px; padding-top: 20px; border-top: 1px solid var(--line); }
 .loop-sim__clock { margin-left: auto; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .loop-sim__clock b { display: inline-block; min-width: 3ch; text-align: right; color: var(--ink); }
 .loop-sim__stage { display: grid; grid-template-columns: 8.5rem 1fr; gap: 12px 16px; align-items: center; }
@@ -409,7 +413,6 @@ cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-
 .loop-sim__track { position: relative; height: 34px; border-radius: var(--radius); background: var(--ground); }
 .loop-sim__track::after { content: ""; position: absolute; top: -6px; bottom: -6px; left: calc(var(--p) * 100%); width: 1px; background: var(--accent); opacity: var(--playing, 0); }
 .loop-sim__axis { grid-column: 2; display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.loop-sim[data-mode="before"] [data-scene="after"], .loop-sim[data-mode="after"] [data-scene="before"] { display: none; }
 .ls-bar { position: absolute; top: 6px; bottom: 6px; left: 0; overflow: hidden; border-radius: 2px; }
 .ls-bar--block { width: calc(var(--p) * 100%); background: repeating-linear-gradient(-45deg, var(--accent) 0 6px, #B57F2A 6px 12px); }
 .ls-bar--block span { display: block; padding: 0 10px; font-size: 13px; font-weight: 600; line-height: 22px; color: var(--ground); white-space: nowrap; }
@@ -420,8 +423,8 @@ cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-
   opacity: clamp(0, calc((var(--p) - var(--t)) * 400), 1); }
 .ls-dot[data-label]::after { content: attr(data-label); position: absolute; left: 50%; bottom: 15px; translate: -50% 0; font-size: 12px; color: var(--ink); white-space: nowrap; }
 .ls-dot--first[data-label]::after { left: 0; bottom: auto; top: 50%; translate: 16px -50%; }
-.loop-sim__summary { margin-top: 24px; max-width: 46em; color: var(--muted); }
-.figure.loop-sim figcaption { margin-left: 0; }
+.loop-sim__summary { margin-top: 28px; display: grid; gap: 12px; color: var(--muted); }
+.loop-sim__summary b { margin-right: 6px; color: var(--ink); font-weight: 600; }
 .loop-sim figcaption button { display: inline; width: auto; padding: 0; border: 0; border-radius: 0; background: none; color: var(--ink); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .bars { list-style: none; margin: 0; padding: clamp(28px, 3vw, 44px) 0; display: grid; gap: 18px; border-block: 1px solid var(--line); }
 .bars__label { font-size: 15px; color: var(--muted); }
@@ -432,19 +435,19 @@ cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-
 .bars__real .bars__value { right: auto; left: calc(max(var(--v), 3px) + 12px); color: var(--ink); }
 .hops { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .hop {
-  position: relative; display: grid; align-items: baseline; padding-block: 20px;
-  grid-template-columns: minmax(0, 1fr) auto var(--g) minmax(0, calc(100% - var(--axis) - var(--g) / 2));
+  position: relative; display: grid; align-items: baseline; row-gap: 6px; padding: 20px 0 20px 28px;
+  grid-template-columns: auto var(--g) minmax(0, 1fr);
   border-bottom: 1px solid var(--line);
 }
 /* 왼쪽 끝 세로선과 점: 요청이 위에서 아래로 지나간다 */
 .hop::before { content: ""; position: absolute; left: 4px; top: 0; bottom: 0; width: 1px; background: var(--line); }
 .hop:first-child::before { top: 50%; }
 .hop:last-child::before { bottom: 50%; }
-.hop::after { content: ""; position: absolute; left: 0; top: calc(50% - 4px); width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
-.hop__name { grid-column: 1; padding-left: 28px; font-size: 15px; color: var(--muted); }
-.hop__before { grid-column: 2; text-align: right; }
-.hop > .semi { grid-column: 3; justify-self: center; }
-.hop__after { grid-column: 4; }
+.hop::after { content: ""; position: absolute; left: 0; top: 26px; width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
+.hop__name { grid-column: 1 / -1; grid-row: 1; font-size: 15px; color: var(--muted); }
+.hop__before { grid-column: 1; grid-row: 2; }
+.hop > .semi { grid-column: 2; grid-row: 2; justify-self: center; }
+.hop__after { grid-column: 3; grid-row: 2; }
 .hop .pair-before, .hop .pair-after, .hop > .semi { font-size: var(--t-m); }
 .chapter { padding-block: clamp(28px, 3.4vw, 48px); border-top: 1px solid var(--line); }
 .chapter:last-of-type { border-bottom: 1px solid var(--line); }
@@ -466,12 +469,27 @@ cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-
 
 /* 넓은 화면: 긴 본문 옆의 라벨·회사명이 본문을 따라 내려온다 */
 @media (min-width: 760px) {
-  .figure figcaption, .quotes, #reviews > .more, #reviews > .source { margin-left: calc(var(--axis) + var(--g) / 2); }
+  .quotes, #reviews > .more, #reviews > .source { margin-left: calc(var(--axis) + var(--g) / 2); }
   .more .quotes { margin-left: 0; }
-  .chapter > .l, .chapter > .semi, .career__meta { position: sticky; top: 96px; }
+  .career__meta { position: sticky; top: 96px; }
 }
 
 /* 확대 */
+/* 프로젝트 팝업: 홈 위에 상세를 띄우고, 닫으면 보던 자리에서 이어 읽는다 */
+html:has(dialog.sheet[open]) { overflow: hidden; }
+dialog.sheet { width: min(960px, 100vw - 32px); height: calc(100dvh - 32px); max-width: none; max-height: none; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--ground); color: var(--ink); overflow: hidden; }
+dialog.sheet[open] { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+dialog.sheet::backdrop { background: rgba(5, 9, 8, .82); }
+html.motion dialog.sheet[open] { animation: sheet-in .45s var(--ease); }
+@keyframes sheet-in { from { opacity: 0; translate: 0 24px; } }
+.sheet__bar { display: flex; justify-content: flex-end; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.sheet__bar button { min-height: 40px; padding: 6px 16px; border: 1px solid var(--edge); border-radius: var(--radius); background: none; color: var(--ink); font: 600 15px var(--sans); cursor: pointer; }
+.sheet__bar button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+dialog.sheet iframe { display: block; width: 100%; height: 100%; border: 0; }
+/* 팝업 안의 상세: 머리·연락·되돌아가기는 홈 것이 있으니 숨긴다 */
+html.embedded .site-header, html.embedded .site-footer, html.embedded .back, html.embedded .skip { display: none; }
+html.embedded article { padding-bottom: 72px; }
+
 dialog.zoom { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; }
 dialog.zoom::backdrop { background: rgba(5, 9, 8, .92); }
 dialog.zoom img { max-height: 88vh; width: auto; border-radius: var(--radius); background: #fff; }
@@ -497,6 +515,7 @@ html.motion .caret { animation: blink 1s steps(1) 4; }
 @keyframes vt-enter { from { clip-path: inset(0 calc(100% - var(--axis)) 0 var(--axis)); } to { clip-path: inset(0); } }
 
 @media (max-width: 759px) {
+  dialog.sheet { width: 100vw; height: 100dvh; border: 0; border-radius: 0; }
   /* 폰에서도 축은 한 세로선: 왼쪽 열 폭을 고정하고, 긴 본문만 축 아래로 내린다 */
   .axis { grid-template-columns: 9rem 1.3rem minmax(0, 1fr); }
   .axis > .r { grid-column: 1 / -1; margin-top: 10px; }
@@ -525,18 +544,10 @@ html.motion .caret { animation: blink 1s steps(1) 4; }
   .entries a { display: flex; flex-direction: column; gap: 2px; }
   .nav a { font-size: 14px; }
   .lost h1, .lost > .axis > .semi, .caret { font-size: 1.75rem; }
-  .case-hero__top { grid-template-columns: minmax(0, 1fr); }
-  .case-hero__top > .back, .case-hero__top > .case-hero__when, .case-hero__top > h1, .case-hero__top > .case-hero__sub { grid-column: 1; grid-row: auto; justify-self: start; text-align: left; }
   .pan { overflow-x: auto; overscroll-behavior-x: contain; }
-  .pan > button { width: 880px; }
+  .figure .pan > button { width: 880px; }
   .bars .axis > .r { grid-column: 1 / -1; margin-top: 6px; }
   .entries .d { text-align: left; }
-  .hop { grid-template-columns: 9rem 1.3rem minmax(0, 1fr); row-gap: 6px; }
-  .hop__name { grid-column: 1 / -1; grid-row: 1; }
-  .hop__before { grid-column: 1; grid-row: 2; }
-  .hop > .semi { grid-column: 2; grid-row: 2; }
-  .hop__after { grid-column: 3; grid-row: 2; }
-  .hop::after { top: 26px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

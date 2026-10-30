@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="../site.css">
 <script>
 document.documentElement.classList.add("js");
+// 홈 팝업 안에서 열리면 머리·연락을 숨긴다
+if (window.self !== window.top) document.documentElement.classList.add("embedded");
 // 페이지 전환이 도중에 끊겨도(빠른 뒤로 가기 등) 거부된 promise를 오류로 남기지 않는다
 ["pageswap", "pagereveal"].forEach(function (type) {
   addEventListener(type, function (event) {

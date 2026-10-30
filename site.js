@@ -136,11 +136,11 @@ if (!reduceMotion) {
   document.querySelectorAll("video[data-autoplay]").forEach((video) => videoObserver.observe(video));
 }
 
-// 장애 케이스: 수정 전·후를 고르면 240초를 5초 동안 다시 재생한다
+// 장애 케이스: 수정 전·후 240초를 5초 동안 함께 재생한다
 const loopSim = document.querySelector("[data-loop-sim]");
 if (loopSim) {
   const clock = loopSim.querySelector("[data-clock]");
-  const modeButtons = [...loopSim.querySelectorAll("button[data-mode]")];
+  const replayButton = loopSim.querySelector("[data-replay]");
   const spanSeconds = 240;
   const playMs = 5000;
   let frame = 0;
@@ -169,13 +169,8 @@ if (loopSim) {
     frame = requestAnimationFrame(step);
   };
 
-  for (const button of modeButtons) {
-    button.addEventListener("click", () => {
-      loopSim.dataset.mode = button.dataset.mode;
-      for (const other of modeButtons) other.setAttribute("aria-pressed", String(other === button));
-      play();
-    });
-  }
+  replayButton.hidden = reduceMotion;
+  replayButton.addEventListener("click", play);
 
   if (!reduceMotion) {
     setProgress(0);
@@ -186,6 +181,57 @@ if (loopSim) {
     }, { threshold: 0.5 });
     simObserver.observe(loopSim);
   }
+}
+
+// 홈: 프로젝트를 누르면 상세를 팝업으로 연다. 닫으면 보던 자리에서 경력으로 이어 읽는다
+// 새 탭으로 열거나 JS가 없으면 그대로 상세 페이지로 간다. 뒤로 가기는 팝업을 닫는다
+const sheet = document.querySelector("dialog.sheet");
+if (sheet) {
+  const openSheet = (url) => {
+    // 열 때마다 새 iframe을 만들어야 iframe 안 이동이 방문 기록에 쌓이지 않는다
+    const frame = document.createElement("iframe");
+    frame.title = "프로젝트 상세";
+    frame.src = url;
+    sheet.append(frame);
+    sheet.showModal();
+    history.pushState({ sheet: true }, "");
+  };
+
+  document.querySelectorAll("a[href^='work/']").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const wantsNewTab = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
+      if (wantsNewTab) return;
+      event.preventDefault();
+      openSheet(link.href);
+    });
+  });
+
+  sheet.addEventListener("close", () => {
+    sheet.querySelector("iframe")?.remove();
+    if (history.state?.sheet) history.back();
+  });
+  sheet.addEventListener("click", (event) => {
+    if (event.target === sheet) sheet.close();
+  });
+  addEventListener("popstate", () => {
+    if (sheet.open) sheet.close();
+  });
+}
+
+// 팝업 안의 상세: 바깥 링크는 새 탭으로, 다음 프로젝트는 기록 없이 바꾸고, Esc는 팝업을 닫는다
+if (root.classList.contains("embedded")) {
+  document.querySelectorAll("a[href^='http']").forEach((link) => {
+    link.target = "_blank";
+    link.rel = "noopener";
+  });
+  document.querySelector(".next a")?.addEventListener("click", (event) => {
+    event.preventDefault();
+    location.replace(event.currentTarget.href);
+  });
+  addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || document.querySelector("dialog[open]")) return;
+    parent.document.querySelector("dialog.sheet[open]")?.close();
+  });
 }
 
 // 그림 확대

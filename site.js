@@ -28,12 +28,42 @@ new IntersectionObserver(([entry]) => {
   header.classList.toggle("is-stuck", !entry.isIntersecting);
 }).observe(topSentinel);
 
+// 앞뒤 단위가 같은 수치는 앞 값에서 뒤 값으로 숫자가 바뀌며 나온다 (2,400만원 ; 1,000만원)
+const figurePattern = /^(\D*?)([\d,]+(?:\.\d+)?)(\D*)$/;
+const parseFigure = (text) => {
+  const match = text.trim().match(figurePattern);
+  if (!match) return null;
+  const [, prefix, digits, unit] = match;
+  return { prefix, unit, value: Number(digits.replaceAll(",", "")), decimals: (digits.split(".")[1] || "").length };
+};
+const morphFigure = (row) => {
+  const beforeText = row.querySelector(".pair-before")?.firstChild;
+  const afterText = row.querySelector(".pair-after")?.firstChild;
+  if (beforeText?.nodeType !== Node.TEXT_NODE || afterText?.nodeType !== Node.TEXT_NODE) return;
+  const from = parseFigure(beforeText.textContent);
+  const to = parseFigure(afterText.textContent);
+  if (!from || !to || from.unit !== to.unit) return;
+  const finalText = afterText.textContent;
+  const format = (value) => to.prefix + value.toLocaleString("ko-KR", { minimumFractionDigits: to.decimals, maximumFractionDigits: to.decimals }) + to.unit;
+  const start = performance.now();
+  const duration = 1100;
+  const step = (now) => {
+    const elapsed = Math.min((now - start) / duration, 1);
+    const eased = 1 - (1 - elapsed) ** 3;
+    afterText.textContent = elapsed < 1 ? format(from.value + (to.value - from.value) * eased) : finalText;
+    if (elapsed < 1) requestAnimationFrame(step);
+  };
+  afterText.textContent = format(from.value);
+  requestAnimationFrame(step);
+};
+
 // 화면에 든 행은 세미콜론이 떨어지고 뒤 절이 축에서 빠져나온다
 if (root.classList.contains("motion")) {
   const commitObserver = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue;
       entry.target.classList.add("is-in");
+      morphFigure(entry.target);
       commitObserver.unobserve(entry.target);
     }
   }, { rootMargin: "0px 0px -10% 0px" });
@@ -104,6 +134,58 @@ if (!reduceMotion) {
     }
   }, { threshold: 0.4 });
   document.querySelectorAll("video[data-autoplay]").forEach((video) => videoObserver.observe(video));
+}
+
+// 장애 케이스: 수정 전·후를 고르면 240초를 5초 동안 다시 재생한다
+const loopSim = document.querySelector("[data-loop-sim]");
+if (loopSim) {
+  const clock = loopSim.querySelector("[data-clock]");
+  const modeButtons = [...loopSim.querySelectorAll("button[data-mode]")];
+  const spanSeconds = 240;
+  const playMs = 5000;
+  let frame = 0;
+
+  const setProgress = (progress) => {
+    loopSim.style.setProperty("--p", progress);
+    clock.textContent = Math.round(progress * spanSeconds);
+  };
+  const play = () => {
+    cancelAnimationFrame(frame);
+    if (reduceMotion) {
+      setProgress(1);
+      return;
+    }
+    const start = performance.now();
+    loopSim.style.setProperty("--playing", 1);
+    const step = (now) => {
+      const progress = Math.min((now - start) / playMs, 1);
+      setProgress(progress);
+      if (progress < 1) {
+        frame = requestAnimationFrame(step);
+        return;
+      }
+      loopSim.style.setProperty("--playing", 0);
+    };
+    frame = requestAnimationFrame(step);
+  };
+
+  for (const button of modeButtons) {
+    button.addEventListener("click", () => {
+      loopSim.dataset.mode = button.dataset.mode;
+      for (const other of modeButtons) other.setAttribute("aria-pressed", String(other === button));
+      play();
+    });
+  }
+
+  if (!reduceMotion) {
+    setProgress(0);
+    const simObserver = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      simObserver.disconnect();
+      play();
+    }, { threshold: 0.5 });
+    simObserver.observe(loopSim);
+  }
 }
 
 // 그림 확대

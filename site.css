@@ -208,6 +208,14 @@ html.motion [data-commit] .out { transition: clip-path .8s var(--ease), translat
 html.motion [data-commit] .out { transition-delay: .18s; }
 html.motion [data-commit].is-in .semi { clip-path: polygon(-20% -10%, 120% -10%, 120% 130%, -20% 130%); translate: 0 0; }
 html.motion [data-commit].is-in .out { clip-path: polygon(-3% -30%, 103% -30%, 103% 130%, -3% 130%); translate: 0 0; }
+html.motion .career > [data-commit] .tenure::before { scale: 0 1; transform-origin: left center; transition: scale 1s var(--ease) .1s; }
+html.motion .career > .is-in .tenure::before { scale: 1 1; }
+html.motion .bars[data-commit] .bars__fill { scale: 0 1; transform-origin: left center; transition: scale 1.2s var(--ease); }
+html.motion .bars[data-commit] li:nth-child(2) .bars__fill { transition-delay: .15s; }
+html.motion .bars[data-commit] li:nth-child(3) .bars__fill { transition-delay: .3s; }
+html.motion .bars[data-commit] .bars__value { opacity: 0; transition: opacity .4s ease .9s; }
+html.motion .bars.is-in .bars__fill { scale: 1 1; }
+html.motion .bars.is-in .bars__value { opacity: 1; }
 
 /* 프로젝트 인덱스 */
 .works { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
@@ -369,22 +377,52 @@ cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-
 .figure { margin: 0 0 clamp(56px, 7vw, 104px); }
 .figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(20px, 2.4vw, 32px); margin-bottom: clamp(56px, 7vw, 104px); }
 .figures .figure { margin: 0; }
-.figure button, .figure .media { position: relative; isolation: isolate; display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; cursor: zoom-in; }
+.figure:not(.loop-sim) button, .figure .media { position: relative; isolation: isolate; display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; cursor: zoom-in; }
 .figure .media { cursor: auto; }
 .figure img, .figure video { width: 100%; }
 .figure figcaption { margin-top: 12px; font-size: var(--t-s); color: var(--muted); }
-.figure button { transition: border-color .3s; }
-.figure button::after {
+.figure:not(.loop-sim) button { transition: border-color .3s; }
+.figure:not(.loop-sim) button::after {
   content: "크게 보기"; position: absolute; right: 12px; bottom: 12px;
   padding: 6px 12px; border-radius: var(--radius); background: var(--ink); color: var(--ground);
   font: 600 14px/1.4 var(--sans); opacity: 0; translate: 0 8px;
   transition: opacity .25s, translate .45s var(--ease);
 }
-.figure button:focus-visible::after { opacity: 1; translate: 0 0; }
+.figure:not(.loop-sim) button:focus-visible::after { opacity: 1; translate: 0 0; }
 @media (hover: hover) {
-  .figure button:hover { border-color: var(--muted); }
-  .figure button:hover::after { opacity: 1; translate: 0 0; }
+  .figure:not(.loop-sim) button:hover { border-color: var(--muted); }
+  .figure:not(.loop-sim) button:hover::after { opacity: 1; translate: 0 0; }
 }
+/* 장애 케이스: 수정 전·후 요청 흐름. --p(0~1)가 경과 시간, 점은 --t를 지나면 나타난다 */
+.loop-sim { --p: 1; padding: clamp(20px, 2.6vw, 32px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.loop-sim__head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-bottom: 24px; }
+.loop-sim__title { font-size: 17px; font-weight: 600; }
+.loop-sim__modes { display: inline-flex; border: 1px solid var(--edge); border-radius: var(--radius); }
+.loop-sim__modes button { padding: 8px 16px; border: 0; background: none; color: var(--muted); font: inherit; font-size: 15px; cursor: pointer; transition: background-color .25s, color .25s; }
+.loop-sim__modes button[aria-pressed="true"] { background: var(--ink); color: var(--ground); font-weight: 600; }
+.loop-sim__modes button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.loop-sim__clock { margin-left: auto; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.loop-sim__clock b { display: inline-block; min-width: 3ch; text-align: right; color: var(--ink); }
+.loop-sim__stage { display: grid; grid-template-columns: 8.5rem 1fr; gap: 12px 16px; align-items: center; }
+.loop-sim__row { display: contents; }
+.loop-sim__label { font-size: 14px; color: var(--muted); text-align: right; }
+.loop-sim__track { position: relative; height: 34px; border-radius: var(--radius); background: var(--ground); }
+.loop-sim__track::after { content: ""; position: absolute; top: -6px; bottom: -6px; left: calc(var(--p) * 100%); width: 1px; background: var(--accent); opacity: var(--playing, 0); }
+.loop-sim__axis { grid-column: 2; display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.loop-sim[data-mode="before"] [data-scene="after"], .loop-sim[data-mode="after"] [data-scene="before"] { display: none; }
+.ls-bar { position: absolute; top: 6px; bottom: 6px; left: 0; overflow: hidden; border-radius: 2px; }
+.ls-bar--block { width: calc(var(--p) * 100%); background: repeating-linear-gradient(-45deg, var(--accent) 0 6px, #B57F2A 6px 12px); }
+.ls-bar--block span { display: block; padding: 0 10px; font-size: 13px; font-weight: 600; line-height: 22px; color: var(--ground); white-space: nowrap; }
+.ls-bar--pool { width: calc(min(var(--p), .0208) * 100%); min-width: 3px; background: var(--muted); }
+.ls-note { position: absolute; inset: 0 auto 0 0; display: flex; align-items: center; padding: 0 10px; font-size: 13px; color: var(--ink); white-space: nowrap; }
+.ls-note--pool { left: 2.6%; }
+.ls-dot { position: absolute; top: 50%; left: calc(var(--t) * 100%); width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--ink);
+  opacity: clamp(0, calc((var(--p) - var(--t)) * 400), 1); }
+.ls-dot[data-label]::after { content: attr(data-label); position: absolute; left: 50%; bottom: 15px; translate: -50% 0; font-size: 12px; color: var(--ink); white-space: nowrap; }
+.ls-dot--first[data-label]::after { left: 0; bottom: auto; top: 50%; translate: 16px -50%; }
+.loop-sim__summary { margin-top: 24px; max-width: 46em; color: var(--muted); }
+.figure.loop-sim figcaption { margin-left: 0; }
+.loop-sim figcaption button { display: inline; width: auto; padding: 0; border: 0; border-radius: 0; background: none; color: var(--ink); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .bars { list-style: none; margin: 0; padding: clamp(28px, 3vw, 44px) 0; display: grid; gap: 18px; border-block: 1px solid var(--line); }
 .bars__label { font-size: 15px; color: var(--muted); }
 .bars__track { position: relative; display: block; height: 30px; }
@@ -479,6 +517,10 @@ html.motion .caret { animation: blink 1s steps(1) 4; }
   .career > li { row-gap: 16px; }
   .axis > .career__meta { grid-column: 1 / -1; text-align: left; }
   .skills > .axis > .l, .skills > .axis > .r { grid-column: 1 / -1; text-align: left; }
+  .loop-sim__stage { grid-template-columns: 1fr; gap: 6px; }
+  .loop-sim__label { text-align: left; margin-top: 10px; }
+  .loop-sim__axis { grid-column: 1; }
+  .loop-sim__clock { margin-left: 0; }
   .wordmark__word, .wordmark > .semi { font-size: 3.6rem; }
   .entries a { display: flex; flex-direction: column; gap: 2px; }
   .nav a { font-size: 14px; }

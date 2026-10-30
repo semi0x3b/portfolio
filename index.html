@@ -86,7 +86,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
 <section class="block wrap" id="projects" aria-labelledby="projects-title">
   <div class="head axis" data-commit>
     <h2 class="l" id="projects-title">프로젝트</h2><span class="semi" aria-hidden="true">;</span>
-    <p class="r out">직접 설계하고 운영까지 맡은 여섯 가지입니다. 수치는 청구서, 운영 DB, 모니터링에서 직접 잰 값입니다.</p>
+    <p class="r out">직접 설계하고 운영까지 맡은 프로젝트 여섯 개입니다. 수치는 청구서, 운영 DB, 모니터링에서 확인한 값입니다.</p>
   </div>
   <ol class="works" data-preview-list>
     <li class="work" data-commit>
@@ -119,13 +119,13 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
       <a href="work/incident-response.html" data-preview="assets/thumb-incident-response.jpg" data-diagram>
         <div class="work__head">
           <span class="work__when">2026년 8월 ~ 10월</span>
-          <h3 class="work__title" style="view-transition-name: t-incident-response">장애 자동복구와 AI 원인분석 체계</h3>
-          <span class="work__sub">서비스 25종 probe 전환, 장애 부검 봇</span>
+          <h3 class="work__title" style="view-transition-name: t-incident-response">장애 자동 복구와 AI 원인 분석</h3>
+          <span class="work__sub">외부 API가 멈춰도 버티는 서비스와 장애 분석 봇</span>
         </div>
         <span class="work__before pair-before" style="view-transition-name: b-incident-response">전체 정지<span class="sr-only">에서</span></span>
         <span class="semi" aria-hidden="true">;</span>
         <span class="work__after pair-after out" style="view-transition-name: a-incident-response">60건 모두 응답<span class="sr-only">으로</span></span>
-        <span class="work__note out">외부 API가 응답하지 않는 동안. 앞은 실제 장애(11분 정지), 뒤는 적용 뒤 동시 60요청 시험</span>
+        <span class="work__note out">외부 API가 응답하지 않을 때. 앞은 실제 장애(11분 정지), 뒤는 수정 후 동시 요청 60건으로 시험한 결과</span>
       </a>
     </li>
     <li class="work" data-commit>
@@ -138,7 +138,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         <span class="work__before pair-before" style="view-transition-name: b-ats">34.5MB<span class="sr-only">에서</span></span>
         <span class="semi" aria-hidden="true">;</span>
         <span class="work__after pair-after out" style="view-transition-name: a-ats">2.1MB<span class="sr-only">로</span></span>
-        <span class="work__note out">지원자 1만 행을 내보낼 때 최대 메모리, 암호화 XLSX로 바꾼 전후</span>
+        <span class="work__note out">지원자 1만 행을 내보낼 때 최대 메모리, 암호화 XLSX로 바꾸기 전과 후</span>
       </a>
     </li>
     <li class="work" data-commit>
@@ -164,7 +164,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         <span class="work__before pair-before" style="view-transition-name: b-chatbot-event">목표 6,000건<span class="sr-only">에서</span></span>
         <span class="semi" aria-hidden="true">;</span>
         <span class="work__after pair-after out" style="view-transition-name: a-chatbot-event">45,253건<span class="sr-only">으로</span></span>
-        <span class="work__note out">챗봇 참여, 목표의 7.5배였고 장애는 없었습니다</span>
+        <span class="work__note out">챗봇 참여 건수, 목표의 7.5배를 장애 없이 받았습니다</span>
       </a>
     </li>
   </ol>
@@ -173,7 +173,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
 <section class="block block--tight wrap" id="about" aria-labelledby="about-title">
   <div class="head axis" data-commit>
     <h2 class="l" id="about-title">소개</h2><span class="semi" aria-hidden="true">;</span>
-    <p class="r say out">요구가 흐릿하면 선택지를 만들어 먼저 제안하고, 반복되는 일은 도구를 만들어 덜어 내고, 제 일이 아니어도 팀원이 막힌 일은 같이 풉니다.</p>
+    <p class="r say out">요구가 흐릿하면 선택지를 먼저 만들어 제안합니다. 반복되는 일은 도구로 덜어 내고, 제 일이 아니어도 팀원이 막히면 같이 풉니다.</p>
   </div>
   <div class="axis">
     <div class="r prose">
@@ -189,7 +189,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
     <p class="r out">2013년 웹 개발자로 시작해 지금은 백엔드와 인프라를 맡고 있습니다.</p>
   </div>
   <ol class="career">
-    <li class="axis">
+    <li class="axis" data-commit>
       <div class="l career__meta">
         <p class="tenure tenure--now" style="--s: 83.6%; --w: 16.4%" aria-hidden="true"><span>2024</span><span>현재</span></p>
         <h3>멋쟁이사자처럼</h3>
@@ -197,24 +197,24 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         <p class="career__when">2024년 7월 ~ 현재</p>
       </div>
       <div class="r career__body">
-        <p>부트캠프 LMS, SaaS LMS, 채용 플랫폼, 실시간 화상 수업, AI 학습 플랫폼의 백엔드를 만들고 인프라를 이끕니다. 개발팀 주간 싱크업과 DevOps 인턴 2명의 과제 배정과 리뷰도 맡고 있습니다.</p>
+        <p>부트캠프 LMS, SaaS LMS, 채용 플랫폼, 실시간 화상 수업, AI 학습 플랫폼의 백엔드를 만들고 인프라를 이끕니다. 개발팀 주간 싱크업을 진행하고, DevOps 인턴 2명에게 과제를 나눠 주고 리뷰합니다.</p>
         <h4>SK하이닉스 AI 해커톤 서빙 <span>2026</span></h4>
         <ul>
-          <li>고객사 요구가 사업본부를 거쳐 전해지다 보니 비회원 지원, 본인인증, 중복 지원 정책이 비어 있었습니다. 정책마다 선택지를 만들어 먼저 제안하고 확정했고, 지원·과제 제출 화면과 대회 설정 어드민도 만들었습니다.</li>
-          <li>초당 200건에서 DB 커넥션이 바닥나던 접수 서버를 여덟 차례 측정하며 병목을 없애 운영 환경에서 초당 3,000건을 통과시켰습니다. 접수 8일 동안 유효 지원자 7,460명을 받았고, 마감일 하루 요청 935,219건에 5xx는 37건(0.004%)이었습니다.</li>
+          <li>고객사 요구가 사업본부를 거쳐 전해지다 보니 비회원 지원, 본인인증, 중복 지원 정책이 비어 있었습니다. 정책마다 선택지를 만들어 먼저 제안하는 방식으로 하나씩 정했고, 지원·과제 제출 화면과 대회 설정 어드민도 만들었습니다.</li>
+          <li>초당 200건에서 DB 커넥션이 바닥나던 접수 서버를 여덟 차례 측정하며 병목을 없애, 운영 환경에서 초당 3,000건을 버티게 했습니다. 접수 8일 동안 유효 지원자 7,460명을 받았고, 마감일 하루 요청 935,219건 중 5xx 오류는 37건(0.004%)이었습니다.</li>
         </ul>
         <h4>전사 인프라와 보안 <span>2024 ~ 2026</span></h4>
         <ul>
           <li>문서도 IaC도 없이 콘솔에만 있던 EKS를 실측으로 파악하고 OKE를 Terraform, ArgoCD, Vault로 다시 세워 서비스 61종을 옮겼습니다. 로드밸런서는 23개에서 5개로, 미사용 EIP는 21개에서 0개로 줄었습니다.</li>
           <li>청구서를 계정별로 분석해 유휴 자원을 회수하고, 클라우드 이관과 외부 웹 IDE 교체를 더해 월 인프라 비용을 2,400만원에서 1,000만원으로 줄였습니다.</li>
-          <li>외부 API가 응답하지 않자 권한 서비스가 11분 멈춘 원인을 이벤트 루프 블로킹으로 찾아 동기 핸들러 94건을 격리하고, 헬스체크 25종을 바꿔 같은 증상이면 45초 안에 저절로 재시작되게 했습니다. 알림마다 원인 후보와 증거를 붙이는 장애 분석 봇도 만들었습니다.</li>
+          <li>외부 API가 응답하지 않자 권한 서비스가 11분 동안 멈췄습니다. 원인인 이벤트 루프 블로킹을 찾아 동기 핸들러 94건을 격리했고, 헬스체크 25종을 바꿔 같은 증상이 생기면 45초 안에 저절로 재시작되게 했습니다. 알림마다 원인 후보와 증거를 붙이는 장애 분석 봇도 만들었습니다.</li>
           <li>서비스 11개 레포의 인증·인가를 전수 감사해 빠진 경로를 사고 전에 막고, 로그인을 HttpOnly 쿠키 방식으로 다시 설계해 홈과 ATS가 한 세션을 쓰게 했습니다.</li>
         </ul>
         <h4>부트캠프·KDC LMS <span>2024 ~ 현재</span></h4>
         <ul>
-          <li>홈, 학습, 평가, 결제, 취업관리, 국비 과정 운영으로 나뉜 마이크로서비스를 맡고 있습니다. 클래스챗 자동화 메시지를 어드민 기능으로 옮겨 운영팀이 개발자 없이 바꾸게 했습니다. 요청마다 일주일씩 기다리던 대기가 사라졌고 월 20시간이 줄었습니다.</li>
+          <li>홈, 학습, 평가, 결제, 취업관리, 국비 과정 운영으로 나뉜 마이크로서비스를 맡고 있습니다. 클래스챗 자동화 메시지를 어드민 기능으로 옮겨 운영팀이 개발자 없이 바꾸게 했습니다. 요청하고 일주일씩 기다리던 일이 없어졌고, 월 20시간이 줄었습니다.</li>
           <li>지원부터 결제까지의 안내 메일을 퍼널별 자동 발송으로 바꿔 메일 작업은 과정당 37.5시간에서 0.5시간으로, OT·개강 안내 문의는 약 40건에서 1건으로 줄었습니다.</li>
-          <li>메인페이지 API 응답 JSON을 675KB에서 16.7KB로 줄여 2초대이던 응답을 약 100ms로 당겼습니다.</li>
+          <li>메인페이지 API 응답 JSON을 675KB에서 16.7KB로 줄여, 2초대이던 응답 시간이 약 100ms가 됐습니다.</li>
           <li>외부 솔루션에 의존하던 코딩 실습을 웹 IDE로 다시 만들어 연 약 6,300만원의 솔루션 비용이 나가지 않게 했습니다. Java·Python·JavaScript·C# 코드를 실행 결과로 채점합니다.</li>
         </ul>
         <h4>SaaS LMS <span>2025 ~ 2026</span></h4>
@@ -225,22 +225,22 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         <h4>채용 플랫폼(ATS) <span>2026</span></h4>
         <ul>
           <li>구직자용 커리어홈과 기업·운영용 백오피스를 4개 서비스와 스케줄러로 새로 만들고, Keycloak SSO로 멋사 홈과 한 세션을 쓰게 했습니다.</li>
-          <li>개인정보는 암호화해 저장하고 blind index로만 검색해 평문 컬럼을 두지 않았고, 전형이 끝나면 열람 화면 7곳과 다운로드 API를 함께 막았습니다.</li>
+          <li>개인정보는 암호화해 저장하고 blind index로만 검색해, 평문 컬럼을 하나도 두지 않았습니다. 전형이 끝나면 열람 화면 7곳과 다운로드 API를 함께 막습니다.</li>
           <li>오픈 뒤 석 달 동안 기업 61곳이 공고 132건을 올렸고, 지원 380건과 취업 상담 354건이 플랫폼 안에서 처리됐습니다.</li>
         </ul>
         <h4>AI 학습 플랫폼 <span>2025 ~ 2026</span></h4>
         <ul>
-          <li>라이브 강의 STT를 pgvector에 인덱싱하고 그 위에 RAG 학습 튜터, 요약노트, 수업 모니터링, 모닝브리핑, 대화 챗봇, 퀴즈 등 AI 도메인 9종을 올렸습니다. 요약노트는 21개 과정에서 1,132건이 나가 2,973회 열람됐습니다.</li>
-          <li>수업 모니터링은 STT에서 부적절 발언과 커리큘럼 이탈을 찾아 운영팀 Slack으로 알립니다. 자료가 없는데 요약이 만들어지던 환각 경로에는 생성 차단 가드를 넣었습니다.</li>
+          <li>라이브 강의 STT를 pgvector에 인덱싱하고 그 위에 RAG 학습 튜터, 요약노트, 수업 모니터링, 모닝브리핑, 대화 챗봇, 퀴즈 등 AI 기능 9종을 올렸습니다. 요약노트는 21개 과정에서 1,132건이 나가 2,973회 열람됐습니다.</li>
+          <li>수업 모니터링은 STT에서 부적절 발언과 커리큘럼 이탈을 찾아 운영팀 Slack으로 알립니다. 자료가 없는데도 요약이 만들어지던 환각은 생성 전에 막았습니다.</li>
         </ul>
         <h4>라이브룸 화상수업 <span>2025 ~ 2026</span></h4>
         <ul>
-          <li>클라우드 4곳에 같은 구성을 올려 최대 100명 테스트로 월 비용을 산정한 뒤 환경을 고르고, Jitsi 분산 서버와 녹화, STT 파이프라인을 구축했습니다.</li>
-          <li>한 회의실에 50명이 넘으면 JVB CPU가 90%를 넘던 문제를 서버를 늘리지 않고 브리지 분산으로 풀었습니다. 부트캠프 22개 과정, 수강생 900여 명이 수업일 2,500일을 진행했습니다.</li>
+          <li>클라우드 4곳에 같은 구성을 올리고 최대 100명으로 시험해 월 비용을 비교한 뒤 환경을 골랐습니다. 그 위에 Jitsi 분산 서버와 녹화, STT 파이프라인을 구축했습니다.</li>
+          <li>한 회의실에 50명이 넘으면 JVB CPU가 90%를 넘던 문제를 서버를 늘리지 않고 브리지 분산으로 풀었습니다. 부트캠프 22개 과정의 수강생 900여 명이 이 시스템으로 수업을 들었고, 누적 수업일은 2,500일입니다.</li>
         </ul>
         <h4>미래이력서: AI 이력서 생성 <span>2026</span></h4>
         <ul>
-          <li>AI 이력서 생성(미래이력서) 프로젝트를 이끌며 PRD를 작업 16건으로 나눠 4개 레포에 걸쳐 만들고, 기획 체크리스트를 코드 검사와 LLM 판정으로 자동 채점하게 해 10월에 운영 배포했습니다.</li>
+          <li>프로젝트를 이끌며 PRD를 작업 16건으로 나눠 4개 레포에 걸쳐 만들었고, 기획 체크리스트를 코드 검사와 LLM 판정으로 자동 채점하게 해 10월에 운영에 배포했습니다.</li>
           <li>가상 지원자 8명으로 모델과 프롬프트를 비교해, 예시 문구를 그대로 베낀 결과를 12건에서 0건으로 줄였습니다.</li>
         </ul>
         <h4>브랜드 캠페인 AI 챗봇 이벤트 <span>2025</span></h4>
@@ -253,18 +253,18 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         </ul>
         <h4>Python 서비스 13개 전환 <span>2026, 진행 중</span></h4>
         <ul>
-          <li>보안 권고가 걸린 의존성 때문에 Python 3.7과 pydantic v1에 묶여 있던 서비스 13개를 Python 3.13으로 올리고 있습니다. 구 서버와 새 서버를 같은 시드 DB에 띄워 모든 라우트의 응답이 같은지를 기준으로 삼아, 클라이언트를 바꾸지 않고 올립니다. 13개 모두 dev까지 반영했고 운영 배포 전입니다.</li>
+          <li>보안 권고가 걸린 의존성이 Python 3.7과 pydantic v1에 묶여 있어, 서비스 13개를 Python 3.13으로 옮기고 있습니다. 구 서버와 새 서버를 같은 시드 DB에 띄워 모든 라우트의 응답이 같은지 비교하며 옮기기 때문에 클라이언트는 바꾸지 않습니다. 13개 모두 dev까지 반영했고 운영 배포 전입니다.</li>
         </ul>
         <h4>사내 도구와 팀 운영 <span>2026</span></h4>
         <ul>
           <li>운영 지식을 코드 옆 lat.md에 두고 CI와 PR에서 갱신을 강제하는 규칙을 만들었습니다. 회사 레포 18곳으로 퍼졌고, 이 문서를 고친 커밋의 3분의 2 이상이 팀원 커밋입니다.</li>
-          <li>Claude Code 멀티에이전트 워크플로우를 도입해 사내 스킬 24종을 레포 26곳에 배포하고 세미나에서 발표했으며, DevOps 인턴 2명을 리딩했습니다.</li>
+          <li>Claude Code를 팀에 도입해 사내 스킬 24종을 레포 26곳에 배포하고, 사내 세미나에서 발표했습니다.</li>
           <li>긴 URL과 UTM을 넣으면 짧은 링크를 발급하는 사내 도구를 만들어 Bitly 유료 구독을 끊고, 링크와 클릭 기록을 외부 서비스가 아닌 사내에 남기게 했습니다.</li>
           <li>기획 문서, 디자인, 코드가 어긋나지 않도록 기획을 기획 레포에서 관리하는 구조로 바꾸는 일에 참여했고, 기획 레포 3곳에 기획 공백과 문서 간 충돌을 정리한 이슈 36건을 선택지와 함께 올렸습니다.</li>
         </ul>
       </div>
     </li>
-    <li class="axis">
+    <li class="axis" data-commit>
       <div class="l career__meta">
         <p class="tenure" style="--s: 39.4%; --w: 42.4%" aria-hidden="true"><span>2018</span><span>2024</span></p>
         <h3>엠포스</h3>
@@ -287,7 +287,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         </ul>
         <h4>광고 서비스 FeedMaker·WhatADs 신규 구축 <span>2020 ~ 2021</span></h4>
         <ul>
-          <li>FeedMaker는 원본 상품 피드로 매체별 상품 피드를 자동 생성하고, 상품 수집과 피드 상태 조회, 데이터 처리 규칙, GCS·BigQuery 적재를 Lambda와 API Gateway 서버리스 REST API로 만들었습니다.</li>
+          <li>FeedMaker에서는 원본 상품 피드로 매체별 상품 피드를 자동으로 만들고, 상품 수집과 피드 상태 조회, 데이터 처리 규칙, GCS·BigQuery 적재를 Lambda와 API Gateway 기반 서버리스 REST API로 구현했습니다.</li>
           <li>WhatADs는 네이버 DA 광고 소재를 크롤링해 매체별 광고 상품 가이드와 함께 보여 주는 서비스입니다. ECS Task를 영역별·키워드별로 띄워 한꺼번에 수집하고, 크롤링이나 가공이 실패하면 메일로 알리게 했습니다.</li>
         </ul>
         <h4>소셜 데이터 서비스 빅셜 <span>2020, 2023</span></h4>
@@ -298,7 +298,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         <h4>커머스·인슈어테크 굿초보, 반품마켓 <span>2018 ~ 2020, 2023</span></h4>
         <ul>
           <li>굿초보 신규 커머스 사이트를 Java(Tomcat) REST API로 구축하며 회원·메뉴·권한 관리, 유입·전환(CPA/CPS) 트래킹, 개인정보 송수신 암호화(RSA+SEED)를 만들었습니다.</li>
-          <li>자동차보험·해외여행자보험 비교 앱, 쿠폰, 결제 모듈(KG모빌리언스), 신한은행 환전 신청, 알림톡을 붙였습니다. 보험 공동구매를 일반 보험 판매로 넓힌 굿딜 뒤 거래액이 300% 올랐고, 쿠폰 도입 뒤 고객 참여도가 20% 늘었습니다.</li>
+          <li>자동차보험·해외여행자보험 비교 앱, 쿠폰, 결제 모듈(KG모빌리언스), 신한은행 환전 신청, 알림톡을 붙였습니다. 보험 공동구매를 일반 보험 판매로 넓힌 굿딜을 연 뒤 거래액이 300% 올랐고, 쿠폰 도입 뒤 고객 참여도가 20% 늘었습니다.</li>
           <li>반품마켓에서는 묶음배송 상품별 부분 취소와 쿠폰 복구·배송비 재계산을 만들고, 정산 기준을 주문에서 상품 단위로 바꿔 판매자 정산 송금과 세금계산서 발행을 자동화했습니다.</li>
         </ul>
         <h4>개발 서버 비용 절감 <span>2020</span></h4>
@@ -307,7 +307,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         </ul>
       </div>
     </li>
-    <li class="axis">
+    <li class="axis" data-commit>
       <div class="l career__meta">
         <p class="tenure" style="--s: 24.2%; --w: 15.2%" aria-hidden="true"><span>2016</span><span>2018</span></p>
         <h3>제이넷</h3>
@@ -325,7 +325,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         </ul>
       </div>
     </li>
-    <li class="axis">
+    <li class="axis" data-commit>
       <div class="l career__meta">
         <p class="tenure" style="--s: 0%; --w: 24.2%" aria-hidden="true"><span>2013</span><span>2016</span></p>
         <h3>비즈아이솔루션</h3>

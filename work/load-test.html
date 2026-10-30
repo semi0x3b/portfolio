@@ -78,7 +78,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
   </header>
 
   <figure class="figure wrap">
-    <ul class="bars" aria-label="준비한 상한과 실제 피크">
+    <ul class="bars" data-commit aria-label="준비한 상한과 실제 피크">
       <li class="axis"><span class="l bars__label">테스트 환경, 10분 지속</span><span class="bars__track r" style="--v: 100%"><span class="bars__fill"></span><span class="bars__value">3,000 rps, 에러 0건</span></span></li>
       <li class="axis"><span class="l bars__label">운영 환경 램프</span><span class="bars__track r" style="--v: 100%"><span class="bars__fill"></span><span class="bars__value">3,000 rps, 에러 0.001%</span></span></li>
       <li class="axis bars__real"><span class="l bars__label">실제 마감일 피크</span><span class="bars__track r" style="--v: 1.93%"><span class="bars__fill"></span><span class="bars__value">58 rps, 5xx 0.004%</span></span></li>
@@ -88,11 +88,11 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
   <figure class="figure wrap">
     <ol class="hops" aria-label="요청이 지나는 지점마다 바꾸기 전과 뒤">
-      <li class="hop"><span class="hop__name">로드밸런서 대역폭</span><span class="hop__before pair-before">100 Mbps<span class="sr-only">에서</span></span><span class="semi" aria-hidden="true">;</span><span class="hop__after pair-after">2,000 Mbps<span class="sr-only">로</span></span></li>
-      <li class="hop"><span class="hop__name">게이트웨이 요청 제한, IP당 분당</span><span class="hop__before pair-before">100회<span class="sr-only">에서</span></span><span class="semi" aria-hidden="true">;</span><span class="hop__after pair-after">3,000회<span class="sr-only">로</span></span></li>
-      <li class="hop"><span class="hop__name">API 파드의 DB 연결</span><span class="hop__before pair-before">요청마다 새 연결<span class="sr-only">에서</span></span><span class="semi" aria-hidden="true">;</span><span class="hop__after pair-after">PgBouncer 풀<span class="sr-only">로</span></span></li>
-      <li class="hop"><span class="hop__name">PgBouncer 배치, 총 연결 수는 그대로</span><span class="hop__before pair-before">4대 × 풀 45<span class="sr-only">에서</span></span><span class="semi" aria-hidden="true">;</span><span class="hop__after pair-after">8대 × 풀 25<span class="sr-only">로</span></span></li>
-      <li class="hop"><span class="hop__name">PostgreSQL CPU, 같은 시험 시나리오</span><span class="hop__before pair-before">94%<span class="sr-only">에서</span></span><span class="semi" aria-hidden="true">;</span><span class="hop__after pair-after">7%<span class="sr-only">로</span></span></li>
+      <li class="hop" data-commit><span class="hop__name">로드밸런서 대역폭</span><span class="hop__before pair-before">100 Mbps<span class="sr-only">에서</span></span><span class="semi" aria-hidden="true">;</span><span class="hop__after pair-after">2,000 Mbps<span class="sr-only">로</span></span></li>
+      <li class="hop" data-commit><span class="hop__name">게이트웨이 요청 제한, IP당 분당</span><span class="hop__before pair-before">100회<span class="sr-only">에서</span></span><span class="semi" aria-hidden="true">;</span><span class="hop__after pair-after">3,000회<span class="sr-only">로</span></span></li>
+      <li class="hop" data-commit><span class="hop__name">API 파드의 DB 연결</span><span class="hop__before pair-before">요청마다 새 연결<span class="sr-only">에서</span></span><span class="semi" aria-hidden="true">;</span><span class="hop__after pair-after">PgBouncer 풀<span class="sr-only">로</span></span></li>
+      <li class="hop" data-commit><span class="hop__name">PgBouncer 배치, 총 연결 수는 그대로</span><span class="hop__before pair-before">4대 × 풀 45<span class="sr-only">에서</span></span><span class="semi" aria-hidden="true">;</span><span class="hop__after pair-after">8대 × 풀 25<span class="sr-only">로</span></span></li>
+      <li class="hop" data-commit><span class="hop__name">PostgreSQL CPU, 같은 시험 시나리오</span><span class="hop__before pair-before">94%<span class="sr-only">에서</span></span><span class="semi" aria-hidden="true">;</span><span class="hop__after pair-after">7%<span class="sr-only">로</span></span></li>
     </ol>
     <figcaption>지원자의 요청이 지나는 순서대로, 지점마다 바꾸기 전과 뒤. 대역폭과 요청 제한은 클러스터 밖 첫 홉을 다시 재서 찾았습니다.</figcaption>
   </figure>

@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>장애 자동복구와 AI 원인분석 체계, 김세미</title>
+<title>장애 자동 복구와 AI 원인 분석, 김세미</title>
 <meta name="description" content="외부 기관 API 하나 때문에 권한 서비스가 11분 멈춘 장애를 계기로 서비스 25종의 probe를 바꿨습니다. 멈춘 서비스는 이제 45초 안에 재시작됩니다.">
 <link rel="canonical" href="https://semi0x3b.github.io/portfolio/work/incident-response">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://semi0x3b.github.io/portfolio/work/incident-response">
-<meta property="og:title" content="장애 자동복구와 AI 원인분석 체계, 김세미">
+<meta property="og:title" content="장애 자동 복구와 AI 원인 분석, 김세미">
 <meta property="og:description" content="서비스 25종 probe를 바꿔 멈춘 서비스가 45초 안에 재시작되게 하고, 장애 분석 봇을 만들었습니다.">
 <meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -61,15 +61,15 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
     <div class="case-hero__top">
       <a class="back commit" href="../#projects"><span>프로젝트 목록</span><span class="commit__semi" aria-hidden="true">;</span></a>
       <p class="case-hero__when">2026년 8월 ~ 10월</p>
-      <h1 style="view-transition-name: t-incident-response">장애 자동복구와 AI 원인분석 체계</h1>
-      <p class="case-hero__sub">서비스 25종 probe 전환, 장애 부검 봇</p>
+      <h1 style="view-transition-name: t-incident-response">장애 자동 복구와 AI 원인 분석</h1>
+      <p class="case-hero__sub">외부 API가 멈춰도 버티는 서비스와 장애 분석 봇</p>
     </div>
     <div class="case-pair axis">
       <span class="l pair-before" style="view-transition-name: b-incident-response">전체 정지<span class="sr-only">에서</span></span>
       <span class="semi" aria-hidden="true">;</span>
       <div class="r">
         <span class="pair-after" style="view-transition-name: a-incident-response">60건 모두 응답<span class="sr-only">으로</span></span>
-        <span class="note">외부 API가 응답하지 않는 동안. 앞은 실제 장애(11분 정지), 뒤는 적용 뒤 동시 60요청 시험</span>
+        <span class="note">외부 API가 응답하지 않을 때. 앞은 실제 장애(11분 정지), 뒤는 수정 후 동시 요청 60건으로 시험한 결과</span>
       </div>
     </div>
     <dl class="facts">
@@ -78,29 +78,74 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
     </dl>
   </header>
 
-  <figure class="figure wrap">
-    <div class="pan">
-    <button type="button" data-zoom="../assets/incident-response.png" aria-label="감지, 자동복구, 원인분석 장애 대응 다이어그램 크게 보기">
-      <img class="diagram" src="../assets/thumb-incident-response.jpg" alt="감지, 자동복구, 원인분석 세 단계로 이어지는 장애 대응 흐름을 그린 다이어그램" width="1200" height="636">
-    </button>
+  <figure class="figure wrap loop-sim" data-loop-sim data-mode="before">
+    <div class="loop-sim__head">
+      <p class="loop-sim__title">외부 API가 응답하지 않을 때 다른 요청은</p>
+      <div class="loop-sim__modes" role="group" aria-label="보기 선택">
+        <button type="button" data-mode="before" aria-pressed="true">수정 전</button>
+        <button type="button" data-mode="after" aria-pressed="false">수정 후</button>
+      </div>
+      <p class="loop-sim__clock" aria-hidden="true">경과 <b data-clock>240</b>초</p>
     </div>
-    <figcaption>장애를 감지하고 자동으로 복구한 뒤 원인을 분석하는 세 단계. 누르면 크게 볼 수 있습니다.</figcaption>
+    <div class="loop-sim__stage" aria-hidden="true">
+      <div class="loop-sim__row">
+        <span class="loop-sim__label">이벤트 루프</span>
+        <div class="loop-sim__track">
+          <span class="ls-bar ls-bar--block" data-scene="before"><span>HRD-Net 응답을 기다리며 멈춤</span></span>
+          <span class="ls-note" data-scene="after">멈추지 않고 다른 요청을 처리</span>
+        </div>
+      </div>
+      <div class="loop-sim__row">
+        <span class="loop-sim__label">threadpool</span>
+        <div class="loop-sim__track">
+          <span class="ls-note" data-scene="before">쓰지 않음</span>
+          <span class="ls-bar ls-bar--pool" data-scene="after"></span>
+          <span class="ls-note ls-note--pool" data-scene="after">HRD-Net 대기 20건, 5초 뒤 끊김</span>
+        </div>
+      </div>
+      <div class="loop-sim__row">
+        <span class="loop-sim__label">다른 요청 응답</span>
+        <div class="loop-sim__track">
+          <span class="ls-dot" data-scene="before" style="--t: .125" data-label="30초"></span>
+          <span class="ls-dot" data-scene="before" style="--t: .254" data-label="61초"></span>
+          <span class="ls-dot" data-scene="before" style="--t: .383"></span>
+          <span class="ls-dot" data-scene="before" style="--t: .508"></span>
+          <span class="ls-dot" data-scene="before" style="--t: .638"></span>
+          <span class="ls-dot" data-scene="before" style="--t: .763"></span>
+          <span class="ls-dot" data-scene="before" style="--t: .892" data-label="214초"></span>
+          <span class="ls-dot ls-dot--first" data-scene="after" style="--t: .004" data-label="0.96초, 동시 60건 모두 응답"></span>
+        </div>
+      </div>
+      <div class="loop-sim__row">
+        <span class="loop-sim__label">liveness probe</span>
+        <div class="loop-sim__track">
+          <span class="ls-note" data-scene="before">tcpSocket: 루프가 멈춰도 통과해 재시작 없음</span>
+          <span class="ls-note" data-scene="after">httpGet: 루프가 멈추면 실패해 45초 안에 재시작</span>
+        </div>
+      </div>
+      <div class="loop-sim__axis"><span>0초</span><span>60초</span><span>120초</span><span>180초</span><span>240초</span></div>
+    </div>
+    <div class="loop-sim__summary" aria-live="polite">
+      <p data-scene="before">HRD-Net이 응답하지 않는 동안 이벤트 루프가 멈춰, 다른 요청은 30초 단위로 밀려 최대 214초 뒤에 응답했습니다. tcpSocket 헬스체크는 계속 통과해서 11분 동안 재시작되지 않았습니다.</p>
+      <p data-scene="after">HRD-Net 호출은 threadpool에서 기다리다 5초 뒤 끊깁니다. 그동안 다른 요청은 0.96초에 응답했고 동시 요청 60건이 모두 응답했습니다. 루프가 멈추면 httpGet 헬스체크가 실패해 45초 안에 재시작됩니다.</p>
+    </div>
+    <figcaption>실제 장애 로그(수정 전)와 dev 실측(수정 후)으로 다시 그린 그림입니다. <button type="button" data-zoom="../assets/incident-response.png">전체 구성도 보기</button></figcaption>
   </figure>
 
   <div class="wrap">
     <section class="chapter axis" data-commit aria-labelledby="problem">
       <h2 class="l" id="problem">문제</h2><span class="semi" aria-hidden="true">;</span>
       <div class="r out">
-        <p>외부 기관 API(HRD-Net)가 응답하지 않자 권한 서비스 전체가 11분 동안 멈췄습니다. 장애는 사용자 신고로 알았고, 그동안 K8s도 아무 조치를 하지 않았습니다.</p>
+        <p>외부 기관 API(HRD-Net)가 응답하지 않자 권한 서비스 전체가 11분 동안 멈췄습니다. 장애는 사용자 신고로 알았고, 그동안 쿠버네티스는 서비스를 재시작하지 않았습니다.</p>
       </div>
     </section>
     <section class="chapter axis" data-commit aria-labelledby="work">
       <h2 class="l" id="work">한 일</h2><span class="semi" aria-hidden="true">;</span>
       <div class="r out">
         <ul>
-          <li>응답시간이 read timeout 30초의 배수로 쌓이는 분포를 보고, <code>async def</code> 핸들러가 동기 I/O를 실행하는데 워커가 하나라서 이벤트 루프 하나가 전체를 막는 구조라는 것을 찾았습니다. <code>await</code>가 없는 핸들러 94건을 AST로 골라 sync로 바꿔 threadpool에 격리했습니다.</li>
-          <li>tcpSocket liveness는 커널이 소켓 연결을 받아 주기 때문에 이벤트 루프가 멈춰도 통과합니다. 서비스 25종을 httpGet으로 바꾸고, 앱 프로세스를 직접 멈춰서 45초 안에 재시작되는 것을 확인했습니다.</li>
-          <li>장애 분석 봇을 만들었습니다. 규칙이 신호를 찾고 LLM은 해석만 맡으며, 발송 전에 인용 문자열을 원본 로그와 기계로 대조해서 근거 없는 판정은 강등합니다. 봇에는 prod 변경 권한을 주지 않았고 복구는 K8s가 맡도록 나눴습니다.</li>
+          <li>응답 시간이 read timeout 30초의 배수로 쌓이는 것을 보고 원인을 찾았습니다. <code>async def</code> 핸들러가 동기 I/O를 실행하는데 워커가 하나뿐이라, 이벤트 루프 하나가 서비스 전체를 막고 있었습니다. <code>await</code>가 없는 핸들러 94건을 AST로 골라 sync로 바꾸고 threadpool에서 돌게 했습니다.</li>
+          <li>tcpSocket liveness는 커널이 소켓 연결을 대신 받아 주기 때문에 이벤트 루프가 멈춰도 통과합니다. 서비스 25종을 httpGet으로 바꾸고, 앱 프로세스를 직접 멈춰 45초 안에 재시작되는 것을 확인했습니다.</li>
+          <li>장애 분석 봇을 만들었습니다. 규칙이 신호를 찾고 LLM은 해석만 맡습니다. 보내기 전에 인용한 문장이 원본 로그에 실제로 있는지 기계로 대조해, 근거가 없는 판정은 낮춰서 보냅니다. 봇에는 prod 변경 권한을 주지 않았고 복구는 쿠버네티스가 맡도록 나눴습니다.</li>
         </ul>
       </div>
     </section>
@@ -108,9 +153,9 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
       <h2 class="l" id="result">결과</h2><span class="semi" aria-hidden="true">;</span>
       <div class="r out">
         <ul>
-          <li>외부 API가 멈춘 동안에도 동시 60 요청이 모두 응답했습니다(QueuePool timeout 0건).</li>
-          <li>25종에 롤아웃한 뒤 probe 오탐으로 재시작한 경우는 0건입니다.</li>
-          <li>과거 실제 장애 2건을 다시 돌리자 봇이 기록된 원인까지 찾아갔습니다. 뒤에 규칙 층을 앞에 두자 2주치 에러 알림 18건 중 9건은 LLM 호출 없이 판정이 끝났습니다.</li>
+          <li>외부 API가 멈춘 동안에도 동시 요청 60건이 모두 응답했습니다(QueuePool timeout 0건).</li>
+          <li>25종에 적용한 뒤 probe 오탐으로 재시작된 경우는 0건입니다.</li>
+          <li>과거 실제 장애 2건을 봇에 다시 돌리자 기록된 원인을 찾아냈습니다. 규칙 층을 LLM 앞에 둔 뒤로는 2주치 에러 알림 18건 중 9건이 LLM 호출 없이 판정됐습니다.</li>
         </ul>
       </div>
     </section>

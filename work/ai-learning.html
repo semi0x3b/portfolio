@@ -60,9 +60,9 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
   <header class="case-hero wrap">
     <div class="case-hero__top">
       <a class="back commit" href="../#projects"><span>프로젝트 목록</span><span class="commit__semi" aria-hidden="true">;</span></a>
-      <p class="case-hero__when">2025년 9월 ~ 2026년 7월</p>
+      <p class="case-hero__when">2025년 9월 ~ 현재</p>
       <h1 style="view-transition-name: t-ai-learning">AI 학습 플랫폼 백엔드</h1>
-      <p class="case-hero__sub">RAG 튜터, 요약노트, 수업 모니터링, 퀴즈</p>
+      <p class="case-hero__sub">RAG 튜터, 요약노트, 수업 모니터링, 모닝브리핑, 대화 챗봇, 퀴즈, AI 이력서, 포트폴리오</p>
     </div>
     <div class="case-pair axis">
       <span class="l pair-before" style="view-transition-name: b-ai-learning">강의 STT<span class="sr-only">로 만든</span></span>
@@ -95,7 +95,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
       <h2 class="l" id="work">한 일</h2><span class="semi" aria-hidden="true">;</span>
       <div class="r out">
         <ul>
-          <li>FastAPI 레포 하나에 AI 도메인 9종을 두고 하나씩 만들었습니다. STT를 청킹·임베딩해 pgvector에 쌓는 인덱서를 먼저 만들고, 그 위에 RAG 학습 튜터(ALEX)와 요약노트, 수업 모니터링(KAI), 퀴즈를 올렸습니다.</li>
+          <li>FastAPI 레포 하나에 AI 도메인 9종을 두고 하나씩 만들었습니다. STT를 청킹·임베딩해 pgvector에 쌓는 인덱서를 먼저 만들고, 그 위에 RAG 학습 튜터(ALEX)와 요약노트, 수업 모니터링(KAI), 모닝브리핑(MILO), 대화 챗봇(LEO), 퀴즈를 올렸습니다.</li>
           <li>튜터는 질문 복잡도에 따라 체인(질문 개선, 답변 검증)을 골라 답합니다. 세부 규칙 중심이던 기획을 가이드라인 중심으로 바꾸자고 제안했고, 목표도 "정확도"에서 "학습 효과"로 다시 잡았습니다.</li>
           <li>운영 중 장애 2건을 고쳤습니다. 자료가 0건인데 요약이 만들어지던 환각 경로에는 생성 차단 가드를 넣었고, 공유 DB 세션이 aborted 상태로 남아 대화 기록이 사라지던 문제는 즉시 rollback으로 막았습니다.</li>
         </ul>

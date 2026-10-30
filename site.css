@@ -466,6 +466,11 @@ article .facts > .axis > .r { grid-column: 3; margin-top: 0; }
 .next__title { font-size: var(--t-l); letter-spacing: -.03em; line-height: 1.2; display: inline-flex; align-items: baseline; text-wrap: balance; }
 .next__pair { font-size: 18px; color: var(--muted); }
 .next__pair b { color: var(--ink); font-weight: 600; }
+/* 케이스 끝: 연락·워드마크 대신 닫기(팝업) 또는 목록으로(직접 연 페이지) */
+.case-close { margin-block: clamp(48px, 6vw, 80px) clamp(56px, 7vw, 96px); }
+.case-close a { display: block; padding: 18px; border: 1px solid var(--edge); border-radius: var(--radius); color: var(--ink); font-weight: 600; text-align: center; text-decoration: none; transition: background-color .25s; }
+.case-close a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (hover: hover) { .case-close a:hover { background: var(--lift); } }
 
 /* 넓은 화면: 긴 본문 옆의 라벨·회사명이 본문을 따라 내려온다 */
 @media (min-width: 760px) {
@@ -486,9 +491,8 @@ html.motion dialog.sheet[open] { animation: sheet-in .45s var(--ease); }
 .sheet__bar button { min-height: 40px; padding: 6px 16px; border: 1px solid var(--edge); border-radius: var(--radius); background: none; color: var(--ink); font: 600 15px var(--sans); cursor: pointer; }
 .sheet__bar button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 dialog.sheet iframe { display: block; width: 100%; height: 100%; border: 0; }
-/* 팝업 안의 상세: 머리·연락·되돌아가기는 홈 것이 있으니 숨긴다 */
-html.embedded .site-header, html.embedded .site-footer, html.embedded .back, html.embedded .skip { display: none; }
-html.embedded article { padding-bottom: 72px; }
+/* 팝업 안의 상세: 머리·되돌아가기는 홈 것이 있으니 숨긴다 */
+html.embedded .site-header, html.embedded .back, html.embedded .skip { display: none; }
 
 dialog.zoom { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; }
 dialog.zoom::backdrop { background: rgba(5, 9, 8, .92); }

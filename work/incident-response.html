@@ -147,13 +147,19 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         <p>외부 기관 API(HRD-Net)가 응답하지 않자 권한 서비스 전체가 11분 동안 멈췄습니다. 장애는 사용자 신고로 알았고, 그동안 쿠버네티스는 서비스를 재시작하지 않았습니다.</p>
       </div>
     </section>
+    <section class="chapter axis" data-commit aria-labelledby="judgment">
+      <h2 class="l" id="judgment">판단</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <p>복구는 쿠버네티스가, 원인 분석은 봇이 맡도록 나누고 봇에는 prod 변경 권한을 주지 않았습니다.</p>
+      </div>
+    </section>
     <section class="chapter axis" data-commit aria-labelledby="work">
       <h2 class="l" id="work">한 일</h2><span class="semi" aria-hidden="true">;</span>
       <div class="r out">
         <ul>
           <li>응답 시간이 read timeout 30초의 배수로 쌓이는 것을 보고 원인을 찾았습니다. <code>async def</code> 핸들러가 동기 I/O를 실행하는데 워커가 하나뿐이라, 이벤트 루프 하나가 서비스 전체를 막고 있었습니다. <code>await</code>가 없는 핸들러 94건을 AST로 골라 sync로 바꾸고 threadpool에서 돌게 했습니다.</li>
           <li>tcpSocket liveness는 커널이 소켓 연결을 대신 받아 주기 때문에 이벤트 루프가 멈춰도 통과합니다. 서비스 25종을 httpGet으로 바꾸고, 앱 프로세스를 직접 멈춰 45초 안에 재시작되는 것을 확인했습니다.</li>
-          <li>장애 분석 봇을 만들었습니다. 규칙이 신호를 찾고 LLM은 해석만 맡습니다. 보내기 전에 인용한 문장이 원본 로그에 실제로 있는지 기계로 대조해, 근거가 없는 판정은 낮춰서 보냅니다. 봇에는 prod 변경 권한을 주지 않았고 복구는 쿠버네티스가 맡도록 나눴습니다.</li>
+          <li>장애 분석 봇을 만들었습니다. 규칙이 신호를 찾고 LLM은 해석만 맡습니다. 보내기 전에 인용한 문장이 원본 로그에 실제로 있는지 기계로 대조해, 근거가 없는 판정은 낮춰서 보냅니다.</li>
         </ul>
       </div>
     </section>

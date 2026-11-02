@@ -93,12 +93,18 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         <p>라이브 강의의 STT와 강의자료가 쌓이기만 하고 학습에도 수업 관리에도 쓰이지 않았습니다.</p>
       </div>
     </section>
+    <section class="chapter axis" data-commit aria-labelledby="judgment">
+      <h2 class="l" id="judgment">판단</h2><span class="semi" aria-hidden="true">;</span>
+      <div class="r out">
+        <p>학습 튜터의 목표를 답변 정확도보다 학습 효과에 두자고 제안했습니다.</p>
+      </div>
+    </section>
     <section class="chapter axis" data-commit aria-labelledby="work">
       <h2 class="l" id="work">한 일</h2><span class="semi" aria-hidden="true">;</span>
       <div class="r out">
         <ul>
           <li>FastAPI 레포 하나에 AI 기능 9종을 두고 하나씩 만들었습니다. STT를 청킹·임베딩해 pgvector에 쌓는 인덱서를 먼저 만들고, 그 위에 RAG 학습 튜터(ALEX)와 요약노트, 수업 모니터링(KAI), 모닝브리핑(MILO), 대화 챗봇(LEO), 퀴즈를 올렸습니다.</li>
-          <li>튜터는 질문 복잡도에 따라 체인(질문 개선, 답변 검증)을 골라 답합니다. 세부 규칙 중심이던 기획을 가이드라인 중심으로 바꾸자고 제안했고, 목표도 "정확도"에서 "학습 효과"로 다시 잡았습니다.</li>
+          <li>튜터는 질문 복잡도에 따라 체인(질문 개선, 답변 검증)을 골라 답합니다. 세부 규칙 중심이던 기획을 가이드라인 중심으로 바꾸자고 제안했습니다.</li>
           <li>운영 중 장애 2건을 고쳤습니다. 자료가 하나도 없는데 요약이 만들어지던 환각은 생성 전에 막았고, 공유 DB 세션이 오류 상태로 남아 대화 기록이 사라지던 문제는 오류 직후 rollback하게 해서 막았습니다.</li>
         </ul>
       </div>

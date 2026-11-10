@@ -12,31 +12,14 @@
 <meta property="og:description" content="AI 요약노트 1,132건이 21개 과정에서 2,973회 열람됐습니다.">
 <meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F7F6F2">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23F7F6F2'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%23A8690A' font-family='monospace' font-weight='700'>;</text></svg>">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23FFFFFF'/><text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'>;</text></svg>">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&text=semi%3B0x3bB&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&text=semi%3B&display=swap">
+<link rel="stylesheet" href="../tokens.css">
 <link rel="stylesheet" href="../site.css">
-<script>
-document.documentElement.classList.add("js");
-// 홈 팝업 안에서 열리면 머리·연락을 숨긴다
-if (window.self !== window.top) document.documentElement.classList.add("embedded");
-// 페이지 전환이 도중에 끊겨도(빠른 뒤로 가기 등) 거부된 promise를 오류로 남기지 않는다
-["pageswap", "pagereveal"].forEach(function (type) {
-  addEventListener(type, function (event) {
-    if (!event.viewTransition) return;
-    event.viewTransition.ready.catch(function () {});
-    event.viewTransition.finished.catch(function () {});
-  });
-});
-if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  document.documentElement.classList.add("motion");
-  // site.js가 못 뜨면 숨겨 둔 내용을 되살린다
-  setTimeout(function () { if (!window.__site) document.documentElement.classList.remove("motion"); }, 3000);
-}
-</script>
 <script src="../site.js" defer></script>
 </head>
 <body>
@@ -44,98 +27,91 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="../" aria-label="김세미 포트폴리오 처음으로">semi<span class="logo__end"><span class="semi">;</span><span class="logo__hex" aria-hidden="true">0x3b</span></span></a>
-    <nav class="nav" aria-label="주 메뉴">
-      <ul>
-        <li><a class="commit" href="../#projects" aria-current="page"><span>프로젝트</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="../#career"><span>경력</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="../#reviews"><span>평가</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="../#writing"><span>글</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="../#contact"><span>연락</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+    <a class="logo" href="../" aria-label="김세미 포트폴리오 처음으로">semi<span>;</span></a>
+    <nav aria-label="주 메뉴">
+      <ul class="nav">
+        <li><a href="../#projects" aria-current="page">프로젝트</a></li>
+        <li><a href="../#diagrams">구성도</a></li>
+        <li><a href="../#career">경력</a></li>
+        <li><a href="../#reviews">평가</a></li>
+        <li><a href="../#writing">글</a></li>
+        <li><a href="../#contact">연락</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main id="main" tabindex="-1">
-<article>
-  <header class="case-hero wrap">
-    <div class="case-hero__top">
-      <a class="back commit" href="../#projects"><span>프로젝트 목록</span><span class="commit__semi" aria-hidden="true">;</span></a>
-      <p class="case-hero__when">2025년 9월 ~ 현재</p>
-      <h1 style="view-transition-name: t-ai-learning">AI 학습 플랫폼 백엔드</h1>
-      <p class="case-hero__sub">RAG 튜터, 요약노트, 수업 모니터링, 모닝브리핑, 대화 챗봇, 퀴즈, AI 이력서, 포트폴리오</p>
-    </div>
-    <div class="case-pair axis">
-      <span class="l pair-before" style="view-transition-name: b-ai-learning">강의 STT<span class="sr-only">로 만든</span></span>
-      <span class="semi" aria-hidden="true">;</span>
-      <div class="r">
-        <span class="pair-after" style="view-transition-name: a-ai-learning">요약노트 1,132건</span>
-        <span class="note">쌓이기만 하던 STT를 인덱싱해 21개 과정에 발행, 2,973회 열람</span>
-      </div>
-    </div>
-    <dl class="facts">
-      <div class="axis"><dt class="l">기술</dt><dd class="r">FastAPI, PostgreSQL+pgvector, OpenAI API, SQLAlchemy(Async), SSE</dd></div>
-    </dl>
-  </header>
+<article class="case">
+  <a class="back link" href="../#projects">프로젝트 목록</a>
+  <p class="case__when">2025년 9월 ~ 현재</p>
+  <h1 class="case__title">AI 학습 플랫폼 백엔드</h1>
+  <p class="case__sub">RAG 튜터, 요약노트, 수업 모니터링, 모닝브리핑, 대화 챗봇, 퀴즈, AI 이력서, 포트폴리오</p>
+  <div class="result">
+    <p class="result__pair">강의 STT로 만든 요약노트 <b>1,132건</b></p>
+    <p class="result__note">쌓이기만 하던 STT를 인덱싱해 21개 과정에 발행, 2,973회 열람</p>
+  </div>
+  <dl class="facts">
+    <div><dt>기술</dt><dd>FastAPI, PostgreSQL+pgvector, OpenAI API, SQLAlchemy(Async), SSE</dd></div>
+  </dl>
 
-  <figure class="figure wrap">
-    <button type="button" data-zoom="../assets/thumb-axp.jpg" aria-label="AXP AI 학습 플랫폼 화면 크게 보기">
-      <img src="../assets/thumb-axp.jpg" alt="AXP AI 학습 플랫폼의 랜딩 페이지 화면" width="1200" height="750">
-    </button>
-    <figcaption>AI 학습 플랫폼 AXP의 랜딩 페이지. 누르면 크게 볼 수 있습니다.</figcaption>
+  <figure class="figure">
+    <a class="figure__zoom" href="../assets/diagrams/likelion-platform-architecture.png" data-diagram data-title="멋사 플랫폼 서비스 관계도" aria-haspopup="dialog">
+      <img src="../assets/diagrams/thumb/likelion-platform-architecture.jpg" srcset="../assets/diagrams/thumb/likelion-platform-architecture.jpg 960w, ../assets/diagrams/likelion-platform-architecture.png 3200w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="멋사 플랫폼 서비스 관계도. LMS 백엔드와 채용, SaaS, 커뮤니티, 수업 도구가 로그인과 webhook, 강의 API로 이어지는 관계" width="960" height="614">
+    </a>
+    <figcaption>멋사 플랫폼 서비스 관계도. 라이브룸과 캠프파이어의 STT 전사본을 AI 공통 서비스가 읽어 AI 노트를 만듭니다.</figcaption>
   </figure>
 
-  <div class="wrap">
-    <section class="chapter axis" data-commit aria-labelledby="problem">
-      <h2 class="l" id="problem">문제</h2><span class="semi" aria-hidden="true">;</span>
-      <div class="r out">
-        <p>라이브 강의의 STT와 강의자료가 쌓이기만 하고 학습에도 수업 관리에도 쓰이지 않았습니다.</p>
-      </div>
-    </section>
-    <section class="chapter axis" data-commit aria-labelledby="judgment">
-      <h2 class="l" id="judgment">판단</h2><span class="semi" aria-hidden="true">;</span>
-      <div class="r out">
-        <p>학습 튜터의 목표를 답변 정확도보다 학습 효과에 두자고 제안했습니다.</p>
-      </div>
-    </section>
-    <section class="chapter axis" data-commit aria-labelledby="work">
-      <h2 class="l" id="work">한 일</h2><span class="semi" aria-hidden="true">;</span>
-      <div class="r out">
-        <ul>
-          <li>FastAPI 레포 하나에 AI 기능 9종을 두고 하나씩 만들었습니다. STT를 청킹·임베딩해 pgvector에 쌓는 인덱서를 먼저 만들고, 그 위에 RAG 학습 튜터(ALEX)와 요약노트, 수업 모니터링(KAI), 모닝브리핑(MILO), 대화 챗봇(LEO), 퀴즈를 올렸습니다.</li>
-          <li>튜터는 질문 복잡도에 따라 체인(질문 개선, 답변 검증)을 골라 답합니다. 세부 규칙 중심이던 기획을 가이드라인 중심으로 바꾸자고 제안했습니다.</li>
-          <li>운영 중 장애 2건을 고쳤습니다. 자료가 하나도 없는데 요약이 만들어지던 환각은 생성 전에 막았고, 공유 DB 세션이 오류 상태로 남아 대화 기록이 사라지던 문제는 오류 직후 rollback하게 해서 막았습니다.</li>
-        </ul>
-      </div>
-    </section>
-    <section class="chapter axis" data-commit aria-labelledby="result">
-      <h2 class="l" id="result">결과</h2><span class="semi" aria-hidden="true">;</span>
-      <div class="r out">
-        <ul>
-          <li>AI 요약노트는 21개 과정에서 1,132건이 나갔고 2,973회 열람됐습니다.</li>
-        </ul>
-      </div>
-    </section>
-  </div>
+  <figure class="figure">
+    <a class="figure__zoom" href="../assets/thumb-axp.jpg" data-diagram data-title="AI 학습 플랫폼 AXP의 랜딩 페이지" aria-haspopup="dialog">
+      <img src="../assets/thumb-axp.jpg" alt="AXP AI 학습 플랫폼의 랜딩 페이지 화면" width="1200" height="750" loading="lazy">
+    </a>
+    <figcaption>AI 학습 플랫폼 AXP의 랜딩 페이지.</figcaption>
+  </figure>
 
-  <nav class="next wrap" aria-label="다음 프로젝트">
-    <div class="axis" data-commit>
-      <p class="l next__label">다음 프로젝트</p><span class="semi" aria-hidden="true">;</span>
-      <a class="r out" href="chatbot-event.html">
-        <span class="next__title commit"><span style="view-transition-name: t-chatbot-event">브랜드 캠페인 AI 챗봇 이벤트</span><span class="commit__semi" aria-hidden="true">;</span></span>
-        <span class="next__pair">목표 6,000건에서 <b>45,253건</b>으로</span>
-      </a>
-    </div>
+  <section class="chapter" aria-labelledby="problem">
+    <h2 id="problem">문제</h2>
+    <p>라이브 강의의 STT와 강의자료가 쌓이기만 하고 학습에도 수업 관리에도 쓰이지 않았습니다.</p>
+  </section>
+  <section class="chapter" aria-labelledby="judgment">
+    <h2 id="judgment">판단</h2>
+    <p>학습 튜터의 목표를 답변 정확도보다 학습 효과에 두자고 제안했습니다.</p>
+  </section>
+  <section class="chapter" aria-labelledby="work">
+    <h2 id="work">한 일</h2>
+    <ul>
+      <li>FastAPI 레포 하나에 AI 기능 9종을 두고 하나씩 만들었습니다. STT를 청킹·임베딩해 pgvector에 쌓는 인덱서를 먼저 만들고, 그 위에 RAG 학습 튜터(ALEX)와 요약노트, 수업 모니터링(KAI), 모닝브리핑(MILO), 대화 챗봇(LEO), 퀴즈를 올렸습니다.</li>
+      <li>튜터는 질문 복잡도에 따라 체인(질문 개선, 답변 검증)을 골라 답합니다. 세부 규칙 중심이던 기획을 가이드라인 중심으로 바꾸자고 제안했습니다.</li>
+      <li>운영 중 장애 2건을 고쳤습니다. 자료가 하나도 없는데 요약이 만들어지던 환각은 생성 전에 막았고, 공유 DB 세션이 오류 상태로 남아 대화 기록이 사라지던 문제는 오류 직후 rollback하게 해서 막았습니다.</li>
+    </ul>
+  </section>
+  <section class="chapter" aria-labelledby="result">
+    <h2 id="result">결과</h2>
+    <ul>
+      <li>AI 요약노트는 21개 과정에서 1,132건이 나갔고 2,973회 열람됐습니다.</li>
+    </ul>
+  </section>
+
+  <nav class="next" aria-labelledby="next-title">
+    <h2 id="next-title">다음 프로젝트</h2>
+    <a class="card card--row" href="chatbot-event.html">
+      <span class="card__thumb"><img src="../assets/thumb-chatbot.jpg" alt="" width="1200" height="750" loading="lazy"></span>
+      <span>
+        <span class="card__title">브랜드 캠페인 AI 챗봇 이벤트</span>
+        <span class="card__pair">목표 <b>6,000건</b>에서 <b>45,253건</b>으로</span>
+      </span>
+    </a>
   </nav>
-
-  <p class="case-close wrap"><a href="../#projects" data-close>프로젝트 목록으로</a></p>
 </article>
 </main>
 
-<dialog class="zoom" aria-label="그림 크게 보기">
-  <form method="dialog"><button>닫기</button></form>
-  <img alt="" width="1200" height="600">
+<dialog class="viewer" aria-labelledby="viewer-title">
+  <div class="viewer__bar">
+    <p class="viewer__title" id="viewer-title"></p>
+    <a class="viewer__open link" target="_blank" rel="noopener">원본 열기</a>
+    <form method="dialog"><button class="btn btn--secondary btn--small" autofocus>닫기</button></form>
+  </div>
+  <div class="viewer__body"><img alt=""></div>
 </dialog>
 </body>
 </html>

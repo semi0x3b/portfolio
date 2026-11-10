@@ -12,31 +12,14 @@
 <meta property="og:description" content="서비스 25종 probe를 바꿔 멈춘 서비스가 45초 안에 재시작되게 하고, 장애 분석 봇을 만들었습니다.">
 <meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F7F6F2">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23F7F6F2'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%23A8690A' font-family='monospace' font-weight='700'>;</text></svg>">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23FFFFFF'/><text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'>;</text></svg>">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&text=semi%3B0x3bB&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&text=semi%3B&display=swap">
+<link rel="stylesheet" href="../tokens.css">
 <link rel="stylesheet" href="../site.css">
-<script>
-document.documentElement.classList.add("js");
-// 홈 팝업 안에서 열리면 머리·연락을 숨긴다
-if (window.self !== window.top) document.documentElement.classList.add("embedded");
-// 페이지 전환이 도중에 끊겨도(빠른 뒤로 가기 등) 거부된 promise를 오류로 남기지 않는다
-["pageswap", "pagereveal"].forEach(function (type) {
-  addEventListener(type, function (event) {
-    if (!event.viewTransition) return;
-    event.viewTransition.ready.catch(function () {});
-    event.viewTransition.finished.catch(function () {});
-  });
-});
-if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  document.documentElement.classList.add("motion");
-  // site.js가 못 뜨면 숨겨 둔 내용을 되살린다
-  setTimeout(function () { if (!window.__site) document.documentElement.classList.remove("motion"); }, 3000);
-}
-</script>
 <script src="../site.js" defer></script>
 </head>
 <body>
@@ -44,48 +27,48 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="../" aria-label="김세미 포트폴리오 처음으로">semi<span class="logo__end"><span class="semi">;</span><span class="logo__hex" aria-hidden="true">0x3b</span></span></a>
-    <nav class="nav" aria-label="주 메뉴">
-      <ul>
-        <li><a class="commit" href="../#projects" aria-current="page"><span>프로젝트</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="../#career"><span>경력</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="../#reviews"><span>평가</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="../#writing"><span>글</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="../#contact"><span>연락</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+    <a class="logo" href="../" aria-label="김세미 포트폴리오 처음으로">semi<span>;</span></a>
+    <nav aria-label="주 메뉴">
+      <ul class="nav">
+        <li><a href="../#projects" aria-current="page">프로젝트</a></li>
+        <li><a href="../#diagrams">구성도</a></li>
+        <li><a href="../#career">경력</a></li>
+        <li><a href="../#reviews">평가</a></li>
+        <li><a href="../#writing">글</a></li>
+        <li><a href="../#contact">연락</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main id="main" tabindex="-1">
-<article>
-  <header class="case-hero wrap">
-    <div class="case-hero__top">
-      <a class="back commit" href="../#projects"><span>프로젝트 목록</span><span class="commit__semi" aria-hidden="true">;</span></a>
-      <p class="case-hero__when">2026년 8월 ~ 10월</p>
-      <h1 style="view-transition-name: t-incident-response">장애 자동 복구와 AI 원인 분석</h1>
-      <p class="case-hero__sub">외부 API가 멈춰도 버티는 서비스와 장애 분석 봇</p>
-    </div>
-    <div class="case-pair axis">
-      <span class="l pair-before" style="view-transition-name: b-incident-response">전체 정지<span class="sr-only">에서</span></span>
-      <span class="semi" aria-hidden="true">;</span>
-      <div class="r">
-        <span class="pair-after" style="view-transition-name: a-incident-response">60건 모두 응답<span class="sr-only">으로</span></span>
-        <span class="note">외부 API가 응답하지 않을 때. 앞은 실제 장애(11분 정지), 뒤는 수정 후 동시 요청 60건으로 시험한 결과</span>
-      </div>
-    </div>
-    <dl class="facts">
-      <div class="axis"><dt class="l">기술</dt><dd class="r">FastAPI, Kubernetes, Loki, Alertmanager, LLM</dd></div>
-      <div class="axis"><dt class="l">글과 코드</dt><dd class="r"><a class="link" href="https://semi0x3b.github.io/posts/2026-09-01-incident-bot-llm-autopsy">부검 봇 설계 글</a> <a class="link" href="https://github.com/semi0x3b/log-autopsy">log-autopsy 공개판</a></dd></div>
-    </dl>
-  </header>
+<article class="case">
+  <a class="back link" href="../#projects">프로젝트 목록</a>
+  <p class="case__when">2026년 8월 ~ 10월</p>
+  <h1 class="case__title">장애 자동 복구와 AI 원인 분석</h1>
+  <p class="case__sub">외부 API가 멈춰도 버티는 서비스와 장애 분석 봇</p>
+  <div class="result">
+    <p class="result__pair">전체 정지에서 <b>60건</b> 모두 응답으로</p>
+    <p class="result__note">외부 API가 응답하지 않을 때. 앞은 실제 장애(11분 정지), 뒤는 수정 후 동시 요청 60건으로 시험한 결과</p>
+  </div>
+  <dl class="facts">
+    <div><dt>기술</dt><dd>FastAPI, Kubernetes, Loki, Alertmanager, LLM</dd></div>
+    <div><dt>글과 코드</dt><dd><a class="link" href="https://semi0x3b.github.io/posts/2026-09-01-incident-bot-llm-autopsy">부검 봇 설계 글</a> <a class="link" href="https://github.com/semi0x3b/log-autopsy">log-autopsy 공개판</a></dd></div>
+  </dl>
 
-  <figure class="figure wrap loop-sim">
+  <figure class="figure">
+    <a class="figure__zoom" href="../assets/diagrams/incident-response.png" data-diagram data-title="장애 대응 체계" aria-haspopup="dialog">
+      <img src="../assets/diagrams/thumb/incident-response.jpg" srcset="../assets/diagrams/thumb/incident-response.jpg 960w, ../assets/diagrams/incident-response.png 3402w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="장애 대응 체계. 외부 API 무응답으로 11분 멈춘 장애 뒤에 만든 감지, 자동복구, 원인분석 흐름" width="960" height="509">
+    </a>
+    <figcaption>장애 대응 체계. 외부 API 무응답으로 11분 멈춘 장애 뒤에 만든 감지, 자동복구, 원인분석 흐름</figcaption>
+  </figure>
+
+  <figure class="figure loop-sim">
     <div class="loop-sim__box" data-loop-sim>
       <div class="loop-sim__head">
         <p class="loop-sim__title">외부 API가 응답하지 않을 때 다른 요청은</p>
         <p class="loop-sim__clock" aria-hidden="true">경과 <b data-clock>240</b>초</p>
-        <button type="button" class="loop-sim__replay" data-replay>다시 재생</button>
+        <button type="button" class="btn btn--secondary btn--small" data-replay>재생</button>
       </div>
       <div class="loop-sim__stage" aria-hidden="true">
         <p class="loop-sim__group">수정 전</p>
@@ -137,61 +120,54 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         <p><b>수정 후</b> HRD-Net 호출은 threadpool에서 기다리다 5초 뒤 끊깁니다. 그동안 다른 요청은 0.96초에 응답했고 동시 요청 60건이 모두 응답했습니다. 루프가 멈추면 httpGet 헬스체크가 실패해 45초 안에 재시작됩니다.</p>
       </div>
     </div>
-    <figcaption>실제 장애 로그(수정 전)와 dev 실측(수정 후)으로 다시 그린 그림입니다. <button type="button" data-zoom="../assets/incident-response.png">전체 구성도 보기</button></figcaption>
+    <figcaption>실제 장애 로그(수정 전)와 dev 실측(수정 후)으로 다시 그린 그림입니다.</figcaption>
   </figure>
 
-  <div class="wrap">
-    <section class="chapter axis" data-commit aria-labelledby="problem">
-      <h2 class="l" id="problem">문제</h2><span class="semi" aria-hidden="true">;</span>
-      <div class="r out">
-        <p>외부 기관 API(HRD-Net)가 응답하지 않자 권한 서비스 전체가 11분 동안 멈췄습니다. 장애는 사용자 신고로 알았고, 그동안 쿠버네티스는 서비스를 재시작하지 않았습니다.</p>
-      </div>
-    </section>
-    <section class="chapter axis" data-commit aria-labelledby="judgment">
-      <h2 class="l" id="judgment">판단</h2><span class="semi" aria-hidden="true">;</span>
-      <div class="r out">
-        <p>복구는 쿠버네티스가, 원인 분석은 봇이 맡도록 나누고 봇에는 prod 변경 권한을 주지 않았습니다.</p>
-      </div>
-    </section>
-    <section class="chapter axis" data-commit aria-labelledby="work">
-      <h2 class="l" id="work">한 일</h2><span class="semi" aria-hidden="true">;</span>
-      <div class="r out">
-        <ul>
-          <li>응답 시간이 read timeout 30초의 배수로 쌓이는 것을 보고 원인을 찾았습니다. <code>async def</code> 핸들러가 동기 I/O를 실행하는데 워커가 하나뿐이라, 이벤트 루프 하나가 서비스 전체를 막고 있었습니다. <code>await</code>가 없는 핸들러 94건을 AST로 골라 sync로 바꾸고 threadpool에서 돌게 했습니다.</li>
-          <li>tcpSocket liveness는 커널이 소켓 연결을 대신 받아 주기 때문에 이벤트 루프가 멈춰도 통과합니다. 서비스 25종을 httpGet으로 바꾸고, 앱 프로세스를 직접 멈춰 45초 안에 재시작되는 것을 확인했습니다.</li>
-          <li>장애 분석 봇을 만들었습니다. 규칙이 신호를 찾고 LLM은 해석만 맡습니다. 보내기 전에 인용한 문장이 원본 로그에 실제로 있는지 기계로 대조해, 근거가 없는 판정은 낮춰서 보냅니다.</li>
-        </ul>
-      </div>
-    </section>
-    <section class="chapter axis" data-commit aria-labelledby="result">
-      <h2 class="l" id="result">결과</h2><span class="semi" aria-hidden="true">;</span>
-      <div class="r out">
-        <ul>
-          <li>외부 API가 멈춘 동안에도 동시 요청 60건이 모두 응답했습니다(QueuePool timeout 0건).</li>
-          <li>25종에 적용한 뒤 probe 오탐으로 재시작된 경우는 0건입니다.</li>
-          <li>과거 실제 장애 2건을 봇에 다시 돌리자 기록된 원인을 찾아냈습니다. 규칙 층을 LLM 앞에 둔 뒤로는 2주치 에러 알림 18건 중 9건이 LLM 호출 없이 판정됐습니다.</li>
-        </ul>
-      </div>
-    </section>
-  </div>
+  <section class="chapter" aria-labelledby="problem">
+    <h2 id="problem">문제</h2>
+    <p>외부 기관 API(HRD-Net)가 응답하지 않자 권한 서비스 전체가 11분 동안 멈췄습니다. 장애는 사용자 신고로 알았고, 그동안 쿠버네티스는 서비스를 재시작하지 않았습니다.</p>
+  </section>
+  <section class="chapter" aria-labelledby="judgment">
+    <h2 id="judgment">판단</h2>
+    <p>복구는 쿠버네티스가, 원인 분석은 봇이 맡도록 나누고 봇에는 prod 변경 권한을 주지 않았습니다.</p>
+  </section>
+  <section class="chapter" aria-labelledby="work">
+    <h2 id="work">한 일</h2>
+    <ul>
+      <li>응답 시간이 read timeout 30초의 배수로 쌓이는 것을 보고 원인을 찾았습니다. <code>async def</code> 핸들러가 동기 I/O를 실행하는데 워커가 하나뿐이라, 이벤트 루프 하나가 서비스 전체를 막고 있었습니다. <code>await</code>가 없는 핸들러 94건을 AST로 골라 sync로 바꾸고 threadpool에서 돌게 했습니다.</li>
+      <li>tcpSocket liveness는 커널이 소켓 연결을 대신 받아 주기 때문에 이벤트 루프가 멈춰도 통과합니다. 서비스 25종을 httpGet으로 바꾸고, 앱 프로세스를 직접 멈춰 45초 안에 재시작되는 것을 확인했습니다.</li>
+      <li>장애 분석 봇을 만들었습니다. 규칙이 신호를 찾고 LLM은 해석만 맡습니다. 보내기 전에 인용한 문장이 원본 로그에 실제로 있는지 기계로 대조해, 근거가 없는 판정은 낮춰서 보냅니다.</li>
+    </ul>
+  </section>
+  <section class="chapter" aria-labelledby="result">
+    <h2 id="result">결과</h2>
+    <ul>
+      <li>외부 API가 멈춘 동안에도 동시 요청 60건이 모두 응답했습니다(QueuePool timeout 0건).</li>
+      <li>25종에 적용한 뒤 probe 오탐으로 재시작된 경우는 0건입니다.</li>
+      <li>과거 실제 장애 2건을 봇에 다시 돌리자 기록된 원인을 찾아냈습니다. 규칙 층을 LLM 앞에 둔 뒤로는 2주치 에러 알림 18건 중 9건이 LLM 호출 없이 판정됐습니다.</li>
+    </ul>
+  </section>
 
-  <nav class="next wrap" aria-label="다음 프로젝트">
-    <div class="axis" data-commit>
-      <p class="l next__label">다음 프로젝트</p><span class="semi" aria-hidden="true">;</span>
-      <a class="r out" href="ats.html">
-        <span class="next__title commit"><span style="view-transition-name: t-ats">채용 플랫폼(ATS) 신규 구축</span><span class="commit__semi" aria-hidden="true">;</span></span>
-        <span class="next__pair">내보내기 메모리 34.5MB에서 <b>2.1MB</b>로</span>
-      </a>
-    </div>
+  <nav class="next" aria-labelledby="next-title">
+    <h2 id="next-title">다음 프로젝트</h2>
+    <a class="card card--row" href="ats.html">
+      <span class="card__thumb"><img src="../assets/diagrams/thumb/ats-architecture.jpg" alt="" width="960" height="640" loading="lazy"></span>
+      <span>
+        <span class="card__title">채용 플랫폼(ATS) 신규 구축</span>
+        <span class="card__pair">내보내기 메모리 <b>34.5MB</b>에서 <b>2.1MB</b>로</span>
+      </span>
+    </a>
   </nav>
-
-  <p class="case-close wrap"><a href="../#projects" data-close>프로젝트 목록으로</a></p>
 </article>
 </main>
 
-<dialog class="zoom" aria-label="그림 크게 보기">
-  <form method="dialog"><button>닫기</button></form>
-  <img alt="" width="1200" height="600">
+<dialog class="viewer" aria-labelledby="viewer-title">
+  <div class="viewer__bar">
+    <p class="viewer__title" id="viewer-title"></p>
+    <a class="viewer__open link" target="_blank" rel="noopener">원본 열기</a>
+    <form method="dialog"><button class="btn btn--secondary btn--small" autofocus>닫기</button></form>
+  </div>
+  <div class="viewer__body"><img alt=""></div>
 </dialog>
 </body>
 </html>

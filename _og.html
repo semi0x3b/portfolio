@@ -1,0 +1,32 @@
+<!doctype html>
+<!-- og.png 원본. headless Chrome으로 1200x630 캡처한다(DESIGN.md). 파일명이 _로 시작해 GitHub Pages(Jekyll)가 배포하지 않는다 -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&text=semi%3B&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  .og { box-sizing: border-box; width: 1200px; height: 630px; padding: var(--sp-80); display: flex; flex-direction: column; justify-content: space-between; }
+  .og .logo { font: var(--fw-bold) var(--t-title2); font-family: var(--font-mono); }
+  .og h1 { max-width: 15em; font: var(--fw-bold) var(--t-display1); letter-spacing: var(--ls-display1); text-wrap: balance; }
+  .og .hero__id { margin: 0; }
+  .og .hero__id img { width: 72px; height: 72px; }
+  .og .hero__name { font: var(--fw-bold) var(--t-heading1); letter-spacing: var(--ls-heading1); }
+  .og .hero__role { font: var(--fw-regular) var(--t-headline1); letter-spacing: var(--ls-headline1); }
+</style>
+</head>
+<body>
+<div class="og">
+  <p class="logo">semi<span>;</span></p>
+  <h1>서비스를 만들고 그 서비스가 올라갈 인프라까지 맡습니다.</h1>
+  <div class="hero__id">
+    <img src="assets/profile.jpg" alt="" width="512" height="512">
+    <p><strong class="hero__name">김세미</strong><span class="hero__role">백엔드·인프라 엔지니어, 12년 차</span></p>
+  </div>
+</div>
+</body>
+</html>

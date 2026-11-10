@@ -1,0 +1,79 @@
+/* 원티드 Montage 토큰(github.com/wanteddev/montage-web, packages/theme/src/theme). site.css는 이 변수만 쓴다. 규칙은 DESIGN.md */
+:root {
+  /* 바탕 */
+  --color-background: #FFFFFF;
+  --color-background-secondary: #F7F7F8;
+  --color-surface-secondary: rgba(112, 115, 124, 0.08);
+
+  /* 글자 */
+  --color-text-primary: #171719;
+  --color-text-secondary: rgba(46, 47, 51, 0.88);
+  --color-text-tertiary: rgba(55, 56, 60, 0.61);
+  --color-text-quaternary: rgba(55, 56, 60, 0.28);
+
+  /* 선 */
+  --color-line-primary: rgba(112, 115, 124, 0.22);
+  --color-line-tertiary: rgba(112, 115, 124, 0.08);
+
+  /* 브랜드(파랑): 주 버튼, 링크, 로고의 ;, 포커스에만 */
+  --color-brand-primary: #0066FF;
+  --color-brand-strong: #005EEB;
+  --color-brand-heavy: #0054D1;
+  --color-brand-subtle: rgba(0, 102, 255, 0.05);
+  --color-blue-95: #EAF2FE;
+  --color-focus-ring: rgba(0, 102, 255, 0.12);
+
+  /* 추가: 파랑 버튼 위 글자, dialog 가림막(글자 primary의 52%) */
+  --color-static-white: #FFFFFF;
+  --color-dimmer: rgba(23, 23, 25, 0.52);
+
+  /* 서체 */
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; /* 로고 semi; 에만 */
+  --font-code: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;                  /* 본문 속 코드 */
+
+  /* 글자 크기: 크기/줄간격 + 서체, 자간은 --ls-* */
+  --t-display1: 56px/72px var(--font-sans);      --ls-display1: -0.0319em;
+  --t-display2: 40px/52px var(--font-sans);      --ls-display2: -0.0282em;
+  --t-title1: 32px/44px var(--font-sans);        --ls-title1: -0.0253em;
+  --t-title2: 28px/38px var(--font-sans);        --ls-title2: -0.0236em;
+  --t-title3: 24px/32px var(--font-sans);        --ls-title3: -0.023em;
+  --t-heading1: 22px/30px var(--font-sans);      --ls-heading1: -0.0194em;
+  --t-heading2: 20px/28px var(--font-sans);      --ls-heading2: -0.012em;
+  --t-headline1: 18px/26px var(--font-sans);     --ls-headline1: -0.002em;
+  --t-body1: 16px/24px var(--font-sans);         --ls-body1: 0.0057em;
+  --t-body1-reading: 16px/26px var(--font-sans); --ls-body1-reading: 0.0057em;
+  --t-body2: 15px/22px var(--font-sans);         --ls-body2: 0.0096em;
+  --t-label1: 14px/20px var(--font-sans);        --ls-label1: 0.0145em;
+  --t-label2: 13px/18px var(--font-sans);        --ls-label2: 0.0194em;
+  /* 예외: 긴 한글 문단(2026-10-30 결정) */
+  --t-reading: 18px/1.75 var(--font-sans);       --ls-reading: -0.002em;
+
+  /* 굵기: 역할마다 하나 */
+  --fw-regular: 400;   /* 본문, 메타 */
+  --fw-medium: 500;    /* 내비 */
+  --fw-semibold: 600;  /* 소제목, 버튼 */
+  --fw-bold: 700;      /* 제목, 카드 제목, 강조 수치 */
+
+  /* 간격 */
+  --sp-4: 4px;
+  --sp-8: 8px;
+  --sp-12: 12px;
+  --sp-16: 16px;
+  --sp-20: 20px;
+  --sp-24: 24px;
+  --sp-32: 32px;
+  --sp-40: 40px;
+  --sp-48: 48px;
+  --sp-64: 64px;
+  --sp-80: 80px;
+  --sp-120: 120px;
+
+  /* 모양 */
+  --radius-card: 12px;
+  --radius-button: 10px;
+  --radius-small: 4px;   /* 본문 코드, 그래프 막대 */
+  --page-width: 1200px;
+  --content-width: 760px;
+  --gutter: clamp(20px, 4vw, 40px);
+}

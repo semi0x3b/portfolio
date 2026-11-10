@@ -9,36 +9,19 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://semi0x3b.github.io/portfolio/">
 <meta property="og:title" content="김세미, 백엔드·인프라 엔지니어">
-<meta property="og:description" content="서비스를 만들고, 그 서비스가 올라갈 인프라까지 맡습니다. 월 인프라 비용 …에서 …으로 절감, 서비스 61종 EKS→OKE 이관, 테스트 환경 3,000 rps에서 p95 25ms.">
+<meta property="og:description" content="서비스를 만들고, 그 서비스가 올라갈 인프라까지 맡습니다. 월 인프라 비용 …에서 …으로 절감, 서비스 61종 EKS에서 OKE로 이관, 테스트 환경 3,000 rps에서 p95 25ms.">
 <meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F7F6F2">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23F7F6F2'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%23A8690A' font-family='monospace' font-weight='700'>;</text></svg>">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23FFFFFF'/><text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'>;</text></svg>">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&text=semi%3B0x3bB&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&text=semi%3B&display=swap">
+<link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="site.css">
-<script>
-document.documentElement.classList.add("js");
-// 페이지 전환이 도중에 끊겨도(빠른 뒤로 가기 등) 거부된 promise를 오류로 남기지 않는다
-["pageswap", "pagereveal"].forEach(function (type) {
-  addEventListener(type, function (event) {
-    if (!event.viewTransition) return;
-    event.viewTransition.ready.catch(function () {});
-    event.viewTransition.finished.catch(function () {});
-  });
-});
-if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  document.documentElement.classList.add("motion");
-  // 사이트 안에서 돌아온 경우 히어로 인트로를 다시 틀지 않는다
-  if (document.referrer.indexOf(location.origin + "/portfolio") === 0) document.documentElement.classList.add("no-intro");
-  // site.js가 못 뜨면 숨겨 둔 내용을 되살린다
-  setTimeout(function () { if (!window.__site) document.documentElement.classList.remove("motion"); }, 3000);
-}
-</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"김세미","alternateName":"semi0x3b","jobTitle":"백엔드·인프라 엔지니어","url":"https://semi0x3b.github.io/portfolio/","image":"https://semi0x3b.github.io/portfolio/assets/profile.jpg","email":"mailto:vvvva_@naver.com","sameAs":["https://github.com/semi0x3b","https://semi0x3b.github.io"]}
 </script>
@@ -49,154 +32,241 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="./" aria-label="김세미 포트폴리오 처음으로">semi<span class="logo__end"><span class="semi">;</span><span class="logo__hex" aria-hidden="true">0x3b</span></span></a>
-    <nav class="nav" aria-label="주 메뉴">
-      <ul>
-        <li><a class="commit" href="#projects"><span>프로젝트</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="#career"><span>경력</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="#reviews"><span>평가</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="#writing"><span>글</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
-        <li><a class="commit" href="#contact"><span>연락</span><span class="commit__semi" aria-hidden="true">;</span></a></li>
+    <a class="logo" href="./" aria-label="김세미 포트폴리오 처음으로">semi<span>;</span></a>
+    <nav aria-label="주 메뉴">
+      <ul class="nav">
+        <li><a href="#projects">프로젝트</a></li>
+        <li><a href="#diagrams">구성도</a></li>
+        <li><a href="#career">경력</a></li>
+        <li><a href="#reviews">평가</a></li>
+        <li><a href="#writing">글</a></li>
+        <li><a href="#contact">연락</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main id="main" tabindex="-1">
-<section class="hero wrap" id="top">
+<section class="hero wrap" aria-labelledby="hero-title">
   <div class="hero__id">
     <img src="assets/profile.jpg" alt="김세미 프로필 사진" width="512" height="512">
-    <p><strong>김세미</strong><span>백엔드·인프라 엔지니어, 12년 차</span></p>
+    <p><strong class="hero__name">김세미</strong><span class="hero__role">백엔드·인프라 엔지니어, 12년 차</span></p>
   </div>
-  <h1 class="statement axis">
-    <span class="statement__a l">서비스를 만들고</span><span class="semi" aria-hidden="true">;</span><span class="sr-only">, </span>
-    <span class="statement__b r">그 서비스가 올라갈 인프라까지 맡습니다.</span>
-  </h1>
-  <div class="hero__foot axis">
-    <div class="r">
-      <p class="hero__lead">지금은 멋쟁이사자처럼에서 FastAPI 백엔드와 AWS·OCI 위의 Kubernetes 인프라, 클라우드 비용을 함께 맡고 있습니다.</p>
-      <div class="actions">
-        <a class="btn btn--primary commit" href="mailto:vvvva_@naver.com"><span>메일 보내기</span><span class="commit__semi" aria-hidden="true">;</span></a>
-        <a class="btn commit" href="#projects"><span>프로젝트 보기</span><span class="commit__semi" aria-hidden="true">;</span></a>
-      </div>
-    </div>
+  <h1 class="hero__title" id="hero-title">서비스를 만들고 그 서비스가 올라갈 인프라까지 맡습니다.</h1>
+  <p class="hero__lead">지금은 멋쟁이사자처럼에서 FastAPI 백엔드와 AWS·OCI 위의 Kubernetes 인프라, 클라우드 비용을 함께 맡고 있습니다.</p>
+  <div class="actions">
+    <a class="btn btn--primary" href="mailto:vvvva_@naver.com">메일 보내기</a>
+    <a class="btn btn--secondary" href="#projects">프로젝트 보기</a>
   </div>
 </section>
 
-<section class="block wrap" id="projects" aria-labelledby="projects-title">
-  <div class="head axis" data-commit>
-    <h2 class="l" id="projects-title">프로젝트</h2><span class="semi" aria-hidden="true">;</span>
-    <p class="r out">직접 설계하고 운영까지 맡은 프로젝트 여섯 개입니다. 수치는 청구서, 운영 DB, 모니터링에서 확인한 값입니다.</p>
+<section class="section section--first wrap" id="projects" aria-labelledby="projects-title">
+  <div class="section__head">
+    <h2 class="section__title" id="projects-title">프로젝트</h2>
+    <p class="section__desc">직접 설계하고 운영까지 맡은 프로젝트 여섯 개입니다. 수치는 청구서, 운영 DB, 모니터링에서 확인한 값입니다.</p>
   </div>
-  <ol class="works" data-preview-list>
-    <li class="work" data-commit>
-      <a href="work/load-test.html">
-        <div class="work__head">
-          <span class="work__when">2026년 9월</span>
-          <h3 class="work__title" style="view-transition-name: t-load-test">100만 DAU 대비 부하 대응</h3>
-          <span class="work__sub">SK하이닉스 AI 해커톤 모집</span>
-        </div>
-        <span class="work__before pair-before" style="view-transition-name: b-load-test">1.3초<span class="sr-only">에서</span></span>
-        <span class="semi" aria-hidden="true">;</span>
-        <span class="work__after pair-after out" style="view-transition-name: a-load-test">25ms<span class="sr-only">로</span></span>
-        <span class="work__note out">3,000 rps 10분 동안의 p95, 테스트 환경</span>
+  <ul class="cards">
+    <li>
+      <a class="card" href="work/load-test.html">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/saas-infra.jpg" alt="" width="960" height="587"></span>
+        <span class="card__when">2026년 9월</span>
+        <h3 class="card__title">100만 DAU 대비 부하 대응</h3>
+        <span class="card__sub">SK하이닉스 AI 해커톤 모집</span>
+        <span class="card__pair"><b>1.3초</b>에서 <b>25ms</b>로</span>
+        <span class="card__note">3,000 rps 10분 동안의 p95, 테스트 환경</span>
       </a>
     </li>
-    <li class="work" data-commit>
-      <a href="work/eks-to-oke.html" data-preview="assets/thumb-eks-to-oke.jpg" data-diagram>
-        <div class="work__head">
-          <span class="work__when">2026년 4월 ~ 8월</span>
-          <h3 class="work__title" style="view-transition-name: t-eks-to-oke">EKS에서 OKE로 전사 인프라 이관</h3>
-          <span class="work__sub">콘솔에만 있던 인프라를 코드로 다시 세우고 서비스 61종 이관</span>
-        </div>
-        <span class="work__before pair-before" style="view-transition-name: b-eks-to-oke">…<span class="sr-only">에서</span></span>
-        <span class="semi" aria-hidden="true">;</span>
-        <span class="work__after pair-after out" style="view-transition-name: a-eks-to-oke">…<span class="sr-only">으로</span></span>
-        <span class="work__note out">월 인프라 비용, 서비스를 줄이지 않고 3년 동안</span>
+    <li>
+      <a class="card" href="work/eks-to-oke.html">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/oke-architecture.jpg" alt="" width="960" height="537"></span>
+        <span class="card__when">2026년 4월 ~ 8월</span>
+        <h3 class="card__title">EKS에서 OKE로 전사 인프라 이관</h3>
+        <span class="card__sub">콘솔에만 있던 인프라를 코드로 다시 세우고 서비스 61종 이관</span>
+        <span class="card__pair"><b>…</b>에서 <b>…</b>으로</span>
+        <span class="card__note">월 인프라 비용, 서비스를 줄이지 않고 3년 동안</span>
       </a>
     </li>
-    <li class="work" data-commit>
-      <a href="work/incident-response.html" data-preview="assets/thumb-incident-response.jpg" data-diagram>
-        <div class="work__head">
-          <span class="work__when">2026년 8월 ~ 10월</span>
-          <h3 class="work__title" style="view-transition-name: t-incident-response">장애 자동 복구와 AI 원인 분석</h3>
-          <span class="work__sub">외부 API가 멈춰도 버티는 서비스와 장애 분석 봇</span>
-        </div>
-        <span class="work__before pair-before" style="view-transition-name: b-incident-response">전체 정지<span class="sr-only">에서</span></span>
-        <span class="semi" aria-hidden="true">;</span>
-        <span class="work__after pair-after out" style="view-transition-name: a-incident-response">60건 모두 응답<span class="sr-only">으로</span></span>
-        <span class="work__note out">외부 API가 응답하지 않을 때. 앞은 실제 장애(11분 정지), 뒤는 수정 후 동시 요청 60건으로 시험한 결과</span>
+    <li>
+      <a class="card" href="work/incident-response.html">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/incident-response.jpg" alt="" width="960" height="509" loading="lazy"></span>
+        <span class="card__when">2026년 8월 ~ 10월</span>
+        <h3 class="card__title">장애 자동 복구와 AI 원인 분석</h3>
+        <span class="card__sub">외부 API가 멈춰도 버티는 서비스와 장애 분석 봇</span>
+        <span class="card__pair">전체 정지에서 <b>60건</b> 모두 응답으로</span>
+        <span class="card__note">외부 API가 응답하지 않을 때. 앞은 실제 장애(11분 정지), 뒤는 수정 후 동시 요청 60건으로 시험한 결과</span>
       </a>
     </li>
-    <li class="work" data-commit>
-      <a href="work/ats.html" data-preview="assets/thumb-ats-pii-lifecycle.jpg" data-diagram>
-        <div class="work__head">
-          <span class="work__when">2026년 4월 ~ 6월 구축, 이후 운영</span>
-          <h3 class="work__title" style="view-transition-name: t-ats">채용 플랫폼(ATS) 신규 구축</h3>
-          <span class="work__sub">구직자 커리어홈과 기업·운영 백오피스</span>
-        </div>
-        <span class="work__before pair-before" style="view-transition-name: b-ats">34.5MB<span class="sr-only">에서</span></span>
-        <span class="semi" aria-hidden="true">;</span>
-        <span class="work__after pair-after out" style="view-transition-name: a-ats">2.1MB<span class="sr-only">로</span></span>
-        <span class="work__note out">지원자 1만 행을 내보낼 때 최대 메모리, 암호화 XLSX로 바꾸기 전과 후</span>
+    <li>
+      <a class="card" href="work/ats.html">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/ats-architecture.jpg" alt="" width="960" height="640" loading="lazy"></span>
+        <span class="card__when">2026년 4월 ~ 6월 구축, 이후 운영</span>
+        <h3 class="card__title">채용 플랫폼(ATS) 신규 구축</h3>
+        <span class="card__sub">구직자 커리어홈과 기업·운영 백오피스</span>
+        <span class="card__pair"><b>34.5MB</b>에서 <b>2.1MB</b>로</span>
+        <span class="card__note">지원자 1만 행을 내보낼 때 최대 메모리, 암호화 XLSX로 바꾸기 전과 후</span>
       </a>
     </li>
-    <li class="work" data-commit>
-      <a href="work/ai-learning.html" data-preview="assets/thumb-axp.jpg">
-        <div class="work__head">
-          <span class="work__when">2025년 9월 ~ 현재</span>
-          <h3 class="work__title" style="view-transition-name: t-ai-learning">AI 학습 플랫폼 백엔드</h3>
-          <span class="work__sub">RAG 튜터, 요약노트, 수업 모니터링, 모닝브리핑, 대화 챗봇, 퀴즈, AI 이력서, 포트폴리오</span>
-        </div>
-        <span class="work__before pair-before" style="view-transition-name: b-ai-learning">강의 STT<span class="sr-only">로 만든</span></span>
-        <span class="semi" aria-hidden="true">;</span>
-        <span class="work__after pair-after out" style="view-transition-name: a-ai-learning">요약노트 1,132건</span>
-        <span class="work__note out">쌓이기만 하던 STT를 인덱싱해 21개 과정에 발행, 2,973회 열람</span>
+    <li>
+      <a class="card" href="work/ai-learning.html">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/likelion-platform-architecture.jpg" alt="" width="960" height="614" loading="lazy"></span>
+        <span class="card__when">2025년 9월 ~ 현재</span>
+        <h3 class="card__title">AI 학습 플랫폼 백엔드</h3>
+        <span class="card__sub">RAG 튜터, 요약노트, 수업 모니터링, 모닝브리핑, 대화 챗봇, 퀴즈, AI 이력서, 포트폴리오</span>
+        <span class="card__pair">강의 STT로 만든 요약노트 <b>1,132건</b></span>
+        <span class="card__note">쌓이기만 하던 STT를 인덱싱해 21개 과정에 발행, 2,973회 열람</span>
       </a>
     </li>
-    <li class="work" data-commit>
-      <a href="work/chatbot-event.html" data-preview="assets/thumb-chatbot.jpg">
-        <div class="work__head">
-          <span class="work__when">2025년 10월 ~ 11월</span>
-          <h3 class="work__title" style="view-transition-name: t-chatbot-event">브랜드 캠페인 AI 챗봇 이벤트</h3>
-          <span class="work__sub">브랜드 필름 속 캐릭터의 말투로 대화하는 챗봇</span>
-        </div>
-        <span class="work__before pair-before" style="view-transition-name: b-chatbot-event">목표 6,000건<span class="sr-only">에서</span></span>
-        <span class="semi" aria-hidden="true">;</span>
-        <span class="work__after pair-after out" style="view-transition-name: a-chatbot-event">45,253건<span class="sr-only">으로</span></span>
-        <span class="work__note out">챗봇 참여 건수, 목표의 7.5배</span>
+    <li>
+      <a class="card" href="work/chatbot-event.html">
+        <span class="card__thumb"><img src="assets/thumb-chatbot.jpg" alt="" width="1200" height="750" loading="lazy"></span>
+        <span class="card__when">2025년 10월 ~ 11월</span>
+        <h3 class="card__title">브랜드 캠페인 AI 챗봇 이벤트</h3>
+        <span class="card__sub">브랜드 필름 속 캐릭터의 말투로 대화하는 챗봇</span>
+        <span class="card__pair">목표 <b>6,000건</b>에서 <b>45,253건</b>으로</span>
+        <span class="card__note">챗봇 참여 건수, 목표의 7.5배</span>
       </a>
     </li>
-  </ol>
+  </ul>
 </section>
 
-<section class="block block--tight wrap" id="about" aria-labelledby="about-title">
-  <div class="head axis" data-commit>
-    <h2 class="l" id="about-title">소개</h2><span class="semi" aria-hidden="true">;</span>
-    <p class="r say out">요구가 흐릿하면 선택지를 먼저 만들어 제안합니다. 반복되는 일은 도구로 덜어 내고, 제 일이 아니어도 팀원이 막히면 같이 풉니다.</p>
+<section class="section wrap" id="diagrams" aria-labelledby="diagrams-title">
+  <div class="section__head">
+    <h2 class="section__title" id="diagrams-title">구성도</h2>
+    <p class="section__desc">맡고 있는 서비스와 인프라를 직접 다시 그린 구성도입니다. 누르면 원본 크기로 볼 수 있습니다.</p>
   </div>
-  <div class="axis">
-    <div class="r prose">
-      <p>2024년부터 멋쟁이사자처럼에서 부트캠프 LMS, SaaS LMS, 채용 플랫폼, AI 학습 플랫폼의 백엔드를 만들고 인프라를 이끌고 있습니다. 문서도 IaC도 없이 콘솔에만 있던 AWS 인프라를 실측으로 파악해 OCI로 옮겼고, 고객사 납품 건은 요구사항 정리부터 운영까지 이어서 맡습니다.</p>
-      <p>그 전에는 엠포스에서 광고 데이터·빅데이터 플랫폼과 커머스를 만들고 개발팀을 관리했고, 제이넷과 비즈아이솔루션에서 공공기관과 대기업 시스템을 구축했습니다. Java로 시작해 지금은 Python으로 일합니다.</p>
-    </div>
+  <ul class="diagrams">
+    <li>
+      <a class="card" href="assets/diagrams/likelion-platform-architecture.png" data-diagram data-title="멋사 플랫폼 서비스 관계도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/likelion-platform-architecture.jpg" alt="" width="960" height="614" loading="lazy"></span>
+        <span class="card__title card__title--small">멋사 플랫폼 서비스 관계도</span>
+        <span class="card__desc">LMS 백엔드와 채용, SaaS, 커뮤니티, 수업 도구가 로그인과 webhook, 강의 API로 이어지는 관계</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/oke-architecture.png" data-diagram data-title="멋사 플랫폼 인프라 구성도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/oke-architecture.jpg" alt="" width="960" height="537" loading="lazy"></span>
+        <span class="card__title card__title--small">멋사 플랫폼 인프라 구성도</span>
+        <span class="card__desc">OCI 서울 리전의 OKE 클러스터와 AWS 서울 리전의 RDS, S3, 그리고 OKE 밖 별도 스택을 함께 담은 운영 환경</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/domain-map.png" data-diagram data-title="서비스 도메인 지도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/domain-map.jpg" alt="" width="960" height="656" loading="lazy"></span>
+        <span class="card__title card__title--small">서비스 도메인 지도</span>
+        <span class="card__desc">Route 53 호스팅 존 14개의 도메인이 OCI, AWS, KT Cloud, Vercel 가운데 어디서 서비스되는지</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/saas-architecture.png" data-diagram data-title="SaaS 서비스·코드 관계도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/saas-architecture.jpg" alt="" width="960" height="668" loading="lazy"></span>
+        <span class="card__title card__title--small">SaaS 서비스·코드 관계도</span>
+        <span class="card__desc">한 코드베이스의 지원자용 API, 어드민 API, 배치가 같은 PgBouncer를 거쳐 PostgreSQL에 접속하는 구조</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/saas-infra.png" data-diagram data-title="SaaS LMS 인프라 구성도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/saas-infra.jpg" alt="" width="960" height="587" loading="lazy"></span>
+        <span class="card__title card__title--small">SaaS LMS 인프라 구성도</span>
+        <span class="card__desc">공용 진입으로 들어오는 테넌트 경로와 고객사 전용 LB, 전용 VM으로 들어오는 단독 배포 경로</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/lms-infra.png" data-diagram data-title="멋사 LMS 운영 인프라 구성도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/lms-infra.jpg" alt="" width="960" height="580" loading="lazy"></span>
+        <span class="card__title card__title--small">멋사 LMS 운영 인프라 구성도</span>
+        <span class="card__desc">공용 진입에서 웹, 어드민, API, 인증으로 나뉘는 LMS 네임스페이스와 AWS의 RDS, S3, CloudFront</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/bootcamp-architecture.png" data-diagram data-title="멋쟁이사자처럼 부트캠프(KDT) 구성도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/bootcamp-architecture.jpg" alt="" width="960" height="684" loading="lazy"></span>
+        <span class="card__title card__title--small">멋쟁이사자처럼 부트캠프(KDT) 구성도</span>
+        <span class="card__desc">과정 표시 방식 설정과 랜딩 HTML 렌더, 수업 STT로 만드는 AI 수업 노트와 모니터링 배치</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/ats-architecture.png" data-diagram data-title="ATS 서비스·코드 관계도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/ats-architecture.jpg" alt="" width="960" height="640" loading="lazy"></span>
+        <span class="card__title card__title--small">ATS 서비스·코드 관계도</span>
+        <span class="card__desc">지원자 API, 운영 API, scheduler가 같은 DB를 쓰고 통합 인증, 수강권 webhook과 맞물리는 구조</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/ats-infra.png" data-diagram data-title="채용 플랫폼 인프라 구성도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/ats-infra.jpg" alt="" width="960" height="521" loading="lazy"></span>
+        <span class="card__title card__title--small">채용 플랫폼 인프라 구성도</span>
+        <span class="card__desc">공용 OKE의 채용 서비스 네임스페이스와 CronJob 5개, NAT를 거쳐 AWS RDS에 닿는 DB 경로</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/community-architecture.png" data-diagram data-title="멋사대학 커뮤니티" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/community-architecture.jpg" alt="" width="960" height="620" loading="lazy"></span>
+        <span class="card__title card__title--small">멋사대학 커뮤니티</span>
+        <span class="card__desc">커뮤니티, 백오피스 API와 배치를 한 코드베이스에서 나눠 배포하고 Redis 한 서버에서 캐시와 채팅을 나누는 구조</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/community-infra.png" data-diagram data-title="멋사대학 커뮤니티 인프라 구성도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/community-infra.jpg" alt="" width="960" height="516" loading="lazy"></span>
+        <span class="card__title card__title--small">멋사대학 커뮤니티 인프라 구성도</span>
+        <span class="card__desc">커뮤니티 네임스페이스의 웹, API, 배치 CronJob과 NAT 뒤의 AWS RDS, S3, Secrets Manager</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/campfire-architecture.png" data-diagram data-title="Campfire 서비스·코드 관계도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/campfire-architecture.jpg" alt="" width="960" height="600" loading="lazy"></span>
+        <span class="card__title card__title--small">Campfire 서비스·코드 관계도</span>
+        <span class="card__desc">Electron 클라이언트에서 LiveKit 녹화, STT 프록시와 Daglo 전사를 거쳐 LMS AI 노트로 이어지는 흐름</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/campfire-infra.png" data-diagram data-title="캠프파이어 인프라 구성도" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/campfire-infra.jpg" alt="" width="960" height="521" loading="lazy"></span>
+        <span class="card__title card__title--small">캠프파이어 인프라 구성도</span>
+        <span class="card__desc">전용 VCN의 VM 4대(앱, LiveKit, 녹화, STT)와 관리형 PostgreSQL, Object Storage 버킷</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/incident-response.png" data-diagram data-title="장애 대응 체계" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/incident-response.jpg" alt="" width="960" height="509" loading="lazy"></span>
+        <span class="card__title card__title--small">장애 대응 체계</span>
+        <span class="card__desc">외부 API 무응답으로 11분 멈춘 장애 뒤에 만든 감지, 자동복구, 원인분석 흐름</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="assets/diagrams/eks-to-oke.png" data-diagram data-title="EKS에서 OKE로 전사 이관" aria-haspopup="dialog">
+        <span class="card__thumb"><img src="assets/diagrams/thumb/eks-to-oke.jpg" alt="" width="960" height="485" loading="lazy"></span>
+        <span class="card__title card__title--small">EKS에서 OKE로 전사 이관</span>
+        <span class="card__desc">이관 전 EKS와 이관 후 OKE, 그 사이의 라우팅 선등록, DNS 전환, TLS 승격 세 단계</span>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section class="section wrap" id="about" aria-labelledby="about-title">
+  <div class="section__head">
+    <h2 class="section__title" id="about-title">소개</h2>
+  </div>
+  <p class="about__say">요구가 흐릿하면 선택지를 먼저 만들어 제안합니다. 반복되는 일은 도구로 덜어 내고, 제 일이 아니어도 팀원이 막히면 같이 풉니다.</p>
+  <div class="prose">
+    <p>2024년부터 멋쟁이사자처럼에서 부트캠프 LMS, SaaS LMS, 채용 플랫폼, AI 학습 플랫폼의 백엔드를 만들고 인프라를 이끌고 있습니다. 문서도 IaC도 없이 콘솔에만 있던 AWS 인프라를 실측으로 파악해 OCI로 옮겼고, 고객사 납품 건은 요구사항 정리부터 운영까지 이어서 맡습니다.</p>
+    <p>그 전에는 엠포스에서 광고 데이터·빅데이터 플랫폼과 커머스를 만들고 개발팀을 관리했고, 제이넷과 비즈아이솔루션에서 공공기관과 대기업 시스템을 구축했습니다. Java로 시작해 지금은 Python으로 일합니다.</p>
   </div>
 </section>
 
-<section class="block wrap" id="career" aria-labelledby="career-title">
-  <div class="head axis" data-commit>
-    <h2 class="l" id="career-title">경력</h2><span class="semi" aria-hidden="true">;</span>
-    <p class="r out">2013년 웹 개발자로 시작해 지금은 백엔드와 인프라를 맡고 있습니다.</p>
+<section class="section wrap" id="career" aria-labelledby="career-title">
+  <div class="section__head">
+    <h2 class="section__title" id="career-title">경력</h2>
+    <p class="section__desc">2013년 웹 개발자로 시작해 지금은 백엔드와 인프라를 맡고 있습니다.</p>
   </div>
   <ol class="career">
-    <li class="axis" data-commit>
-      <div class="l career__meta">
-        <p class="tenure tenure--now" style="--s: 83.6%; --w: 16.4%" aria-hidden="true"><span>2024</span><span>현재</span></p>
-        <h3>멋쟁이사자처럼</h3>
-        <p class="career__role">백엔드·인프라 엔지니어, 팀 리드</p>
-        <p class="career__when">2024년 7월 ~ 현재</p>
+    <li class="job">
+      <div>
+        <h3 class="job__name">멋쟁이사자처럼</h3>
+        <p class="job__role">백엔드·인프라 엔지니어, 팀 리드</p>
+        <p class="job__when">2024년 7월 ~ 현재</p>
       </div>
-      <div class="r career__body">
+      <div class="job__body">
         <p>부트캠프 LMS, SaaS LMS, 채용 플랫폼, 실시간 화상 수업, AI 학습 플랫폼의 백엔드를 만들고 인프라를 이끕니다. 개발팀 주간 싱크업을 진행하고, DevOps 인턴 2명에게 과제를 나눠 주고 리뷰합니다.</p>
         <h4>SK하이닉스 AI 해커톤 서빙 <span>2026</span></h4>
         <ul>
@@ -264,14 +334,13 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         </ul>
       </div>
     </li>
-    <li class="axis" data-commit>
-      <div class="l career__meta">
-        <p class="tenure" style="--s: 39.4%; --w: 43.0%" aria-hidden="true"><span>2018</span><span>2024</span></p>
-        <h3>엠포스</h3>
-        <p class="career__role">백엔드 엔지니어, 팀 리드</p>
-        <p class="career__when">2018년 6월 ~ 2024년 5월</p>
+    <li class="job">
+      <div>
+        <h3 class="job__name">엠포스</h3>
+        <p class="job__role">백엔드 엔지니어, 팀 리드</p>
+        <p class="job__when">2018년 6월 ~ 2024년 5월</p>
       </div>
-      <div class="r career__body">
+      <div class="job__body">
         <p>인슈어테크, 디지털 마케팅, 빅데이터 분석, 커머스 플랫폼의 백엔드를 Python(Django), Java(Spring), AWS 서버리스로 만들었습니다. 2023년부터는 개발팀을 관리하며 요구사항 분석과 설계, 기술 검토, 일정 관리를 맡았습니다.</p>
         <h4>광고 데이터 플랫폼 NEO <span>2019, 2023 ~ 2024</span></h4>
         <ul>
@@ -307,14 +376,13 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         </ul>
       </div>
     </li>
-    <li class="axis" data-commit>
-      <div class="l career__meta">
-        <p class="tenure" style="--s: 24.2%; --w: 15.2%" aria-hidden="true"><span>2016</span><span>2018</span></p>
-        <h3>제이넷</h3>
-        <p class="career__role">웹 개발자</p>
-        <p class="career__when">2016년 5월 ~ 2018년 6월</p>
+    <li class="job">
+      <div>
+        <h3 class="job__name">제이넷</h3>
+        <p class="job__role">웹 개발자</p>
+        <p class="job__when">2016년 5월 ~ 2018년 6월</p>
       </div>
-      <div class="r career__body">
+      <div class="job__body">
         <p>공공기관과 도서관 웹 시스템을 Java(eGovFrame)와 JSP, PHP, ASP로 구축하고 운영했습니다.</p>
         <ul>
           <li>평택시립도서관 홈페이지를 공공·작은도서관, 한책하나되는평택, 다국어(영·중·일)까지 18개 사이트로 개편했습니다.</li>
@@ -325,14 +393,13 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
         </ul>
       </div>
     </li>
-    <li class="axis" data-commit>
-      <div class="l career__meta">
-        <p class="tenure" style="--s: 0%; --w: 24.2%" aria-hidden="true"><span>2013</span><span>2016</span></p>
-        <h3>비즈아이솔루션</h3>
-        <p class="career__role">웹 개발자</p>
-        <p class="career__when">2013년 1월 ~ 2016년 5월</p>
+    <li class="job">
+      <div>
+        <h3 class="job__name">비즈아이솔루션</h3>
+        <p class="job__role">웹 개발자</p>
+        <p class="job__when">2013년 1월 ~ 2016년 5월</p>
       </div>
-      <div class="r career__body">
+      <div class="job__body">
         <p>대기업, 공공기관, 대학에서 쓰는 대량메일·설문·푸시 솔루션을 Java(Spring)와 JSP로 개발하고 운영했습니다.</p>
         <ul>
           <li>삼성카드 결제 직후 설문을 보내는 실시간 고객 피드백 서비스를 프로넷·기간계·정보계 EAI 연동으로 구축하고, 응답 쿼터 제한과 RawData 다운로드 때 엑셀 리포트 자동 생성, 트래킹 리포트를 만들었습니다.</li>
@@ -342,72 +409,71 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
       </div>
     </li>
   </ol>
-  <dl class="facts skills">
-    <div class="axis"><dt class="l">기술</dt><dd class="r">
+  <dl class="job skills">
+    <dt class="job__name">기술</dt>
+    <dd class="job__body">
       <p><b>백엔드</b> Python(FastAPI·SQLAlchemy·Alembic), PostgreSQL(+pgvector), Redis</p>
       <p><b>인프라·관측</b> Kubernetes(EKS·OKE), Terraform, ArgoCD, Helm, Vault, Keycloak, Kong, GitHub Actions, AWS, OCI, Grafana, Prometheus, Loki, Sentry, k6</p>
       <p><b>AI</b> OpenAI·Claude API, RAG, LLM 자동 채점·모델 비교, Claude Code(사내 스킬·에이전트 배포, 필요한 Next.js 화면 구현)</p>
-    </dd></div>
+    </dd>
   </dl>
 </section>
 
-<section class="block wrap" id="reviews" aria-labelledby="reviews-title">
-  <div class="head axis" data-commit>
-    <h2 class="l" id="reviews-title">동료 평가</h2><span class="semi" aria-hidden="true">;</span>
-    <p class="r out">같이 일한 동료와 조직장이 남긴 평가에서 강점 부분만 옮겼습니다.</p>
+<section class="section wrap" id="reviews" aria-labelledby="reviews-title">
+  <div class="section__head">
+    <h2 class="section__title" id="reviews-title">동료 평가</h2>
+    <p class="section__desc">같이 일한 동료와 조직장이 남긴 평가에서 강점 부분만 옮겼습니다.</p>
   </div>
-  <div class="axis">
-    <blockquote class="r pull">
-      <p>“프로젝트의 목적에 부합하는 구조적 설계와 구현을 신속하고 정확하게 수행할 뿐 아니라, 예상되는 문제점과 그에 대한 해결책까지 선제적으로 제시하는 역량을 보유하고 있습니다. 경험해보지 못한 영역의 업무에 대해서도 거부감 없이 스스로 학습하며 진행하는 자기주도적 성향도 돋보입니다.”</p>
-      <cite>멋쟁이사자처럼 부서장, 인사평가 코멘트</cite>
-    </blockquote>
-  </div>
+  <blockquote class="quote quote--lead">
+    <p>“프로젝트의 목적에 부합하는 구조적 설계와 구현을 신속하고 정확하게 수행할 뿐 아니라, 예상되는 문제점과 그에 대한 해결책까지 선제적으로 제시하는 역량을 보유하고 있습니다. 경험해보지 못한 영역의 업무에 대해서도 거부감 없이 스스로 학습하며 진행하는 자기주도적 성향도 돋보입니다.”</p>
+    <cite>멋쟁이사자처럼 부서장, 인사평가 코멘트</cite>
+  </blockquote>
   <div class="quotes">
-    <blockquote>
+    <blockquote class="quote">
       <p>“탄탄한 시스템 설계와 안정적인 API를 제공해 주셔서 프론트엔드 개발이 수월하게 진행되었습니다. 특히 문서화를 꼼꼼하게 해 주셔서 협업하는 과정에서 불필요한 커뮤니케이션 비용이 줄어든 점이 인상적이었습니다.”</p>
       <cite>멋쟁이사자처럼 동료, 인사평가 코멘트</cite>
     </blockquote>
-    <blockquote>
+    <blockquote class="quote">
       <p>“다른 사람들 의견을 잘 받아들이면서도, 그걸 그냥 ‘좋아요’로 끝내지 않고 지금 상황에서 뭐가 최선인지까지 정리해서 방향을 잡아주시는 편이에요. 덕분에 의사결정이 흔들리지 않고, 팀이 더 좋은 선택을 할 수 있게 도와주십니다.”</p>
       <cite>멋쟁이사자처럼 동료, 인사평가 코멘트</cite>
     </blockquote>
-    <blockquote>
+    <blockquote class="quote">
       <p>“일처리가 빠르고 정확합니다. 귀찮을 수도 있는 일을 늘어지지 않고 빠르게 맡아서 하고 계속해서 더 나은 상황을 만들기 위한 추진력이 좋습니다. 꼼꼼하게 문서화를 잘하고 횡설수설한 말에도 포인트를 잘 잡아줍니다.”</p>
       <cite>엠포스 동료, 스펙터 평판 조회</cite>
     </blockquote>
   </div>
   <details class="more">
-    <summary class="btn commit"><span class="open">평가 8건 더 보기</span><span class="close">접기</span><span class="commit__semi" aria-hidden="true">;</span></summary>
+    <summary class="btn btn--secondary"><span class="open">평가 8건 더 보기</span><span class="close">접기</span></summary>
     <div class="quotes">
-      <blockquote>
+      <blockquote class="quote">
         <p>“코드라이언 의존성 제거 및 EKS 버전 업그레이드를 통해 연간 약 … 이상의 비용 절감을 실현하고, 라이브룸과 RAG 기반 AI 챗봇을 구축하신 점은 단순한 업무 수행을 넘어 조직의 성과로 기여한 바가 매우 큽니다.”</p>
         <cite>멋쟁이사자처럼 부서장, 인사평가 코멘트</cite>
       </blockquote>
-      <blockquote>
+      <blockquote class="quote">
         <p>“단순히 주어진 작업을 처리하는 것을 넘어, 전체 시스템 구조와 운영 환경을 함께 고려하며 안정적인 방향으로 업무를 이끌어 가시는 점이 인상적이었습니다. 복잡한 기술 이슈를 단순히 전달하는 데 그치지 않고, 왜 해당 선택이 필요한지에 대한 맥락까지 함께 설명해 주셨습니다.”</p>
         <cite>멋쟁이사자처럼 동료, 인사평가 코멘트</cite>
       </blockquote>
-      <blockquote>
+      <blockquote class="quote">
         <p>“문제 상황에서도 단순 구현, 문제 확인에서 멈추는 것이 아니라 원인, 대안, 결과를 함께 고민하며, 기술적 선택에 대한 논리적 설명과 설득력이 높습니다. 논의 과정에서도 감정이 아닌 근거 중심으로 커뮤니케이션합니다.”</p>
         <cite>멋쟁이사자처럼 동료, 인사평가 코멘트</cite>
       </blockquote>
-      <blockquote>
+      <blockquote class="quote">
         <p>“맡은 일에 대해 책임감이 강하고 항상 적극적으로 임합니다. 팀원들의 업무 분장이나 해결방안도 잘 찾아서 제시하며 리드해주고 있습니다. 성능 최적화와 기존에 사용하지 않았던 신규 기술에 관심이 많고 이를 바로 실무에 적용하여 누구나 만족할만한 결과물을 산출해냅니다.”</p>
         <cite>엠포스 동료, 스펙터 평판 조회</cite>
       </blockquote>
-      <blockquote>
+      <blockquote class="quote">
         <p>“맡은 업무에 대해 분석과 판단력이 뛰어나며 문제를 해결하는 능력이 탁월하며 업무를 해결하는데 있어서 끈기있게 접근하여 해결하는 모습을 보임. 다른 사람의 의견도 잘 듣고 적절한 판단을 통해 합리적으로 문제를 해결함.”</p>
         <cite>엠포스 인사권자, 스펙터 평판 조회</cite>
       </blockquote>
-      <blockquote>
+      <blockquote class="quote">
         <p>“맡은 일에 대해 최선을 다해 Deadline을 지키는 편이고, 동료들과 비교했을 때 속도감있게 일을 처리합니다. 프로젝트 진행 시 동료에게 신뢰감을 줍니다.”</p>
         <cite>엠포스 인사권자, 스펙터 평판 조회</cite>
       </blockquote>
-      <blockquote>
+      <blockquote class="quote">
         <p>“일처리가 빠르고 능숙합니다. 개선이 필요한 부분을 놓치지 않고 좋은 방향으로 개선합니다. 업무 효율을 높일 수 있도록 꾸준히 고민하여 발전합니다.”</p>
         <cite>엠포스 동료, 스펙터 평판 조회</cite>
       </blockquote>
-      <blockquote>
+      <blockquote class="quote">
         <p>“맡은 일에 책임을 다하고 업무가 효율적으로 진행되도록 노력하며 딜레이 되지 않도록 합니다. 상황에 대한 판단이 빠르며 동료들과 원활한 커뮤니케이션을 통해 정확한 아웃풋을 도출합니다.”</p>
         <cite>엠포스 동료, 스펙터 평판 조회</cite>
       </blockquote>
@@ -416,30 +482,30 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
   <p class="source">멋쟁이사자처럼은 2024·2025년 인사평가의 동료·조직장 코멘트, 엠포스는 스펙터(SPECTER) 평판 조회 결과에서 발췌했습니다.</p>
 </section>
 
-<section class="block wrap" id="writing" aria-labelledby="writing-title">
-  <div class="head axis" data-commit>
-    <h2 class="l" id="writing-title">글과 코드</h2><span class="semi" aria-hidden="true">;</span>
-    <p class="r out">일하며 겪은 장애와 설계를 블로그에 쓰고, 회사 밖에서도 쓸 수 있는 것은 공개합니다.</p>
+<section class="section wrap" id="writing" aria-labelledby="writing-title">
+  <div class="section__head">
+    <h2 class="section__title" id="writing-title">글과 코드</h2>
+    <p class="section__desc">일하며 겪은 장애와 설계를 블로그에 쓰고, 회사 밖에서도 쓸 수 있는 것은 공개합니다.</p>
   </div>
-  <div class="shelf axis">
-    <h3 class="l">블로그</h3>
-    <ul class="r entries">
-      <li><a href="https://semi0x3b.github.io/posts/2026-10-19-nextjs-image-optimizer-crawler-oom"><span class="t"><span>크롤러의 큰 이미지 요청이 몰린 순간 Next.js 파드가 OOM으로 죽었어요</span></span><span class="d">2026년 10월</span></a></li>
-      <li><a href="https://semi0x3b.github.io/posts/2026-10-15-openai-api-key-lockdown"><span class="t"><span>OpenAI API 키를 잠그며 알게 된 것: IP 허용 목록, 모델 제한, 키 분리</span></span><span class="d">2026년 10월</span></a></li>
-      <li><a href="https://semi0x3b.github.io/posts/2026-10-09-kong-499-prestop-endpoint-drain"><span class="t"><span>파드가 사라진 뒤에도 Kong은 그 IP로 요청을 보냈어요</span></span><span class="d">2026년 10월</span></a></li>
-      <li><a href="https://semi0x3b.github.io/posts/2026-09-25-karpenter-when-empty-idle-nodes"><span class="t"><span>오전에 뜬 Karpenter 노드 5대가 거의 빈 채로 저녁까지 남아 있었어요</span></span><span class="d">2026년 9월</span></a></li>
-      <li><a href="https://semi0x3b.github.io/posts/2026-09-17-architecture-rules-as-tests"><span class="t"><span>문서에만 있던 계층 규칙을 CI 테스트로 바꿨어요</span></span><span class="d">2026년 9월</span></a></li>
-      <li><a href="https://semi0x3b.github.io/posts/2026-09-01-incident-bot-llm-autopsy"><span class="t"><span>장애 로그 부검 봇 만들기: LLM에게 로그를 읽히지 않는 설계</span></span><span class="d">2026년 9월</span></a></li>
-      <li><a href="https://semi0x3b.github.io/posts/2026-08-05-eks-to-oke-2"><span class="t"><span>EKS에서 OKE로 #2: 물려받은 prod, 네 겹의 로그인, 그리고 컷오버</span></span><span class="d">2026년 8월</span></a></li>
-      <li><a href="https://semi0x3b.github.io/posts/2026-07-28-missing-readiness-probe"><span class="t"><span>HPA가 Pod를 늘릴 때마다 Connection refused가 났어요</span></span><span class="d">2026년 7월</span></a></li>
+  <div class="shelf">
+    <h3>블로그</h3>
+    <ul class="entries">
+      <li><a href="https://semi0x3b.github.io/posts/2026-10-19-nextjs-image-optimizer-crawler-oom"><span class="entries__title">크롤러의 큰 이미지 요청이 몰린 순간 Next.js 파드가 OOM으로 죽었어요</span><span class="entries__date">2026년 10월</span></a></li>
+      <li><a href="https://semi0x3b.github.io/posts/2026-10-15-openai-api-key-lockdown"><span class="entries__title">OpenAI API 키를 잠그며 알게 된 것: IP 허용 목록, 모델 제한, 키 분리</span><span class="entries__date">2026년 10월</span></a></li>
+      <li><a href="https://semi0x3b.github.io/posts/2026-10-09-kong-499-prestop-endpoint-drain"><span class="entries__title">파드가 사라진 뒤에도 Kong은 그 IP로 요청을 보냈어요</span><span class="entries__date">2026년 10월</span></a></li>
+      <li><a href="https://semi0x3b.github.io/posts/2026-09-25-karpenter-when-empty-idle-nodes"><span class="entries__title">오전에 뜬 Karpenter 노드 5대가 거의 빈 채로 저녁까지 남아 있었어요</span><span class="entries__date">2026년 9월</span></a></li>
+      <li><a href="https://semi0x3b.github.io/posts/2026-09-17-architecture-rules-as-tests"><span class="entries__title">문서에만 있던 계층 규칙을 CI 테스트로 바꿨어요</span><span class="entries__date">2026년 9월</span></a></li>
+      <li><a href="https://semi0x3b.github.io/posts/2026-09-01-incident-bot-llm-autopsy"><span class="entries__title">장애 로그 부검 봇 만들기: LLM에게 로그를 읽히지 않는 설계</span><span class="entries__date">2026년 9월</span></a></li>
+      <li><a href="https://semi0x3b.github.io/posts/2026-08-05-eks-to-oke-2"><span class="entries__title">EKS에서 OKE로 #2: 물려받은 prod, 네 겹의 로그인, 그리고 컷오버</span><span class="entries__date">2026년 8월</span></a></li>
+      <li><a href="https://semi0x3b.github.io/posts/2026-07-28-missing-readiness-probe"><span class="entries__title">HPA가 Pod를 늘릴 때마다 Connection refused가 났어요</span><span class="entries__date">2026년 7월</span></a></li>
     </ul>
   </div>
-  <div class="shelf axis">
-    <h3 class="l">공개한 코드</h3>
-    <ul class="r entries">
-      <li><a href="https://github.com/semi0x3b/log-autopsy"><span class="d d--name">log-autopsy</span><span class="t"><span>장애 알림에 원인 분석을 붙이는 부검 봇. 규칙이 신호를 찾고 LLM은 해석만 합니다.</span></span></a></li>
-      <li><a href="https://github.com/semi0x3b/k8s-baseline"><span class="d d--name">k8s-baseline</span><span class="t"><span>관측 스택 helmfile, ArgoCD 배포 패턴, Vault+ESO, probe 표준을 모은 쿠버네티스 레퍼런스.</span></span></a></li>
-      <li><a href="https://github.com/semi0x3b/fastapi-service-template"><span class="d d--name">fastapi-service-template</span><span class="t"><span>인증, 감사 로그, 테스트, CI를 갖춘 FastAPI 서비스 템플릿.</span></span></a></li>
+  <div class="shelf">
+    <h3>공개한 코드</h3>
+    <ul class="entries">
+      <li><a href="https://github.com/semi0x3b/log-autopsy"><span class="entries__title"><span class="entries__name">log-autopsy</span><span class="entries__desc">장애 알림에 원인 분석을 붙이는 부검 봇. 규칙이 신호를 찾고 LLM은 해석만 합니다.</span></span></a></li>
+      <li><a href="https://github.com/semi0x3b/k8s-baseline"><span class="entries__title"><span class="entries__name">k8s-baseline</span><span class="entries__desc">관측 스택 helmfile, ArgoCD 배포 패턴, Vault+ESO, probe 표준을 모은 쿠버네티스 레퍼런스.</span></span></a></li>
+      <li><a href="https://github.com/semi0x3b/fastapi-service-template"><span class="entries__title"><span class="entries__name">fastapi-service-template</span><span class="entries__desc">인증, 감사 로그, 테스트, CI를 갖춘 FastAPI 서비스 템플릿.</span></span></a></li>
     </ul>
   </div>
 </section>
@@ -447,28 +513,26 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
 <footer class="site-footer" id="contact">
   <div class="wrap">
-    <div class="contact head axis" data-commit>
-      <h2 class="l">연락</h2><span class="semi" aria-hidden="true">;</span>
-      <div class="r out">
-        <p>함께 일할 자리가 있다면 메일 주세요.</p>
-        <a class="contact__mail commit" href="mailto:vvvva_@naver.com"><span>vvvva_@naver.com</span><span class="commit__semi" aria-hidden="true">;</span></a>
-        <ul class="contact__links">
-          <li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>
-          <li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
-        </ul>
-      </div>
+    <h2 class="section__title">연락</h2>
+    <p class="section__desc">함께 일할 자리가 있다면 메일 주세요.</p>
+    <p class="contact__mail">vvvva_@naver.com</p>
+    <div class="actions">
+      <a class="btn btn--primary" href="mailto:vvvva_@naver.com">메일 보내기</a>
     </div>
-    <div class="wordmark axis">
-      <span class="wordmark__word l" aria-hidden="true">semi</span><span class="semi" aria-hidden="true">;</span>
-    </div>
-    <div class="foot">
-      <a href="#top">맨 위로</a>
-    </div>
+    <ul class="contact__links">
+      <li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>
+      <li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
+    </ul>
   </div>
 </footer>
 
-<dialog class="sheet" aria-label="프로젝트 상세">
-  <form method="dialog" class="sheet__bar"><button>닫기</button></form>
+<dialog class="viewer" aria-labelledby="viewer-title">
+  <div class="viewer__bar">
+    <p class="viewer__title" id="viewer-title"></p>
+    <a class="viewer__open link" target="_blank" rel="noopener">원본 열기</a>
+    <form method="dialog"><button class="btn btn--secondary btn--small" autofocus>닫기</button></form>
+  </div>
+  <div class="viewer__body"><img alt=""></div>
 </dialog>
 </body>
 </html>

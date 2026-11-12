@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>김세미, 백엔드·인프라 엔지니어</title>
-<meta name="description" content="12년 차 백엔드·인프라 엔지니어 김세미의 포트폴리오. 월 인프라 비용을 58% 줄이고 서비스 61종을 EKS에서 OKE로 옮겼습니다.">
+<meta name="description" content="12년 차 백엔드·인프라 엔지니어 김세미의 포트폴리오. 월 인프라 비용을 56% 줄이고 서비스 61종을 EKS에서 OKE로 옮겼습니다.">
 <link rel="canonical" href="https://semi0x3b.github.io/portfolio/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://semi0x3b.github.io/portfolio/">
 <meta property="og:title" content="김세미, 백엔드·인프라 엔지니어">
-<meta property="og:description" content="서비스를 만들고, 그 서비스가 올라갈 인프라까지 맡습니다. 월 인프라 비용 58% 감소, 서비스 61종 EKS에서 OKE로 이관, 테스트 환경 3,000 rps에서 p95 25ms.">
+<meta property="og:description" content="서비스를 만들고, 그 서비스가 올라갈 인프라까지 맡습니다. 월 인프라 비용 56% 감소, 서비스 61종 EKS에서 OKE로 이관, 테스트 환경 3,000 rps에서 p95 25ms.">
 <meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -81,7 +81,7 @@
         <span class="card__when">2026년 4월 ~ 8월</span>
         <h3 class="card__title">EKS에서 OKE로 전사 인프라 이관</h3>
         <span class="card__sub">콘솔에만 있던 인프라를 코드로 다시 세우고 서비스 61종 이관</span>
-        <span class="card__pair">월 인프라 비용 <b>58%</b> 감소</span>
+        <span class="card__pair">월 인프라 비용 <b>56%</b> 감소</span>
         <span class="card__note">서비스를 줄이지 않고 3년 동안</span>
       </a>
     </li>
@@ -161,7 +161,7 @@
         <h4>전사 인프라와 보안 <span>2024 ~ 2026</span></h4>
         <ul>
           <li>문서도 IaC도 없이 콘솔에만 있던 EKS를 실측으로 파악하고 OKE를 Terraform, ArgoCD, Vault로 다시 세워 서비스 61종을 옮겼습니다. 로드밸런서는 23개에서 5개로, 미사용 EIP는 21개에서 0개로 줄었습니다.</li>
-          <li>청구서를 계정별로 분석해 유휴 자원을 회수하고, 클라우드 이관과 외부 웹 IDE 교체를 더해 월 인프라 비용을 58% 줄였습니다.</li>
+          <li>청구서를 계정별로 분석해 유휴 자원을 회수하고, 클라우드 이관과 외부 웹 IDE 교체를 더해 월 인프라 비용을 56% 줄였습니다.</li>
           <li>외부 API가 응답하지 않자 권한 서비스가 11분 동안 멈췄습니다. 원인인 이벤트 루프 블로킹을 찾아 동기 핸들러 94건을 격리했고, 헬스체크 25종을 바꿔 같은 증상이 생기면 45초 안에 저절로 재시작되게 했습니다. 알림마다 원인 후보와 증거를 붙이는 장애 분석 봇도 만들었습니다.</li>
           <li>서비스 11개 레포의 인증·인가를 전수 감사해 빠진 경로를 사고 전에 막고, 로그인을 HttpOnly 쿠키 방식으로 다시 설계해 홈과 ATS가 한 세션을 쓰게 했습니다.</li>
         </ul>

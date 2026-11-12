@@ -86,9 +86,8 @@ button { color: inherit; }
 .hero__lead { margin: var(--sp-16) 0 var(--sp-32); max-width: 46em; font: var(--fw-regular) var(--t-body1-reading); letter-spacing: var(--ls-body1-reading); color: var(--color-text-secondary); }
 
 /* 카드: 위에 썸네일, 아래에 글. hover 때 제목 색만 바뀐다 */
-.cards, .diagrams { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-48) var(--sp-32); }
+.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-48) var(--sp-32); }
 .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.diagrams { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-40) var(--sp-24); }
 .card {
   display: flex; flex-direction: column; width: 100%; height: 100%;
   padding: 0; border: 0; background: none; text-align: left;
@@ -263,7 +262,6 @@ dialog.viewer::backdrop { background: var(--color-dimmer); }
 .lost p { margin: var(--sp-16) 0 var(--sp-32); color: var(--color-text-secondary); }
 
 @media (max-width: 1023px) {
-  .diagrams { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -294,10 +292,6 @@ dialog.viewer::backdrop { background: var(--color-dimmer); }
   .loop-sim__axis { grid-column: 1; }
   .loop-sim__clock { margin-left: 0; }
   dialog.viewer { width: 100vw; height: 100dvh; border-radius: 0; }
-}
-
-@media (max-width: 599px) {
-  .diagrams { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (prefers-reduced-motion: reduce) {

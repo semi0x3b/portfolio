@@ -31,7 +31,6 @@
     <nav aria-label="주 메뉴">
       <ul class="nav">
         <li><a href="../#projects" aria-current="page">프로젝트</a></li>
-        <li><a href="../#diagrams">구성도</a></li>
         <li><a href="../#career">경력</a></li>
         <li><a href="../#reviews">평가</a></li>
         <li><a href="../#writing">글</a></li>
@@ -56,10 +55,10 @@
   </dl>
 
   <figure class="figure">
-    <a class="figure__zoom" href="../assets/diagrams/saas-infra.png" data-diagram data-title="SaaS LMS 인프라 구성도" aria-haspopup="dialog">
-      <img src="../assets/diagrams/thumb/saas-infra.jpg" srcset="../assets/diagrams/thumb/saas-infra.jpg 960w, ../assets/diagrams/saas-infra.png 3746w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="SaaS LMS 인프라 구성도. 공용 진입으로 들어오는 테넌트 경로와 고객사 전용 LB, 전용 VM으로 들어오는 단독 배포 경로" width="960" height="587">
+    <a class="figure__zoom" href="../assets/diagrams/saas-architecture.png" data-diagram data-title="SaaS 서비스·코드 관계도" aria-haspopup="dialog">
+      <img src="../assets/diagrams/thumb/saas-architecture.jpg" srcset="../assets/diagrams/thumb/saas-architecture.jpg 960w, ../assets/diagrams/saas-architecture.png 3200w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="SaaS 서비스·코드 관계도. 한 코드베이스의 지원자용 API, 어드민 API, 배치가 같은 PgBouncer를 거쳐 PostgreSQL에 접속하는 구조" width="960" height="668" loading="lazy">
     </a>
-    <figcaption>SaaS LMS 인프라 구성도. 공용 진입으로 들어오는 테넌트 경로와 고객사 전용 LB, 전용 VM으로 들어오는 단독 배포 경로</figcaption>
+    <figcaption>SaaS 서비스·코드 관계도. 한 코드베이스의 지원자용 API, 어드민 API, 배치가 같은 PgBouncer를 거쳐 PostgreSQL에 접속하는 구조</figcaption>
   </figure>
 
   <figure class="figure">
@@ -100,12 +99,6 @@
     </ul>
   </section>
 
-  <figure class="figure">
-    <a class="figure__zoom" href="../assets/diagrams/saas-architecture.png" data-diagram data-title="SaaS 서비스·코드 관계도" aria-haspopup="dialog">
-      <img src="../assets/diagrams/thumb/saas-architecture.jpg" srcset="../assets/diagrams/thumb/saas-architecture.jpg 960w, ../assets/diagrams/saas-architecture.png 3200w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="SaaS 서비스·코드 관계도. 한 코드베이스의 지원자용 API, 어드민 API, 배치가 같은 PgBouncer를 거쳐 PostgreSQL에 접속하는 구조" width="960" height="668" loading="lazy">
-    </a>
-    <figcaption>SaaS 서비스·코드 관계도. 한 코드베이스의 지원자용 API, 어드민 API, 배치가 같은 PgBouncer를 거쳐 PostgreSQL에 접속하는 구조</figcaption>
-  </figure>
 
   <section class="chapter" aria-labelledby="result">
     <h2 id="result">결과</h2>
@@ -120,10 +113,10 @@
   <nav class="next" aria-labelledby="next-title">
     <h2 id="next-title">다음 프로젝트</h2>
     <a class="card card--row" href="eks-to-oke.html">
-      <span class="card__thumb"><img src="../assets/diagrams/thumb/oke-architecture.jpg" alt="" width="960" height="537" loading="lazy"></span>
+      <span class="card__thumb"><img src="../assets/diagrams/thumb/eks-to-oke.jpg" alt="" width="960" height="485" loading="lazy"></span>
       <span>
         <span class="card__title">EKS에서 OKE로 전사 인프라 이관</span>
-        <span class="card__pair">월 <b>…</b>에서 <b>…</b>으로</span>
+        <span class="card__pair">월 월 인프라 비용 <b>58%</b> 감소</span>
       </span>
     </a>
   </nav>

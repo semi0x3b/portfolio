@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EKS에서 OKE로 전사 인프라 이관, 김세미</title>
-<meta name="description" content="콘솔에만 있던 EKS를 실측으로 파악해 Terraform, ArgoCD, Vault로 다시 세우고 서비스 61종을 OKE로 옮긴 기록. 월 인프라 비용은 …에서 …이 됐습니다.">
+<meta name="description" content="콘솔에만 있던 EKS를 실측으로 파악해 Terraform, ArgoCD, Vault로 다시 세우고 서비스 61종을 OKE로 옮긴 기록. 월 인프라 비용은 58% 줄었습니다.">
 <link rel="canonical" href="https://semi0x3b.github.io/portfolio/work/eks-to-oke">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://semi0x3b.github.io/portfolio/work/eks-to-oke">
 <meta property="og:title" content="EKS에서 OKE로 전사 인프라 이관, 김세미">
-<meta property="og:description" content="서비스 61종을 라우팅 선등록, DNS 전환, TLS 승격 세 단계로 옮기고 월 인프라 비용을 …에서 …으로 줄였습니다.">
+<meta property="og:description" content="서비스 61종을 라우팅 선등록, DNS 전환, TLS 승격 세 단계로 옮기고 월 인프라 비용을 58% 줄였습니다.">
 <meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#FFFFFF">
@@ -31,7 +31,6 @@
     <nav aria-label="주 메뉴">
       <ul class="nav">
         <li><a href="../#projects" aria-current="page">프로젝트</a></li>
-        <li><a href="../#diagrams">구성도</a></li>
         <li><a href="../#career">경력</a></li>
         <li><a href="../#reviews">평가</a></li>
         <li><a href="../#writing">글</a></li>
@@ -48,8 +47,8 @@
   <h1 class="case__title">EKS에서 OKE로 전사 인프라 이관</h1>
   <p class="case__sub">콘솔에만 있던 인프라를 코드로 다시 세우고 서비스 61종 이관</p>
   <div class="result">
-    <p class="result__pair"><b>…</b>에서 <b>…</b>으로</p>
-    <p class="result__note">월 인프라 비용. 유휴 자원 회수와 이관을 3년 동안 이어 간 결과</p>
+    <p class="result__pair">월 인프라 비용 <b>58%</b> 감소</p>
+    <p class="result__note">유휴 자원 회수와 이관을 3년 동안 이어 간 결과</p>
   </div>
   <dl class="facts">
     <div><dt>기술</dt><dd>OCI(OKE), Terraform, ArgoCD, Helm, Vault+ESO, Kong, Keycloak</dd></div>
@@ -57,10 +56,10 @@
   </dl>
 
   <figure class="figure">
-    <a class="figure__zoom" href="../assets/diagrams/oke-architecture.png" data-diagram data-title="멋사 플랫폼 인프라 구성도" aria-haspopup="dialog">
-      <img src="../assets/diagrams/thumb/oke-architecture.jpg" srcset="../assets/diagrams/thumb/oke-architecture.jpg 960w, ../assets/diagrams/oke-architecture.png 4946w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="멋사 플랫폼 인프라 구성도. OCI 서울 리전의 OKE 클러스터와 AWS 서울 리전의 RDS, S3, 그리고 OKE 밖 별도 스택을 함께 담은 운영 환경" width="960" height="537">
+    <a class="figure__zoom" href="../assets/diagrams/eks-to-oke.png" data-diagram data-title="EKS에서 OKE로 전사 이관" aria-haspopup="dialog">
+      <img src="../assets/diagrams/thumb/eks-to-oke.jpg" srcset="../assets/diagrams/thumb/eks-to-oke.jpg 960w, ../assets/diagrams/eks-to-oke.png 3746w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="이관 전 AWS EKS와 이관 후 OCI OKE 구성, 그 사이의 라우팅 선등록, DNS 전환, TLS 승격 세 단계를 그린 다이어그램" width="960" height="485" loading="lazy">
     </a>
-    <figcaption>멋사 플랫폼 인프라 구성도. OCI 서울 리전의 OKE 클러스터와 AWS 서울 리전의 RDS, S3, 그리고 OKE 밖 별도 스택을 함께 담은 운영 환경</figcaption>
+    <figcaption>이관 전 EKS와 이관 후 OKE, 그리고 컷오버 세 단계.</figcaption>
   </figure>
 
   <section class="chapter" aria-labelledby="problem">
@@ -80,18 +79,12 @@
     </ul>
   </section>
 
-  <figure class="figure">
-    <a class="figure__zoom" href="../assets/diagrams/eks-to-oke.png" data-diagram data-title="EKS에서 OKE로 전사 이관" aria-haspopup="dialog">
-      <img src="../assets/diagrams/thumb/eks-to-oke.jpg" srcset="../assets/diagrams/thumb/eks-to-oke.jpg 960w, ../assets/diagrams/eks-to-oke.png 3746w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="이관 전 AWS EKS와 이관 후 OCI OKE 구성, 그 사이의 라우팅 선등록, DNS 전환, TLS 승격 세 단계를 그린 다이어그램" width="960" height="485" loading="lazy">
-    </a>
-    <figcaption>이관 전 EKS와 이관 후 OKE, 그리고 컷오버 세 단계.</figcaption>
-  </figure>
 
   <section class="chapter" aria-labelledby="result">
     <h2 id="result">결과</h2>
     <ul>
       <li>서비스 61종(ArgoCD Application 66개)을 옮겼고, 2026년 7월 29일 DNS 컷오버 뒤 prod 인증서 16건이 모두 정상으로 유지됐습니다.</li>
-      <li>유휴 자원 회수와 클라우드 이관, 과금 구조 확인을 3년 동안 이어 가면서 월 인프라 비용이 …에서 …으로 줄었습니다. 같은 기간에 운영하는 서비스는 오히려 늘었습니다.</li>
+      <li>유휴 자원 회수와 클라우드 이관, 과금 구조 확인을 3년 동안 이어 가면서 월 인프라 비용이 58% 줄었습니다. 같은 기간에 운영하는 서비스는 오히려 늘었습니다.</li>
     </ul>
   </section>
 

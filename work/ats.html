@@ -31,7 +31,6 @@
     <nav aria-label="주 메뉴">
       <ul class="nav">
         <li><a href="../#projects" aria-current="page">프로젝트</a></li>
-        <li><a href="../#diagrams">구성도</a></li>
         <li><a href="../#career">경력</a></li>
         <li><a href="../#reviews">평가</a></li>
         <li><a href="../#writing">글</a></li>
@@ -68,12 +67,6 @@
     <p>수강생과 수료생의 취업을 돕는 채용 플랫폼을 새로 만들어야 했는데, 인프라를 AWS에서 OCI로 옮기는 시기와 겹쳐 앱과 배포 기반을 함께 세워야 했습니다. 지원서에는 이력서와 연락처 같은 개인정보가 담깁니다.</p>
   </section>
 
-  <figure class="figure">
-    <a class="figure__zoom" href="../assets/diagrams/ats-infra.png" data-diagram data-title="채용 플랫폼 인프라 구성도" aria-haspopup="dialog">
-      <img src="../assets/diagrams/thumb/ats-infra.jpg" srcset="../assets/diagrams/thumb/ats-infra.jpg 960w, ../assets/diagrams/ats-infra.png 4046w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="채용 플랫폼 인프라 구성도. 공용 OKE의 채용 서비스 네임스페이스와 CronJob 5개, NAT를 거쳐 AWS RDS에 닿는 DB 경로" width="960" height="521" loading="lazy">
-    </a>
-    <figcaption>채용 플랫폼 인프라 구성도. 공용 OKE의 채용 서비스 네임스페이스와 CronJob 5개, NAT를 거쳐 AWS RDS에 닿는 DB 경로</figcaption>
-  </figure>
 
   <section class="chapter" aria-labelledby="judgment">
     <h2 id="judgment">판단</h2>
@@ -95,12 +88,6 @@
     <figcaption>지원서 개인정보가 수집, 전형, 가림, 파기를 거치는 흐름.</figcaption>
   </figure>
 
-  <figure class="figure">
-    <a class="figure__zoom" href="../assets/diagrams/ats-erd.png" data-diagram data-title="채용 플랫폼(ATS) 데이터 모델" aria-haspopup="dialog">
-      <img src="../assets/diagrams/thumb/ats-erd.jpg" srcset="../assets/diagrams/thumb/ats-erd.jpg 960w, ../assets/diagrams/ats-erd.png 2642w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="채용 플랫폼(ATS) 데이터 모델 축약본. 개인정보 컬럼은 암호화하고 이름은 blind index 컬럼으로 검색한다" width="960" height="839" loading="lazy">
-    </a>
-    <figcaption>채용 플랫폼(ATS) 데이터 모델. 개인정보는 암호화해 저장하고 blind index(HMAC-SHA256)로 검색할 수 있게 설계했습니다.</figcaption>
-  </figure>
 
   <section class="chapter" aria-labelledby="result">
     <h2 id="result">결과</h2>

@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>김세미, 백엔드·인프라 엔지니어</title>
-<meta name="description" content="12년 차 백엔드·인프라 엔지니어 김세미의 포트폴리오. 월 인프라 비용을 …에서 …으로 줄이고 서비스 61종을 EKS에서 OKE로 옮겼습니다.">
+<meta name="description" content="12년 차 백엔드·인프라 엔지니어 김세미의 포트폴리오. 월 인프라 비용을 58% 줄이고 서비스 61종을 EKS에서 OKE로 옮겼습니다.">
 <link rel="canonical" href="https://semi0x3b.github.io/portfolio/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://semi0x3b.github.io/portfolio/">
 <meta property="og:title" content="김세미, 백엔드·인프라 엔지니어">
-<meta property="og:description" content="서비스를 만들고, 그 서비스가 올라갈 인프라까지 맡습니다. 월 인프라 비용 …에서 …으로 절감, 서비스 61종 EKS에서 OKE로 이관, 테스트 환경 3,000 rps에서 p95 25ms.">
+<meta property="og:description" content="서비스를 만들고, 그 서비스가 올라갈 인프라까지 맡습니다. 월 인프라 비용 58% 감소, 서비스 61종 EKS에서 OKE로 이관, 테스트 환경 3,000 rps에서 p95 25ms.">
 <meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -36,7 +36,6 @@
     <nav aria-label="주 메뉴">
       <ul class="nav">
         <li><a href="#projects">프로젝트</a></li>
-        <li><a href="#diagrams">구성도</a></li>
         <li><a href="#career">경력</a></li>
         <li><a href="#reviews">평가</a></li>
         <li><a href="#writing">글</a></li>
@@ -68,7 +67,7 @@
   <ul class="cards">
     <li>
       <a class="card" href="work/load-test.html">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/saas-infra.jpg" alt="" width="960" height="587"></span>
+        <span class="card__thumb"><img src="assets/diagrams/thumb/saas-architecture.jpg" alt="" width="960" height="668"></span>
         <span class="card__when">2026년 9월</span>
         <h3 class="card__title">100만 DAU 대비 부하 대응</h3>
         <span class="card__sub">SK하이닉스 AI 해커톤 모집</span>
@@ -78,12 +77,12 @@
     </li>
     <li>
       <a class="card" href="work/eks-to-oke.html">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/oke-architecture.jpg" alt="" width="960" height="537"></span>
+        <span class="card__thumb"><img src="assets/diagrams/thumb/eks-to-oke.jpg" alt="" width="960" height="485"></span>
         <span class="card__when">2026년 4월 ~ 8월</span>
         <h3 class="card__title">EKS에서 OKE로 전사 인프라 이관</h3>
         <span class="card__sub">콘솔에만 있던 인프라를 코드로 다시 세우고 서비스 61종 이관</span>
-        <span class="card__pair"><b>…</b>에서 <b>…</b>으로</span>
-        <span class="card__note">월 인프라 비용, 서비스를 줄이지 않고 3년 동안</span>
+        <span class="card__pair">월 인프라 비용 <b>58%</b> 감소</span>
+        <span class="card__note">서비스를 줄이지 않고 3년 동안</span>
       </a>
     </li>
     <li>
@@ -129,120 +128,6 @@
   </ul>
 </section>
 
-<section class="section wrap" id="diagrams" aria-labelledby="diagrams-title">
-  <div class="section__head">
-    <h2 class="section__title" id="diagrams-title">구성도</h2>
-    <p class="section__desc">맡고 있는 서비스와 인프라를 직접 다시 그린 구성도입니다. 누르면 원본 크기로 볼 수 있습니다.</p>
-  </div>
-  <ul class="diagrams">
-    <li>
-      <a class="card" href="assets/diagrams/likelion-platform-architecture.png" data-diagram data-title="멋사 플랫폼 서비스 관계도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/likelion-platform-architecture.jpg" alt="" width="960" height="614" loading="lazy"></span>
-        <span class="card__title card__title--small">멋사 플랫폼 서비스 관계도</span>
-        <span class="card__desc">LMS 백엔드와 채용, SaaS, 커뮤니티, 수업 도구가 로그인과 webhook, 강의 API로 이어지는 관계</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/oke-architecture.png" data-diagram data-title="멋사 플랫폼 인프라 구성도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/oke-architecture.jpg" alt="" width="960" height="537" loading="lazy"></span>
-        <span class="card__title card__title--small">멋사 플랫폼 인프라 구성도</span>
-        <span class="card__desc">OCI 서울 리전의 OKE 클러스터와 AWS 서울 리전의 RDS, S3, 그리고 OKE 밖 별도 스택을 함께 담은 운영 환경</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/domain-map.png" data-diagram data-title="서비스 도메인 지도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/domain-map.jpg" alt="" width="960" height="656" loading="lazy"></span>
-        <span class="card__title card__title--small">서비스 도메인 지도</span>
-        <span class="card__desc">Route 53 호스팅 존 14개의 도메인이 OCI, AWS, KT Cloud, Vercel 가운데 어디서 서비스되는지</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/saas-architecture.png" data-diagram data-title="SaaS 서비스·코드 관계도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/saas-architecture.jpg" alt="" width="960" height="668" loading="lazy"></span>
-        <span class="card__title card__title--small">SaaS 서비스·코드 관계도</span>
-        <span class="card__desc">한 코드베이스의 지원자용 API, 어드민 API, 배치가 같은 PgBouncer를 거쳐 PostgreSQL에 접속하는 구조</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/saas-infra.png" data-diagram data-title="SaaS LMS 인프라 구성도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/saas-infra.jpg" alt="" width="960" height="587" loading="lazy"></span>
-        <span class="card__title card__title--small">SaaS LMS 인프라 구성도</span>
-        <span class="card__desc">공용 진입으로 들어오는 테넌트 경로와 고객사 전용 LB, 전용 VM으로 들어오는 단독 배포 경로</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/lms-infra.png" data-diagram data-title="멋사 LMS 운영 인프라 구성도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/lms-infra.jpg" alt="" width="960" height="580" loading="lazy"></span>
-        <span class="card__title card__title--small">멋사 LMS 운영 인프라 구성도</span>
-        <span class="card__desc">공용 진입에서 웹, 어드민, API, 인증으로 나뉘는 LMS 네임스페이스와 AWS의 RDS, S3, CloudFront</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/bootcamp-architecture.png" data-diagram data-title="멋쟁이사자처럼 부트캠프(KDT) 구성도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/bootcamp-architecture.jpg" alt="" width="960" height="684" loading="lazy"></span>
-        <span class="card__title card__title--small">멋쟁이사자처럼 부트캠프(KDT) 구성도</span>
-        <span class="card__desc">과정 표시 방식 설정과 랜딩 HTML 렌더, 수업 STT로 만드는 AI 수업 노트와 모니터링 배치</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/ats-architecture.png" data-diagram data-title="ATS 서비스·코드 관계도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/ats-architecture.jpg" alt="" width="960" height="640" loading="lazy"></span>
-        <span class="card__title card__title--small">ATS 서비스·코드 관계도</span>
-        <span class="card__desc">지원자 API, 운영 API, scheduler가 같은 DB를 쓰고 통합 인증, 수강권 webhook과 맞물리는 구조</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/ats-infra.png" data-diagram data-title="채용 플랫폼 인프라 구성도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/ats-infra.jpg" alt="" width="960" height="521" loading="lazy"></span>
-        <span class="card__title card__title--small">채용 플랫폼 인프라 구성도</span>
-        <span class="card__desc">공용 OKE의 채용 서비스 네임스페이스와 CronJob 5개, NAT를 거쳐 AWS RDS에 닿는 DB 경로</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/community-architecture.png" data-diagram data-title="멋사대학 커뮤니티" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/community-architecture.jpg" alt="" width="960" height="620" loading="lazy"></span>
-        <span class="card__title card__title--small">멋사대학 커뮤니티</span>
-        <span class="card__desc">커뮤니티, 백오피스 API와 배치를 한 코드베이스에서 나눠 배포하고 Redis 한 서버에서 캐시와 채팅을 나누는 구조</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/community-infra.png" data-diagram data-title="멋사대학 커뮤니티 인프라 구성도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/community-infra.jpg" alt="" width="960" height="516" loading="lazy"></span>
-        <span class="card__title card__title--small">멋사대학 커뮤니티 인프라 구성도</span>
-        <span class="card__desc">커뮤니티 네임스페이스의 웹, API, 배치 CronJob과 NAT 뒤의 AWS RDS, S3, Secrets Manager</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/campfire-architecture.png" data-diagram data-title="Campfire 서비스·코드 관계도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/campfire-architecture.jpg" alt="" width="960" height="600" loading="lazy"></span>
-        <span class="card__title card__title--small">Campfire 서비스·코드 관계도</span>
-        <span class="card__desc">Electron 클라이언트에서 LiveKit 녹화, STT 프록시와 Daglo 전사를 거쳐 LMS AI 노트로 이어지는 흐름</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/campfire-infra.png" data-diagram data-title="캠프파이어 인프라 구성도" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/campfire-infra.jpg" alt="" width="960" height="521" loading="lazy"></span>
-        <span class="card__title card__title--small">캠프파이어 인프라 구성도</span>
-        <span class="card__desc">전용 VCN의 VM 4대(앱, LiveKit, 녹화, STT)와 관리형 PostgreSQL, Object Storage 버킷</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/incident-response.png" data-diagram data-title="장애 대응 체계" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/incident-response.jpg" alt="" width="960" height="509" loading="lazy"></span>
-        <span class="card__title card__title--small">장애 대응 체계</span>
-        <span class="card__desc">외부 API 무응답으로 11분 멈춘 장애 뒤에 만든 감지, 자동복구, 원인분석 흐름</span>
-      </a>
-    </li>
-    <li>
-      <a class="card" href="assets/diagrams/eks-to-oke.png" data-diagram data-title="EKS에서 OKE로 전사 이관" aria-haspopup="dialog">
-        <span class="card__thumb"><img src="assets/diagrams/thumb/eks-to-oke.jpg" alt="" width="960" height="485" loading="lazy"></span>
-        <span class="card__title card__title--small">EKS에서 OKE로 전사 이관</span>
-        <span class="card__desc">이관 전 EKS와 이관 후 OKE, 그 사이의 라우팅 선등록, DNS 전환, TLS 승격 세 단계</span>
-      </a>
-    </li>
-  </ul>
-</section>
-
 <section class="section wrap" id="about" aria-labelledby="about-title">
   <div class="section__head">
     <h2 class="section__title" id="about-title">소개</h2>
@@ -276,7 +161,7 @@
         <h4>전사 인프라와 보안 <span>2024 ~ 2026</span></h4>
         <ul>
           <li>문서도 IaC도 없이 콘솔에만 있던 EKS를 실측으로 파악하고 OKE를 Terraform, ArgoCD, Vault로 다시 세워 서비스 61종을 옮겼습니다. 로드밸런서는 23개에서 5개로, 미사용 EIP는 21개에서 0개로 줄었습니다.</li>
-          <li>청구서를 계정별로 분석해 유휴 자원을 회수하고, 클라우드 이관과 외부 웹 IDE 교체를 더해 월 인프라 비용을 …에서 …으로 줄였습니다.</li>
+          <li>청구서를 계정별로 분석해 유휴 자원을 회수하고, 클라우드 이관과 외부 웹 IDE 교체를 더해 월 인프라 비용을 58% 줄였습니다.</li>
           <li>외부 API가 응답하지 않자 권한 서비스가 11분 동안 멈췄습니다. 원인인 이벤트 루프 블로킹을 찾아 동기 핸들러 94건을 격리했고, 헬스체크 25종을 바꿔 같은 증상이 생기면 45초 안에 저절로 재시작되게 했습니다. 알림마다 원인 후보와 증거를 붙이는 장애 분석 봇도 만들었습니다.</li>
           <li>서비스 11개 레포의 인증·인가를 전수 감사해 빠진 경로를 사고 전에 막고, 로그인을 HttpOnly 쿠키 방식으로 다시 설계해 홈과 ATS가 한 세션을 쓰게 했습니다.</li>
         </ul>
@@ -285,7 +170,7 @@
           <li>홈, 학습, 평가, 결제, 취업관리, 국비 과정 운영으로 나뉜 마이크로서비스를 맡고 있습니다. 클래스챗 자동화 메시지를 어드민 기능으로 옮겨 운영팀이 개발자 없이 바꾸게 했습니다. 요청하고 일주일씩 기다리던 일이 없어졌고, 월 20시간이 줄었습니다.</li>
           <li>지원부터 결제까지의 안내 메일을 퍼널별 자동 발송으로 바꿔 메일 작업은 과정당 37.5시간에서 0.5시간으로, OT·개강 안내 문의는 약 40건에서 1건으로 줄었습니다.</li>
           <li>메인페이지 API 응답 JSON을 675KB에서 16.7KB로 줄여, 2초대이던 응답 시간이 약 100ms가 됐습니다.</li>
-          <li>외부 솔루션에 의존하던 코딩 실습을 웹 IDE로 다시 만들어 연 약 …의 솔루션 비용이 나가지 않게 했습니다. Java·Python·JavaScript·C# 코드를 실행 결과로 채점합니다.</li>
+          <li>외부 솔루션에 의존하던 코딩 실습을 웹 IDE로 다시 만들어 매년 나가던 솔루션 비용을 없앴습니다. Java·Python·JavaScript·C# 코드를 실행 결과로 채점합니다.</li>
         </ul>
         <h4>SaaS LMS <span>2025 ~ 2026</span></h4>
         <ul>
@@ -446,7 +331,7 @@
     <summary class="btn btn--secondary"><span class="open">평가 8건 더 보기</span><span class="close">접기</span></summary>
     <div class="quotes">
       <blockquote class="quote">
-        <p>“코드라이언 의존성 제거 및 EKS 버전 업그레이드를 통해 연간 약 … 이상의 비용 절감을 실현하고, 라이브룸과 RAG 기반 AI 챗봇을 구축하신 점은 단순한 업무 수행을 넘어 조직의 성과로 기여한 바가 매우 큽니다.”</p>
+        <p>“코드라이언 의존성 제거 및 EKS 버전 업그레이드를 통해 … 비용 절감을 실현하고, 라이브룸과 RAG 기반 AI 챗봇을 구축하신 점은 단순한 업무 수행을 넘어 조직의 성과로 기여한 바가 매우 큽니다.”</p>
         <cite>멋쟁이사자처럼 부서장, 인사평가 코멘트</cite>
       </blockquote>
       <blockquote class="quote">

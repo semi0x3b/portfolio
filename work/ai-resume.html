@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>미래이력서 AI 생성·자동 검수 서비스, 김세미</title>
+<meta content="마케팅팀이 만들고 메일로 전달하던 지원자용 AI 이력서를 사이트 안에서 생성·검수·노출하도록 바꾼 프로젝트입니다." name="description"/>
+<link href="https://semi0x3b.github.io/portfolio/work/ai-resume.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://semi0x3b.github.io/portfolio/work/ai-resume.html" property="og:url"/>
+<meta content="미래이력서 AI 생성·자동 검수 서비스, 김세미" property="og:title"/>
+<meta content="마케팅팀이 만들고 메일로 전달하던 지원자용 AI 이력서를 사이트 안에서 생성·검수·노출하도록 바꾼 프로젝트입니다." property="og:description"/>
+<meta content="https://semi0x3b.github.io/portfolio/og.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="#FFFFFF" name="theme-color"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'&gt;&lt;rect width='64' height='64' rx='14' fill='%23FFFFFF'/&gt;&lt;text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'&gt;;&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&amp;text=semi%3B&amp;display=swap" rel="stylesheet"/>
+<link href="../tokens.css" rel="stylesheet"/>
+<link href="../site.css" rel="stylesheet"/>
+
+<script defer="" src="../site.js"></script>
+</head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header class="site-header">
+<div class="wrap">
+<a aria-label="김세미 포트폴리오 처음으로" class="logo" href="../">semi<span>;</span></a>
+<nav aria-label="주 메뉴">
+<ul class="nav"><li><a href="../#about">자기소개</a></li><li><a href="../#career">경력 요약</a></li><li><a href="../career.html">경력기술서</a></li><li><a href="../#projects">포트폴리오</a></li></ul>
+</nav>
+</div>
+</header><main id="main" tabindex="-1"><article class="case"><a class="back link" href="../#projects">포트폴리오 목록</a><p class="case__when">2026.09 ~ 2026.10</p><h1 class="case__title">미래이력서 AI 생성·자동 검수 서비스</h1><p class="case__sub">마케팅팀이 만들고 메일로 전달하던 지원자용 AI 이력서를 사이트 안에서 생성·검수·노출하도록 바꾼 프로젝트입니다.</p><div class="result"><p class="result__pair">AI 생성·자동 검수 운영 배포</p><p class="result__note">코드 검사와 LLM 판정을 분리</p></div><dl class="facts"><div><dt>역할</dt><dd>프로젝트 리더로 백엔드·어드민·홈의 작업을 나누고 API, 생성 파이프라인과 화면 개발, 운영 배포를 맡았습니다.</dd></div><div><dt>기술</dt><dd>Python(FastAPI), PostgreSQL, Redis, S3, OpenAI API, Next.js</dd></div></dl><section class="chapter"><h2>판단과 이유</h2><p>사람이 매번 결과물을 읽지 않아도 품질을 확인할 기준이 필요했습니다. 규칙으로 확인할 항목은 코드로 검사하고 내용 판단만 LLM에 맡겼습니다.</p></section><section class="chapter"><h2>구현·개선</h2><ul><li>PRD를 API와 화면 단위 작업으로 나눠 공통 백엔드·과정 API·어드민·홈에 걸쳐 구현했습니다.</li><li>조건부 DB 갱신과 시도 토큰으로 중복 생성을 막았습니다. 상태 동기화 유실은 원본 데이터 재조회로 복구하고 조회·노출 판정을 공통 함수로 맞췄습니다.</li><li>기획 체크리스트를 코드 검사와 LLM 판정으로 나눠 97점 기준으로 채점했습니다. 미통과 시 재생성하되 최대 10회로 비용을 제한했습니다.</li><li>가상 지원자 8명으로 모델 2종과 프롬프트를 비교했습니다. 프롬프트는 객체 저장소 원본과 Redis 캐시로 관리해 배포 없이 과정별로 고칠 수 있게 했습니다.</li><li>마케팅팀이 직접 확인할 수 있는 QA 안내서를 작성했습니다. 생성 HTML은 스크립트 실행이 제한된 화면에서 보여주고 개인정보 조회·반출 통제도 적용했습니다.</li></ul></section><section class="chapter"><h2>결과와 성과</h2><ul><li>2026년 10월 19일 운영에 배포해 사이트 안에서 이력서를 생성하고 자동 검수한 뒤 노출하는 흐름을 만들었습니다.</li><li>가상 지원자 비교 실험에서 예시 문구를 그대로 베낀 결과가 12건에서 0건으로 줄었고, 오염 입력 8종을 탐지했습니다.</li></ul></section><nav class="next" aria-label="다음 프로젝트"><h2>다음 프로젝트</h2><a class="link" href="team.html">개발 기준·운영 문서와 사내 AI 도구 도입</a></nav></article></main><footer class="site-footer" id="contact">
+<div class="wrap">
+<h2 class="section__title">연락</h2>
+<p class="section__desc">함께 일할 자리가 있다면 메일 주세요.</p>
+<p class="contact__mail">vvvva_@naver.com</p>
+<div class="actions">
+<a class="btn btn--primary" href="mailto:vvvva_@naver.com">메일 보내기</a>
+</div>
+<ul class="contact__links">
+<li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>
+<li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
+</ul>
+</div>
+</footer></body></html>

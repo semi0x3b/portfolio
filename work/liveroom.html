@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>라이브룸 화상수업 시스템 구축·운영, 김세미</title>
+<meta content="Zoom에 의존하던 부트캠프 화상수업을 자체 운영하고 녹화와 STT 데이터를 학습 서비스에 연결한 프로젝트입니다." name="description"/>
+<link href="https://semi0x3b.github.io/portfolio/work/liveroom.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://semi0x3b.github.io/portfolio/work/liveroom.html" property="og:url"/>
+<meta content="라이브룸 화상수업 시스템 구축·운영, 김세미" property="og:title"/>
+<meta content="Zoom에 의존하던 부트캠프 화상수업을 자체 운영하고 녹화와 STT 데이터를 학습 서비스에 연결한 프로젝트입니다." property="og:description"/>
+<meta content="https://semi0x3b.github.io/portfolio/og.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="#FFFFFF" name="theme-color"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'&gt;&lt;rect width='64' height='64' rx='14' fill='%23FFFFFF'/&gt;&lt;text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'&gt;;&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&amp;text=semi%3B&amp;display=swap" rel="stylesheet"/>
+<link href="../tokens.css" rel="stylesheet"/>
+<link href="../site.css" rel="stylesheet"/>
+
+<script defer="" src="../site.js"></script>
+</head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header class="site-header">
+<div class="wrap">
+<a aria-label="김세미 포트폴리오 처음으로" class="logo" href="../">semi<span>;</span></a>
+<nav aria-label="주 메뉴">
+<ul class="nav"><li><a href="../#about">자기소개</a></li><li><a href="../#career">경력 요약</a></li><li><a href="../career.html">경력기술서</a></li><li><a href="../#projects">포트폴리오</a></li></ul>
+</nav>
+</div>
+</header><main id="main" tabindex="-1"><article class="case"><a class="back link" href="../#projects">포트폴리오 목록</a><p class="case__when">2025.04 ~ 현재</p><h1 class="case__title">라이브룸 화상수업 시스템 구축·운영</h1><p class="case__sub">Zoom에 의존하던 부트캠프 화상수업을 자체 운영하고 녹화와 STT 데이터를 학습 서비스에 연결한 프로젝트입니다.</p><div class="result"><p class="result__pair">22개 과정에서 운영</p><p class="result__note">자체 화상수업·녹화·STT 구축</p></div><dl class="facts"><div><dt>역할</dt><dd>클라우드 비교와 용량 검증, Jitsi 서버·녹화·STT 구성, LMS 연동 API와 운영 개선을 맡았습니다.</dd></div><div><dt>기술</dt><dd>Jitsi Meet·JVB·Jigasi·Jibri, Docker Compose, OCI, KT Cloud, S3, STT, Selenium Grid</dd></div></dl><section class="chapter"><h2>판단과 이유</h2><p>도입 판단은 같은 조건으로 측정한 비용과 수용 인원을 기준으로 했습니다. 수업 참여 기능뿐 아니라 녹화와 음성 기록을 이후 학습 서비스에 활용할 수 있게 구성했습니다.</p></section><section class="chapter"><h2>구현·개선</h2><ul><li>클라우드 4곳에 같은 구성을 올리고 최대 100명 전사 테스트로 트래픽과 CPU를 측정해 환경별 비용을 비교했습니다.</li><li>Jitsi Meet과 미디어 브리지를 나눠 확장할 수 있게 구성하고 녹화·STT 서버를 연결했습니다. LMS의 입장 토큰과 강의실 생성·종료 API를 개발했습니다.</li><li>녹화와 STT 결과를 객체 저장소로 자동 업로드하고 업로드 뒤 서버 파일을 정리하게 했습니다.</li><li>실시간 STT의 안정성과 처리 비용을 비교해 녹화 파일 기반 비동기 처리로 바꿨습니다. 재연결 경로의 메모리 누수도 수정했습니다.</li><li>Selenium Grid로 다중 회의실 부하를 검증했습니다. 인원이 늘 때 발생한 화면·음성 문제는 브리지 분산과 스트림 설정을 조정해 개선했습니다.</li></ul></section><section class="chapter"><h2>결과와 성과</h2><ul><li>22개 과정의 수강생 900여 명이 사용한 자체 화상수업 환경을 운영했습니다.</li><li>부하 시험에서는 단일 회의실 152명, 다중 회의실 총 265명이 8시간 동안 재접속 없이 유지됐습니다. 실제 수업 이용 규모와 용량 시험 결과는 구분합니다.</li></ul></section><nav class="next" aria-label="다음 프로젝트"><h2>다음 프로젝트</h2><a class="link" href="ai-learning.html">AI 학습 튜터와 요약노트 개발</a></nav></article></main><footer class="site-footer" id="contact">
+<div class="wrap">
+<h2 class="section__title">연락</h2>
+<p class="section__desc">함께 일할 자리가 있다면 메일 주세요.</p>
+<p class="contact__mail">vvvva_@naver.com</p>
+<div class="actions">
+<a class="btn btn--primary" href="mailto:vvvva_@naver.com">메일 보내기</a>
+</div>
+<ul class="contact__links">
+<li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>
+<li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
+</ul>
+</div>
+</footer></body></html>

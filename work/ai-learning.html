@@ -1,116 +1,46 @@
 <!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI 학습 플랫폼 백엔드, 김세미</title>
-<meta name="description" content="라이브 강의의 STT와 강의자료로 RAG 튜터, 요약노트, 수업 모니터링, 퀴즈를 만들었습니다. AI 요약노트는 21개 과정에서 1,132건이 나갔습니다.">
-<link rel="canonical" href="https://semi0x3b.github.io/portfolio/work/ai-learning">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://semi0x3b.github.io/portfolio/work/ai-learning">
-<meta property="og:title" content="AI 학습 플랫폼 백엔드, 김세미">
-<meta property="og:description" content="AI 요약노트 1,132건이 21개 과정에서 2,973회 열람됐습니다.">
-<meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23FFFFFF'/><text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'>;</text></svg>">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&text=semi%3B&display=swap">
-<link rel="stylesheet" href="../tokens.css">
-<link rel="stylesheet" href="../site.css">
-<script src="../site.js" defer></script>
-</head>
-<body>
-<a class="skip" href="#main">본문으로 건너뛰기</a>
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>AI 학습 튜터와 요약노트 개발, 김세미</title>
+<meta content="라이브 강의의 STT와 강의자료를 수강생의 질의응답과 복습에 활용하는 AI 학습 서비스입니다." name="description"/>
+<link href="https://semi0x3b.github.io/portfolio/work/ai-learning.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://semi0x3b.github.io/portfolio/work/ai-learning.html" property="og:url"/>
+<meta content="AI 학습 튜터와 요약노트 개발, 김세미" property="og:title"/>
+<meta content="라이브 강의의 STT와 강의자료를 수강생의 질의응답과 복습에 활용하는 AI 학습 서비스입니다." property="og:description"/>
+<meta content="https://semi0x3b.github.io/portfolio/og.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="#FFFFFF" name="theme-color"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'&gt;&lt;rect width='64' height='64' rx='14' fill='%23FFFFFF'/&gt;&lt;text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'&gt;;&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&amp;text=semi%3B&amp;display=swap" rel="stylesheet"/>
+<link href="../tokens.css" rel="stylesheet"/>
+<link href="../site.css" rel="stylesheet"/>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="logo" href="../" aria-label="김세미 포트폴리오 처음으로">semi<span>;</span></a>
-    <nav aria-label="주 메뉴">
-      <ul class="nav">
-        <li><a href="../#projects" aria-current="page">프로젝트</a></li>
-        <li><a href="../#career">경력</a></li>
-        <li><a href="../#reviews">평가</a></li>
-        <li><a href="../#writing">글</a></li>
-        <li><a href="../#contact">연락</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main id="main" tabindex="-1">
-<article class="case">
-  <a class="back link" href="../#projects">프로젝트 목록</a>
-  <p class="case__when">2025년 9월 ~ 현재</p>
-  <h1 class="case__title">AI 학습 플랫폼 백엔드</h1>
-  <p class="case__sub">RAG 튜터, 요약노트, 수업 모니터링, 모닝브리핑, 대화 챗봇, 퀴즈, AI 이력서, 포트폴리오</p>
-  <div class="result">
-    <p class="result__pair">강의 STT로 만든 요약노트 <b>1,132건</b></p>
-    <p class="result__note">쌓이기만 하던 STT를 인덱싱해 21개 과정에 발행, 2,973회 열람</p>
-  </div>
-  <dl class="facts">
-    <div><dt>기술</dt><dd>FastAPI, PostgreSQL+pgvector, OpenAI API, SQLAlchemy(Async), SSE</dd></div>
-  </dl>
-
-  <figure class="figure">
-    <a class="figure__zoom" href="../assets/diagrams/likelion-platform-architecture.png" data-diagram data-title="멋사 플랫폼 서비스 관계도" aria-haspopup="dialog">
-      <img src="../assets/diagrams/thumb/likelion-platform-architecture.jpg" srcset="../assets/diagrams/thumb/likelion-platform-architecture.jpg 960w, ../assets/diagrams/likelion-platform-architecture.png 3200w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="멋사 플랫폼 서비스 관계도. LMS 백엔드와 채용, SaaS, 커뮤니티, 수업 도구가 로그인과 webhook, 강의 API로 이어지는 관계" width="960" height="614">
-    </a>
-    <figcaption>멋사 플랫폼 서비스 관계도. 라이브룸과 캠프파이어의 STT 전사본을 AI 공통 서비스가 읽어 AI 노트를 만듭니다.</figcaption>
-  </figure>
-
-  <figure class="figure">
-    <a class="figure__zoom" href="../assets/thumb-axp.jpg" data-diagram data-title="AI 학습 플랫폼 AXP의 랜딩 페이지" aria-haspopup="dialog">
-      <img src="../assets/thumb-axp.jpg" alt="AXP AI 학습 플랫폼의 랜딩 페이지 화면" width="1200" height="750" loading="lazy">
-    </a>
-    <figcaption>AI 학습 플랫폼 AXP의 랜딩 페이지.</figcaption>
-  </figure>
-
-  <section class="chapter" aria-labelledby="problem">
-    <h2 id="problem">문제</h2>
-    <p>라이브 강의의 STT와 강의자료가 쌓이기만 하고 학습에도 수업 관리에도 쓰이지 않았습니다.</p>
-  </section>
-  <section class="chapter" aria-labelledby="judgment">
-    <h2 id="judgment">판단</h2>
-    <p>학습 튜터의 목표를 답변 정확도보다 학습 효과에 두자고 제안했습니다.</p>
-  </section>
-  <section class="chapter" aria-labelledby="work">
-    <h2 id="work">한 일</h2>
-    <ul>
-      <li>FastAPI 레포 하나에 AI 기능 9종을 두고 하나씩 만들었습니다. STT를 청킹·임베딩해 pgvector에 쌓는 인덱서를 먼저 만들고, 그 위에 RAG 학습 튜터(ALEX)와 요약노트, 수업 모니터링(KAI), 모닝브리핑(MILO), 대화 챗봇(LEO), 퀴즈를 올렸습니다.</li>
-      <li>튜터는 질문 복잡도에 따라 체인(질문 개선, 답변 검증)을 골라 답합니다. 세부 규칙 중심이던 기획을 가이드라인 중심으로 바꾸자고 제안했습니다.</li>
-      <li>운영 중 장애 2건을 고쳤습니다. 자료가 하나도 없는데 요약이 만들어지던 환각은 생성 전에 막았고, 공유 DB 세션이 오류 상태로 남아 대화 기록이 사라지던 문제는 오류 직후 rollback하게 해서 막았습니다.</li>
-    </ul>
-  </section>
-  <section class="chapter" aria-labelledby="result">
-    <h2 id="result">결과</h2>
-    <ul>
-      <li>AI 요약노트는 21개 과정에서 1,132건이 나갔고 2,973회 열람됐습니다.</li>
-    </ul>
-  </section>
-
-  <nav class="next" aria-labelledby="next-title">
-    <h2 id="next-title">다음 프로젝트</h2>
-    <a class="card card--row" href="chatbot-event.html">
-      <span class="card__thumb"><img src="../assets/thumb-chatbot.jpg" alt="" width="1200" height="750" loading="lazy"></span>
-      <span>
-        <span class="card__title">브랜드 캠페인 AI 챗봇 이벤트</span>
-        <span class="card__pair">목표 <b>6,000건</b>에서 <b>45,253건</b>으로</span>
-      </span>
-    </a>
-  </nav>
-</article>
-</main>
-
-<dialog class="viewer" aria-labelledby="viewer-title">
-  <div class="viewer__bar">
-    <p class="viewer__title" id="viewer-title"></p>
-    <a class="viewer__open link" target="_blank" rel="noopener">원본 열기</a>
-    <form method="dialog"><button class="btn btn--secondary btn--small" autofocus>닫기</button></form>
-  </div>
-  <div class="viewer__body"><img alt=""></div>
-</dialog>
-</body>
-</html>
+<script defer="" src="../site.js"></script>
+</head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header class="site-header">
+<div class="wrap">
+<a aria-label="김세미 포트폴리오 처음으로" class="logo" href="../">semi<span>;</span></a>
+<nav aria-label="주 메뉴">
+<ul class="nav"><li><a href="../#about">자기소개</a></li><li><a href="../#career">경력 요약</a></li><li><a href="../career.html">경력기술서</a></li><li><a href="../#projects">포트폴리오</a></li></ul>
+</nav>
+</div>
+</header><main id="main" tabindex="-1"><article class="case"><a class="back link" href="../#projects">포트폴리오 목록</a><p class="case__when">2025.09 ~ 현재</p><h1 class="case__title">AI 학습 튜터와 요약노트 개발</h1><p class="case__sub">라이브 강의의 STT와 강의자료를 수강생의 질의응답과 복습에 활용하는 AI 학습 서비스입니다.</p><div class="result"><p class="result__pair">요약노트 1,132건 발행</p><p class="result__note">21개 과정 · 2,973회 열람</p></div><dl class="facts"><div><dt>역할</dt><dd>STT 인덱서, RAG 학습 튜터와 STT 기반 요약노트 개발, 튜터의 생성·대화 기록 오류 개선을 맡았습니다.</dd></div><div><dt>기술</dt><dd>Python(FastAPI), OpenAI API, PostgreSQL·pgvector, SQLAlchemy(Async), SSE</dd></div></dl><section class="chapter"><h2>판단과 이유</h2><p>튜터가 정답을 알려주는 데 그치지 않고 학습을 돕도록 목표를 제안했습니다. 자료가 없는 요청은 생성 전에 걸러 근거 없이 수업 내용을 요약하지 않게 했습니다.</p></section><section class="chapter"><h2>구현·개선</h2><ul><li>STT를 청킹·임베딩해 pgvector에 저장하는 인덱서를 만들고 검색 결과를 학습 튜터의 응답 생성에 연결했습니다.</li><li>질문 복잡도에 따른 질문 개선·답변 검증 흐름을 구현했습니다. 세부 규칙을 계속 늘리는 방식보다 가이드라인 중심으로 기획을 정리하자고 제안했습니다.</li><li>STT 기반 요약노트를 개발했습니다. 전처리와 청킹 방식을 조정하고 이전 강의 데이터로 결과를 비교했습니다.</li><li>자료가 없는 수업 요약 요청의 생성 경로를 차단했습니다. 공유 DB 세션의 실패가 뒤의 대화 기록 저장까지 번지던 문제는 오류 직후 rollback하도록 수정했습니다.</li></ul></section><section class="chapter"><h2>결과와 성과</h2><p>요약노트가 21개 과정에서 1,132건 발행됐고 2,973회 열람됐습니다. 강의 데이터를 실제 복습 기능으로 연결했습니다.</p></section><nav class="next" aria-label="다음 프로젝트"><h2>다음 프로젝트</h2><a class="link" href="ai-resume.html">미래이력서 AI 생성·자동 검수 서비스</a></nav></article></main><footer class="site-footer" id="contact">
+<div class="wrap">
+<h2 class="section__title">연락</h2>
+<p class="section__desc">함께 일할 자리가 있다면 메일 주세요.</p>
+<p class="contact__mail">vvvva_@naver.com</p>
+<div class="actions">
+<a class="btn btn--primary" href="mailto:vvvva_@naver.com">메일 보내기</a>
+</div>
+<ul class="contact__links">
+<li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>
+<li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
+</ul>
+</div>
+</footer></body></html>

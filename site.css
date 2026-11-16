@@ -297,3 +297,34 @@ dialog.viewer::backdrop { background: var(--color-dimmer); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0s !important; }
 }
+
+/* 자기소개와 회사별 상세 경력: 기존 Montage 서체·간격을 따른다. */
+.ai-title { margin: var(--sp-32) 0 var(--sp-16); font: var(--fw-semibold) var(--t-heading2); letter-spacing: var(--ls-heading2); }
+.ai-experience { max-width: 46em; padding-left: 1.2em; margin: 0; display: grid; gap: var(--sp-12); font: var(--fw-regular) var(--t-body1-reading); }
+.card--text { padding-top: var(--sp-24); border-top: 1px solid var(--color-line-primary); }
+.career-detail { max-width: calc(var(--content-width) + var(--gutter) * 2); padding-top: var(--sp-40); padding-bottom: var(--sp-80); }
+.company-tabs { position: sticky; top: 0; z-index: 3; display: flex; gap: var(--sp-24); overflow-x: auto; margin: var(--sp-32) 0; padding: var(--sp-4); background: var(--color-background); border-bottom: 1px solid var(--color-line-primary); }
+.company-tabs button { flex: none; padding: var(--sp-16) 0; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--color-text-tertiary); font: var(--fw-semibold) var(--t-body1); cursor: pointer; }
+.company-tabs button[aria-selected="true"] { color: var(--color-brand-primary); border-bottom-color: var(--color-brand-primary); }
+[role="tabpanel"] > h2 { font: var(--fw-bold) var(--t-title2); letter-spacing: var(--ls-title2); }
+[role="tabpanel"]:focus-visible { outline-offset: var(--sp-8); }
+.company-intro { margin-top: var(--sp-24); font: var(--fw-regular) var(--t-body1-reading); }
+.project-index { margin-top: var(--sp-24); padding: var(--sp-20) var(--sp-24); background: var(--color-background-secondary); border-radius: var(--radius-card); }
+.project-index ul { margin: 0; padding-left: 1.2em; display: grid; gap: var(--sp-8); }
+.detail-project { margin-top: var(--sp-64); padding-top: var(--sp-24); border-top: 1px solid var(--color-line-primary); scroll-margin-top: var(--sp-120); }
+.detail-project h3 { font: var(--fw-bold) var(--t-title3); letter-spacing: var(--ls-title3); }
+.detail-group { margin-top: var(--sp-24); font: var(--fw-regular) var(--t-body1-reading); }
+.detail-group h4 { margin-bottom: var(--sp-8); font: var(--fw-semibold) var(--t-headline1); }
+.detail-group ul { margin: 0; padding-left: 1.2em; display: grid; gap: var(--sp-12); }
+@media print {
+  .site-header, .site-footer, .company-tabs, .project-index, .back { display: none; }
+  [role="tabpanel"][hidden] { display: block !important; }
+  [role="tabpanel"] { break-before: page; }
+  [role="tabpanel"]:first-of-type { break-before: auto; }
+  .detail-project { break-inside: auto; }
+  .detail-project h3, .detail-group h4 { break-after: avoid; }
+}
+@media (max-width: 600px) {
+  .company-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--sp-16); overflow: visible; }
+  .company-tabs button { min-width: 0; text-align: left; white-space: normal; }
+}

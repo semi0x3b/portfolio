@@ -90,3 +90,45 @@ if (loopSim) {
   playButton.hidden = reduceMotion;
   playButton.addEventListener("click", play);
 }
+
+// 회사별 경력: 클릭, 키보드와 직접 링크에서 같은 탭 상태를 사용한다.
+const companyTabs = [...document.querySelectorAll('[role="tab"][data-company]')];
+if (companyTabs.length) {
+  const activateCompany = (company, focus = false) => {
+    const selected = companyTabs.find((tab) => tab.dataset.company === company) || companyTabs[0];
+    for (const tab of companyTabs) {
+      const active = tab === selected;
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+      document.getElementById(tab.getAttribute('aria-controls')).hidden = !active;
+    }
+    if (focus) selected.focus();
+    return selected;
+  };
+  const companyFromHash = () => location.hash.slice(1).split('-')[0];
+  activateCompany(companyFromHash());
+  companyTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      const selected = activateCompany(tab.dataset.company);
+      history.replaceState(null, '', '#' + selected.dataset.company);
+    });
+    tab.addEventListener('keydown', (event) => {
+      let targetIndex;
+      if (event.key === 'ArrowRight') targetIndex = (index + 1) % companyTabs.length;
+      if (event.key === 'ArrowLeft') targetIndex = (index - 1 + companyTabs.length) % companyTabs.length;
+      if (event.key === 'Home') targetIndex = 0;
+      if (event.key === 'End') targetIndex = companyTabs.length - 1;
+      if (targetIndex === undefined) return;
+      event.preventDefault();
+      const selected = activateCompany(companyTabs[targetIndex].dataset.company, true);
+      history.replaceState(null, '', '#' + selected.dataset.company);
+    });
+  });
+  addEventListener('hashchange', () => {
+    activateCompany(companyFromHash());
+    const target = document.getElementById(location.hash.slice(1));
+    if (target) target.scrollIntoView();
+  });
+  const initialProject = document.getElementById(location.hash.slice(1));
+  if (initialProject) requestAnimationFrame(() => initialProject.scrollIntoView());
+}

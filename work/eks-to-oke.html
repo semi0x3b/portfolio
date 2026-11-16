@@ -1,113 +1,46 @@
 <!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EKS에서 OKE로 전사 인프라 이관, 김세미</title>
-<meta name="description" content="콘솔에만 있던 EKS를 실측으로 파악해 Terraform, ArgoCD, Vault로 다시 세우고 서비스 61종을 OKE로 옮긴 기록. 월 인프라 비용은 56% 줄었습니다.">
-<link rel="canonical" href="https://semi0x3b.github.io/portfolio/work/eks-to-oke">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://semi0x3b.github.io/portfolio/work/eks-to-oke">
-<meta property="og:title" content="EKS에서 OKE로 전사 인프라 이관, 김세미">
-<meta property="og:description" content="서비스 61종을 라우팅 선등록, DNS 전환, TLS 승격 세 단계로 옮기고 월 인프라 비용을 56% 줄였습니다.">
-<meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23FFFFFF'/><text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'>;</text></svg>">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&text=semi%3B&display=swap">
-<link rel="stylesheet" href="../tokens.css">
-<link rel="stylesheet" href="../site.css">
-<script src="../site.js" defer></script>
-</head>
-<body>
-<a class="skip" href="#main">본문으로 건너뛰기</a>
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>전사 인프라 이관과 비용·배포 환경 개선, 김세미</title>
+<meta content="AWS EKS에서 OCI OKE로 전사 서비스를 옮기면서 인프라 비용과 구성 관리, 배포 방식을 함께 개선한 프로젝트입니다." name="description"/>
+<link href="https://semi0x3b.github.io/portfolio/work/eks-to-oke.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://semi0x3b.github.io/portfolio/work/eks-to-oke.html" property="og:url"/>
+<meta content="전사 인프라 이관과 비용·배포 환경 개선, 김세미" property="og:title"/>
+<meta content="AWS EKS에서 OCI OKE로 전사 서비스를 옮기면서 인프라 비용과 구성 관리, 배포 방식을 함께 개선한 프로젝트입니다." property="og:description"/>
+<meta content="https://semi0x3b.github.io/portfolio/og.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="#FFFFFF" name="theme-color"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'&gt;&lt;rect width='64' height='64' rx='14' fill='%23FFFFFF'/&gt;&lt;text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'&gt;;&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&amp;text=semi%3B&amp;display=swap" rel="stylesheet"/>
+<link href="../tokens.css" rel="stylesheet"/>
+<link href="../site.css" rel="stylesheet"/>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="logo" href="../" aria-label="김세미 포트폴리오 처음으로">semi<span>;</span></a>
-    <nav aria-label="주 메뉴">
-      <ul class="nav">
-        <li><a href="../#projects" aria-current="page">프로젝트</a></li>
-        <li><a href="../#career">경력</a></li>
-        <li><a href="../#reviews">평가</a></li>
-        <li><a href="../#writing">글</a></li>
-        <li><a href="../#contact">연락</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main id="main" tabindex="-1">
-<article class="case">
-  <a class="back link" href="../#projects">프로젝트 목록</a>
-  <p class="case__when">2026년 4월 ~ 8월</p>
-  <h1 class="case__title">EKS에서 OKE로 전사 인프라 이관</h1>
-  <p class="case__sub">콘솔에만 있던 인프라를 코드로 다시 세우고 서비스 61종 이관</p>
-  <div class="result">
-    <p class="result__pair">월 인프라 비용 <b>56%</b> 감소</p>
-    <p class="result__note">유휴 자원 회수와 이관을 3년 동안 이어 간 결과</p>
-  </div>
-  <dl class="facts">
-    <div><dt>기술</dt><dd>OCI(OKE), Terraform, ArgoCD, Helm, Vault+ESO, Kong, Keycloak</dd></div>
-    <div><dt>글과 코드</dt><dd><a class="link" href="https://semi0x3b.github.io/posts/2026-07-27-eks-to-oke-1">이관기 1편</a> <a class="link" href="https://semi0x3b.github.io/posts/2026-08-05-eks-to-oke-2">2편, 컷오버</a> <a class="link" href="https://github.com/semi0x3b/k8s-baseline">k8s-baseline</a></dd></div>
-  </dl>
-
-  <figure class="figure">
-    <a class="figure__zoom" href="../assets/diagrams/eks-to-oke.png" data-diagram data-title="EKS에서 OKE로 전사 이관" aria-haspopup="dialog">
-      <img src="../assets/diagrams/thumb/eks-to-oke.jpg" srcset="../assets/diagrams/thumb/eks-to-oke.jpg 960w, ../assets/diagrams/eks-to-oke.png 3746w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="이관 전 AWS EKS와 이관 후 OCI OKE 구성, 그 사이의 라우팅 선등록, DNS 전환, TLS 승격 세 단계를 그린 다이어그램" width="960" height="485" loading="lazy">
-    </a>
-    <figcaption>이관 전 EKS와 이관 후 OKE, 그리고 컷오버 세 단계.</figcaption>
-  </figure>
-
-  <section class="chapter" aria-labelledby="problem">
-    <h2 id="problem">문제</h2>
-    <p>기존 EKS는 구축 이력도 IaC도 없어서 AWS 콘솔이 유일한 문서였습니다. 클라우드 크레딧 계약으로 OCI 이관이 정해졌습니다.</p>
-  </section>
-  <section class="chapter" aria-labelledby="judgment">
-    <h2 id="judgment">판단</h2>
-    <p>이관 속도보다 서비스가 끊기지 않는 것을 먼저 봤습니다.</p>
-  </section>
-  <section class="chapter" aria-labelledby="work">
-    <h2 id="work">한 일</h2>
-    <ul>
-      <li>콘솔과 클러스터를 직접 조사해 현재 구성을 파악한 뒤 Terraform, ArgoCD, Vault 기반으로 다시 세웠습니다. gitignore된 로컬 파일에만 있던 DB 시크릿 18종은 Vault와 ESO로 옮겼습니다.</li>
-      <li>인증서 발급(ACME)이 DNS에 기대고 있어서 컷오버를 라우팅 선등록, DNS 전환, TLS 승격 세 단계로 나눴습니다.</li>
-      <li>구 도메인은 게이트웨이 24시간 트래픽이 0건인 것을 확인한 뒤에 지웠습니다. 이관이 끝났다고 여겨진 뒤에도 트래픽을 다시 측정해 아직 쓰이던 API 하나(6시간 3,880건)를 찾아 옮겼고, 그다음에 EKS 노드를 0대로 내렸습니다.</li>
-    </ul>
-  </section>
-
-
-  <section class="chapter" aria-labelledby="result">
-    <h2 id="result">결과</h2>
-    <ul>
-      <li>서비스 61종(ArgoCD Application 66개)을 옮겼고, 2026년 7월 29일 DNS 컷오버 뒤 prod 인증서 16건이 모두 정상으로 유지됐습니다.</li>
-      <li>유휴 자원 회수와 클라우드 이관, 과금 구조 확인을 3년 동안 이어 가면서 월 인프라 비용이 56% 줄었습니다. 같은 기간에 운영하는 서비스는 오히려 늘었습니다.</li>
-    </ul>
-  </section>
-
-  <nav class="next" aria-labelledby="next-title">
-    <h2 id="next-title">다음 프로젝트</h2>
-    <a class="card card--row" href="incident-response.html">
-      <span class="card__thumb"><img src="../assets/diagrams/thumb/incident-response.jpg" alt="" width="960" height="509" loading="lazy"></span>
-      <span>
-        <span class="card__title">장애 자동 복구와 AI 원인 분석</span>
-        <span class="card__pair">외부 API가 멈춘 동안 전체 정지에서 <b>60건</b> 모두 응답으로</span>
-      </span>
-    </a>
-  </nav>
-</article>
-</main>
-
-<dialog class="viewer" aria-labelledby="viewer-title">
-  <div class="viewer__bar">
-    <p class="viewer__title" id="viewer-title"></p>
-    <a class="viewer__open link" target="_blank" rel="noopener">원본 열기</a>
-    <form method="dialog"><button class="btn btn--secondary btn--small" autofocus>닫기</button></form>
-  </div>
-  <div class="viewer__body"><img alt=""></div>
-</dialog>
-</body>
-</html>
+<script defer="" src="../site.js"></script>
+</head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header class="site-header">
+<div class="wrap">
+<a aria-label="김세미 포트폴리오 처음으로" class="logo" href="../">semi<span>;</span></a>
+<nav aria-label="주 메뉴">
+<ul class="nav"><li><a href="../#about">자기소개</a></li><li><a href="../#career">경력 요약</a></li><li><a href="../career.html">경력기술서</a></li><li><a href="../#projects">포트폴리오</a></li></ul>
+</nav>
+</div>
+</header><main id="main" tabindex="-1"><article class="case"><a class="back link" href="../#projects">포트폴리오 목록</a><p class="case__when">2024.10 ~ 2026.08</p><h1 class="case__title">전사 인프라 이관과 비용·배포 환경 개선</h1><p class="case__sub">AWS EKS에서 OCI OKE로 전사 서비스를 옮기면서 인프라 비용과 구성 관리, 배포 방식을 함께 개선한 프로젝트입니다.</p><div class="result"><p class="result__pair">월 인프라 비용 56% 감소</p><p class="result__note">2024~2026년 비용·이관 개선을 합친 결과</p></div><dl class="facts"><div><dt>역할</dt><dd>기존 환경 조사, 이관 설계와 개발 환경 구축, 운영 인수, 단계별 전환과 잔존 자원 정리를 맡았습니다.</dd></div><div><dt>기술</dt><dd>Kubernetes, AWS EKS, OCI OKE, Terraform, ArgoCD, Helm, Vault·ESO, Keycloak, Kong</dd></div></dl><section class="chapter"><h2>판단과 이유</h2><p>콘솔에만 있던 구성을 재현 가능한 코드로 옮기고, 실제 트래픽을 확인한 뒤 전환하기로 했습니다. 비용은 클라우드 변경만으로 설명하지 않고 유휴 자원·지원 과금·외부 솔루션 사용까지 검토했습니다.</p></section><section class="chapter"><h2>구현·개선</h2><ul><li>계정별 청구서와 운영 구성을 대조해 쓰지 않는 서버·디스크·네트워크 자원과 연장 지원 과금을 정리했습니다.</li><li>Terraform, ArgoCD, Helm으로 OKE 환경을 구성하고 시크릿을 Vault와 ESO로 관리하게 했습니다. 개발 환경 확인 뒤 운영을 인수해 전환했습니다.</li><li>인증서 발급의 DNS 의존성을 고려해 라우팅 준비, DNS 전환, TLS 적용 순서를 나눴습니다. 전환 뒤에도 트래픽을 확인해 남아 있던 API를 옮겼습니다.</li><li>Git에 기록된 배포 이미지와 실제 실행 이미지를 대조하는 절차를 정리했습니다. 준비되지 않거나 종료 중인 Pod로 요청이 가는 문제도 헬스체크와 종료 대기로 보완했습니다.</li><li>노드의 디스크·Pod 슬롯·네트워크 제약을 구분해 용량을 조정하고 보안 패치가 반영된 노드로 교체했습니다. 애드온 업데이트와 시크릿 동기화 장애의 대응 절차도 운영 문서에 남겼습니다.</li></ul></section><section class="chapter"><h2>결과와 성과</h2><ul><li>서비스 61종을 이관했습니다. 인프라 구성과 배포 변경을 Terraform·GitOps 저장소에서 확인할 수 있게 됐습니다.</li><li>2024~2026년 유휴 자원 회수, 클라우드 이관과 외부 웹 IDE 교체를 함께 진행해 월 인프라 비용을 청구서 실측 기준 56% 줄였습니다.</li></ul></section><nav class="next" aria-label="다음 프로젝트"><h2>다음 프로젝트</h2><a class="link" href="liveroom.html">라이브룸 화상수업 시스템 구축·운영</a></nav></article></main><footer class="site-footer" id="contact">
+<div class="wrap">
+<h2 class="section__title">연락</h2>
+<p class="section__desc">함께 일할 자리가 있다면 메일 주세요.</p>
+<p class="contact__mail">vvvva_@naver.com</p>
+<div class="actions">
+<a class="btn btn--primary" href="mailto:vvvva_@naver.com">메일 보내기</a>
+</div>
+<ul class="contact__links">
+<li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>
+<li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
+</ul>
+</div>
+</footer></body></html>

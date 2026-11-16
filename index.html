@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>김세미, 백엔드·인프라 엔지니어</title>
-<meta name="description" content="12년 차 백엔드·인프라 엔지니어 김세미의 포트폴리오. 월 인프라 비용을 56% 줄이고 서비스 61종을 EKS에서 OKE로 옮겼습니다.">
+<meta name="description" content="백엔드·인프라 엔지니어 김세미의 포트폴리오. 월 인프라 비용을 56% 줄이고 서비스 61종을 EKS에서 OKE로 옮겼습니다.">
 <link rel="canonical" href="https://semi0x3b.github.io/portfolio/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://semi0x3b.github.io/portfolio/">
@@ -49,7 +49,7 @@
 <section class="hero wrap" aria-labelledby="hero-title">
   <div class="hero__id">
     <img src="assets/profile.jpg" alt="김세미 프로필 사진" width="512" height="512">
-    <p><strong class="hero__name">김세미</strong><span class="hero__role">백엔드·인프라 엔지니어, 12년 차</span></p>
+    <p><strong class="hero__name">김세미</strong><span class="hero__role">백엔드·인프라 엔지니어</span></p>
   </div>
   <h1 class="hero__title" id="hero-title">서비스를 만들고 그 서비스가 올라갈 인프라까지 맡습니다.</h1>
   <p class="hero__lead">지금은 멋쟁이사자처럼에서 FastAPI 백엔드와 AWS·OCI 위의 Kubernetes 인프라, 클라우드 비용을 함께 맡고 있습니다.</p>
@@ -110,7 +110,7 @@
         <span class="card__thumb"><img src="assets/diagrams/thumb/likelion-platform-architecture.jpg" alt="" width="960" height="614" loading="lazy"></span>
         <span class="card__when">2025년 9월 ~ 현재</span>
         <h3 class="card__title">AI 학습 플랫폼 백엔드</h3>
-        <span class="card__sub">RAG 튜터, 요약노트, 수업 모니터링, 모닝브리핑, 대화 챗봇, 퀴즈, AI 이력서, 포트폴리오</span>
+        <span class="card__sub">플랫폼 기능: RAG 튜터, 요약노트, 수업 모니터링, 모닝브리핑, 대화 챗봇, 퀴즈, AI 이력서, 포트폴리오</span>
         <span class="card__pair">강의 STT로 만든 요약노트 <b>1,132건</b></span>
         <span class="card__note">쌓이기만 하던 STT를 인덱싱해 21개 과정에 발행, 2,973회 열람</span>
       </a>
@@ -181,12 +181,12 @@
         <ul>
           <li>구직자용 커리어홈과 기업·운영용 백오피스를 4개 서비스와 스케줄러로 새로 만들고, Keycloak SSO로 멋사 홈과 한 세션을 쓰게 했습니다.</li>
           <li>개인정보는 암호화해 저장하고 blind index로만 검색해, 평문 컬럼을 하나도 두지 않았습니다. 전형이 끝나면 열람 화면 7곳과 다운로드 API를 함께 막습니다.</li>
-          <li>오픈 뒤 석 달 동안 기업 61곳이 공고 132건을 올렸고, 지원과 취업 상담이 플랫폼 안에서 처리되고 있습니다.</li>
+          <li>2026년 9월 확인 당시 플랫폼에는 기업 61곳과 공고 132건이 등록돼 있었습니다. 지원과 취업 상담도 플랫폼 안에서 처리됩니다.</li>
         </ul>
         <h4>AI 학습 플랫폼 <span>2025 ~ 2026</span></h4>
         <ul>
-          <li>라이브 강의 STT를 pgvector에 인덱싱하고 그 위에 RAG 학습 튜터, 요약노트, 수업 모니터링, 모닝브리핑, 대화 챗봇, 퀴즈 등 AI 기능 9종을 올렸습니다. 요약노트는 21개 과정에서 1,132건이 나가 2,973회 열람됐습니다.</li>
-          <li>수업 모니터링은 STT에서 부적절 발언과 커리큘럼 이탈을 찾아 운영팀 Slack으로 알립니다. 자료가 없는데도 요약이 만들어지던 환각은 생성 전에 막았습니다.</li>
+          <li>수업 STT를 청킹·임베딩해 pgvector에 저장하는 인덱서와 RAG 학습 튜터, STT 기반 요약노트를 개발했습니다. 이후 AI 이력서 생성과 자동 검수 기능을 개발했습니다. 요약노트는 21개 과정에서 1,132건이 나가 2,973회 열람됐습니다.</li>
+          <li>튜터가 자료 없이 수업 요약을 생성하던 문제와 DB 오류 뒤 대화 기록이 유실되던 문제를 고쳤습니다.</li>
         </ul>
         <h4>라이브룸 화상수업 <span>2025 ~ 2026</span></h4>
         <ul>
@@ -206,9 +206,9 @@
         <ul>
           <li>멋사대학 동아리 커뮤니케이션과 해커톤·프로젝트 아카이빙 서비스의 인증·게시판·모임·채팅·랭킹·백오피스 API와 EKS 배포, CI/CD를 만들어 약 7주 만에 열었습니다.</li>
         </ul>
-        <h4>Python 서비스 13개 전환 <span>2026, 진행 중</span></h4>
+        <h4>Python 서비스 13개 전환 <span>2026</span></h4>
         <ul>
-          <li>보안 권고가 걸린 의존성이 Python 3.7과 pydantic v1에 묶여 있어, 서비스 13개를 Python 3.13으로 옮기고 있습니다. 구 서버와 새 서버를 같은 시드 DB에 띄워 모든 라우트의 응답이 같은지 비교하며 옮기기 때문에 클라이언트는 바꾸지 않습니다. 13개 모두 dev까지 반영했고 운영 배포 전입니다.</li>
+          <li>Python 서비스 13개를 3.13으로 옮겨 보안 권고를 0건으로 줄였습니다. 같은 시드 DB로 구·신 서버의 응답과 외부 요청을 비교해 기존 클라이언트의 동작을 유지했습니다.</li>
         </ul>
         <h4>사내 도구와 팀 운영 <span>2026</span></h4>
         <ul>

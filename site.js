@@ -111,6 +111,7 @@ if (companyTabs.length) {
     tab.addEventListener('click', () => {
       const selected = activateCompany(tab.dataset.company);
       history.replaceState(null, '', '#' + selected.dataset.company);
+      document.getElementById(selected.dataset.company).scrollIntoView({ block: 'start' });
     });
     tab.addEventListener('keydown', (event) => {
       let targetIndex;
@@ -122,6 +123,7 @@ if (companyTabs.length) {
       event.preventDefault();
       const selected = activateCompany(companyTabs[targetIndex].dataset.company, true);
       history.replaceState(null, '', '#' + selected.dataset.company);
+      document.getElementById(selected.dataset.company).scrollIntoView({ block: 'start' });
     });
   });
   addEventListener('hashchange', () => {

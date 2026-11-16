@@ -1,135 +1,46 @@
 <!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>100만 DAU 대비 부하 대응, 김세미</title>
-<meta name="description" content="SK하이닉스 AI 해커톤 모집을 앞두고 100만 DAU를 환산해 병목을 하나씩 닫았습니다. 테스트 환경 3,000 rps 10분 동안 p95는 1.3초에서 25ms로 내려갔습니다.">
-<link rel="canonical" href="https://semi0x3b.github.io/portfolio/work/load-test">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://semi0x3b.github.io/portfolio/work/load-test">
-<meta property="og:title" content="100만 DAU 대비 부하 대응, 김세미">
-<meta property="og:description" content="테스트 환경에서 3,000 rps 10분 동안 1,792,354건을 에러 없이 처리했고 p95는 1.3초에서 25ms로 내려갔습니다.">
-<meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23FFFFFF'/><text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'>;</text></svg>">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&text=semi%3B&display=swap">
-<link rel="stylesheet" href="../tokens.css">
-<link rel="stylesheet" href="../site.css">
-<script src="../site.js" defer></script>
-</head>
-<body>
-<a class="skip" href="#main">본문으로 건너뛰기</a>
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>SK하이닉스 AI 해커톤 접수 플랫폼, 김세미</title>
+<meta content="전국 공개 모집을 받는 AI 해커톤을 사내 SaaS 플랫폼으로 운영한 프로젝트입니다. 접수 일정은 정해져 있었지만 지원 정책과 수용 가능한 부하의 근거가 부족했습니다." name="description"/>
+<link href="https://semi0x3b.github.io/portfolio/work/load-test.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://semi0x3b.github.io/portfolio/work/load-test.html" property="og:url"/>
+<meta content="SK하이닉스 AI 해커톤 접수 플랫폼, 김세미" property="og:title"/>
+<meta content="전국 공개 모집을 받는 AI 해커톤을 사내 SaaS 플랫폼으로 운영한 프로젝트입니다. 접수 일정은 정해져 있었지만 지원 정책과 수용 가능한 부하의 근거가 부족했습니다." property="og:description"/>
+<meta content="https://semi0x3b.github.io/portfolio/og.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="#FFFFFF" name="theme-color"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'&gt;&lt;rect width='64' height='64' rx='14' fill='%23FFFFFF'/&gt;&lt;text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'&gt;;&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&amp;text=semi%3B&amp;display=swap" rel="stylesheet"/>
+<link href="../tokens.css" rel="stylesheet"/>
+<link href="../site.css" rel="stylesheet"/>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="logo" href="../" aria-label="김세미 포트폴리오 처음으로">semi<span>;</span></a>
-    <nav aria-label="주 메뉴">
-      <ul class="nav">
-        <li><a href="../#projects" aria-current="page">프로젝트</a></li>
-        <li><a href="../#career">경력</a></li>
-        <li><a href="../#reviews">평가</a></li>
-        <li><a href="../#writing">글</a></li>
-        <li><a href="../#contact">연락</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main id="main" tabindex="-1">
-<article class="case">
-  <a class="back link" href="../#projects">프로젝트 목록</a>
-  <p class="case__when">2026년 9월</p>
-  <h1 class="case__title">100만 DAU 대비 부하 대응</h1>
-  <p class="case__sub">SK하이닉스 AI 해커톤 모집</p>
-  <div class="result">
-    <p class="result__pair"><b>1.3초</b>에서 <b>25ms</b>로</p>
-    <p class="result__note">3,000 rps 10분 동안의 p95, 테스트 환경</p>
-  </div>
-  <dl class="facts">
-    <div><dt>기술</dt><dd>k6, PgBouncer, py-spy, Karpenter, OKE, Kong</dd></div>
-  </dl>
-
-  <figure class="figure">
-    <a class="figure__zoom" href="../assets/diagrams/saas-architecture.png" data-diagram data-title="SaaS 서비스·코드 관계도" aria-haspopup="dialog">
-      <img src="../assets/diagrams/thumb/saas-architecture.jpg" srcset="../assets/diagrams/thumb/saas-architecture.jpg 960w, ../assets/diagrams/saas-architecture.png 3200w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="SaaS 서비스·코드 관계도. 한 코드베이스의 지원자용 API, 어드민 API, 배치가 같은 PgBouncer를 거쳐 PostgreSQL에 접속하는 구조" width="960" height="668" loading="lazy">
-    </a>
-    <figcaption>SaaS 서비스·코드 관계도. 한 코드베이스의 지원자용 API, 어드민 API, 배치가 같은 PgBouncer를 거쳐 PostgreSQL에 접속하는 구조</figcaption>
-  </figure>
-
-  <figure class="figure">
-    <ul class="bars" aria-label="준비한 상한과 실제 피크">
-      <li><span class="bars__label">테스트 환경, 10분 지속</span><span class="bars__track" style="--v: 100%"><span class="bars__fill"></span><span class="bars__value">3,000 rps, 에러 0건</span></span></li>
-      <li><span class="bars__label">운영 환경 램프</span><span class="bars__track" style="--v: 100%"><span class="bars__fill"></span><span class="bars__value">3,000 rps, 에러 0.001%</span></span></li>
-      <li class="bars__real"><span class="bars__label">실제 마감일 피크</span><span class="bars__track" style="--v: 1.93%"><span class="bars__fill"></span><span class="bars__value">58 rps, 5xx 0.004%</span></span></li>
-    </ul>
-    <figcaption>준비한 상한과 실제로 받은 부하. 막대 길이는 3,000 rps를 끝으로 둔 같은 눈금입니다.</figcaption>
-  </figure>
-
-  <figure class="figure">
-    <ol class="hops" aria-label="요청이 지나는 지점마다 바꾸기 전과 뒤">
-      <li><span class="hop__name">로드밸런서 대역폭</span><span class="hop__pair"><b>100 Mbps</b>에서 <b>2,000 Mbps</b>로</span></li>
-      <li><span class="hop__name">게이트웨이 요청 제한, IP당 분당</span><span class="hop__pair"><b>100회</b>에서 <b>3,000회</b>로</span></li>
-      <li><span class="hop__name">API 파드의 DB 연결</span><span class="hop__pair">요청마다 새 연결에서 PgBouncer 풀로</span></li>
-      <li><span class="hop__name">PgBouncer 배치, 총 연결 수는 그대로</span><span class="hop__pair"><b>4대 × 풀 45</b>에서 <b>8대 × 풀 25</b>로</span></li>
-      <li><span class="hop__name">PostgreSQL CPU, 같은 시험 시나리오</span><span class="hop__pair"><b>94%</b>에서 <b>7%</b>로</span></li>
-    </ol>
-    <figcaption>지원자의 요청이 지나는 순서대로, 지점마다 바꾸기 전과 뒤. 대역폭과 요청 제한은 클러스터 밖 첫 홉을 다시 측정해서 찾았습니다.</figcaption>
-  </figure>
-
-  <section class="chapter" aria-labelledby="problem">
-    <h2 id="problem">문제</h2>
-    <p>총상금 1억 원 규모인 SK하이닉스 AI 해커톤의 전국 공개 모집을 사내 SaaS로 받기로 했는데, 얼마나 버티는지 근거가 없었습니다. 측정해 보니 API 파드 하나가 공개 목록 조회 35 rps에서 한계였고, DB는 혼합 부하 200 rps에서 커넥션이 바닥나 요청이 실패했습니다.</p>
-  </section>
-  <section class="chapter" aria-labelledby="judgment">
-    <h2 id="judgment">판단</h2>
-    <p>서버를 늘리기 전에 요청 하나에 드는 비용부터 줄이기로 했습니다.</p>
-  </section>
-  <section class="chapter" aria-labelledby="work">
-    <h2 id="work">한 일</h2>
-    <ul>
-      <li>100만 DAU를 환산해 목표를 3,000 rps 10분, p95 500ms로 정했습니다. k6로 여덟 번 측정하면서 회차마다 병목을 하나씩 닫았는데, 요청마다 커넥션을 여는 세션과 트랜잭션 안의 메일 발송, 누수 트랜잭션의 커넥션 점유가 차례로 나왔습니다.</li>
-      <li>커넥션 예산식(<code>pods × workers × (pool + overflow) ≤ max_connections</code>)을 세워 PgBouncer를 넣었고, 프로파일러로 요청당 낭비 40%를 걷어냈습니다.</li>
-      <li>운영 환경에서 부하를 올려 보니 포화 지점은 DB가 아니라 PgBouncer의 단일 스레드였습니다. 총 연결 수는 그대로 두고 4대 × 풀 45를 8대 × 풀 25로 다시 배치해 풀었습니다.</li>
-      <li>클러스터 밖 첫 홉도 측정했습니다. 로드밸런서 대역폭(100 Mbps)은 평시 피크에 이미 차 있었고, 게이트웨이 요청 제한(IP당 분당 100회)은 같은 NAT 뒤 지원자 다섯 명이면 정상 사용자를 막는 값이었습니다. 두 값 모두 무중단으로 올렸습니다.</li>
-    </ul>
-  </section>
-
-
-  <section class="chapter" aria-labelledby="result">
-    <h2 id="result">결과</h2>
-    <ul>
-      <li>테스트 환경에서 3,000 rps 10분 동안 1,792,354건을 에러 없이 처리했습니다. p95는 1.3초에서 25ms로, DB CPU는 94%에서 7%로 내려갔습니다.</li>
-      <li>모집 개시 사흘 전에 운영 환경에서 500에서 3,000 rps까지 올리는 램프 시험을 통과했습니다(에러 0.001%, p95 2.5초).</li>
-      <li>접수 기간을 장애 없이 마쳤습니다. 지원이 가장 몰린 마감일에도 5xx 비율은 0.004%였습니다.</li>
-      <li>실제 피크는 58 rps여서 준비한 오토스케일은 한 번도 돌지 않았습니다. 이 작업으로 얻은 것은 증설 경로가 아니라, 상한을 알고 마감일을 맞았다는 점과 그 과정에서 닫은 병목들입니다.</li>
-    </ul>
-  </section>
-
-  <nav class="next" aria-labelledby="next-title">
-    <h2 id="next-title">다음 프로젝트</h2>
-    <a class="card card--row" href="eks-to-oke.html">
-      <span class="card__thumb"><img src="../assets/diagrams/thumb/eks-to-oke.jpg" alt="" width="960" height="485" loading="lazy"></span>
-      <span>
-        <span class="card__title">EKS에서 OKE로 전사 인프라 이관</span>
-        <span class="card__pair">월 인프라 비용 <b>56%</b> 감소</span>
-      </span>
-    </a>
-  </nav>
-</article>
-</main>
-
-<dialog class="viewer" aria-labelledby="viewer-title">
-  <div class="viewer__bar">
-    <p class="viewer__title" id="viewer-title"></p>
-    <a class="viewer__open link" target="_blank" rel="noopener">원본 열기</a>
-    <form method="dialog"><button class="btn btn--secondary btn--small" autofocus>닫기</button></form>
-  </div>
-  <div class="viewer__body"><img alt=""></div>
-</dialog>
-</body>
-</html>
+<script defer="" src="../site.js"></script>
+</head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header class="site-header">
+<div class="wrap">
+<a aria-label="김세미 포트폴리오 처음으로" class="logo" href="../">semi<span>;</span></a>
+<nav aria-label="주 메뉴">
+<ul class="nav"><li><a href="../#about">자기소개</a></li><li><a href="../#career">경력 요약</a></li><li><a href="../career.html">경력기술서</a></li><li><a href="../#projects">포트폴리오</a></li></ul>
+</nav>
+</div>
+</header><main id="main" tabindex="-1"><article class="case"><a class="back link" href="../#projects">포트폴리오 목록</a><p class="case__when">2026.08 ~ 현재</p><h1 class="case__title">SK하이닉스 AI 해커톤 접수 플랫폼</h1><p class="case__sub">전국 공개 모집을 받는 AI 해커톤을 사내 SaaS 플랫폼으로 운영한 프로젝트입니다. 접수 일정은 정해져 있었지만 지원 정책과 수용 가능한 부하의 근거가 부족했습니다.</p><div class="result"><p class="result__pair">운영 부하 검증 3,000 rps</p><p class="result__note">실제 접수량과 구분한 사전 용량 시험</p></div><dl class="facts"><div><dt>역할</dt><dd>요구사항과 정책 정리, 백엔드·인프라 개선, 지원·과제 제출 화면과 대회 설정 어드민 일부를 맡았습니다.</dd></div><div><dt>기술</dt><dd>Python(FastAPI), Next.js, PostgreSQL, PgBouncer, k6, OKE, Kong, Karpenter</dd></div></dl><section class="chapter"><h2>판단과 이유</h2><p>서버를 늘리기 전에 요청 하나에 드는 비용과 DB 연결 점유를 줄이기로 했습니다. 동시에 지원이 몰려도 제출의 정합성과 정상 지원자의 접근을 지키는 데 우선순위를 뒀습니다.</p></section><section class="chapter"><h2>구현·개선</h2><ul><li>비회원·해외 번호·중복 지원처럼 미정인 정책마다 선택지를 제안했습니다. 해외 번호 사용자를 위해 이메일 인증을 제안하고 후반에는 고객사 요구를 직접 확인하도록 전달 경로를 조정했습니다.</li><li>100만 DAU 가정에서 환산한 초당 3,000건을 대비 목표로 두고 k6로 반복 측정했습니다. 요청별 DB 연결, 트랜잭션 안의 메일 발송과 누수 트랜잭션을 순서대로 고쳤습니다.</li><li>운영 환경에서 PgBouncer의 처리 한계를 확인하고 연결 예산 안에서 배치를 조정했습니다. 로드밸런서 대역폭과 게이트웨이 요청 제한도 함께 점검했습니다.</li><li>지원·과제 제출 양식, 임시저장과 제출 게이트, 대회 설정 화면을 구현했습니다. IP 제한은 같은 네트워크의 정상 지원자가 함께 막히지 않도록 조정했습니다.</li><li>내부용 주소가 검색 결과에 노출되는 문제를 noindex로 막고 개인정보 수탁사 점검표를 실제 시스템과 대조해 다시 작성했습니다.</li></ul></section><section class="chapter"><h2>결과와 성과</h2><ul><li>테스트 환경에서 초당 3,000건을 10분간 처리했고 p95 응답은 1.3초에서 25ms로 줄었습니다.</li><li>접수 전 운영 환경의 초당 3,000건 램프 시험을 에러율 0.001%로 통과했습니다. 이 시험의 p95는 2.5초로 테스트 환경 결과와 구분합니다.</li><li>실제 접수 기간을 장애 없이 마쳤습니다.</li></ul></section><nav class="next" aria-label="다음 프로젝트"><h2>다음 프로젝트</h2><a class="link" href="eks-to-oke.html">전사 인프라 이관과 비용·배포 환경 개선</a></nav></article></main><footer class="site-footer" id="contact">
+<div class="wrap">
+<h2 class="section__title">연락</h2>
+<p class="section__desc">함께 일할 자리가 있다면 메일 주세요.</p>
+<p class="contact__mail">vvvva_@naver.com</p>
+<div class="actions">
+<a class="btn btn--primary" href="mailto:vvvva_@naver.com">메일 보내기</a>
+</div>
+<ul class="contact__links">
+<li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>
+<li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
+</ul>
+</div>
+</footer></body></html>

@@ -1,172 +1,46 @@
 <!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>장애 자동 복구와 AI 원인 분석, 김세미</title>
-<meta name="description" content="외부 기관 API 하나 때문에 권한 서비스가 11분 멈춘 장애를 계기로 서비스 25종의 probe를 바꿨습니다. 멈춘 서비스는 이제 45초 안에 재시작됩니다.">
-<link rel="canonical" href="https://semi0x3b.github.io/portfolio/work/incident-response">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://semi0x3b.github.io/portfolio/work/incident-response">
-<meta property="og:title" content="장애 자동 복구와 AI 원인 분석, 김세미">
-<meta property="og:description" content="서비스 25종 probe를 바꿔 멈춘 서비스가 45초 안에 재시작되게 하고, 장애 분석 봇을 만들었습니다.">
-<meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23FFFFFF'/><text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'>;</text></svg>">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&text=semi%3B&display=swap">
-<link rel="stylesheet" href="../tokens.css">
-<link rel="stylesheet" href="../site.css">
-<script src="../site.js" defer></script>
-</head>
-<body>
-<a class="skip" href="#main">본문으로 건너뛰기</a>
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>장애 감지·자동 복구와 AI 원인 분석, 김세미</title>
+<meta content="외부 API 무응답이 서비스 전체 정지로 번지고 헬스체크가 이를 감지하지 못한 장애를 계기로 감지·복구·분석을 함께 개선했습니다." name="description"/>
+<link href="https://semi0x3b.github.io/portfolio/work/incident-response.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://semi0x3b.github.io/portfolio/work/incident-response.html" property="og:url"/>
+<meta content="장애 감지·자동 복구와 AI 원인 분석, 김세미" property="og:title"/>
+<meta content="외부 API 무응답이 서비스 전체 정지로 번지고 헬스체크가 이를 감지하지 못한 장애를 계기로 감지·복구·분석을 함께 개선했습니다." property="og:description"/>
+<meta content="https://semi0x3b.github.io/portfolio/og.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="#FFFFFF" name="theme-color"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'&gt;&lt;rect width='64' height='64' rx='14' fill='%23FFFFFF'/&gt;&lt;text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF' font-family='monospace' font-weight='700'&gt;;&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&amp;text=semi%3B&amp;display=swap" rel="stylesheet"/>
+<link href="../tokens.css" rel="stylesheet"/>
+<link href="../site.css" rel="stylesheet"/>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="logo" href="../" aria-label="김세미 포트폴리오 처음으로">semi<span>;</span></a>
-    <nav aria-label="주 메뉴">
-      <ul class="nav">
-        <li><a href="../#projects" aria-current="page">프로젝트</a></li>
-        <li><a href="../#career">경력</a></li>
-        <li><a href="../#reviews">평가</a></li>
-        <li><a href="../#writing">글</a></li>
-        <li><a href="../#contact">연락</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main id="main" tabindex="-1">
-<article class="case">
-  <a class="back link" href="../#projects">프로젝트 목록</a>
-  <p class="case__when">2026년 8월 ~ 10월</p>
-  <h1 class="case__title">장애 자동 복구와 AI 원인 분석</h1>
-  <p class="case__sub">외부 API가 멈춰도 버티는 서비스와 장애 분석 봇</p>
-  <div class="result">
-    <p class="result__pair">전체 정지에서 <b>60건</b> 모두 응답으로</p>
-    <p class="result__note">외부 API가 응답하지 않을 때. 앞은 실제 장애(11분 정지), 뒤는 수정 후 동시 요청 60건으로 시험한 결과</p>
-  </div>
-  <dl class="facts">
-    <div><dt>기술</dt><dd>FastAPI, Kubernetes, Loki, Alertmanager, LLM</dd></div>
-    <div><dt>글과 코드</dt><dd><a class="link" href="https://semi0x3b.github.io/posts/2026-09-01-incident-bot-llm-autopsy">부검 봇 설계 글</a> <a class="link" href="https://github.com/semi0x3b/log-autopsy">log-autopsy 공개판</a></dd></div>
-  </dl>
-
-  <figure class="figure">
-    <a class="figure__zoom" href="../assets/diagrams/incident-response.png" data-diagram data-title="장애 대응 체계" aria-haspopup="dialog">
-      <img src="../assets/diagrams/thumb/incident-response.jpg" srcset="../assets/diagrams/thumb/incident-response.jpg 960w, ../assets/diagrams/incident-response.png 3402w" sizes="(min-width: 800px) 728px, calc(100vw - 72px)" alt="장애 대응 체계. 외부 API 무응답으로 11분 멈춘 장애 뒤에 만든 감지, 자동복구, 원인분석 흐름" width="960" height="509">
-    </a>
-    <figcaption>장애 대응 체계. 외부 API 무응답으로 11분 멈춘 장애 뒤에 만든 감지, 자동복구, 원인분석 흐름</figcaption>
-  </figure>
-
-  <figure class="figure loop-sim">
-    <div class="loop-sim__box" data-loop-sim>
-      <div class="loop-sim__head">
-        <p class="loop-sim__title">외부 API가 응답하지 않을 때 다른 요청은</p>
-        <p class="loop-sim__clock" aria-hidden="true">경과 <b data-clock>240</b>초</p>
-        <button type="button" class="btn btn--secondary btn--small" data-replay>재생</button>
-      </div>
-      <div class="loop-sim__stage" aria-hidden="true">
-        <p class="loop-sim__group">수정 전</p>
-        <div class="loop-sim__row">
-          <span class="loop-sim__label">이벤트 루프</span>
-          <div class="loop-sim__track"><span class="ls-bar ls-bar--block"><span>HRD-Net 응답을 기다리며 멈춤</span></span></div>
-        </div>
-        <div class="loop-sim__row">
-          <span class="loop-sim__label">threadpool</span>
-          <div class="loop-sim__track"><span class="ls-note">쓰지 않음</span></div>
-        </div>
-        <div class="loop-sim__row">
-          <span class="loop-sim__label">다른 요청 응답</span>
-          <div class="loop-sim__track">
-            <span class="ls-dot" style="--t: .125" data-label="30초"></span>
-            <span class="ls-dot" style="--t: .254" data-label="61초"></span>
-            <span class="ls-dot" style="--t: .383"></span>
-            <span class="ls-dot" style="--t: .508"></span>
-            <span class="ls-dot" style="--t: .638"></span>
-            <span class="ls-dot" style="--t: .763"></span>
-            <span class="ls-dot" style="--t: .892" data-label="214초"></span>
-          </div>
-        </div>
-        <div class="loop-sim__row">
-          <span class="loop-sim__label">liveness probe</span>
-          <div class="loop-sim__track"><span class="ls-note">tcpSocket: 루프가 멈춰도 통과해 재시작 없음</span></div>
-        </div>
-        <p class="loop-sim__group">수정 후</p>
-        <div class="loop-sim__row">
-          <span class="loop-sim__label">이벤트 루프</span>
-          <div class="loop-sim__track"><span class="ls-note">멈추지 않고 다른 요청을 처리</span></div>
-        </div>
-        <div class="loop-sim__row">
-          <span class="loop-sim__label">threadpool</span>
-          <div class="loop-sim__track"><span class="ls-bar ls-bar--pool"></span><span class="ls-note ls-note--pool">HRD-Net 대기 20건, 5초 뒤 끊김</span></div>
-        </div>
-        <div class="loop-sim__row">
-          <span class="loop-sim__label">다른 요청 응답</span>
-          <div class="loop-sim__track"><span class="ls-dot ls-dot--first" style="--t: .004" data-label="0.96초, 동시 60건 모두 응답"></span></div>
-        </div>
-        <div class="loop-sim__row">
-          <span class="loop-sim__label">liveness probe</span>
-          <div class="loop-sim__track"><span class="ls-note">httpGet: 루프가 멈추면 실패해 45초 안에 재시작</span></div>
-        </div>
-        <div class="loop-sim__axis"><span>0초</span><span>60초</span><span>120초</span><span>180초</span><span>240초</span></div>
-      </div>
-      <div class="loop-sim__summary">
-        <p><b>수정 전</b> HRD-Net이 응답하지 않는 동안 이벤트 루프가 멈춰, 다른 요청은 30초 단위로 밀려 최대 214초 뒤에 응답했습니다. tcpSocket 헬스체크는 계속 통과해서 11분 동안 재시작되지 않았습니다.</p>
-        <p><b>수정 후</b> HRD-Net 호출은 threadpool에서 기다리다 5초 뒤 끊깁니다. 그동안 다른 요청은 0.96초에 응답했고 동시 요청 60건이 모두 응답했습니다. 루프가 멈추면 httpGet 헬스체크가 실패해 45초 안에 재시작됩니다.</p>
-      </div>
-    </div>
-    <figcaption>실제 장애 로그(수정 전)와 dev 실측(수정 후)으로 다시 그린 그림입니다.</figcaption>
-  </figure>
-
-  <section class="chapter" aria-labelledby="problem">
-    <h2 id="problem">문제</h2>
-    <p>외부 기관 API(HRD-Net)가 응답하지 않자 권한 서비스 전체가 11분 동안 멈췄습니다. 장애는 사용자 신고로 알았고, 그동안 쿠버네티스는 서비스를 재시작하지 않았습니다.</p>
-  </section>
-  <section class="chapter" aria-labelledby="judgment">
-    <h2 id="judgment">판단</h2>
-    <p>복구는 쿠버네티스가, 원인 분석은 봇이 맡도록 나누고 봇에는 prod 변경 권한을 주지 않았습니다.</p>
-  </section>
-  <section class="chapter" aria-labelledby="work">
-    <h2 id="work">한 일</h2>
-    <ul>
-      <li>응답 시간이 read timeout 30초의 배수로 쌓이는 것을 보고 원인을 찾았습니다. <code>async def</code> 핸들러가 동기 I/O를 실행하는데 워커가 하나뿐이라, 이벤트 루프 하나가 서비스 전체를 막고 있었습니다. <code>await</code>가 없는 핸들러 94건을 AST로 골라 sync로 바꾸고 threadpool에서 돌게 했습니다.</li>
-      <li>tcpSocket liveness는 커널이 소켓 연결을 대신 받아 주기 때문에 이벤트 루프가 멈춰도 통과합니다. 서비스 25종을 httpGet으로 바꾸고, 앱 프로세스를 직접 멈춰 45초 안에 재시작되는 것을 확인했습니다.</li>
-      <li>장애 분석 봇을 만들었습니다. 규칙이 신호를 찾고 LLM은 해석만 맡습니다. 보내기 전에 인용한 문장이 원본 로그에 실제로 있는지 기계로 대조해, 근거가 없는 판정은 낮춰서 보냅니다.</li>
-    </ul>
-  </section>
-  <section class="chapter" aria-labelledby="result">
-    <h2 id="result">결과</h2>
-    <ul>
-      <li>외부 API가 멈춘 동안에도 동시 요청 60건이 모두 응답했습니다(QueuePool timeout 0건).</li>
-      <li>25종에 적용한 뒤 probe 오탐으로 재시작된 경우는 0건입니다.</li>
-      <li>과거 실제 장애 2건을 봇에 다시 돌리자 기록된 원인을 찾아냈습니다. 규칙 층을 LLM 앞에 둔 뒤로는 2주치 에러 알림 18건 중 9건이 LLM 호출 없이 판정됐습니다.</li>
-    </ul>
-  </section>
-
-  <nav class="next" aria-labelledby="next-title">
-    <h2 id="next-title">다음 프로젝트</h2>
-    <a class="card card--row" href="ats.html">
-      <span class="card__thumb"><img src="../assets/diagrams/thumb/ats-architecture.jpg" alt="" width="960" height="640" loading="lazy"></span>
-      <span>
-        <span class="card__title">채용 플랫폼(ATS) 신규 구축</span>
-        <span class="card__pair">내보내기 메모리 <b>34.5MB</b>에서 <b>2.1MB</b>로</span>
-      </span>
-    </a>
-  </nav>
-</article>
-</main>
-
-<dialog class="viewer" aria-labelledby="viewer-title">
-  <div class="viewer__bar">
-    <p class="viewer__title" id="viewer-title"></p>
-    <a class="viewer__open link" target="_blank" rel="noopener">원본 열기</a>
-    <form method="dialog"><button class="btn btn--secondary btn--small" autofocus>닫기</button></form>
-  </div>
-  <div class="viewer__body"><img alt=""></div>
-</dialog>
-</body>
-</html>
+<script defer="" src="../site.js"></script>
+</head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header class="site-header">
+<div class="wrap">
+<a aria-label="김세미 포트폴리오 처음으로" class="logo" href="../">semi<span>;</span></a>
+<nav aria-label="주 메뉴">
+<ul class="nav"><li><a href="../#about">자기소개</a></li><li><a href="../#career">경력 요약</a></li><li><a href="../career.html">경력기술서</a></li><li><a href="../#projects">포트폴리오</a></li></ul>
+</nav>
+</div>
+</header><main id="main" tabindex="-1"><article class="case"><a class="back link" href="../#projects">포트폴리오 목록</a><p class="case__when">2026.08 ~ 2026.10</p><h1 class="case__title">장애 감지·자동 복구와 AI 원인 분석</h1><p class="case__sub">외부 API 무응답이 서비스 전체 정지로 번지고 헬스체크가 이를 감지하지 못한 장애를 계기로 감지·복구·분석을 함께 개선했습니다.</p><div class="result"><p class="result__pair">동시 요청 60건 모두 응답</p><p class="result__note">외부 API 무응답을 넣은 개선 후 시험</p></div><dl class="facts"><div><dt>역할</dt><dd>이벤트 루프 차단 원인 분석과 코드 수정, 헬스체크·알림 변경, 규칙·LLM 기반 분석 봇 개발을 맡았습니다.</dd></div><div><dt>기술</dt><dd>FastAPI, Kubernetes(OKE), Loki, Alertmanager, Slack API, LLM</dd></div></dl><section class="chapter"><h2>판단과 이유</h2><p>복구는 Kubernetes가 수행하고 AI는 근거 해석을 맡도록 역할을 나눴습니다. 봇의 분석 오류가 운영 변경으로 이어지지 않도록 변경 권한은 주지 않았습니다.</p></section><section class="chapter"><h2>구현·개선</h2><ul><li>응답 시간이 외부 API 타임아웃의 배수로 늘어나는 현상을 추적했습니다. await 없는 핸들러를 확인해 동기 I/O를 threadpool로 격리하고 사용자 경로의 타임아웃을 조정했습니다.</li><li>이벤트 루프가 멈춰도 통과하는 tcpSocket 헬스체크를 HTTP 방식으로 바꿨습니다. 개발 환경에서 앱을 직접 멈춰 격리와 재시작을 확인한 뒤 적용했습니다.</li><li>로그 알림에 원인 후보와 근거를 붙이는 봇을 만들었습니다. 규칙으로 먼저 신호를 분류하고 LLM이 해석하며 인용 문장이 실제 로그에 있는지 발송 전에 대조합니다.</li></ul></section><section class="chapter"><h2>결과와 성과</h2><ul><li>개선 후 외부 API 무응답 상황에서 동시 요청 60건이 모두 응답했습니다. HTTP 헬스체크로 같은 정지 증상을 감지하고 자동 복구하게 됐습니다.</li><li>과거 장애 2건의 재현 자료에서 기록된 원인을 찾았습니다. 2주치 알림 18건 중 9건은 LLM을 호출하지 않고 규칙으로 판정했습니다.</li></ul></section><nav class="next" aria-label="다음 프로젝트"><h2>다음 프로젝트</h2><a class="link" href="chatbot-event.html">브랜드 캠페인 AI 챗봇 이벤트</a></nav></article></main><footer class="site-footer" id="contact">
+<div class="wrap">
+<h2 class="section__title">연락</h2>
+<p class="section__desc">함께 일할 자리가 있다면 메일 주세요.</p>
+<p class="contact__mail">vvvva_@naver.com</p>
+<div class="actions">
+<a class="btn btn--primary" href="mailto:vvvva_@naver.com">메일 보내기</a>
+</div>
+<ul class="contact__links">
+<li><a class="link" href="https://github.com/semi0x3b">GitHub</a></li>
+<li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
+</ul>
+</div>
+</footer></body></html>

@@ -67,6 +67,8 @@ home = pages[ROOT / 'index.html']
 entry = [attrs for tag, attrs in home.elements if tag == 'a' and 'design-feature' in attrs.get('class', '').split()]
 if len(entry) != 1 or entry[0].get('href') != 'designs.html':
     errors.append('홈의 설계 모음 카드는 서비스 목차로 연결해야 함')
+if len(entry) == 1 and entry[0].get('aria-label') != '서비스별 아키텍처·설계 보기':
+    errors.append('홈의 설계 모음 카드 이름이 이동 대상과 다름')
 directory = pages[ROOT / 'designs.html']
 routes = {attrs.get('id'): attrs['data-design-route'] for _, attrs in directory.elements if 'data-design-route' in attrs}
 sitemap = {node.text for node in ElementTree.parse(ROOT / 'sitemap.xml').iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}

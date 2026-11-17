@@ -9,12 +9,24 @@ if (viewer) {
   const title = viewer.querySelector(".viewer__title");
   const originalLink = viewer.querySelector(".viewer__open");
   const body = viewer.querySelector(".viewer__body");
+  const fitButton = viewer.querySelector(".viewer__fit");
   let opener = null;
+  let fitMode = false;
 
   const fitToDevicePixels = () => {
-    image.style.width = `${image.naturalWidth / devicePixelRatio}px`;
+    const naturalWidth = image.naturalWidth / devicePixelRatio;
+    image.style.width = `${fitMode ? Math.min(naturalWidth, body.clientWidth) : naturalWidth}px`;
+    if (fitButton) fitButton.textContent = fitMode ? '확대 보기' : '전체 보기';
   };
   image.addEventListener("load", fitToDevicePixels);
+  fitButton?.addEventListener('click', () => {
+    fitMode = !fitMode;
+    fitToDevicePixels();
+    body.scrollTo(0, 0);
+  });
+  addEventListener('resize', () => {
+    if (viewer.open) fitToDevicePixels();
+  });
 
   document.querySelectorAll("a[data-diagram]").forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -26,11 +38,13 @@ if (viewer) {
       title.textContent = link.dataset.title;
       originalLink.href = link.href;
       image.alt = link.dataset.title;
+      fitMode = false;
       if (image.src !== link.href) {
         image.style.width = "";
         image.src = link.href;
       }
       viewer.showModal();
+      if (image.complete && image.naturalWidth) fitToDevicePixels();
       body.scrollTo(0, 0);
     });
   });

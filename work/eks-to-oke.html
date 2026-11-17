@@ -1,4 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ko"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
@@ -21,7 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&amp;text=semi%3B&amp;display=swap" rel="stylesheet"/>
 <link href="../tokens.css" rel="stylesheet"/>
 <link href="../site.css" rel="stylesheet"/>
-
 <script defer="" src="../site.js"></script>
 </head><body><a class="skip" href="#main">본문으로 건너뛰기</a><header class="site-header">
 <div class="wrap">
@@ -30,7 +30,13 @@
 <ul class="nav"><li><a href="../#about">자기소개</a></li><li><a href="../#career">경력 요약</a></li><li><a href="../career.html">경력기술서</a></li><li><a href="../#projects">포트폴리오</a></li></ul>
 </nav>
 </div>
-</header><main id="main" tabindex="-1"><article class="case"><a class="back link" href="../#projects">포트폴리오 목록</a><p class="case__when">2024.10 ~ 2026.08</p><h1 class="case__title">전사 인프라 이관과 비용·배포 환경 개선</h1><p class="case__sub">AWS EKS에서 OCI OKE로 전사 서비스를 옮기면서 인프라 비용과 구성 관리, 배포 방식을 함께 개선한 프로젝트입니다.</p><div class="result"><p class="result__pair">월 인프라 비용 56% 감소</p><p class="result__note">2024~2026년 비용·이관 개선을 합친 결과</p></div><dl class="facts"><div><dt>역할</dt><dd>기존 환경 조사, 이관 설계와 개발 환경 구축, 운영 인수, 단계별 전환과 잔존 자원 정리를 맡았습니다.</dd></div><div><dt>기술</dt><dd>Kubernetes, AWS EKS, OCI OKE, Terraform, ArgoCD, Helm, Vault·ESO, Keycloak, Kong</dd></div></dl><section class="chapter"><h2>판단과 이유</h2><p>콘솔에만 있던 구성을 재현 가능한 코드로 옮기고, 실제 트래픽을 확인한 뒤 전환하기로 했습니다. 비용은 클라우드 변경만으로 설명하지 않고 유휴 자원·지원 과금·외부 솔루션 사용까지 검토했습니다.</p></section><section class="chapter"><h2>구현·개선</h2><ul><li>계정별 청구서와 운영 구성을 대조해 쓰지 않는 서버·디스크·네트워크 자원과 연장 지원 과금을 정리했습니다.</li><li>Terraform, ArgoCD, Helm으로 OKE 환경을 구성하고 시크릿을 Vault와 ESO로 관리하게 했습니다. 개발 환경 확인 뒤 운영을 인수해 전환했습니다.</li><li>인증서 발급의 DNS 의존성을 고려해 라우팅 준비, DNS 전환, TLS 적용 순서를 나눴습니다. 전환 뒤에도 트래픽을 확인해 남아 있던 API를 옮겼습니다.</li><li>Git에 기록된 배포 이미지와 실제 실행 이미지를 대조하는 절차를 정리했습니다. 준비되지 않거나 종료 중인 Pod로 요청이 가는 문제도 헬스체크와 종료 대기로 보완했습니다.</li><li>노드의 디스크·Pod 슬롯·네트워크 제약을 구분해 용량을 조정하고 보안 패치가 반영된 노드로 교체했습니다. 애드온 업데이트와 시크릿 동기화 장애의 대응 절차도 운영 문서에 남겼습니다.</li></ul></section><section class="chapter"><h2>결과와 성과</h2><ul><li>서비스 61종을 이관했습니다. 인프라 구성과 배포 변경을 Terraform·GitOps 저장소에서 확인할 수 있게 됐습니다.</li><li>2024~2026년 유휴 자원 회수, 클라우드 이관과 외부 웹 IDE 교체를 함께 진행해 월 인프라 비용을 청구서 실측 기준 56% 줄였습니다.</li></ul></section><nav class="next" aria-label="다음 프로젝트"><h2>다음 프로젝트</h2><a class="link" href="liveroom.html">라이브룸 화상수업 시스템 구축·운영</a></nav></article></main><footer class="site-footer" id="contact">
+</header><main id="main" tabindex="-1"><article class="case"><a class="back link" href="../#projects">포트폴리오 목록</a><p class="case__when">2024.10 ~ 2026.08</p><h1 class="case__title">전사 인프라 이관과 비용·배포 환경 개선</h1><p class="case__sub">AWS EKS에서 OCI OKE로 전사 서비스를 옮기면서 인프라 비용과 구성 관리, 배포 방식을 함께 개선한 프로젝트입니다.</p><div class="result"><p class="result__pair">월 인프라 비용 56% 감소</p><p class="result__note">2024~2026년 비용·이관 개선을 합친 결과</p></div><dl class="facts"><div><dt>역할</dt><dd>기존 환경 조사, 이관 설계와 개발 환경 구축, 운영 인수, 단계별 전환과 잔존 자원 정리를 맡았습니다.</dd></div><div><dt>기술</dt><dd>Kubernetes, AWS EKS, OCI OKE, Terraform, ArgoCD, Helm, Vault·ESO, Keycloak, Kong</dd></div></dl><figure class="figure">
+<a aria-label="Kubernetes·OKE 운영 플랫폼 확대 보기" class="figure__zoom" data-diagram="" data-title="Kubernetes·OKE 운영 플랫폼" href="../assets/designs/oke-platform.png">
+<img alt="GitHub Actions, 컨테이너 레지스트리, GitOps와 ArgoCD, Kubernetes와 OKE 배포 구조 및 데이터, 라우팅, 확장, 관측 도구." decoding="async" height="1476" loading="lazy" src="../assets/designs/oke-platform.png" width="2000"/></a>
+<figcaption>GitHub Actions의 이미지 발행, GitOps·ArgoCD 배포와 OKE 운영을 연결했습니다. Kong, Karpenter, Terraform과 관측 도구의 역할을 함께 정리했습니다. <span class="figure__hint">그림을 누르면 확대해서 볼 수 있습니다.</span></figcaption></figure><figure class="figure">
+<a aria-label="멋사 플랫폼 서비스 관계도 확대 보기" class="figure__zoom" data-diagram="" data-title="멋사 플랫폼 서비스 관계도" href="../assets/designs/likelion-platform-architecture.png">
+<img alt="LMS, 인증, 수강권, ATS, SaaS, 커뮤니티, 캠프파이어, 라이브룸, 클래스챗과 AI 공통 서비스의 관계도." decoding="async" height="2048" loading="lazy" src="../assets/designs/likelion-platform-architecture.png" width="3200"/></a>
+<figcaption>인증·수강권을 중심으로 LMS, ATS, SaaS와 수업 도구가 이어지는 구조입니다. 플랫폼 간 의존 관계와 AI 공통 서비스의 위치를 설명합니다. <span class="figure__hint">그림을 누르면 확대해서 볼 수 있습니다.</span></figcaption></figure><section class="chapter"><h2>판단과 이유</h2><p>콘솔에만 있던 구성을 재현 가능한 코드로 옮기고, 실제 트래픽을 확인한 뒤 전환하기로 했습니다. 비용은 클라우드 변경만으로 설명하지 않고 유휴 자원·지원 과금·외부 솔루션 사용까지 검토했습니다.</p></section><section class="chapter"><h2>구현·개선</h2><ul><li>계정별 청구서와 운영 구성을 대조해 쓰지 않는 서버·디스크·네트워크 자원과 연장 지원 과금을 정리했습니다.</li><li>Terraform, ArgoCD, Helm으로 OKE 환경을 구성하고 시크릿을 Vault와 ESO로 관리하게 했습니다. 개발 환경 확인 뒤 운영을 인수해 전환했습니다.</li><li>인증서 발급의 DNS 의존성을 고려해 라우팅 준비, DNS 전환, TLS 적용 순서를 나눴습니다. 전환 뒤에도 트래픽을 확인해 남아 있던 API를 옮겼습니다.</li><li>Git에 기록된 배포 이미지와 실제 실행 이미지를 대조하는 절차를 정리했습니다. 준비되지 않거나 종료 중인 Pod로 요청이 가는 문제도 헬스체크와 종료 대기로 보완했습니다.</li><li>노드의 디스크·Pod 슬롯·네트워크 제약을 구분해 용량을 조정하고 보안 패치가 반영된 노드로 교체했습니다. 애드온 업데이트와 시크릿 동기화 장애의 대응 절차도 운영 문서에 남겼습니다.</li></ul></section><section class="chapter"><h2>결과와 성과</h2><ul><li>서비스 61종을 이관했습니다. 인프라 구성과 배포 변경을 Terraform·GitOps 저장소에서 확인할 수 있게 됐습니다.</li><li>2024~2026년 유휴 자원 회수, 클라우드 이관과 외부 웹 IDE 교체를 함께 진행해 월 인프라 비용을 청구서 실측 기준 56% 줄였습니다.</li></ul></section><p class="design-more"><a class="link" href="../designs.html">아키텍처·플로우 설계 전체 보기</a></p><nav aria-label="다음 프로젝트" class="next"><h2>다음 프로젝트</h2><a class="link" href="liveroom.html">라이브룸 화상수업 시스템 구축·운영</a></nav></article></main><footer class="site-footer" id="contact">
 <div class="wrap">
 <h2 class="section__title">연락</h2>
 <p class="section__desc">함께 일할 자리가 있다면 메일 주세요.</p>
@@ -43,4 +49,8 @@
 <li><a class="link" href="https://semi0x3b.github.io">기술 블로그</a></li>
 </ul>
 </div>
-</footer></body></html>
+</footer><dialog aria-labelledby="diagram-title" class="viewer">
+<div class="viewer__bar"><h2 class="viewer__title" id="diagram-title">구성도</h2>
+<button class="viewer__fit btn btn--secondary btn--small" type="button">전체 보기</button><a class="viewer__open link" href="#" rel="noopener" target="_blank">이미지 열기</a>
+<form method="dialog"><button aria-label="구성도 닫기" autofocus="" class="btn btn--secondary btn--small">닫기</button></form></div>
+<div aria-label="확대된 구성도, 스크롤로 이동" class="viewer__body" tabindex="0"><img alt=""/></div></dialog></body></html>

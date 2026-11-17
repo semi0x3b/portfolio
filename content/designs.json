@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17",
+  "updated": "2026-11-18",
   "items": [
     {
       "id": "campfire-architecture",
@@ -153,7 +153,8 @@
           "href": "work/ai-learning.html",
           "label": "ALEX 개발과 LION 설계 경험"
         }
-      ]
+      ],
+      "architecture": "campfire-architecture"
     },
     {
       "id": "likelion",
@@ -167,7 +168,8 @@
           "href": "career.html#likelion-lms",
           "label": "LMS 개발·운영 경험"
         }
-      ]
+      ],
+      "architecture": "lms-architecture"
     },
     {
       "id": "bootcamp",
@@ -187,12 +189,9 @@
         {
           "href": "work/ai-resume.html",
           "label": "미래이력서 개발 경험"
-        },
-        {
-          "href": "#lms-architecture",
-          "label": "공통 LMS 구성"
         }
-      ]
+      ],
+      "architecture": "lms-architecture"
     },
     {
       "id": "career",
@@ -206,7 +205,8 @@
           "href": "work/ats.html",
           "label": "ATS 구축 경험"
         }
-      ]
+      ],
+      "architecture": "ats-architecture"
     },
     {
       "id": "saas",
@@ -224,7 +224,8 @@
           "href": "work/load-test.html",
           "label": "해커톤 플랫폼 개선 경험"
         }
-      ]
+      ],
+      "architecture": "saas-architecture"
     },
     {
       "id": "community",
@@ -238,7 +239,8 @@
           "href": "career.html#likelion-community",
           "label": "커뮤니티 구축 경험"
         }
-      ]
+      ],
+      "architecture": "community-architecture"
     },
     {
       "id": "animal-league",
@@ -247,7 +249,8 @@
       "items": [
         "animal-league-architecture"
       ],
-      "links": []
+      "links": [],
+      "architecture": "animal-league-architecture"
     },
     {
       "id": "infrastructure",
@@ -262,7 +265,8 @@
           "href": "work/eks-to-oke.html",
           "label": "전사 인프라 이관 경험"
         }
-      ]
+      ],
+      "architecture": "oke-platform"
     }
   ]
 }

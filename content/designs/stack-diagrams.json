@@ -3,7 +3,6 @@
     "id": "alex-architecture",
     "title": "ALEX 수업 데이터와 RAG 구성",
     "summary": "강의 전사 데이터를 검색 가능한 자료로 만들고, 수업 맥락과 개인 메모리를 답변에 연결합니다.",
-    "date": "2026년 11월 코드 확인",
     "nodes": [
       {
         "id": "stt",
@@ -239,14 +238,12 @@
         "h": 480
       }
     ],
-    "height": 860,
-    "source": "alex-architecture"
+    "height": 860
   },
   {
     "id": "alex-response-flow",
     "title": "ALEX 질문 처리 흐름",
     "summary": "질문의 의도에 맞춰 응답 경로를 나누고, 근거 자료가 필요한 요청은 생성 전에 자료 유무를 확인합니다.",
-    "date": "2026년 11월 코드 확인",
     "nodes": [
       {
         "id": "question",
@@ -400,14 +397,12 @@
       }
     ],
     "groups": [],
-    "height": 1140,
-    "source": "alex-response-flow"
+    "height": 1140
   },
   {
     "id": "alex-lion-design",
     "title": "ALEX에서 LION으로 바꾼 설계",
     "summary": "일반 질문의 RAG 의존을 줄이고, 수업 데이터는 키워드·복습·추천 질문에 활용하도록 책임을 나눴습니다.",
-    "date": "2026년 11월 v2 구조 설계",
     "nodes": [
       {
         "id": "old-q",
@@ -589,14 +584,12 @@
         "h": 520
       }
     ],
-    "height": 860,
-    "source": "alex-lion-design"
+    "height": 860
   },
   {
     "id": "oke-platform",
     "title": "Kubernetes·OKE 운영 플랫폼",
     "summary": "EKS에서 OKE로 운영 기반을 옮기고 빌드, 배포, 확장과 관측을 공통 운영 흐름으로 연결했습니다.",
-    "date": "2026년 10월 구성도, 11월 stack-diagram 자료 기반",
     "nodes": [
       {
         "id": "actions",
@@ -822,14 +815,12 @@
       }
     ],
     "groups": [],
-    "height": 860,
-    "source": "oke-platform"
+    "height": 860
   },
   {
     "id": "likelion-platform-architecture",
     "title": "교육·채용 서비스 연결 구조",
     "summary": "강의 탐색과 부트캠프 지원, 수업, 취업지원의 흐름과 고객사별로 운영되는 B2B LMS를 구분했습니다.",
-    "date": "2026년 10월 서비스 정의, 11월 구성도 기반",
     "nodes": [
       {
         "id": "likelion",
@@ -968,14 +959,12 @@
         "h": 260
       }
     ],
-    "height": 860,
-    "source": "XD Team 서비스 지도·개요, stack/00-overview"
+    "height": 860
   },
   {
     "id": "ats-architecture",
     "title": "멋사 커리어(ATS) 구성",
     "summary": "부트캠프 수료생과 기업을 연결하는 채용 플랫폼으로, 공고·전형·취업 증빙과 취업 집계를 지원합니다.",
-    "date": "2026년 11월 9일 구성도 기반",
     "nodes": [
       {
         "id": "user",
@@ -1199,14 +1188,12 @@
       }
     ],
     "groups": [],
-    "height": 860,
-    "source": "stack/03-ats, 기존 ATS 서비스 관계도"
+    "height": 860
   },
   {
     "id": "saas-architecture",
     "title": "SaaS LMS/해커톤 구성",
     "summary": "기업·교육기관이 자기 도메인에서 교육과 해커톤을 운영하는 B2B LMS입니다. 고객사별 데이터와 API·배치의 책임을 나눴습니다.",
-    "date": "2026년 11월 9일 구성도 기반",
     "nodes": [
       {
         "id": "site",
@@ -1440,14 +1427,12 @@
       }
     ],
     "groups": [],
-    "height": 860,
-    "source": "stack/02-saas, 기존 SaaS 서비스 관계도"
+    "height": 860
   },
   {
     "id": "lms-architecture",
     "title": "멋쟁이사자처럼·부트캠프 공통 구성",
     "summary": "대표 사이트의 강의 판매·수강과 부트캠프의 모집·훈련 운영을 공통 인증과 학습·결제 API로 지원합니다.",
-    "date": "2026년 11월 9일 구성도 기반",
     "nodes": [
       {
         "id": "web",
@@ -1703,14 +1688,12 @@
       }
     ],
     "groups": [],
-    "height": 860,
-    "source": "stack/01-lms, XD Team 서비스 개요"
+    "height": 860
   },
   {
     "id": "community-architecture",
     "title": "멋사대학 커뮤니티 구성",
     "summary": "커뮤니티와 운영자 화면을 분리하고, 모집·콘텐츠·채팅 기능과 정기 작업을 연결한 구조입니다.",
-    "date": "2026년 11월 9일 구성도 기반",
     "nodes": [
       {
         "id": "user",
@@ -1903,14 +1886,12 @@
       }
     ],
     "groups": [],
-    "height": 860,
-    "source": "stack/04-community"
+    "height": 860
   },
   {
     "id": "animal-league-architecture",
     "title": "애니멀리그 구성",
     "summary": "해커톤 참가·운영 화면과 API를 나누고, 작업 실행과 배포를 Kubernetes 운영 흐름에 연결했습니다.",
-    "date": "2026년 11월 9일 구성도 기반",
     "nodes": [
       {
         "id": "home",
@@ -2126,14 +2107,12 @@
       }
     ],
     "groups": [],
-    "height": 860,
-    "source": "stack/05-animal-league"
+    "height": 860
   },
   {
     "id": "campfire-architecture",
     "title": "Campfire 수업·미디어 구성",
     "summary": "채팅·화상·녹화·출석을 제공하는 비대면 교육 운영 플랫폼입니다. 수업 전사 데이터를 AI 학습 자료에 연결합니다.",
-    "date": "2026년 11월 9일 구성도 기반",
     "nodes": [
       {
         "id": "client",
@@ -2368,14 +2347,12 @@
       }
     ],
     "groups": [],
-    "height": 860,
-    "source": "stack/07-campfire, 기존 수업·STT 관계도"
+    "height": 860
   },
   {
     "id": "liveroom-classchat-architecture",
     "title": "라이브룸·클래스챗 구성",
     "summary": "화상 수업의 입장·미디어·녹화·전사를 나누고, 강의별 채팅과 AI 학습 기능을 함께 연결합니다.",
-    "date": "2026년 11월 9일 구성도 기반",
     "nodes": [
       {
         "id": "user",
@@ -2545,14 +2522,12 @@
       }
     ],
     "groups": [],
-    "height": 860,
-    "source": "stack/06-liveroom-classchat"
+    "height": 860
   },
   {
     "id": "future-resume-architecture",
     "title": "미래이력서 생성·검수 구성",
     "summary": "열람 권한을 판단하는 API와 생성 워커를 나누고, 코드 검증과 LLM 검수를 통과한 현재본을 저장합니다.",
-    "date": "2026년 10월 설계",
     "nodes": [
       {
         "id": "user",
@@ -2720,14 +2695,12 @@
       }
     ],
     "groups": [],
-    "height": 860,
-    "source": "future-resume-architecture"
+    "height": 860
   },
   {
     "id": "future-resume-plan-user-flow",
     "title": "미래이력서 사용자 흐름",
     "summary": "로그인과 본인 여부, 열람 가능한 상태를 확인한 뒤 합불 결과에 따라 다음 행동을 안내합니다.",
-    "date": "2026년 10월 설계",
     "nodes": [
       {
         "id": "entry",
@@ -2961,14 +2934,12 @@
       }
     ],
     "groups": [],
-    "height": 1500,
-    "source": "future-resume-plan-user-flow"
+    "height": 1500
   },
   {
     "id": "future-resume-plan-admin-flow",
     "title": "미래이력서 운영자 흐름",
     "summary": "템플릿과 생성·검수 상태를 확인하고, 합불 확정과 노출 조건이 충족되면 사용자에게 공개합니다.",
-    "date": "2026년 10월 설계",
     "nodes": [
       {
         "id": "entry",
@@ -3261,7 +3232,6 @@
       }
     ],
     "groups": [],
-    "height": 1680,
-    "source": "future-resume-plan-admin-flow"
+    "height": 1680
   }
 ]

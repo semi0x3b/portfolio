@@ -2,169 +2,267 @@
   "updated": "2026-11-17",
   "items": [
     {
+      "id": "campfire-architecture",
+      "title": "Campfire 수업·미디어 구성",
+      "caption": "웹·소켓·미디어·녹화 경로를 나누고, STT 결과를 AI 학습 기능으로 연결한 구성입니다.",
+      "alt": "웹·소켓·미디어·녹화 경로를 나누고, STT 결과를 AI 학습 기능으로 연결한 구성입니다.",
+      "image": "assets/designs/campfire-architecture.png",
+      "width": 2896,
+      "height": 2052
+    },
+    {
       "id": "alex-architecture",
       "title": "ALEX 수업 데이터와 RAG 구성",
-      "date": "2026년 11월 코드 확인",
       "caption": "강의 STT를 인덱싱하는 배치와 질문에 답하는 경로를 나눴습니다. 검색 결과와 개인 메모리를 답변에 연결하고, 대화 후 메모리는 별도로 갱신합니다.",
       "alt": "강의 STT, 인덱서, 청킹과 임베딩, pgvector, 질문 정규화, 검색 전략, 개인 메모리, 답변 생성과 대화 기록의 연결 구조.",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
       "image": "assets/designs/alex-architecture.png",
       "width": 2896,
-      "height": 2112
+      "height": 2052
     },
     {
       "id": "alex-response-flow",
       "title": "ALEX 질문 처리 흐름",
-      "date": "2026년 11월 코드 확인",
       "caption": "질문을 분류한 뒤 안내 응답과 검색 경로를 나눕니다. 요약·대화 이력에 근거 자료가 없으면 답변을 생성하기 전에 안내로 종료합니다.",
       "alt": "질문 수신과 분류 후 즉시 응답 또는 자료·메모리 조회로 분기하며, 자료 없는 요약은 생성 중단, 나머지는 답변 생성과 기록으로 이어지는 흐름.",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
       "image": "assets/designs/alex-response-flow.png",
       "width": 2896,
-      "height": 2672
+      "height": 2612
     },
     {
       "id": "alex-lion-design",
       "title": "ALEX에서 LION으로 바꾼 설계",
-      "date": "2026년 11월 v2 구조 설계",
       "caption": "일반 질문은 LLM이 답하고 수업 데이터는 키워드·복습·추천 질문에 쓰도록 방향을 바꿨습니다. 제 역할은 방향 전환 가이드, 서비스 책임 분리와 구조 설계 리뷰입니다.",
       "alt": "기존 질문 분류, RAG, 답변 LLM 구조와, 일반 LLM 응답 및 수업 맥락 읽기 API로 나눈 LION v2 설계를 비교한 그림.",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
       "image": "assets/designs/alex-lion-design.png",
       "width": 2896,
-      "height": 2112
-    },
-    {
-      "id": "oke-platform",
-      "title": "Kubernetes·OKE 운영 플랫폼",
-      "date": "2026년 10월 구성도, 11월 stack-diagram 자료 기반",
-      "caption": "GitHub Actions의 이미지 발행, GitOps·ArgoCD 배포와 OKE 운영을 연결했습니다. Kong, Karpenter, Terraform과 관측 도구의 역할을 함께 정리했습니다.",
-      "alt": "GitHub Actions, 컨테이너 레지스트리, GitOps와 ArgoCD, Kubernetes와 OKE 배포 구조 및 데이터, 라우팅, 확장, 관측 도구.",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
-      "image": "assets/designs/oke-platform.png",
-      "width": 2896,
-      "height": 2112
-    },
-    {
-      "id": "likelion-platform-architecture",
-      "title": "교육·채용 서비스 연결 구조",
-      "date": "2026년 10월 서비스 정의, 11월 구성도 기반",
-      "caption": "강의 탐색과 부트캠프 지원, 수업, 취업지원의 흐름과 고객사별로 운영되는 B2B LMS를 구분했습니다.",
-      "alt": "강의 탐색과 부트캠프 지원, 수업, 취업지원의 흐름과 고객사별로 운영되는 B2B LMS를 구분했습니다.",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
-      "image": "assets/designs/likelion-platform-architecture.png",
-      "width": 2896,
-      "height": 2112
-    },
-    {
-      "id": "ats-architecture",
-      "title": "멋사 커리어(ATS) 구성",
-      "date": "2026년 11월 9일 구성도 기반",
-      "caption": "부트캠프 수료생과 기업을 연결하는 채용 플랫폼으로, 공고·전형·취업 증빙과 취업 집계를 지원합니다.",
-      "alt": "부트캠프 수료생과 기업을 연결하는 채용 플랫폼으로, 공고·전형·취업 증빙과 취업 집계를 지원합니다.",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
-      "image": "assets/designs/ats-architecture.png",
-      "width": 2896,
-      "height": 2112
-    },
-    {
-      "id": "saas-architecture",
-      "title": "SaaS LMS/해커톤 구성",
-      "date": "2026년 11월 9일 구성도 기반",
-      "caption": "기업·교육기관이 자기 도메인에서 교육과 해커톤을 운영하는 B2B LMS입니다. 고객사별 데이터와 API·배치의 책임을 나눴습니다.",
-      "alt": "기업·교육기관이 자기 도메인에서 교육과 해커톤을 운영하는 B2B LMS입니다. 고객사별 데이터와 API·배치의 책임을 나눴습니다.",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
-      "image": "assets/designs/saas-architecture.png",
-      "width": 2896,
-      "height": 2112
+      "height": 2052
     },
     {
       "id": "lms-architecture",
       "image": "assets/designs/lms-architecture.png",
       "title": "멋쟁이사자처럼·부트캠프 공통 구성",
-      "date": "2026년 11월 9일 구성도 기반",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
-      "caption": "대표 사이트의 강의 판매·수강과 부트캠프의 모집·훈련 운영을 공통 인증과 학습·결제 API로 지원합니다.",
-      "alt": "대표 사이트의 강의 판매·수강과 부트캠프의 모집·훈련 운영을 공통 인증과 학습·결제 API로 지원합니다.",
+      "caption": "두 서비스의 웹과 운영 화면을 공통 인증, 학습·결제·AI API에 연결했습니다.",
+      "alt": "두 서비스의 웹과 운영 화면을 공통 인증, 학습·결제·AI API에 연결했습니다.",
       "width": 2896,
-      "height": 2112
-    },
-    {
-      "id": "community-architecture",
-      "image": "assets/designs/community-architecture.png",
-      "title": "멋사대학 커뮤니티 구성",
-      "date": "2026년 11월 9일 구성도 기반",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
-      "caption": "커뮤니티와 운영자 화면을 분리하고, 모집·콘텐츠·채팅 기능과 정기 작업을 연결한 구조입니다.",
-      "alt": "커뮤니티와 운영자 화면을 분리하고, 모집·콘텐츠·채팅 기능과 정기 작업을 연결한 구조입니다.",
-      "width": 2896,
-      "height": 2112
-    },
-    {
-      "id": "animal-league-architecture",
-      "image": "assets/designs/animal-league-architecture.png",
-      "title": "애니멀리그 구성",
-      "date": "2026년 11월 9일 구성도 기반",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
-      "caption": "해커톤 참가·운영 화면과 API를 나누고, 작업 실행과 배포를 Kubernetes 운영 흐름에 연결했습니다.",
-      "alt": "해커톤 참가·운영 화면과 API를 나누고, 작업 실행과 배포를 Kubernetes 운영 흐름에 연결했습니다.",
-      "width": 2896,
-      "height": 2112
-    },
-    {
-      "id": "campfire-architecture",
-      "title": "Campfire 수업·미디어 구성",
-      "date": "2026년 11월 9일 구성도 기반",
-      "caption": "채팅·화상·녹화·출석을 제공하는 비대면 교육 운영 플랫폼입니다. 수업 전사 데이터를 AI 학습 자료에 연결합니다.",
-      "alt": "채팅·화상·녹화·출석을 제공하는 비대면 교육 운영 플랫폼입니다. 수업 전사 데이터를 AI 학습 자료에 연결합니다.",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
-      "image": "assets/designs/campfire-architecture.png",
-      "width": 2896,
-      "height": 2112
+      "height": 2052
     },
     {
       "id": "liveroom-classchat-architecture",
       "image": "assets/designs/liveroom-classchat-architecture.png",
       "title": "라이브룸·클래스챗 구성",
-      "date": "2026년 11월 9일 구성도 기반",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
-      "caption": "화상 수업의 입장·미디어·녹화·전사를 나누고, 강의별 채팅과 AI 학습 기능을 함께 연결합니다.",
-      "alt": "화상 수업의 입장·미디어·녹화·전사를 나누고, 강의별 채팅과 AI 학습 기능을 함께 연결합니다.",
+      "caption": "화상수업의 입장·미디어·녹화·전사 경로를 나누고, 녹화와 전사 파일을 AI 학습 기능에 연결했습니다.",
+      "alt": "화상수업의 입장·미디어·녹화·전사 경로를 나누고, 녹화와 전사 파일을 AI 학습 기능에 연결했습니다.",
       "width": 2896,
-      "height": 2112
+      "height": 2052
     },
     {
       "id": "future-resume-architecture",
       "title": "미래이력서 생성·검수 구성",
-      "date": "2026년 10월 설계",
       "caption": "본인 열람 API와 운영자 API, 내부 이벤트, 생성 워커를 분리했습니다. 코드 검증과 LLM 검수, 재시도와 결과 저장의 책임을 표시했습니다.",
       "alt": "지원자와 운영자 API, 내부 이벤트, 생성 워커, OpenAI API, 검수 정책과 현재 이력서 저장의 연결 구조.",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
       "image": "assets/designs/future-resume-architecture.png",
       "width": 2896,
-      "height": 2112
+      "height": 2052
     },
     {
       "id": "future-resume-plan-user-flow",
       "title": "미래이력서 사용자 흐름",
-      "date": "2026년 10월 설계",
       "caption": "로그인, 본인 확인, 열람 가능 상태와 합불 결과에 따라 다음 행동이 달라지는 사용자 흐름입니다.",
       "alt": "미래이력서 진입 후 로그인과 본인 여부, 열람 상태, 합격 결과를 확인하고 안내·재지원·고용24 신청으로 이어지는 사용자 흐름.",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
       "image": "assets/designs/future-resume-plan-user-flow.png",
       "width": 2896,
-      "height": 3392
+      "height": 3332
     },
     {
       "id": "future-resume-plan-admin-flow",
       "title": "미래이력서 운영자 흐름",
-      "date": "2026년 10월 설계",
       "caption": "템플릿 확정, 생성·검수 재시도, 결과 확정과 노출 조건을 나눴습니다. 생성 성공과 사용자에게 공개할 수 있는 상태를 별도로 판단합니다.",
       "alt": "지원 완료 후 템플릿 확인, 생성과 자동 검수, 실패·재시도, 합불 확정과 노출, 열람과 전환 집계로 이어지는 운영자 흐름.",
-      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
       "image": "assets/designs/future-resume-plan-admin-flow.png",
       "width": 2896,
-      "height": 3752
+      "height": 3692
+    },
+    {
+      "id": "ats-architecture",
+      "title": "멋사 커리어(ATS) 구성",
+      "caption": "지원자·기업 API와 운영자 API를 나누고, 채용 데이터·캐시·정기 작업·알림을 연결했습니다.",
+      "alt": "지원자·기업 API와 운영자 API를 나누고, 채용 데이터·캐시·정기 작업·알림을 연결했습니다.",
+      "image": "assets/designs/ats-architecture.png",
+      "width": 2896,
+      "height": 2052
+    },
+    {
+      "id": "saas-architecture",
+      "title": "SaaS LMS/해커톤 구성",
+      "caption": "지원자·운영자 API와 배치를 분리하고, 파일 직접 업로드와 PgBouncer·PostgreSQL 연결을 구성했습니다.",
+      "alt": "지원자·운영자 API와 배치를 분리하고, 파일 직접 업로드와 PgBouncer·PostgreSQL 연결을 구성했습니다.",
+      "image": "assets/designs/saas-architecture.png",
+      "width": 2896,
+      "height": 2052
+    },
+    {
+      "id": "community-architecture",
+      "image": "assets/designs/community-architecture.png",
+      "title": "멋사대학 커뮤니티 구성",
+      "caption": "커뮤니티·운영자 API를 나누고, 캐시·채팅과 모집 마감·수집·내보내기 작업을 연결했습니다.",
+      "alt": "커뮤니티·운영자 API를 나누고, 캐시·채팅과 모집 마감·수집·내보내기 작업을 연결했습니다.",
+      "width": 2896,
+      "height": 2052
+    },
+    {
+      "id": "animal-league-architecture",
+      "image": "assets/designs/animal-league-architecture.png",
+      "title": "애니멀리그 구성",
+      "caption": "참가자·운영자 API와 작업 실행 경로를 나누고, 데이터 저장과 Kubernetes 배포를 연결한 구성입니다.",
+      "alt": "참가자·운영자 API와 작업 실행 경로를 나누고, 데이터 저장과 Kubernetes 배포를 연결한 구성입니다.",
+      "width": 2896,
+      "height": 2052
+    },
+    {
+      "id": "likelion-platform-architecture",
+      "title": "교육·채용 서비스 연결 구조",
+      "caption": "강의 탐색·부트캠프 지원·수업·취업지원의 흐름과 고객사별 B2B LMS의 독립 운영 관계입니다.",
+      "alt": "강의 탐색·부트캠프 지원·수업·취업지원의 흐름과 고객사별 B2B LMS의 독립 운영 관계입니다.",
+      "image": "assets/designs/likelion-platform-architecture.png",
+      "width": 2896,
+      "height": 2052
+    },
+    {
+      "id": "oke-platform",
+      "title": "Kubernetes·OKE 운영 플랫폼",
+      "caption": "GitHub Actions의 이미지 빌드부터 ArgoCD 배포, Kubernetes·OKE 운영으로 이어지는 흐름입니다.",
+      "alt": "GitHub Actions의 이미지 빌드부터 ArgoCD 배포, Kubernetes·OKE 운영으로 이어지는 흐름입니다.",
+      "image": "assets/designs/oke-platform.png",
+      "width": 2896,
+      "height": 2052
+    }
+  ],
+  "services": [
+    {
+      "id": "campfire",
+      "title": "캠프파이어",
+      "description": "채팅·화상수업·녹화·출석을 운영하는 비대면 교육 플랫폼입니다. ALEX로 수업 질문과 복습을 지원합니다.",
+      "items": [
+        "campfire-architecture",
+        "alex-architecture",
+        "alex-response-flow",
+        "alex-lion-design"
+      ],
+      "links": [
+        {
+          "href": "work/ai-learning.html",
+          "label": "ALEX 개발과 LION 설계 경험"
+        }
+      ]
+    },
+    {
+      "id": "likelion",
+      "title": "멋쟁이사자처럼",
+      "description": "유료·국비 단과 강의의 탐색, 결제와 수강을 제공하는 대표 서비스입니다. 멋사 부트캠프와 인증·학습·결제 기반을 공유합니다.",
+      "items": [
+        "lms-architecture"
+      ],
+      "links": [
+        {
+          "href": "career.html#likelion-lms",
+          "label": "LMS 개발·운영 경험"
+        }
+      ]
+    },
+    {
+      "id": "bootcamp",
+      "title": "멋사 부트캠프",
+      "description": "KDT 부트캠프 모집·지원부터 수업과 훈련 행정, 취업지원까지 이어지는 서비스입니다. 라이브룸과 미래이력서는 수업 운영과 지원자 경험을 돕습니다.",
+      "items": [
+        "liveroom-classchat-architecture",
+        "future-resume-architecture",
+        "future-resume-plan-user-flow",
+        "future-resume-plan-admin-flow"
+      ],
+      "links": [
+        {
+          "href": "work/liveroom.html",
+          "label": "라이브룸 구축·운영 경험"
+        },
+        {
+          "href": "work/ai-resume.html",
+          "label": "미래이력서 개발 경험"
+        },
+        {
+          "href": "#lms-architecture",
+          "label": "공통 LMS 구성"
+        }
+      ]
+    },
+    {
+      "id": "career",
+      "title": "멋사 커리어 · ATS",
+      "description": "부트캠프 수료생과 기업을 연결하는 채용 플랫폼입니다. 공고·지원·전형과 취업 증빙, 취업 집계를 지원합니다.",
+      "items": [
+        "ats-architecture"
+      ],
+      "links": [
+        {
+          "href": "work/ats.html",
+          "label": "ATS 구축 경험"
+        }
+      ]
+    },
+    {
+      "id": "saas",
+      "title": "SaaS · B2B LMS",
+      "description": "기업·교육기관이 자기 도메인과 독립된 로그인으로 교육을 운영하는 학습관리 서비스입니다. 해커톤과 채용 이벤트에도 활용합니다.",
+      "items": [
+        "saas-architecture"
+      ],
+      "links": [
+        {
+          "href": "career.html#likelion-saas",
+          "label": "SaaS 개발·고객사 개통 경험"
+        },
+        {
+          "href": "work/load-test.html",
+          "label": "해커톤 플랫폼 개선 경험"
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "title": "멋사대학 커뮤니티",
+      "description": "대학별 모집과 활동 콘텐츠, 구성원 간 소통을 지원하는 커뮤니티 서비스입니다.",
+      "items": [
+        "community-architecture"
+      ],
+      "links": [
+        {
+          "href": "career.html#likelion-community",
+          "label": "커뮤니티 구축 경험"
+        }
+      ]
+    },
+    {
+      "id": "animal-league",
+      "title": "애니멀리그",
+      "description": "해커톤 참가자와 운영자가 대회에 참여하고 관리하는 서비스입니다.",
+      "items": [
+        "animal-league-architecture"
+      ],
+      "links": []
+    },
+    {
+      "id": "infrastructure",
+      "title": "공통 인프라",
+      "description": "교육·채용 서비스의 관계와 공통 배포·운영 기반입니다.",
+      "items": [
+        "likelion-platform-architecture",
+        "oke-platform"
+      ],
+      "links": [
+        {
+          "href": "work/eks-to-oke.html",
+          "label": "전사 인프라 이관 경험"
+        }
+      ]
     }
   ]
 }

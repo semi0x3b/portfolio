@@ -17,10 +17,8 @@
 html, body { margin: 0; padding: 0; }
 body { background: var(--paper); color: var(--ink); font-family: var(--font); }
 .page { width: 1448px; padding: 24px; }
-.head { min-height: 110px; padding: 8px 0 24px; display: flex; justify-content: space-between; align-items: end; gap: 48px; }
-.kicker { color: var(--muted); font-size: 14px; line-height: 1.5; margin-bottom: 8px; }
+.head { min-height: 80px; padding: 4px 0 24px; display: flex; align-items: center; }
 h1 { font-size: 30px; line-height: 1.25; letter-spacing: -0.035em; margin: 0; }
-.lede { width: 480px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.65; word-break: keep-all; }
 .canvas { position: relative; width: 1400px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; }
 .group { position: absolute; border: 1px solid var(--line); background: var(--group); border-radius: var(--radius); }
 .g-label { position: absolute; left: 20px; top: 16px; font-size: 15px; font-weight: 600; color: var(--muted); }

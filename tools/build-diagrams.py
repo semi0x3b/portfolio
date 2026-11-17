@@ -84,7 +84,7 @@ def render(diagram, icons, css):
     legend = "".join(f'<span class="{kind}">{esc(label)}</span>' for kind, label in diagram.get("legend", [["primary", "주 흐름"], ["secondary", "연동·보조 경로"], ["dashed", "배포·비동기 처리"]]) if kind in kinds)
     return f'''<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(diagram["title"])}</title><style>{css}</style></head>
-<body><div class="page"><header class="head"><div><div class="kicker">{esc(diagram["date"])}</div><h1>{esc(diagram["title"])}</h1></div><p class="lede">{esc(diagram["summary"])}</p></header>
+<body><div class="page"><header class="head"><h1>{esc(diagram["title"])}</h1></header>
 <div class="canvas" style="height:{height}px">{groups}<svg class="edges" height="{height}" viewBox="0 0 1400 {height}" aria-hidden="true"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker></defs>{''.join(paths)}</svg>{''.join(node_markup)}</div>
 <div class="legend">{legend}</div></div></body></html>
 '''

@@ -5,8 +5,10 @@ import json
 import hashlib
 import re
 from urllib.parse import urlsplit
+import runpy
 
 root = Path(__file__).resolve().parents[1]
+runpy.run_path(str(root / 'tools/build-service-pages.py'), run_name='__main__')
 out = root / '_public'
 if out.exists():
     shutil.rmtree(out)
@@ -21,6 +23,10 @@ for directory, pattern in [('work', '*.html'), ('content', '*.json')]:
 shutil.copy2(root / 'assets/profile.jpg', out / 'assets/profile.jpg')
 # 검수한 공개용 도식만 명시된 목록에서 가져온다. 원본 폴더 전체를 복사하지 않는다.
 designs = json.loads((root / 'content/designs.json').read_text())
+(out / 'services').mkdir(exist_ok=True)
+for service in designs['services']:
+    filename = service['id'] + '.html'
+    shutil.copy2(root / 'services' / filename, out / 'services' / filename)
 for diagram in designs['items']:
     source = root / diagram['image']
     target = out / diagram['image']

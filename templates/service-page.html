@@ -1,0 +1,44 @@
+<!doctype html>
+<!-- tools/build-service-pages.py가 content/designs.json에서 생성합니다. -->
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>$title | semi;</title>
+  <meta name="description" content="$description">
+  <link rel="canonical" href="https://semi0x3b.github.io/portfolio/$path">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="$title | semi;">
+  <meta property="og:description" content="$description">
+  <meta property="og:url" content="https://semi0x3b.github.io/portfolio/$path">
+  <meta property="og:image" content="https://semi0x3b.github.io/portfolio/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'&gt;&lt;text x='32' y='48' font-size='48' text-anchor='middle' fill='%230066FF'&gt;;&lt;/text&gt;&lt;/svg&gt;">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&amp;text=semi%3B&amp;display=swap">
+  <link rel="stylesheet" href="${prefix}tokens.css">
+  <link rel="stylesheet" href="${prefix}site.css">
+  <script src="${prefix}site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 건너뛰기</a>
+  <header class="site-header"><div class="wrap">
+    <a class="logo" href="$prefix" aria-label="포트폴리오 처음으로">semi<span>;</span></a>
+    <nav aria-label="주 메뉴"><ul class="nav">
+      <li><a href="${prefix}#about">자기소개</a></li>
+      <li><a href="${prefix}#career">경력 요약</a></li>
+      <li><a href="${prefix}career.html">경력기술서</a></li>
+      <li><a href="${prefix}#projects">포트폴리오</a></li>
+    </ul></nav>
+  </div></header>
+  <main id="main" tabindex="-1">$content</main>
+  <footer class="site-footer"><div class="wrap">
+    <a class="link" href="${prefix}#projects">포트폴리오</a>
+    <a class="link" href="${prefix}designs.html">서비스 목차</a>
+  </div></footer>
+$viewer
+</body>
+</html>

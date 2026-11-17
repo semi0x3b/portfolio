@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://semi0x3b.github.io/portfolio/</loc><lastmod>2026-11-16</lastmod></url>
+  <url><loc>https://semi0x3b.github.io/portfolio/</loc><lastmod>2026-11-18</lastmod></url>
   <url><loc>https://semi0x3b.github.io/portfolio/career.html</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://semi0x3b.github.io/portfolio/work/ats.html</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://semi0x3b.github.io/portfolio/work/b2b.html</loc><lastmod>2026-11-16</lastmod></url>
@@ -12,5 +12,13 @@
   <url><loc>https://semi0x3b.github.io/portfolio/work/team.html</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://semi0x3b.github.io/portfolio/work/incident-response.html</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://semi0x3b.github.io/portfolio/work/chatbot-event.html</loc><lastmod>2026-11-16</lastmod></url>
-  <url><loc>https://semi0x3b.github.io/portfolio/designs.html</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://semi0x3b.github.io/portfolio/designs.html</loc><lastmod>2026-11-18</lastmod></url>
+  <url><loc>https://semi0x3b.github.io/portfolio/services/campfire.html</loc><lastmod>2026-11-18</lastmod></url>
+  <url><loc>https://semi0x3b.github.io/portfolio/services/likelion.html</loc><lastmod>2026-11-18</lastmod></url>
+  <url><loc>https://semi0x3b.github.io/portfolio/services/bootcamp.html</loc><lastmod>2026-11-18</lastmod></url>
+  <url><loc>https://semi0x3b.github.io/portfolio/services/career.html</loc><lastmod>2026-11-18</lastmod></url>
+  <url><loc>https://semi0x3b.github.io/portfolio/services/saas.html</loc><lastmod>2026-11-18</lastmod></url>
+  <url><loc>https://semi0x3b.github.io/portfolio/services/community.html</loc><lastmod>2026-11-18</lastmod></url>
+  <url><loc>https://semi0x3b.github.io/portfolio/services/animal-league.html</loc><lastmod>2026-11-18</lastmod></url>
+  <url><loc>https://semi0x3b.github.io/portfolio/services/infrastructure.html</loc><lastmod>2026-11-18</lastmod></url>
 </urlset>

@@ -1,6 +1,14 @@
 // semi; portfolio: 구성도 보기(dialog), 시연 영상, 장애 재현 그림 재생
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// 이전 설계 모음의 북마크도 서비스 상세의 같은 그림으로 연결한다.
+const followDesignBookmark = () => {
+  const target = document.getElementById(location.hash.slice(1));
+  if (target?.dataset.designRoute) location.replace(target.dataset.designRoute);
+};
+followDesignBookmark();
+addEventListener('hashchange', followDesignBookmark);
+
 // 그림을 누르면 뷰어를 연다. 뷰어의 이미지는 원본 파일 링크다.
 const viewer = document.querySelector("dialog.viewer");
 if (viewer) {

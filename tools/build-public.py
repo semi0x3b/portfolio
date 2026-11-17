@@ -1,11 +1,14 @@
 """GitHub Pages에 필요한 문서와 공개 자산만 패키징한다."""
 from pathlib import Path
 import shutil
+import json
 
 root = Path(__file__).resolve().parents[1]
 out = root / '_public'
+if out.exists():
+    shutil.rmtree(out)
 out.mkdir(exist_ok=True)
-for filename in ['index.html', 'career.html', '404.html', 'site.css', 'site.js', 'tokens.css', 'sitemap.xml', 'og.png']:
+for filename in ['index.html', 'career.html', 'designs.html', '404.html', 'site.css', 'site.js', 'tokens.css', 'sitemap.xml', 'og.png']:
     shutil.copy2(root / filename, out / filename)
 for directory, pattern in [('work', '*.html'), ('content', '*.json')]:
     (out / directory).mkdir(exist_ok=True)
@@ -13,6 +16,13 @@ for directory, pattern in [('work', '*.html'), ('content', '*.json')]:
         shutil.copy2(source, out / directory / source.name)
 (out / 'assets').mkdir(exist_ok=True)
 shutil.copy2(root / 'assets/profile.jpg', out / 'assets/profile.jpg')
+# 검수한 공개용 도식만 명시된 목록에서 가져온다. 원본 폴더 전체를 복사하지 않는다.
+designs = json.loads((root / 'content/designs.json').read_text())
+for diagram in designs['items']:
+    source = root / diagram['image']
+    target = out / diagram['image']
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source, target)
 (out / '.nojekyll').touch()
 # 배포 파일 자체에서 회사 원금액과 내부 구성도 경로가 섞이지 않았는지 확인한다.
 for source in out.rglob('*'):

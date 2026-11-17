@@ -12,6 +12,8 @@ UI를 고치기 전에 이 파일을 읽는다.
 
 ## 결정 기록
 
+- 2026-11-17: 최신 아키텍처·플로우와 특히 ALEX 설계를 포트폴리오에 추가하라는 요청을 반영했다. 아래의 11월 12일 도식 비공개 결정 중 일괄 제외 방침은 이 요청으로 대체한다. 서비스 관계도·공개용 구성 요약·화면 플로우를 `designs.html`과 관련 사례에 싣는다. 내부 IP·CIDR·접속 주소·실제 보안 배치·비밀값은 계속 제외한다. 기존 원본은 그대로 보관하고 공개용 도식은 별도로 만든다. 공개 파일 목록은 `content/designs.json`, 이미지는 `assets/designs/`, 새 편집 원본은 `content/designs/`다. ALEX 현재 코드와 LION v2 설계 기여는 상태를 구분한다.
+
 - 2026-11-12: 홈의 구성도 갤러리를 없앴다. 인프라 구성도, 서비스 도메인 지도, 데이터 모델(ERD)은 공개하지 않는다. 그림 글자에 IP나 키가 없어도 그림 전체가 회사 시스템의 지도라서, 아직 고치지 않은 약점과 겹치면 공격 준비를 쉽게 해 준다. 자세한 구성도는 면접에서 화면으로만 보여 준다. 회사 비용의 절대 금액은 재무 정보라 비율로 쓴다(월 인프라 비용 56% 감소).
 - 2026-11-10: 흰 바탕, 원티드 Montage 토큰, 파랑 강조색, 카드 갤러리로 다시 만들었다. 이전 판(종이색 바탕, 먹색 글자, 앰버 세미콜론, 세미콜론 축 정렬, commit 모션, 숫자 카운트, 페이지 전환)이 AI 템플릿처럼 읽힌다는 판단이다. 내용(문구·수치)은 그대로 두고 디자인만 바꿨다.
 - 2026-10-30: 긴 한글 문단은 18px/1.75로 읽는다(`--t-reading`). Montage 크기 표 밖의 유일한 예외다.
@@ -90,13 +92,13 @@ UI를 고치기 전에 이 파일을 읽는다.
 
 ## 구성도
 
-- 공개하는 그림은 케이스를 설명하는 서비스 관계도, 흐름도, 이관 전후 그림뿐이다(지금 6장: `ats-architecture`, `ats-pii-lifecycle`, `likelion-platform-architecture`, `saas-architecture`, `incident-response`, `eks-to-oke`). 케이스에서 쓰지 않는 그림은 레포에 두지 않는다.
-- 공개하지 않는 것: 인프라 배치도(네트워크 경로, 클러스터 안 구성품, 서브넷과 포트), 서비스 도메인 지도, 데이터 모델, 키 보관 같은 보안 설정 세부. 2026-11-10 판에 실렸다가 11-12에 내린 것: `ats-infra`, `saas-infra`, `lms-infra`, `campfire-infra`, `community-infra`, `oke-architecture`, `domain-map`, `ats-erd`, `community-architecture`, `bootcamp-architecture`, `campfire-architecture`.
-- 원본은 `~/notes/content/career/diagrams/*.png`. 쓰는 것만 `assets/diagrams/`로 복사하고, 썸네일은 `assets/diagrams/thumb/*.jpg`(폭 960px)로 만든다.
-- 케이스 그림은 `srcset`으로 1배 화면은 썸네일, 2배 화면은 원본을 받는다. dialog는 원본 PNG를 기기 픽셀 1:1 폭(`naturalWidth / devicePixelRatio`)으로 띄우고 스크롤로 살핀다.
-- 공개 전 검사: 그림마다 원본 해상도로 직접 열어 보고, 소스(`.drawio`, `.architecture.json`, `.html`)와 PNG OCR 글자를 grep해서 IP·CIDR·내부 호스트명·사내 레포 이름·커밋 해시·티켓 번호·키·계정 ID가 있으면 그 그림은 뺀다. 그림을 편집해서 가리지 않는다.
-- 처음부터 뺀 것: `liveroom-architecture`(VCN CIDR), `liveroom-classchat-infra`(IP), `liveroom-recording`, `classchat-architecture`, `future-resume-*`(사내 이름), `animal-league-infra`(포트폴리오 범위 밖).
-- 그림 제목은 그림에 적힌 제목을 쓰되, 화면 금지 문자(`→`, em 대시)가 든 부분은 "에서 ~로"로 풀거나 뺀다. 설명은 그림에 있는 내용만 쓴다.
+- `designs.html`은 ALEX 구성·응답 흐름·LION v2 설계를 먼저 보여 주고 인프라, 플랫폼, 미래이력서 구성·플로우를 잇는다. 같은 그림을 관련 사례에도 연결한다.
+- 공개 목록은 `content/designs.json`이다. 제목, 원본 작성 시점, 설명, 대체 텍스트, 출처 유형과 파일 경로를 기록한다. 이미지는 `assets/designs/`, 새 편집 원본은 `content/designs/*.drawio`에 보관한다.
+- 서비스 관계도와 화면 플로우는 검수한 원본을 쓴다. 내부 접속 정보나 배치 세부가 포함된 인프라 원본은 그대로 게시하지 않고, 서비스 역할을 설명하는 공개용 요약을 따로 작성한다. 기존 원본은 변경하지 않는다.
+- IP·CIDR·내부 호스트명·접속 정보·비밀값·실제 보안 배치·데이터 모델은 제외한다. PNG 메타데이터와 OCR, 편집 원본의 텍스트를 함께 검사한다.
+- 설계 제안과 구현 성과를 구분한다. LION v2는 방향 전환과 구조 설계 리뷰 기여로 표시하고, 보드 작성과 구현 담당 범위를 명시한다. 출시 후 성능이나 사용률 개선을 추정하지 않는다.
+- 그림은 레이아웃 폭에 맞춰 보여 주고, 누르면 기존 dialog에서 확대한다. 키보드로 열기·Esc·닫기 버튼·포커스 복귀를 지원하며 JavaScript가 없으면 이미지 링크로 열린다.
+- `tools/build-public.py`는 공개 목록의 이미지만 게시한다. 이전 `assets/diagrams/` 폴더를 통째로 복사하지 않는다.
 
 ## 모션
 

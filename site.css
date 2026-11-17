@@ -256,6 +256,41 @@ dialog.viewer::backdrop { background: var(--color-dimmer); }
 .viewer__body { overflow: auto; overscroll-behavior: contain; }
 .viewer__body img { max-width: none; }
 
+/* 설계 자료: 프로젝트 안의 그림과 전체 모음에서 같은 확대 보기를 사용한다. */
+.design-feature {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center; gap: var(--sp-32); margin-bottom: var(--sp-48);
+  padding: var(--sp-24); border-radius: var(--radius-card);
+  background: var(--color-background-secondary); color: inherit; text-decoration: none;
+}
+.design-feature:hover h3 { color: var(--color-brand-primary); }
+.design-feature img { width: 100%; height: auto; }
+.design-feature h3 { font: var(--fw-bold) var(--t-title3); letter-spacing: var(--ls-title3); }
+.design-feature p { margin-block: var(--sp-12) var(--sp-20); color: var(--color-text-secondary); }
+.design-intro { padding-top: var(--sp-40); }
+.design-intro__note { margin-top: var(--sp-16); color: var(--color-text-tertiary); }
+.design-nav { display: flex; flex-wrap: wrap; gap: var(--sp-16) var(--sp-24); padding: 0; margin: var(--sp-32) 0 0; list-style: none; }
+.design-group { scroll-margin-top: var(--sp-32); }
+.design-group .section__head > .link { display: inline-block; margin-top: var(--sp-16); }
+.design-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-48) var(--sp-32); }
+.design-entry { min-width: 0; scroll-margin-top: var(--sp-32); }
+.design-entry--wide { grid-column: 1 / -1; }
+.design-entry h3 { font: var(--fw-semibold) var(--t-heading1); letter-spacing: var(--ls-heading1); }
+.design-entry__date { margin-bottom: var(--sp-8); font: var(--fw-regular) var(--t-body2); color: var(--color-text-tertiary); }
+.figure--compact { margin-top: var(--sp-16); }
+.figure img { height: auto; }
+.figure__hint { display: block; margin-top: var(--sp-8); }
+.design-more { margin-top: var(--sp-48); }
+.chapter p + ul, .chapter ul + p { margin-top: var(--sp-16); }
+
+@media (max-width: 760px) {
+  .design-feature, .design-grid { grid-template-columns: minmax(0, 1fr); }
+  .design-feature { gap: var(--sp-20); padding: var(--sp-20); }
+  .design-nav { gap: var(--sp-12) var(--sp-20); }
+  .viewer__bar { flex-wrap: wrap; gap: var(--sp-8) var(--sp-16); padding: var(--sp-12); }
+  .viewer__title { flex: 1 0 100%; }
+}
+
 /* 404 */
 .lost { padding-block: var(--sp-120); }
 .lost h1 { font: var(--fw-bold) var(--t-display2); letter-spacing: var(--ls-display2); }

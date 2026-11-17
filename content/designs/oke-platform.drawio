@@ -8,7 +8,7 @@
         <mxCell id="2" value="Kubernetes · OKE 플랫폼의 서비스와 운영 도구" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=28;fontColor=#171719;fontStyle=1;">
           <mxGeometry x="40" y="20" width="1200" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="3" value="2026년 10월 27일 구성도 기반 · 배치 위치와 접속 정보를 생략한 기술 구성 요약입니다." parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=16;fontColor=#171719;fontStyle=0;">
+        <mxCell id="3" value="2026년 10월 · 배포 · 확장 · 관측 · 설정 관리" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=16;fontColor=#171719;fontStyle=0;">
           <mxGeometry x="40" y="80" width="1200" height="50" as="geometry" />
         </mxCell>
         <mxCell id="4" value="개발부터 배포까지" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=20;fontColor=#171719;fontStyle=1;">
@@ -80,7 +80,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="22" value="EKS에서 OKE로 운영 기반을 옮기고 배포·관측·비용 관리 방식을 함께 정리했습니다.&lt;br&gt;각 구성요소의 역할을 보여 주는 요약이며, 실제 서브넷·보안 정책·운영망 연결도는 포함하지 않았습니다." parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=17;fontColor=#171719;fontStyle=0;">
+        <mxCell id="22" value="EKS에서 OKE로 운영 기반을 옮기고 배포·관측·비용 관리 방식을 함께 정리했습니다." parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=17;fontColor=#171719;fontStyle=0;">
           <mxGeometry x="40" y="830" width="1160" height="70" as="geometry" />
         </mxCell>
       </root>

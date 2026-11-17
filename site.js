@@ -1,32 +1,14 @@
 // semi; portfolio: 구성도 보기(dialog), 시연 영상, 장애 재현 그림 재생
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// 구성도: 누르면 dialog에 원본 PNG를 기기 픽셀 1:1 폭으로 띄운다.
-// 새 탭으로 열거나 JS가 없으면 링크대로 PNG가 열린다.
+// 그림을 누르면 뷰어를 연다. 뷰어의 이미지는 원본 파일 링크다.
 const viewer = document.querySelector("dialog.viewer");
 if (viewer) {
   const image = viewer.querySelector("img");
   const title = viewer.querySelector(".viewer__title");
-  const originalLink = viewer.querySelector(".viewer__open");
+  const originalLink = viewer.querySelector(".viewer__image-link");
   const body = viewer.querySelector(".viewer__body");
-  const fitButton = viewer.querySelector(".viewer__fit");
   let opener = null;
-  let fitMode = false;
-
-  const fitToDevicePixels = () => {
-    const naturalWidth = image.naturalWidth / devicePixelRatio;
-    image.style.width = `${fitMode ? Math.min(naturalWidth, body.clientWidth) : naturalWidth}px`;
-    if (fitButton) fitButton.textContent = fitMode ? '확대 보기' : '전체 보기';
-  };
-  image.addEventListener("load", fitToDevicePixels);
-  fitButton?.addEventListener('click', () => {
-    fitMode = !fitMode;
-    fitToDevicePixels();
-    body.scrollTo(0, 0);
-  });
-  addEventListener('resize', () => {
-    if (viewer.open) fitToDevicePixels();
-  });
 
   document.querySelectorAll("a[data-diagram]").forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -37,14 +19,12 @@ if (viewer) {
       opener = link;
       title.textContent = link.dataset.title;
       originalLink.href = link.href;
+      originalLink.setAttribute('aria-label', `${link.dataset.title} 원본 이미지`);
       image.alt = link.dataset.title;
-      fitMode = false;
       if (image.src !== link.href) {
-        image.style.width = "";
         image.src = link.href;
       }
       viewer.showModal();
-      if (image.complete && image.naturalWidth) fitToDevicePixels();
       body.scrollTo(0, 0);
     });
   });

@@ -8,7 +8,7 @@
         <mxCell id="2" value="ALEX · 수업 데이터를 답변으로 연결하는 구조" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=28;fontColor=#171719;fontStyle=1;">
           <mxGeometry x="40" y="20" width="1200" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="3" value="기존 RAG 튜터 · 2026년 11월 코드 확인 · 배치 인덱싱과 요청 처리를 나누어 표시했습니다." parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=16;fontColor=#171719;fontStyle=0;">
+        <mxCell id="3" value="기존 RAG 튜터 · STT 인덱싱 · pgvector 검색 · 개인 메모리" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=16;fontColor=#171719;fontStyle=0;">
           <mxGeometry x="40" y="80" width="1200" height="50" as="geometry" />
         </mxCell>
         <mxCell id="4" value="수업 데이터 준비" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=19;fontColor=#171719;fontStyle=1;">
@@ -98,9 +98,6 @@
               <mxPoint x="1240" y="485" />
             </Array>
           </mxGeometry>
-        </mxCell>
-        <mxCell id="30" value="구성 관계를 설명한 도식입니다. 모든 요청이 검색·생성을 거치는 것은 아니며, 분기는 응답 흐름도에서 설명합니다." parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=16;fontColor=#171719;fontStyle=0;">
-          <mxGeometry x="40" y="940" width="1170" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -8,7 +8,7 @@
         <mxCell id="2" value="ALEX에서 LION으로 · 응답과 수업 맥락의 역할 분리" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=28;fontColor=#171719;fontStyle=1;">
           <mxGeometry x="40" y="20" width="1200" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="3" value="2026년 11월 v2 설계·리뷰 제안 · 설계 기여 사례이며 구현·배포 성과를 뜻하지 않습니다." parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=16;fontColor=#171719;fontStyle=0;">
+        <mxCell id="3" value="2026년 11월 · LION v2 구조 설계" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=16;fontColor=#171719;fontStyle=0;">
           <mxGeometry x="40" y="80" width="1200" height="50" as="geometry" />
         </mxCell>
         <mxCell id="4" value="기존 ALEX의 주요 학습 질의 경로" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=20;fontColor=#171719;fontStyle=1;">
@@ -89,7 +89,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="27" value="설계 판단: 일반 질문의 RAG 의존을 줄이고 수업 데이터는 질문 추천과 복습에 활용합니다.&lt;br&gt;역할: 방향 전환 가이드 · 서비스 책임 분리 · 구조 설계 리뷰. 설계 보드와 구현은 담당 개발자가 맡았습니다.&lt;br&gt;정서·긴급 처리 등 미결정 정책과 출시 뒤 효과는 이 도식의 성과로 포함하지 않았습니다." parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=17;fontColor=#171719;fontStyle=0;">
+        <mxCell id="27" value="일반 질문의 RAG 의존을 줄이고 수업 데이터는 질문 추천과 복습에 활용합니다.&lt;br&gt;담당 역할: 방향 전환 가이드 · 서비스 책임 분리 · 구조 설계 리뷰" parent="1" vertex="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Pretendard;fontSize=17;fontColor=#171719;fontStyle=0;">
           <mxGeometry x="40" y="980" width="1180" height="90" as="geometry" />
         </mxCell>
       </root>

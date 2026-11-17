@@ -1,0 +1,3267 @@
+[
+  {
+    "id": "alex-architecture",
+    "title": "ALEX 수업 데이터와 RAG 구성",
+    "summary": "강의 전사 데이터를 검색 가능한 자료로 만들고, 수업 맥락과 개인 메모리를 답변에 연결합니다.",
+    "date": "2026년 11월 코드 확인",
+    "nodes": [
+      {
+        "id": "stt",
+        "label": "강의 STT",
+        "role": "객체 저장소의 전사 파일",
+        "icon": "audio",
+        "x": 150,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "index",
+        "label": "STT 인덱서",
+        "role": "강사 발화 추출·전처리",
+        "icon": "file",
+        "x": 425,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "embedding",
+        "label": "요약·청킹·임베딩",
+        "role": "의미 단위·시간대별 요약",
+        "icon": "openai",
+        "x": 700,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "vector",
+        "label": "PostgreSQL",
+        "role": "pgvector·수업 자료",
+        "icon": "postgresql",
+        "x": 975,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "user",
+        "label": "수강생 질문",
+        "role": "캠프파이어·LMS·클래스챗",
+        "icon": "user",
+        "x": 150,
+        "y": 360,
+        "decision": false
+      },
+      {
+        "id": "normalize",
+        "label": "질문 정규화",
+        "role": "의도·날짜·검색어",
+        "icon": "openai",
+        "x": 425,
+        "y": 360,
+        "decision": false
+      },
+      {
+        "id": "search",
+        "label": "검색 전략 선택",
+        "role": "수업 맥락·개인 메모리",
+        "icon": "search",
+        "x": 700,
+        "y": 360,
+        "decision": false
+      },
+      {
+        "id": "memory",
+        "label": "개인 메모리",
+        "role": "선호·사실·오답 약점",
+        "icon": "brain",
+        "x": 975,
+        "y": 360,
+        "decision": false
+      },
+      {
+        "id": "answer",
+        "label": "답변 생성",
+        "role": "자료·말투 규칙·근거",
+        "icon": "openai",
+        "x": 700,
+        "y": 620,
+        "decision": false
+      },
+      {
+        "id": "record",
+        "label": "응답·대화 기록",
+        "role": "근거 반환·대화 인덱싱",
+        "icon": "message",
+        "x": 425,
+        "y": 620,
+        "decision": false
+      },
+      {
+        "id": "update",
+        "label": "메모리 갱신",
+        "role": "대화 후 별도 세션 처리",
+        "icon": "refresh",
+        "x": 975,
+        "y": 620,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "stt",
+        "to": "index",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "index",
+        "to": "embedding",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "embedding",
+        "to": "vector",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "user",
+        "to": "normalize",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "normalize",
+        "to": "search",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "search",
+        "to": "vector",
+        "label": "수업 자료",
+        "kind": "primary",
+        "sides": [
+          "top",
+          "bottom"
+        ],
+        "via": [
+          [
+            700,
+            275
+          ],
+          [
+            975,
+            275
+          ]
+        ],
+        "labelAt": [
+          835,
+          265
+        ]
+      },
+      {
+        "from": "memory",
+        "to": "search",
+        "label": "관련 기억",
+        "kind": "secondary"
+      },
+      {
+        "from": "search",
+        "to": "answer",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "answer",
+        "to": "record",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "record",
+        "to": "update",
+        "label": "대화 후 처리",
+        "kind": "dashed",
+        "sides": [
+          "bottom",
+          "bottom"
+        ],
+        "via": [
+          [
+            425,
+            800
+          ],
+          [
+            975,
+            800
+          ]
+        ]
+      },
+      {
+        "from": "update",
+        "to": "memory",
+        "label": "갱신",
+        "kind": "dashed",
+        "sides": [
+          "right",
+          "right"
+        ],
+        "via": [
+          [
+            1150,
+            652
+          ],
+          [
+            1150,
+            392
+          ]
+        ],
+        "labelAt": [
+          1200,
+          520
+        ]
+      }
+    ],
+    "groups": [
+      {
+        "label": "수업 데이터 준비",
+        "x": 30,
+        "y": 30,
+        "w": 1080,
+        "h": 230
+      },
+      {
+        "label": "질문과 답변",
+        "x": 30,
+        "y": 290,
+        "w": 1080,
+        "h": 480
+      }
+    ],
+    "height": 860,
+    "source": "alex-architecture"
+  },
+  {
+    "id": "alex-response-flow",
+    "title": "ALEX 질문 처리 흐름",
+    "summary": "질문의 의도에 맞춰 응답 경로를 나누고, 근거 자료가 필요한 요청은 생성 전에 자료 유무를 확인합니다.",
+    "date": "2026년 11월 코드 확인",
+    "nodes": [
+      {
+        "id": "question",
+        "label": "질문 수신",
+        "role": "과정·사용자 맥락",
+        "icon": "message",
+        "x": 250,
+        "y": 80,
+        "decision": false
+      },
+      {
+        "id": "normalize",
+        "label": "질문 정규화·분류",
+        "role": "의도·날짜·검색어",
+        "icon": "openai",
+        "x": 700,
+        "y": 80,
+        "decision": false
+      },
+      {
+        "id": "immediate",
+        "label": "즉시 응답 유형?",
+        "role": "안내·비학습·정책 응답",
+        "icon": "branch",
+        "x": 700,
+        "y": 300,
+        "decision": true
+      },
+      {
+        "id": "notice",
+        "label": "안내 응답",
+        "role": "검색 없이 반환",
+        "icon": "send",
+        "x": 1150,
+        "y": 300,
+        "decision": false
+      },
+      {
+        "id": "lookup",
+        "label": "자료·메모리 조회",
+        "role": "검색 결과와 기억 병렬 조회",
+        "icon": "search",
+        "x": 700,
+        "y": 520,
+        "decision": false
+      },
+      {
+        "id": "personal",
+        "label": "개인 학습 상태",
+        "role": "개인 메모리로 응답",
+        "icon": "brain",
+        "x": 250,
+        "y": 300,
+        "decision": false
+      },
+      {
+        "id": "missing",
+        "label": "요약·이력 자료 없음?",
+        "role": "사실 자료가 필요한 요청",
+        "icon": "branch",
+        "x": 700,
+        "y": 740,
+        "decision": true
+      },
+      {
+        "id": "stop",
+        "label": "생성 중단·안내",
+        "role": "자료 없음·날짜 변경 안내",
+        "icon": "file",
+        "x": 250,
+        "y": 740,
+        "decision": false
+      },
+      {
+        "id": "generate",
+        "label": "답변 생성",
+        "role": "자료·메모리·공통 말투",
+        "icon": "openai",
+        "x": 1150,
+        "y": 740,
+        "decision": false
+      },
+      {
+        "id": "record",
+        "label": "응답·기록",
+        "role": "답변과 호출 정보 보관",
+        "icon": "database",
+        "x": 1150,
+        "y": 960,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "question",
+        "to": "normalize",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "normalize",
+        "to": "immediate",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "immediate",
+        "to": "notice",
+        "label": "예",
+        "kind": "primary"
+      },
+      {
+        "from": "immediate",
+        "to": "lookup",
+        "label": "아니요",
+        "kind": "primary"
+      },
+      {
+        "from": "normalize",
+        "to": "personal",
+        "label": "개인 상태",
+        "kind": "secondary",
+        "labelAt": [
+          450,
+          250
+        ]
+      },
+      {
+        "from": "lookup",
+        "to": "missing",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "missing",
+        "to": "stop",
+        "label": "예",
+        "kind": "primary"
+      },
+      {
+        "from": "missing",
+        "to": "generate",
+        "label": "아니요",
+        "kind": "primary"
+      },
+      {
+        "from": "generate",
+        "to": "record",
+        "label": "",
+        "kind": "primary"
+      }
+    ],
+    "groups": [],
+    "height": 1140,
+    "source": "alex-response-flow"
+  },
+  {
+    "id": "alex-lion-design",
+    "title": "ALEX에서 LION으로 바꾼 설계",
+    "summary": "일반 질문의 RAG 의존을 줄이고, 수업 데이터는 키워드·복습·추천 질문에 활용하도록 책임을 나눴습니다.",
+    "date": "2026년 11월 v2 구조 설계",
+    "nodes": [
+      {
+        "id": "old-q",
+        "label": "수강생 질문",
+        "role": "학습 질문 입력",
+        "icon": "user",
+        "x": 150,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "old-class",
+        "label": "질문 분류 LLM",
+        "role": "의도별 경로 결정",
+        "icon": "openai",
+        "x": 425,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "old-rag",
+        "label": "RAG 검색",
+        "role": "수업 자료·대화 맥락",
+        "icon": "search",
+        "x": 700,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "old-answer",
+        "label": "답변 LLM",
+        "role": "검색 결과로 답변 구성",
+        "icon": "openai",
+        "x": 975,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "new-q",
+        "label": "직접·추천 질문",
+        "role": "질문을 시작하는 화면",
+        "icon": "message",
+        "x": 150,
+        "y": 370,
+        "decision": false
+      },
+      {
+        "id": "limit",
+        "label": "보안·사용 한도",
+        "role": "응답 허용 범위 확인",
+        "icon": "lock",
+        "x": 425,
+        "y": 370,
+        "decision": false
+      },
+      {
+        "id": "new-answer",
+        "label": "일반 LLM 답변",
+        "role": "대화 맥락·페르소나",
+        "icon": "openai",
+        "x": 700,
+        "y": 370,
+        "decision": false
+      },
+      {
+        "id": "suggest",
+        "label": "답변·다음 질문",
+        "role": "추천 질문으로 대화 연결",
+        "icon": "send",
+        "x": 975,
+        "y": 370,
+        "decision": false
+      },
+      {
+        "id": "course",
+        "label": "기존 수업 데이터",
+        "role": "시간대별 요약·출결",
+        "icon": "database",
+        "x": 150,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "context",
+        "label": "수업 맥락 읽기 API",
+        "role": "데이터 제공 책임 분리",
+        "icon": "server",
+        "x": 425,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "entry",
+        "label": "키워드·복습 진입",
+        "role": "앞 시간·전날·놓친 수업",
+        "icon": "search",
+        "x": 700,
+        "y": 660,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "old-q",
+        "to": "old-class",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "old-class",
+        "to": "old-rag",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "old-rag",
+        "to": "old-answer",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "new-q",
+        "to": "limit",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "limit",
+        "to": "new-answer",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "new-answer",
+        "to": "suggest",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "course",
+        "to": "context",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "context",
+        "to": "entry",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "context",
+        "to": "new-answer",
+        "label": "요약 참고",
+        "kind": "secondary",
+        "sides": [
+          "top",
+          "bottom"
+        ],
+        "labelAt": [
+          575,
+          590
+        ]
+      }
+    ],
+    "groups": [
+      {
+        "label": "기존 ALEX의 학습 질의",
+        "x": 30,
+        "y": 30,
+        "w": 1080,
+        "h": 230
+      },
+      {
+        "label": "LION v2의 응답과 수업 맥락",
+        "x": 30,
+        "y": 300,
+        "w": 1080,
+        "h": 520
+      }
+    ],
+    "height": 860,
+    "source": "alex-lion-design"
+  },
+  {
+    "id": "oke-platform",
+    "title": "Kubernetes·OKE 운영 플랫폼",
+    "summary": "EKS에서 OKE로 운영 기반을 옮기고 빌드, 배포, 확장과 관측을 공통 운영 흐름으로 연결했습니다.",
+    "date": "2026년 10월 구성도, 11월 stack-diagram 자료 기반",
+    "nodes": [
+      {
+        "id": "actions",
+        "label": "GitHub Actions",
+        "role": "빌드·이미지 발행",
+        "icon": "githubactions",
+        "x": 150,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "registry",
+        "label": "컨테이너 레지스트리",
+        "role": "배포 이미지 보관",
+        "icon": "layers",
+        "x": 425,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "gitops",
+        "label": "GitOps·ArgoCD",
+        "role": "매니페스트·배포 상태",
+        "icon": "argocd",
+        "x": 700,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "oke",
+        "label": "Kubernetes·OKE",
+        "role": "워크로드 배포·운영",
+        "icon": "kubernetes",
+        "x": 975,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "entry",
+        "label": "Kong Ingress",
+        "role": "서비스 진입·라우팅",
+        "icon": "kong",
+        "x": 150,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "services",
+        "label": "교육·채용 서비스",
+        "role": "LMS·SaaS·ATS·커뮤니티",
+        "icon": "fastapi",
+        "x": 425,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "data",
+        "label": "데이터·파일",
+        "role": "PostgreSQL·Redis·Storage",
+        "icon": "database",
+        "x": 700,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "scale",
+        "label": "자동 확장",
+        "role": "노드풀·Karpenter",
+        "icon": "kubernetes",
+        "x": 150,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "metrics",
+        "label": "관측·장애 분석",
+        "role": "Prometheus·Loki·Grafana",
+        "icon": "grafana",
+        "x": 425,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "infra",
+        "label": "인프라·설정 관리",
+        "role": "Terraform·External Secrets",
+        "icon": "terraform",
+        "x": 700,
+        "y": 660,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "actions",
+        "to": "registry",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "actions",
+        "to": "gitops",
+        "label": "배포 설정 갱신",
+        "kind": "dashed",
+        "sides": [
+          "top",
+          "top"
+        ],
+        "via": [
+          [
+            150,
+            50
+          ],
+          [
+            700,
+            50
+          ]
+        ],
+        "labelAt": [
+          425,
+          40
+        ]
+      },
+      {
+        "from": "gitops",
+        "to": "oke",
+        "label": "배포",
+        "kind": "dashed"
+      },
+      {
+        "from": "registry",
+        "to": "oke",
+        "label": "이미지 사용",
+        "kind": "secondary",
+        "sides": [
+          "bottom",
+          "bottom"
+        ],
+        "via": [
+          [
+            425,
+            270
+          ],
+          [
+            975,
+            270
+          ]
+        ],
+        "labelAt": [
+          700,
+          260
+        ]
+      },
+      {
+        "from": "entry",
+        "to": "services",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "services",
+        "to": "data",
+        "label": "업무 데이터",
+        "kind": "secondary"
+      },
+      {
+        "from": "scale",
+        "to": "services",
+        "label": "확장",
+        "kind": "secondary",
+        "labelAt": [
+          235,
+          560
+        ],
+        "sides": [
+          "top",
+          "left"
+        ],
+        "via": [
+          [
+            150,
+            570
+          ],
+          [
+            320,
+            570
+          ],
+          [
+            320,
+            412
+          ]
+        ]
+      },
+      {
+        "from": "services",
+        "to": "metrics",
+        "label": "관측",
+        "kind": "secondary"
+      },
+      {
+        "from": "infra",
+        "to": "oke",
+        "label": "설정 관리",
+        "kind": "dashed",
+        "sides": [
+          "right",
+          "right"
+        ],
+        "via": [
+          [
+            1210,
+            692
+          ],
+          [
+            1210,
+            132
+          ]
+        ],
+        "labelAt": [
+          1270,
+          440
+        ]
+      }
+    ],
+    "groups": [],
+    "height": 860,
+    "source": "oke-platform"
+  },
+  {
+    "id": "likelion-platform-architecture",
+    "title": "교육·채용 서비스 연결 구조",
+    "summary": "강의 탐색과 부트캠프 지원, 수업, 취업지원의 흐름과 고객사별로 운영되는 B2B LMS를 구분했습니다.",
+    "date": "2026년 10월 서비스 정의, 11월 구성도 기반",
+    "nodes": [
+      {
+        "id": "likelion",
+        "label": "멋쟁이사자처럼",
+        "role": "단과 강의 판매·결제·수강",
+        "icon": "browser",
+        "x": 200,
+        "y": 120
+      },
+      {
+        "id": "bootcamp",
+        "label": "멋사 부트캠프",
+        "role": "KDT 지원·수강·행정",
+        "icon": "browser",
+        "x": 500,
+        "y": 120
+      },
+      {
+        "id": "campfire",
+        "label": "캠프파이어",
+        "role": "채팅·화상 수업·출석",
+        "icon": "livekit",
+        "x": 800,
+        "y": 120
+      },
+      {
+        "id": "career",
+        "label": "멋사 커리어",
+        "role": "채용·취업지원·취업 집계",
+        "icon": "user",
+        "x": 1150,
+        "y": 120
+      },
+      {
+        "id": "alex",
+        "label": "ALEX",
+        "role": "1:1 질문·학습 복습",
+        "icon": "openai",
+        "x": 800,
+        "y": 360
+      },
+      {
+        "id": "customer",
+        "label": "기업·교육기관",
+        "role": "고객사별 교육 운영",
+        "icon": "user",
+        "x": 200,
+        "y": 640
+      },
+      {
+        "id": "saas",
+        "label": "SaaS / B2B LMS",
+        "role": "고객사 도메인·독립 로그인",
+        "icon": "fastapi",
+        "x": 650,
+        "y": 640
+      },
+      {
+        "id": "program",
+        "label": "교육·해커톤 운영",
+        "role": "과정·모집·출결·과제",
+        "icon": "browser",
+        "x": 1100,
+        "y": 640
+      }
+    ],
+    "edges": [
+      {
+        "from": "likelion",
+        "to": "bootcamp",
+        "label": "과정 탐색·지원",
+        "kind": "primary"
+      },
+      {
+        "from": "bootcamp",
+        "to": "campfire",
+        "label": "수업 입장",
+        "kind": "primary"
+      },
+      {
+        "from": "bootcamp",
+        "to": "career",
+        "label": "수료·취업지원",
+        "kind": "secondary",
+        "sides": [
+          "top",
+          "top"
+        ],
+        "via": [
+          [
+            500,
+            65
+          ],
+          [
+            1150,
+            65
+          ]
+        ],
+        "labelAt": [
+          1010,
+          55
+        ]
+      },
+      {
+        "from": "campfire",
+        "to": "alex",
+        "label": "질문·복습",
+        "kind": "primary"
+      },
+      {
+        "from": "customer",
+        "to": "saas",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "saas",
+        "to": "program",
+        "label": "",
+        "kind": "primary"
+      }
+    ],
+    "groups": [
+      {
+        "label": "멋사 교육과 취업지원",
+        "x": 40,
+        "y": 20,
+        "w": 1320,
+        "h": 500
+      },
+      {
+        "label": "고객사별 독립 운영",
+        "x": 40,
+        "y": 560,
+        "w": 1320,
+        "h": 260
+      }
+    ],
+    "height": 860,
+    "source": "XD Team 서비스 지도·개요, stack/00-overview"
+  },
+  {
+    "id": "ats-architecture",
+    "title": "멋사 커리어(ATS) 구성",
+    "summary": "부트캠프 수료생과 기업을 연결하는 채용 플랫폼으로, 공고·전형·취업 증빙과 취업 집계를 지원합니다.",
+    "date": "2026년 11월 9일 구성도 기반",
+    "nodes": [
+      {
+        "id": "user",
+        "label": "지원자·기업",
+        "role": "지원·공고 관리",
+        "icon": "user",
+        "x": 150,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "web",
+        "label": "지원자 웹",
+        "role": "Next.js",
+        "icon": "nextjs",
+        "x": 425,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "api",
+        "label": "지원자 API",
+        "role": "FastAPI",
+        "icon": "fastapi",
+        "x": 700,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "auth",
+        "label": "멋사 LMS",
+        "role": "SSO·수강권·강의",
+        "icon": "lock",
+        "x": 975,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "operator",
+        "label": "운영자",
+        "role": "채용 운영·관리",
+        "icon": "user",
+        "x": 150,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "back-web",
+        "label": "백오피스 웹",
+        "role": "Next.js",
+        "icon": "nextjs",
+        "x": 425,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "back-api",
+        "label": "운영자 API",
+        "role": "FastAPI",
+        "icon": "fastapi",
+        "x": 700,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "db",
+        "label": "PostgreSQL",
+        "role": "채용 업무 데이터",
+        "icon": "postgresql",
+        "x": 975,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "redis",
+        "label": "Redis",
+        "role": "캐시",
+        "icon": "redis",
+        "x": 1250,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "scheduler",
+        "label": "스케줄러",
+        "role": "자동 반려·파기·정리",
+        "icon": "clock",
+        "x": 700,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "notify",
+        "label": "외부 연동",
+        "role": "메일·알림톡·고용24",
+        "icon": "mail",
+        "x": 975,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "files",
+        "label": "Object Storage",
+        "role": "이력서·면접 녹화",
+        "icon": "cloud",
+        "x": 1250,
+        "y": 100,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "user",
+        "to": "web",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "web",
+        "to": "api",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "api",
+        "to": "auth",
+        "label": "SSO·동기화",
+        "kind": "secondary"
+      },
+      {
+        "from": "operator",
+        "to": "back-web",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "back-web",
+        "to": "back-api",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "api",
+        "to": "db",
+        "label": "업무 데이터",
+        "kind": "primary",
+        "labelAt": [
+          840,
+          305
+        ]
+      },
+      {
+        "from": "back-api",
+        "to": "db",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "api",
+        "to": "redis",
+        "label": "캐시",
+        "kind": "secondary",
+        "sides": [
+          "bottom",
+          "top"
+        ],
+        "via": [
+          [
+            700,
+            270
+          ],
+          [
+            1250,
+            270
+          ]
+        ],
+        "labelAt": [
+          1130,
+          260
+        ]
+      },
+      {
+        "from": "scheduler",
+        "to": "db",
+        "label": "배치",
+        "kind": "dashed",
+        "labelAt": [
+          830,
+          590
+        ]
+      },
+      {
+        "from": "scheduler",
+        "to": "notify",
+        "label": "알림",
+        "kind": "dashed"
+      },
+      {
+        "from": "api",
+        "to": "files",
+        "label": "파일",
+        "kind": "secondary",
+        "sides": [
+          "top",
+          "top"
+        ],
+        "via": [
+          [
+            700,
+            42
+          ],
+          [
+            1250,
+            42
+          ]
+        ],
+        "labelAt": [
+          1100,
+          32
+        ]
+      }
+    ],
+    "groups": [],
+    "height": 860,
+    "source": "stack/03-ats, 기존 ATS 서비스 관계도"
+  },
+  {
+    "id": "saas-architecture",
+    "title": "SaaS LMS/해커톤 구성",
+    "summary": "기업·교육기관이 자기 도메인에서 교육과 해커톤을 운영하는 B2B LMS입니다. 고객사별 데이터와 API·배치의 책임을 나눴습니다.",
+    "date": "2026년 11월 9일 구성도 기반",
+    "nodes": [
+      {
+        "id": "site",
+        "label": "지원 사이트",
+        "role": "Next.js·지원자 화면",
+        "icon": "nextjs",
+        "x": 150,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "gateway",
+        "label": "Kong Ingress",
+        "role": "host 기반 라우팅",
+        "icon": "kong",
+        "x": 425,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "console",
+        "label": "어드민 콘솔",
+        "role": "Next.js·운영 화면",
+        "icon": "nextjs",
+        "x": 700,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "storage",
+        "label": "파일 저장소",
+        "role": "직접 업로드",
+        "icon": "cloud",
+        "x": 975,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "front",
+        "label": "지원자 API",
+        "role": "FastAPI",
+        "icon": "fastapi",
+        "x": 150,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "admin",
+        "label": "운영자 API",
+        "role": "FastAPI",
+        "icon": "fastapi",
+        "x": 425,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "job",
+        "label": "배치",
+        "role": "메일 큐·진도·집계",
+        "icon": "clock",
+        "x": 700,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "notify",
+        "label": "메일·알림톡",
+        "role": "Email Delivery·비즈엠",
+        "icon": "mail",
+        "x": 975,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "redis",
+        "label": "Redis",
+        "role": "캐시·진도·카운터",
+        "icon": "redis",
+        "x": 150,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "pool",
+        "label": "PgBouncer",
+        "role": "커넥션 풀",
+        "icon": "layers",
+        "x": 425,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "db",
+        "label": "PostgreSQL",
+        "role": "기업별 업무 데이터",
+        "icon": "postgresql",
+        "x": 700,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "lms",
+        "label": "멋사 LMS",
+        "role": "강의 API",
+        "icon": "server",
+        "x": 1250,
+        "y": 380,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "site",
+        "to": "gateway",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "console",
+        "to": "gateway",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "gateway",
+        "to": "front",
+        "label": "",
+        "kind": "primary",
+        "sides": [
+          "bottom",
+          "top"
+        ]
+      },
+      {
+        "from": "gateway",
+        "to": "admin",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "front",
+        "to": "pool",
+        "label": "SQL",
+        "kind": "primary",
+        "labelAt": [
+          280,
+          590
+        ]
+      },
+      {
+        "from": "admin",
+        "to": "pool",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "job",
+        "to": "pool",
+        "label": "SQL",
+        "kind": "secondary",
+        "labelAt": [
+          560,
+          590
+        ]
+      },
+      {
+        "from": "pool",
+        "to": "db",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "front",
+        "to": "redis",
+        "label": "캐시",
+        "kind": "secondary"
+      },
+      {
+        "from": "job",
+        "to": "notify",
+        "label": "발송",
+        "kind": "dashed"
+      },
+      {
+        "from": "site",
+        "to": "storage",
+        "label": "직접 업로드",
+        "kind": "secondary",
+        "sides": [
+          "top",
+          "top"
+        ],
+        "via": [
+          [
+            150,
+            45
+          ],
+          [
+            975,
+            45
+          ]
+        ],
+        "labelAt": [
+          700,
+          35
+        ]
+      },
+      {
+        "from": "front",
+        "to": "lms",
+        "label": "강의 조회",
+        "kind": "secondary",
+        "sides": [
+          "bottom",
+          "bottom"
+        ],
+        "via": [
+          [
+            150,
+            535
+          ],
+          [
+            1250,
+            535
+          ]
+        ],
+        "labelAt": [
+          1140,
+          525
+        ]
+      }
+    ],
+    "groups": [],
+    "height": 860,
+    "source": "stack/02-saas, 기존 SaaS 서비스 관계도"
+  },
+  {
+    "id": "lms-architecture",
+    "title": "멋쟁이사자처럼·부트캠프 공통 구성",
+    "summary": "대표 사이트의 강의 판매·수강과 부트캠프의 모집·훈련 운영을 공통 인증과 학습·결제 API로 지원합니다.",
+    "date": "2026년 11월 9일 구성도 기반",
+    "nodes": [
+      {
+        "id": "web",
+        "label": "멋쟁이사자처럼",
+        "role": "Next.js·강의 판매·수강",
+        "icon": "nextjs",
+        "x": 150,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "gateway",
+        "label": "Kong Ingress",
+        "role": "서비스 라우팅",
+        "icon": "kong",
+        "x": 425,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "admin",
+        "label": "운영·파트너 웹",
+        "role": "Next.js",
+        "icon": "nextjs",
+        "x": 700,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "auth",
+        "label": "인증 서비스",
+        "role": "Flask·OAuth2·Keycloak",
+        "icon": "keycloak",
+        "x": 975,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "learn",
+        "label": "학습 API",
+        "role": "FastAPI·강의·진도·수강권",
+        "icon": "fastapi",
+        "x": 150,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "payment",
+        "label": "결제 API",
+        "role": "결제·쿠폰",
+        "icon": "server",
+        "x": 425,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "ai",
+        "label": "소통·AI API",
+        "role": "메시지·ALEX·학습 자료",
+        "icon": "openai",
+        "x": 700,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "notify",
+        "label": "알림 서비스",
+        "role": "NestJS·메일·알림",
+        "icon": "mail",
+        "x": 975,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "db",
+        "label": "PostgreSQL",
+        "role": "학습·업무 데이터",
+        "icon": "postgresql",
+        "x": 150,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "redis",
+        "label": "Redis",
+        "role": "캐시·학습 진도",
+        "icon": "redis",
+        "x": 425,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "files",
+        "label": "파일 저장소",
+        "role": "강의·학습 자산",
+        "icon": "cloud",
+        "x": 700,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "external",
+        "label": "외부 연동",
+        "role": "결제 PG·Zoom·HRD-Net",
+        "icon": "link",
+        "x": 975,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "bootcamp",
+        "label": "멋사 부트캠프",
+        "role": "Next.js·KDT 모집·훈련",
+        "icon": "nextjs",
+        "x": 1250,
+        "y": 100
+      }
+    ],
+    "edges": [
+      {
+        "from": "web",
+        "to": "gateway",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "admin",
+        "to": "gateway",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "web",
+        "to": "auth",
+        "label": "로그인",
+        "kind": "secondary",
+        "sides": [
+          "top",
+          "top"
+        ],
+        "via": [
+          [
+            150,
+            45
+          ],
+          [
+            975,
+            45
+          ]
+        ],
+        "labelAt": [
+          700,
+          35
+        ]
+      },
+      {
+        "from": "gateway",
+        "to": "learn",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "gateway",
+        "to": "payment",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "gateway",
+        "to": "ai",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "learn",
+        "to": "db",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "learn",
+        "to": "redis",
+        "label": "진도",
+        "kind": "secondary",
+        "labelAt": [
+          280,
+          590
+        ]
+      },
+      {
+        "from": "ai",
+        "to": "files",
+        "label": "수업 자료",
+        "kind": "secondary"
+      },
+      {
+        "from": "payment",
+        "to": "external",
+        "label": "결제 연동",
+        "kind": "secondary",
+        "sides": [
+          "bottom",
+          "top"
+        ],
+        "via": [
+          [
+            425,
+            540
+          ],
+          [
+            975,
+            540
+          ]
+        ],
+        "labelAt": [
+          680,
+          530
+        ]
+      },
+      {
+        "from": "notify",
+        "to": "external",
+        "label": "알림",
+        "kind": "secondary"
+      },
+      {
+        "from": "bootcamp",
+        "to": "gateway",
+        "label": "공통 API",
+        "kind": "secondary",
+        "sides": [
+          "bottom",
+          "right"
+        ],
+        "via": [
+          [
+            1250,
+            270
+          ],
+          [
+            580,
+            270
+          ],
+          [
+            580,
+            132
+          ]
+        ],
+        "labelAt": [
+          1120,
+          260
+        ]
+      }
+    ],
+    "groups": [],
+    "height": 860,
+    "source": "stack/01-lms, XD Team 서비스 개요"
+  },
+  {
+    "id": "community-architecture",
+    "title": "멋사대학 커뮤니티 구성",
+    "summary": "커뮤니티와 운영자 화면을 분리하고, 모집·콘텐츠·채팅 기능과 정기 작업을 연결한 구조입니다.",
+    "date": "2026년 11월 9일 구성도 기반",
+    "nodes": [
+      {
+        "id": "user",
+        "label": "사용자",
+        "role": "수강생·운영자",
+        "icon": "user",
+        "x": 150,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "gateway",
+        "label": "Kong Ingress",
+        "role": "서비스 라우팅",
+        "icon": "kong",
+        "x": 425,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "web",
+        "label": "커뮤니티 웹",
+        "role": "Next.js",
+        "icon": "nextjs",
+        "x": 700,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "admin",
+        "label": "백오피스 웹",
+        "role": "Next.js",
+        "icon": "nextjs",
+        "x": 975,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "api",
+        "label": "커뮤니티 API",
+        "role": "FastAPI",
+        "icon": "fastapi",
+        "x": 700,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "back",
+        "label": "운영자 API",
+        "role": "FastAPI",
+        "icon": "fastapi",
+        "x": 975,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "redis",
+        "label": "Redis",
+        "role": "캐시·채팅",
+        "icon": "redis",
+        "x": 425,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "schedule",
+        "label": "정기 작업",
+        "role": "모집 마감·수집·내보내기",
+        "icon": "clock",
+        "x": 150,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "db",
+        "label": "PostgreSQL",
+        "role": "커뮤니티 업무 데이터",
+        "icon": "postgresql",
+        "x": 700,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "storage",
+        "label": "파일 저장소",
+        "role": "콘텐츠·첨부·내보내기",
+        "icon": "cloud",
+        "x": 975,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "external",
+        "label": "외부 연동",
+        "role": "알림톡·Slack·콘텐츠 수집",
+        "icon": "link",
+        "x": 150,
+        "y": 660,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "user",
+        "to": "gateway",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "gateway",
+        "to": "web",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "gateway",
+        "to": "admin",
+        "label": "",
+        "kind": "primary",
+        "sides": [
+          "top",
+          "top"
+        ],
+        "via": [
+          [
+            425,
+            45
+          ],
+          [
+            975,
+            45
+          ]
+        ]
+      },
+      {
+        "from": "web",
+        "to": "api",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "admin",
+        "to": "back",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "api",
+        "to": "db",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "back",
+        "to": "storage",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "api",
+        "to": "redis",
+        "label": "캐시·채팅",
+        "kind": "secondary"
+      },
+      {
+        "from": "schedule",
+        "to": "external",
+        "label": "수집·알림",
+        "kind": "dashed"
+      },
+      {
+        "from": "schedule",
+        "to": "db",
+        "label": "정기 처리",
+        "kind": "dashed",
+        "labelAt": [
+          430,
+          590
+        ]
+      },
+      {
+        "from": "back",
+        "to": "db",
+        "label": "업무 데이터",
+        "kind": "secondary",
+        "labelAt": [
+          835,
+          590
+        ]
+      }
+    ],
+    "groups": [],
+    "height": 860,
+    "source": "stack/04-community"
+  },
+  {
+    "id": "animal-league-architecture",
+    "title": "애니멀리그 구성",
+    "summary": "해커톤 참가·운영 화면과 API를 나누고, 작업 실행과 배포를 Kubernetes 운영 흐름에 연결했습니다.",
+    "date": "2026년 11월 9일 구성도 기반",
+    "nodes": [
+      {
+        "id": "home",
+        "label": "참가자 웹",
+        "role": "Next.js",
+        "icon": "nextjs",
+        "x": 150,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "gateway",
+        "label": "Kong Ingress",
+        "role": "서비스 라우팅",
+        "icon": "kong",
+        "x": 425,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "back-web",
+        "label": "백오피스 웹",
+        "role": "Next.js",
+        "icon": "nextjs",
+        "x": 700,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "actions",
+        "label": "GitHub Actions",
+        "role": "이미지 빌드·GitOps",
+        "icon": "githubactions",
+        "x": 975,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "argo",
+        "label": "ArgoCD",
+        "role": "Kubernetes 배포",
+        "icon": "argocd",
+        "x": 1250,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "api",
+        "label": "참가자 API",
+        "role": "FastAPI",
+        "icon": "fastapi",
+        "x": 150,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "back-api",
+        "label": "운영자 API",
+        "role": "FastAPI",
+        "icon": "fastapi",
+        "x": 425,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "dispatcher",
+        "label": "Dispatcher·Worker",
+        "role": "정기 실행·작업별 Job",
+        "icon": "kubernetes",
+        "x": 700,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "db",
+        "label": "PostgreSQL",
+        "role": "대회·참가·심사 데이터",
+        "icon": "postgresql",
+        "x": 975,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "redis",
+        "label": "Redis",
+        "role": "캐시",
+        "icon": "redis",
+        "x": 150,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "storage",
+        "label": "Object Storage",
+        "role": "서비스 파일·첨부",
+        "icon": "cloud",
+        "x": 425,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "external",
+        "label": "외부 연동",
+        "role": "카카오·알림톡·메일",
+        "icon": "link",
+        "x": 700,
+        "y": 660,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "home",
+        "to": "gateway",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "back-web",
+        "to": "gateway",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "gateway",
+        "to": "api",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "gateway",
+        "to": "back-api",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "actions",
+        "to": "argo",
+        "label": "배포 설정",
+        "kind": "dashed"
+      },
+      {
+        "from": "api",
+        "to": "redis",
+        "label": "캐시",
+        "kind": "secondary"
+      },
+      {
+        "from": "back-api",
+        "to": "storage",
+        "label": "파일",
+        "kind": "secondary"
+      },
+      {
+        "from": "dispatcher",
+        "to": "db",
+        "label": "작업 처리",
+        "kind": "primary"
+      },
+      {
+        "from": "dispatcher",
+        "to": "external",
+        "label": "알림·연동",
+        "kind": "secondary"
+      },
+      {
+        "from": "back-api",
+        "to": "db",
+        "label": "업무 데이터",
+        "kind": "secondary",
+        "sides": [
+          "bottom",
+          "bottom"
+        ],
+        "via": [
+          [
+            425,
+            555
+          ],
+          [
+            975,
+            555
+          ]
+        ],
+        "labelAt": [
+          800,
+          545
+        ]
+      },
+      {
+        "from": "api",
+        "to": "db",
+        "label": "업무 데이터",
+        "kind": "secondary",
+        "sides": [
+          "top",
+          "top"
+        ],
+        "via": [
+          [
+            150,
+            300
+          ],
+          [
+            975,
+            300
+          ]
+        ],
+        "labelAt": [
+          800,
+          290
+        ]
+      }
+    ],
+    "groups": [],
+    "height": 860,
+    "source": "stack/05-animal-league"
+  },
+  {
+    "id": "campfire-architecture",
+    "title": "Campfire 수업·미디어 구성",
+    "summary": "채팅·화상·녹화·출석을 제공하는 비대면 교육 운영 플랫폼입니다. 수업 전사 데이터를 AI 학습 자료에 연결합니다.",
+    "date": "2026년 11월 9일 구성도 기반",
+    "nodes": [
+      {
+        "id": "client",
+        "label": "클라이언트",
+        "role": "Electron·웹",
+        "icon": "electron",
+        "x": 150,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "web",
+        "label": "Web",
+        "role": "Next.js·수업 제어",
+        "icon": "nextjs",
+        "x": 425,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "api",
+        "label": "Socket API",
+        "role": "실시간 수업·채팅",
+        "icon": "socketio",
+        "x": 700,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "db",
+        "label": "PostgreSQL",
+        "role": "수업·녹화 기록",
+        "icon": "postgresql",
+        "x": 975,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "stt",
+        "label": "STT 프록시",
+        "role": "음성 전사 중계",
+        "icon": "audio",
+        "x": 150,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "livekit",
+        "label": "LiveKit",
+        "role": "실시간 미디어",
+        "icon": "livekit",
+        "x": 425,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "egress",
+        "label": "Egress",
+        "role": "녹화·합성·업로드",
+        "icon": "video",
+        "x": 700,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "store",
+        "label": "Object Storage",
+        "role": "녹화·전사 파일",
+        "icon": "cloud",
+        "x": 975,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "daglo",
+        "label": "Daglo STT",
+        "role": "음성 전사",
+        "icon": "audio",
+        "x": 150,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "upload",
+        "label": "전사 업로더",
+        "role": "전사 파일 주기적 업로드",
+        "icon": "file",
+        "x": 700,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "ai",
+        "label": "AI 노트·퀴즈",
+        "role": "LMS 배치·학습 자료",
+        "icon": "openai",
+        "x": 1250,
+        "y": 380,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "client",
+        "to": "web",
+        "label": "HTTPS",
+        "kind": "primary"
+      },
+      {
+        "from": "client",
+        "to": "api",
+        "label": "WSS",
+        "kind": "primary",
+        "sides": [
+          "top",
+          "top"
+        ],
+        "via": [
+          [
+            150,
+            45
+          ],
+          [
+            700,
+            45
+          ]
+        ],
+        "labelAt": [
+          425,
+          35
+        ]
+      },
+      {
+        "from": "web",
+        "to": "db",
+        "label": "업무 데이터",
+        "kind": "secondary",
+        "sides": [
+          "bottom",
+          "bottom"
+        ],
+        "via": [
+          [
+            425,
+            275
+          ],
+          [
+            975,
+            275
+          ]
+        ],
+        "labelAt": [
+          850,
+          265
+        ]
+      },
+      {
+        "from": "api",
+        "to": "db",
+        "label": "업무 데이터",
+        "kind": "secondary"
+      },
+      {
+        "from": "client",
+        "to": "stt",
+        "label": "음성",
+        "kind": "primary"
+      },
+      {
+        "from": "client",
+        "to": "livekit",
+        "label": "WebRTC",
+        "kind": "primary",
+        "sides": [
+          "bottom",
+          "top"
+        ],
+        "labelAt": [
+          280,
+          300
+        ]
+      },
+      {
+        "from": "web",
+        "to": "livekit",
+        "label": "녹화 요청",
+        "kind": "secondary"
+      },
+      {
+        "from": "livekit",
+        "to": "egress",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "egress",
+        "to": "store",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "store",
+        "to": "ai",
+        "label": "전사 자료",
+        "kind": "primary"
+      },
+      {
+        "from": "stt",
+        "to": "daglo",
+        "label": "gRPC",
+        "kind": "primary"
+      },
+      {
+        "from": "stt",
+        "to": "upload",
+        "label": "전사 파일",
+        "kind": "secondary",
+        "labelAt": [
+          410,
+          595
+        ]
+      },
+      {
+        "from": "upload",
+        "to": "store",
+        "label": "업로드",
+        "kind": "dashed",
+        "labelAt": [
+          835,
+          595
+        ]
+      }
+    ],
+    "groups": [],
+    "height": 860,
+    "source": "stack/07-campfire, 기존 수업·STT 관계도"
+  },
+  {
+    "id": "liveroom-classchat-architecture",
+    "title": "라이브룸·클래스챗 구성",
+    "summary": "화상 수업의 입장·미디어·녹화·전사를 나누고, 강의별 채팅과 AI 학습 기능을 함께 연결합니다.",
+    "date": "2026년 11월 9일 구성도 기반",
+    "nodes": [
+      {
+        "id": "user",
+        "label": "수강생·강사",
+        "role": "브라우저",
+        "icon": "user",
+        "x": 150,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "lms",
+        "label": "멋사 LMS",
+        "role": "수업 입장 링크",
+        "icon": "browser",
+        "x": 425,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "web",
+        "label": "Jitsi Web",
+        "role": "Prosody·Jicofo",
+        "icon": "jitsi",
+        "x": 700,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "jvb",
+        "label": "Videobridge",
+        "role": "실시간 미디어",
+        "icon": "video",
+        "x": 975,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "chat",
+        "label": "클래스챗",
+        "role": "Rocket.Chat",
+        "icon": "rocket",
+        "x": 150,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "mongo",
+        "label": "MongoDB",
+        "role": "채팅 데이터",
+        "icon": "mongodb",
+        "x": 425,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "rec",
+        "label": "Jibri",
+        "role": "수업 녹화",
+        "icon": "video",
+        "x": 700,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "stt",
+        "label": "Jigasi·Daglo",
+        "role": "음성 전사",
+        "icon": "audio",
+        "x": 975,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "ai",
+        "label": "AI 학습 기능",
+        "role": "노트·퀴즈·챗봇",
+        "icon": "openai",
+        "x": 425,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "storage",
+        "label": "파일 저장소",
+        "role": "녹화·STT 결과",
+        "icon": "cloud",
+        "x": 700,
+        "y": 660,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "user",
+        "to": "lms",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "lms",
+        "to": "web",
+        "label": "입장",
+        "kind": "primary"
+      },
+      {
+        "from": "web",
+        "to": "jvb",
+        "label": "수업 미디어",
+        "kind": "primary"
+      },
+      {
+        "from": "user",
+        "to": "chat",
+        "label": "수업 채팅",
+        "kind": "primary"
+      },
+      {
+        "from": "chat",
+        "to": "mongo",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "web",
+        "to": "rec",
+        "label": "녹화",
+        "kind": "primary"
+      },
+      {
+        "from": "jvb",
+        "to": "stt",
+        "label": "음성",
+        "kind": "primary"
+      },
+      {
+        "from": "rec",
+        "to": "storage",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "stt",
+        "to": "storage",
+        "label": "전사 파일",
+        "kind": "primary",
+        "labelAt": [
+          835,
+          595
+        ]
+      },
+      {
+        "from": "storage",
+        "to": "ai",
+        "label": "학습 자료",
+        "kind": "primary"
+      },
+      {
+        "from": "ai",
+        "to": "chat",
+        "label": "DM·챗봇",
+        "kind": "secondary",
+        "labelAt": [
+          280,
+          595
+        ]
+      }
+    ],
+    "groups": [],
+    "height": 860,
+    "source": "stack/06-liveroom-classchat"
+  },
+  {
+    "id": "future-resume-architecture",
+    "title": "미래이력서 생성·검수 구성",
+    "summary": "열람 권한을 판단하는 API와 생성 워커를 나누고, 코드 검증과 LLM 검수를 통과한 현재본을 저장합니다.",
+    "date": "2026년 10월 설계",
+    "nodes": [
+      {
+        "id": "user",
+        "label": "지원자 화면",
+        "role": "열람·PDF",
+        "icon": "browser",
+        "x": 150,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "api",
+        "label": "본인 API",
+        "role": "요청자·노출 조건 확인",
+        "icon": "fastapi",
+        "x": 425,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "resume",
+        "label": "현재 이력서",
+        "role": "현재본·변경 이력",
+        "icon": "database",
+        "x": 700,
+        "y": 100,
+        "decision": false
+      },
+      {
+        "id": "admin",
+        "label": "운영자 화면",
+        "role": "현황·수정·템플릿",
+        "icon": "browser",
+        "x": 150,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "admin-api",
+        "label": "운영자 API",
+        "role": "권한·재생성·정합 복구",
+        "icon": "fastapi",
+        "x": 425,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "worker",
+        "label": "생성 워커",
+        "role": "생성·검수·재시도",
+        "icon": "server",
+        "x": 700,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "llm",
+        "label": "OpenAI API",
+        "role": "생성·LLM 검수",
+        "icon": "openai",
+        "x": 975,
+        "y": 380,
+        "decision": false
+      },
+      {
+        "id": "event",
+        "label": "지원·합불 변경",
+        "role": "업무 이벤트",
+        "icon": "send",
+        "x": 150,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "internal",
+        "label": "내부 연동",
+        "role": "생성·갱신·파기 요청",
+        "icon": "link",
+        "x": 425,
+        "y": 660,
+        "decision": false
+      },
+      {
+        "id": "policy",
+        "label": "검수·재시도",
+        "role": "코드 검증·최대 10회",
+        "icon": "check",
+        "x": 700,
+        "y": 660,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "user",
+        "to": "api",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "api",
+        "to": "resume",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "admin",
+        "to": "admin-api",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "admin-api",
+        "to": "worker",
+        "label": "생성 요청",
+        "kind": "primary"
+      },
+      {
+        "from": "worker",
+        "to": "llm",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "worker",
+        "to": "resume",
+        "label": "현재본·이력 저장",
+        "kind": "primary"
+      },
+      {
+        "from": "event",
+        "to": "internal",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "internal",
+        "to": "worker",
+        "label": "작업 등록",
+        "kind": "dashed",
+        "labelAt": [
+          615,
+          565
+        ],
+        "sides": [
+          "right",
+          "left"
+        ],
+        "via": [
+          [
+            580,
+            692
+          ],
+          [
+            580,
+            412
+          ]
+        ]
+      },
+      {
+        "from": "worker",
+        "to": "policy",
+        "label": "검수 정책",
+        "kind": "secondary"
+      }
+    ],
+    "groups": [],
+    "height": 860,
+    "source": "future-resume-architecture"
+  },
+  {
+    "id": "future-resume-plan-user-flow",
+    "title": "미래이력서 사용자 흐름",
+    "summary": "로그인과 본인 여부, 열람 가능한 상태를 확인한 뒤 합불 결과에 따라 다음 행동을 안내합니다.",
+    "date": "2026년 10월 설계",
+    "nodes": [
+      {
+        "id": "entry",
+        "label": "미래이력서 진입",
+        "role": "수강신청 화면의 카드",
+        "icon": "file",
+        "x": 700,
+        "y": 60,
+        "decision": false
+      },
+      {
+        "id": "login",
+        "label": "로그인 상태?",
+        "role": "세션 확인",
+        "icon": "branch",
+        "x": 700,
+        "y": 240,
+        "decision": true
+      },
+      {
+        "id": "signin",
+        "label": "로그인",
+        "role": "원래 주소로 복귀",
+        "icon": "lock",
+        "x": 1150,
+        "y": 240,
+        "decision": false
+      },
+      {
+        "id": "owner",
+        "label": "본인 이력서?",
+        "role": "요청자 확인",
+        "icon": "branch",
+        "x": 700,
+        "y": 420,
+        "decision": true
+      },
+      {
+        "id": "denied",
+        "label": "열람 불가 안내",
+        "role": "열람 기록 저장 안 함",
+        "icon": "lock",
+        "x": 1150,
+        "y": 420,
+        "decision": false
+      },
+      {
+        "id": "state",
+        "label": "진입 시점 상태",
+        "role": "지원·열람 가능 여부",
+        "icon": "branch",
+        "x": 700,
+        "y": 600,
+        "decision": true
+      },
+      {
+        "id": "apply",
+        "label": "지원 중 안내",
+        "role": "수강신청으로 이동",
+        "icon": "browser",
+        "x": 250,
+        "y": 600,
+        "decision": false
+      },
+      {
+        "id": "unavailable",
+        "label": "열람 불가 안내",
+        "role": "그 밖의 조건 미충족",
+        "icon": "file",
+        "x": 1150,
+        "y": 600,
+        "decision": false
+      },
+      {
+        "id": "view",
+        "label": "미래이력서 열람",
+        "role": "열람 기록 저장",
+        "icon": "file",
+        "x": 700,
+        "y": 780,
+        "decision": false
+      },
+      {
+        "id": "result",
+        "label": "합불 결과",
+        "role": "결과별 다음 행동",
+        "icon": "branch",
+        "x": 700,
+        "y": 960,
+        "decision": true
+      },
+      {
+        "id": "wait",
+        "label": "예비합격",
+        "role": "사전 알림 신청",
+        "icon": "mail",
+        "x": 250,
+        "y": 960,
+        "decision": false
+      },
+      {
+        "id": "fail",
+        "label": "불합격",
+        "role": "재지원 문의·다음 기수 알림",
+        "icon": "refresh",
+        "x": 1150,
+        "y": 960,
+        "decision": false
+      },
+      {
+        "id": "work24",
+        "label": "고용24 신청",
+        "role": "합격 후 신청으로 이동",
+        "icon": "link",
+        "x": 700,
+        "y": 1140,
+        "decision": false
+      },
+      {
+        "id": "record",
+        "label": "클릭 기록",
+        "role": "고용24 이동 CTA",
+        "icon": "chart",
+        "x": 700,
+        "y": 1320,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "entry",
+        "to": "login",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "login",
+        "to": "signin",
+        "label": "아니요",
+        "kind": "primary"
+      },
+      {
+        "from": "login",
+        "to": "owner",
+        "label": "예",
+        "kind": "primary"
+      },
+      {
+        "from": "signin",
+        "to": "owner",
+        "label": "로그인 후",
+        "kind": "secondary",
+        "sides": [
+          "bottom",
+          "top"
+        ],
+        "via": [
+          [
+            1150,
+            390
+          ],
+          [
+            700,
+            390
+          ]
+        ],
+        "labelAt": [
+          1030,
+          380
+        ]
+      },
+      {
+        "from": "owner",
+        "to": "denied",
+        "label": "아니요",
+        "kind": "primary"
+      },
+      {
+        "from": "owner",
+        "to": "state",
+        "label": "예",
+        "kind": "primary"
+      },
+      {
+        "from": "state",
+        "to": "apply",
+        "label": "지원 중",
+        "kind": "primary"
+      },
+      {
+        "from": "state",
+        "to": "unavailable",
+        "label": "미충족",
+        "kind": "primary"
+      },
+      {
+        "from": "state",
+        "to": "view",
+        "label": "열람 가능",
+        "kind": "primary"
+      },
+      {
+        "from": "view",
+        "to": "result",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "result",
+        "to": "wait",
+        "label": "예비합격",
+        "kind": "primary"
+      },
+      {
+        "from": "result",
+        "to": "fail",
+        "label": "불합격",
+        "kind": "primary"
+      },
+      {
+        "from": "result",
+        "to": "work24",
+        "label": "합격",
+        "kind": "primary"
+      },
+      {
+        "from": "work24",
+        "to": "record",
+        "label": "",
+        "kind": "primary"
+      }
+    ],
+    "groups": [],
+    "height": 1500,
+    "source": "future-resume-plan-user-flow"
+  },
+  {
+    "id": "future-resume-plan-admin-flow",
+    "title": "미래이력서 운영자 흐름",
+    "summary": "템플릿과 생성·검수 상태를 확인하고, 합불 확정과 노출 조건이 충족되면 사용자에게 공개합니다.",
+    "date": "2026년 10월 설계",
+    "nodes": [
+      {
+        "id": "entry",
+        "label": "지원 완료",
+        "role": "생성 요청 시작",
+        "icon": "send",
+        "x": 700,
+        "y": 60,
+        "decision": false
+      },
+      {
+        "id": "template",
+        "label": "템플릿 확정?",
+        "role": "과정별 생성 기준",
+        "icon": "branch",
+        "x": 700,
+        "y": 240,
+        "decision": true
+      },
+      {
+        "id": "missing",
+        "label": "템플릿 없음",
+        "role": "확정 후 다시 생성",
+        "icon": "file",
+        "x": 1150,
+        "y": 240,
+        "decision": false
+      },
+      {
+        "id": "generate",
+        "label": "생성·자동 검수",
+        "role": "이력서 작성·품질 검사",
+        "icon": "openai",
+        "x": 700,
+        "y": 420,
+        "decision": false
+      },
+      {
+        "id": "success",
+        "label": "생성 성공?",
+        "role": "생성 오류 확인",
+        "icon": "branch",
+        "x": 700,
+        "y": 600,
+        "decision": true
+      },
+      {
+        "id": "fail",
+        "label": "생성 실패",
+        "role": "운영자 수동 재시도",
+        "icon": "refresh",
+        "x": 1150,
+        "y": 600,
+        "decision": false
+      },
+      {
+        "id": "pass",
+        "label": "자동 검수 통과?",
+        "role": "97점 이상",
+        "icon": "branch",
+        "x": 700,
+        "y": 780,
+        "decision": true
+      },
+      {
+        "id": "retry",
+        "label": "자동 재생성",
+        "role": "총 10번까지 재시도",
+        "icon": "refresh",
+        "x": 250,
+        "y": 780,
+        "decision": false
+      },
+      {
+        "id": "done",
+        "label": "생성 완료",
+        "role": "열람용 현재본 저장",
+        "icon": "check",
+        "x": 700,
+        "y": 960,
+        "decision": false
+      },
+      {
+        "id": "edit",
+        "label": "개별 수정·재생성",
+        "role": "필요 시 운영자 확정",
+        "icon": "file",
+        "x": 1150,
+        "y": 960,
+        "decision": false
+      },
+      {
+        "id": "expose",
+        "label": "합불 확정·노출?",
+        "role": "생성과 공개 조건 분리",
+        "icon": "branch",
+        "x": 700,
+        "y": 1140,
+        "decision": true
+      },
+      {
+        "id": "result",
+        "label": "모집 합불 처리",
+        "role": "결과 확정·안내 발송",
+        "icon": "mail",
+        "x": 250,
+        "y": 1140,
+        "decision": false
+      },
+      {
+        "id": "hold",
+        "label": "노출 대기",
+        "role": "공개 조건 충족 대기",
+        "icon": "clock",
+        "x": 1150,
+        "y": 1140,
+        "decision": false
+      },
+      {
+        "id": "view",
+        "label": "열람 가능",
+        "role": "사용자에게 공개",
+        "icon": "browser",
+        "x": 700,
+        "y": 1320,
+        "decision": false
+      },
+      {
+        "id": "stats",
+        "label": "열람·전환 집계",
+        "role": "CTA·금액 입력·결제 기록",
+        "icon": "chart",
+        "x": 700,
+        "y": 1500,
+        "decision": false
+      }
+    ],
+    "edges": [
+      {
+        "from": "entry",
+        "to": "template",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "template",
+        "to": "missing",
+        "label": "아니요",
+        "kind": "primary"
+      },
+      {
+        "from": "template",
+        "to": "generate",
+        "label": "예",
+        "kind": "primary"
+      },
+      {
+        "from": "generate",
+        "to": "success",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "success",
+        "to": "fail",
+        "label": "오류",
+        "kind": "primary"
+      },
+      {
+        "from": "fail",
+        "to": "generate",
+        "label": "수동 재시도",
+        "kind": "secondary",
+        "sides": [
+          "top",
+          "right"
+        ],
+        "via": [
+          [
+            1150,
+            530
+          ],
+          [
+            920,
+            530
+          ],
+          [
+            920,
+            452
+          ]
+        ],
+        "labelAt": [
+          1050,
+          520
+        ]
+      },
+      {
+        "from": "success",
+        "to": "pass",
+        "label": "예",
+        "kind": "primary"
+      },
+      {
+        "from": "pass",
+        "to": "retry",
+        "label": "미통과",
+        "kind": "primary"
+      },
+      {
+        "from": "retry",
+        "to": "generate",
+        "label": "재시도",
+        "kind": "secondary",
+        "sides": [
+          "top",
+          "left"
+        ],
+        "via": [
+          [
+            250,
+            452
+          ]
+        ],
+        "labelAt": [
+          450,
+          442
+        ]
+      },
+      {
+        "from": "pass",
+        "to": "fail",
+        "label": "10회 미통과",
+        "kind": "secondary",
+        "labelAt": [
+          950,
+          800
+        ],
+        "sides": [
+          "right",
+          "bottom"
+        ],
+        "via": [
+          [
+            1150,
+            812
+          ]
+        ]
+      },
+      {
+        "from": "pass",
+        "to": "done",
+        "label": "통과",
+        "kind": "primary"
+      },
+      {
+        "from": "done",
+        "to": "edit",
+        "label": "필요 시",
+        "kind": "secondary"
+      },
+      {
+        "from": "done",
+        "to": "expose",
+        "label": "",
+        "kind": "primary"
+      },
+      {
+        "from": "result",
+        "to": "expose",
+        "label": "결과 확정",
+        "kind": "secondary"
+      },
+      {
+        "from": "expose",
+        "to": "hold",
+        "label": "아니요",
+        "kind": "primary"
+      },
+      {
+        "from": "expose",
+        "to": "view",
+        "label": "예",
+        "kind": "primary"
+      },
+      {
+        "from": "view",
+        "to": "stats",
+        "label": "",
+        "kind": "primary"
+      }
+    ],
+    "groups": [],
+    "height": 1680,
+    "source": "future-resume-plan-admin-flow"
+  }
+]

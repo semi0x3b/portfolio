@@ -241,7 +241,7 @@ cite { display: block; margin-top: var(--sp-12); font: var(--fw-regular) var(--t
 .loop-sim__summary { margin-top: var(--sp-24); display: grid; gap: var(--sp-12); font: var(--fw-regular) var(--t-body1-reading); letter-spacing: var(--ls-body1-reading); color: var(--color-text-secondary); }
 .loop-sim__summary b { margin-right: var(--sp-4); font-weight: var(--fw-semibold); color: var(--color-text-primary); }
 
-/* 구성도 보기: 원본 PNG를 원래 폭으로 띄우고 스크롤로 살핀다 */
+/* 구성도 보기: 화면에 맞춰 표시하고 이미지를 누르면 원본을 연다. */
 html:has(dialog.viewer[open]) { overflow: hidden; }
 dialog.viewer {
   width: calc(100vw - var(--sp-32)); height: calc(100dvh - var(--sp-32)); max-width: none; max-height: none;
@@ -252,9 +252,12 @@ dialog.viewer[open] { display: grid; grid-template-rows: auto minmax(0, 1fr); }
 dialog.viewer::backdrop { background: var(--color-dimmer); }
 .viewer__bar { display: flex; align-items: center; gap: var(--sp-16); padding: var(--sp-12) var(--sp-12) var(--sp-12) var(--sp-24); background: var(--color-background-secondary); }
 .viewer__title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: var(--fw-semibold) var(--t-headline1); letter-spacing: var(--ls-headline1); }
-.viewer__open { flex: none; font: var(--fw-regular) var(--t-body2); letter-spacing: var(--ls-body2); }
 .viewer__body { overflow: auto; overscroll-behavior: contain; }
-.viewer__body img { max-width: none; }
+.viewer__image-link { display: grid; place-items: center; width: 100%; height: 100%; cursor: zoom-in; }
+.viewer__body img { display: block; width: 100%; height: 100%; object-fit: contain; min-height: 0; }
+.viewer__close { display: grid; place-items: center; width: var(--sp-40); height: var(--sp-40); padding: 0; border: 0; background: transparent; color: var(--color-text-primary); cursor: pointer; }
+.viewer__close:hover { background: var(--color-surface-secondary); border-radius: var(--radius-small); }
+.viewer__close svg { width: var(--sp-24); height: var(--sp-24); }
 
 /* 설계 자료: 프로젝트 안의 그림과 전체 모음에서 같은 확대 보기를 사용한다. */
 .design-feature {
@@ -268,7 +271,6 @@ dialog.viewer::backdrop { background: var(--color-dimmer); }
 .design-feature h3 { font: var(--fw-bold) var(--t-title3); letter-spacing: var(--ls-title3); }
 .design-feature p { margin-block: var(--sp-12) var(--sp-20); color: var(--color-text-secondary); }
 .design-intro { padding-top: var(--sp-40); }
-.design-intro__note { margin-top: var(--sp-16); color: var(--color-text-tertiary); }
 .design-nav { display: flex; flex-wrap: wrap; gap: var(--sp-16) var(--sp-24); padding: 0; margin: var(--sp-32) 0 0; list-style: none; }
 .design-group { scroll-margin-top: var(--sp-32); }
 .design-group .section__head > .link { display: inline-block; margin-top: var(--sp-16); }
@@ -279,7 +281,6 @@ dialog.viewer::backdrop { background: var(--color-dimmer); }
 .design-entry__date { margin-bottom: var(--sp-8); font: var(--fw-regular) var(--t-body2); color: var(--color-text-tertiary); }
 .figure--compact { margin-top: var(--sp-16); }
 .figure img { height: auto; }
-.figure__hint { display: block; margin-top: var(--sp-8); }
 .design-more { margin-top: var(--sp-48); }
 .chapter p + ul, .chapter ul + p { margin-top: var(--sp-16); }
 
@@ -287,8 +288,7 @@ dialog.viewer::backdrop { background: var(--color-dimmer); }
   .design-feature, .design-grid { grid-template-columns: minmax(0, 1fr); }
   .design-feature { gap: var(--sp-20); padding: var(--sp-20); }
   .design-nav { gap: var(--sp-12) var(--sp-20); }
-  .viewer__bar { flex-wrap: wrap; gap: var(--sp-8) var(--sp-16); padding: var(--sp-12); }
-  .viewer__title { flex: 1 0 100%; }
+  .viewer__bar { gap: var(--sp-12); padding: var(--sp-12); }
 }
 
 /* 404 */

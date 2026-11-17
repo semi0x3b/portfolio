@@ -1,0 +1,44 @@
+/* Shared portfolio variant of caru-ini/stack-diagram (MIT). */
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --surface: #f7f9fc;
+  --grid: #edf1f6;
+  --line: #c9d2df;
+  --ink: #171719;
+  --muted: #5c6675;
+  --accent: #0066ff;
+  --group: #f3f7ff;
+  --font: "Pretendard Variable", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --mono: "SF Mono", Menlo, var(--font);
+  --radius: 12px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font); }
+.page { width: 1448px; padding: 24px; }
+.head { min-height: 110px; padding: 8px 0 24px; display: flex; justify-content: space-between; align-items: end; gap: 48px; }
+.kicker { color: var(--muted); font-size: 14px; line-height: 1.5; margin-bottom: 8px; }
+h1 { font-size: 30px; line-height: 1.25; letter-spacing: -0.035em; margin: 0; }
+.lede { width: 480px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.65; word-break: keep-all; }
+.canvas { position: relative; width: 1400px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; }
+.group { position: absolute; border: 1px solid var(--line); background: var(--group); border-radius: var(--radius); }
+.g-label { position: absolute; left: 20px; top: 16px; font-size: 15px; font-weight: 600; color: var(--muted); }
+.node { position: absolute; width: 190px; text-align: center; }
+.tile { width: 64px; height: 64px; margin: 0 auto; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); display: grid; place-items: center; }
+.tile img { width: 38px; height: 38px; object-fit: contain; }
+.tile.dark { background: var(--ink); border-color: var(--ink); }
+.node.decision .tile { border: 2px solid var(--accent); }
+.name { font-size: 17px; line-height: 24px; font-weight: 700; margin-top: 8px; white-space: nowrap; }
+.role { font-size: 14px; line-height: 20px; color: var(--muted); margin-top: 2px; }
+.name span, .role span { padding: 0 4px; background: var(--surface); border-radius: 3px; }
+.grouped .name span, .grouped .role span { background: var(--group); }
+svg.edges { position: absolute; inset: 0; width: 1400px; pointer-events: none; }
+.edge { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.edge.secondary { stroke: var(--muted); stroke-width: 1.6; }
+.edge.dashed { stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 6 5; }
+.edge-label { font-family: var(--font); font-size: 14px; fill: var(--muted); paint-order: stroke; stroke: var(--surface); stroke-width: 6; stroke-linejoin: round; }
+.legend { margin-top: 18px; display: flex; gap: 32px; color: var(--muted); font-size: 13px; line-height: 20px; }
+.legend span::before { content: ""; display: inline-block; width: 28px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+.legend .secondary::before { border-color: var(--muted); }
+.legend .dashed::before { border-color: var(--muted); border-top-style: dashed; }

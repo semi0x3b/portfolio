@@ -7,98 +7,164 @@
       "date": "2026년 11월 코드 확인",
       "caption": "강의 STT를 인덱싱하는 배치와 질문에 답하는 경로를 나눴습니다. 검색 결과와 개인 메모리를 답변에 연결하고, 대화 후 메모리는 별도로 갱신합니다.",
       "alt": "강의 STT, 인덱서, 청킹과 임베딩, pgvector, 질문 정규화, 검색 전략, 개인 메모리, 답변 생성과 대화 기록의 연결 구조.",
-      "source": "코드와 STT 인덱싱 문서를 바탕으로 정리한 공개용 구성도",
-      "image": "assets/designs/alex-architecture.png"
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "image": "assets/designs/alex-architecture.png",
+      "width": 2896,
+      "height": 2112
     },
     {
       "id": "alex-response-flow",
-      "title": "ALEX 질문 처리와 생성 중단 흐름",
+      "title": "ALEX 질문 처리 흐름",
       "date": "2026년 11월 코드 확인",
       "caption": "질문을 분류한 뒤 안내 응답과 검색 경로를 나눕니다. 요약·대화 이력에 근거 자료가 없으면 답변을 생성하기 전에 안내로 종료합니다.",
       "alt": "질문 수신과 분류 후 즉시 응답 또는 자료·메모리 조회로 분기하며, 자료 없는 요약은 생성 중단, 나머지는 답변 생성과 기록으로 이어지는 흐름.",
-      "source": "현재 코드의 주요 학습 질의 분기를 추린 흐름도",
-      "image": "assets/designs/alex-response-flow.png"
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "image": "assets/designs/alex-response-flow.png",
+      "width": 2896,
+      "height": 2672
     },
     {
       "id": "alex-lion-design",
       "title": "ALEX에서 LION으로 바꾼 설계",
-      "date": "2026년 11월 v2 설계·리뷰 제안",
-      "caption": "일반 질문은 LLM이 답하고 수업 데이터는 키워드·복습·추천 질문에 쓰도록 방향을 바꿨습니다. 제 역할은 방향 전환 가이드, 서비스 책임 분리와 구조 설계 리뷰입니다. 설계 보드 작성과 구현은 담당 개발자가 맡았습니다.",
-      "alt": "기존 질문 분류, RAG, 답변 LLM 구조와, 일반 LLM 응답 및 수업 맥락 읽기 API로 나눈 LION v2 설계를 비교한 그림. 구현 완료를 의미하지 않는 설계 제안.",
-      "source": "11월 v2 설계와 구조 리뷰에 근거한 제안, 출시 효과 미측정",
-      "image": "assets/designs/alex-lion-design.png"
+      "date": "2026년 11월 v2 구조 설계",
+      "caption": "일반 질문은 LLM이 답하고 수업 데이터는 키워드·복습·추천 질문에 쓰도록 방향을 바꿨습니다. 제 역할은 방향 전환 가이드, 서비스 책임 분리와 구조 설계 리뷰입니다.",
+      "alt": "기존 질문 분류, RAG, 답변 LLM 구조와, 일반 LLM 응답 및 수업 맥락 읽기 API로 나눈 LION v2 설계를 비교한 그림.",
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "image": "assets/designs/alex-lion-design.png",
+      "width": 2896,
+      "height": 2112
     },
     {
       "id": "oke-platform",
       "title": "Kubernetes·OKE 운영 플랫폼",
-      "date": "2026년 10월 27일 구성도 기반",
+      "date": "2026년 10월 구성도, 11월 stack-diagram 자료 기반",
       "caption": "GitHub Actions의 이미지 발행, GitOps·ArgoCD 배포와 OKE 운영을 연결했습니다. Kong, Karpenter, Terraform과 관측 도구의 역할을 함께 정리했습니다.",
       "alt": "GitHub Actions, 컨테이너 레지스트리, GitOps와 ArgoCD, Kubernetes와 OKE 배포 구조 및 데이터, 라우팅, 확장, 관측 도구.",
-      "source": "최신 인프라 원본에서 기술 구성과 역할을 추린 공개용 요약",
-      "image": "assets/designs/oke-platform.png"
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "image": "assets/designs/oke-platform.png",
+      "width": 2896,
+      "height": 2112
     },
     {
       "id": "likelion-platform-architecture",
-      "title": "멋사 플랫폼 서비스 관계도",
-      "date": "2026년 10월 27일 원본",
-      "caption": "인증·수강권을 중심으로 LMS, ATS, SaaS와 수업 도구가 이어지는 구조입니다. 플랫폼 간 의존 관계와 AI 공통 서비스의 위치를 설명합니다.",
-      "alt": "LMS, 인증, 수강권, ATS, SaaS, 커뮤니티, 캠프파이어, 라이브룸, 클래스챗과 AI 공통 서비스의 관계도.",
-      "source": "서비스 관계도 원본",
-      "image": "assets/designs/likelion-platform-architecture.png"
+      "title": "교육·채용 서비스 연결 구조",
+      "date": "2026년 10월 서비스 정의, 11월 구성도 기반",
+      "caption": "강의 탐색과 부트캠프 지원, 수업, 취업지원의 흐름과 고객사별로 운영되는 B2B LMS를 구분했습니다.",
+      "alt": "강의 탐색과 부트캠프 지원, 수업, 취업지원의 흐름과 고객사별로 운영되는 B2B LMS를 구분했습니다.",
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "image": "assets/designs/likelion-platform-architecture.png",
+      "width": 2896,
+      "height": 2112
     },
     {
       "id": "ats-architecture",
-      "title": "ATS 서비스·코드 관계도",
-      "date": "2026년 10월 27일 원본",
-      "caption": "지원자·기업과 운영자의 진입 경로를 분리했습니다. 통합 인증, 수강권 변경, 업무 데이터와 알림이 채용 흐름에 어떻게 연결되는지 보여 줍니다.",
-      "alt": "지원자 웹과 백오피스가 각각 API로 연결되고 통합 인증, 수강권, ATS 데이터베이스, 알림과 고용24를 연동하는 구성.",
-      "source": "서비스 관계도 원본",
-      "image": "assets/designs/ats-architecture.png"
+      "title": "멋사 커리어(ATS) 구성",
+      "date": "2026년 11월 9일 구성도 기반",
+      "caption": "부트캠프 수료생과 기업을 연결하는 채용 플랫폼으로, 공고·전형·취업 증빙과 취업 집계를 지원합니다.",
+      "alt": "부트캠프 수료생과 기업을 연결하는 채용 플랫폼으로, 공고·전형·취업 증빙과 취업 집계를 지원합니다.",
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "image": "assets/designs/ats-architecture.png",
+      "width": 2896,
+      "height": 2112
     },
     {
       "id": "saas-architecture",
-      "title": "SaaS 서비스·코드 관계도",
-      "date": "2026년 10월 27일 원본",
-      "caption": "지원자와 운영자 API, 배치의 책임을 구분했습니다. 파일 직접 업로드와 Redis, PgBouncer, PostgreSQL의 연결을 함께 표시했습니다.",
-      "alt": "지원 사이트와 어드민 콘솔, API 게이트웨이, FastAPI, 배치, Redis, PgBouncer와 PostgreSQL의 연결 구성.",
-      "source": "서비스 관계도 원본",
-      "image": "assets/designs/saas-architecture.png"
+      "title": "SaaS LMS/해커톤 구성",
+      "date": "2026년 11월 9일 구성도 기반",
+      "caption": "기업·교육기관이 자기 도메인에서 교육과 해커톤을 운영하는 B2B LMS입니다. 고객사별 데이터와 API·배치의 책임을 나눴습니다.",
+      "alt": "기업·교육기관이 자기 도메인에서 교육과 해커톤을 운영하는 B2B LMS입니다. 고객사별 데이터와 API·배치의 책임을 나눴습니다.",
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "image": "assets/designs/saas-architecture.png",
+      "width": 2896,
+      "height": 2112
+    },
+    {
+      "id": "lms-architecture",
+      "image": "assets/designs/lms-architecture.png",
+      "title": "멋쟁이사자처럼·부트캠프 공통 구성",
+      "date": "2026년 11월 9일 구성도 기반",
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "caption": "대표 사이트의 강의 판매·수강과 부트캠프의 모집·훈련 운영을 공통 인증과 학습·결제 API로 지원합니다.",
+      "alt": "대표 사이트의 강의 판매·수강과 부트캠프의 모집·훈련 운영을 공통 인증과 학습·결제 API로 지원합니다.",
+      "width": 2896,
+      "height": 2112
+    },
+    {
+      "id": "community-architecture",
+      "image": "assets/designs/community-architecture.png",
+      "title": "멋사대학 커뮤니티 구성",
+      "date": "2026년 11월 9일 구성도 기반",
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "caption": "커뮤니티와 운영자 화면을 분리하고, 모집·콘텐츠·채팅 기능과 정기 작업을 연결한 구조입니다.",
+      "alt": "커뮤니티와 운영자 화면을 분리하고, 모집·콘텐츠·채팅 기능과 정기 작업을 연결한 구조입니다.",
+      "width": 2896,
+      "height": 2112
+    },
+    {
+      "id": "animal-league-architecture",
+      "image": "assets/designs/animal-league-architecture.png",
+      "title": "애니멀리그 구성",
+      "date": "2026년 11월 9일 구성도 기반",
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "caption": "해커톤 참가·운영 화면과 API를 나누고, 작업 실행과 배포를 Kubernetes 운영 흐름에 연결했습니다.",
+      "alt": "해커톤 참가·운영 화면과 API를 나누고, 작업 실행과 배포를 Kubernetes 운영 흐름에 연결했습니다.",
+      "width": 2896,
+      "height": 2112
     },
     {
       "id": "campfire-architecture",
-      "title": "Campfire 서비스·코드 관계도",
-      "date": "2026년 10월 27일 원본",
-      "caption": "실시간 수업 플랫폼의 웹·소켓·미디어·STT 경로를 정리한 자료입니다. 제가 맡은 AI 학습 기능이 전사 데이터를 받는 지점을 함께 보여 줍니다. 플랫폼 전체 구현을 본인의 역할로 표기하지 않았습니다.",
-      "alt": "Electron 클라이언트와 웹, 소켓 API, LiveKit, 녹화 워커, STT 프록시와 저장소를 거쳐 AI 학습 배치로 연결되는 구조.",
-      "source": "서비스 관계도 원본, 연동 맥락 설명 자료",
-      "image": "assets/designs/campfire-architecture.png"
+      "title": "Campfire 수업·미디어 구성",
+      "date": "2026년 11월 9일 구성도 기반",
+      "caption": "채팅·화상·녹화·출석을 제공하는 비대면 교육 운영 플랫폼입니다. 수업 전사 데이터를 AI 학습 자료에 연결합니다.",
+      "alt": "채팅·화상·녹화·출석을 제공하는 비대면 교육 운영 플랫폼입니다. 수업 전사 데이터를 AI 학습 자료에 연결합니다.",
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "image": "assets/designs/campfire-architecture.png",
+      "width": 2896,
+      "height": 2112
+    },
+    {
+      "id": "liveroom-classchat-architecture",
+      "image": "assets/designs/liveroom-classchat-architecture.png",
+      "title": "라이브룸·클래스챗 구성",
+      "date": "2026년 11월 9일 구성도 기반",
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "caption": "화상 수업의 입장·미디어·녹화·전사를 나누고, 강의별 채팅과 AI 학습 기능을 함께 연결합니다.",
+      "alt": "화상 수업의 입장·미디어·녹화·전사를 나누고, 강의별 채팅과 AI 학습 기능을 함께 연결합니다.",
+      "width": 2896,
+      "height": 2112
     },
     {
       "id": "future-resume-architecture",
       "title": "미래이력서 생성·검수 구성",
-      "date": "2026년 10월 21일 설계본 기반",
+      "date": "2026년 10월 설계",
       "caption": "본인 열람 API와 운영자 API, 내부 이벤트, 생성 워커를 분리했습니다. 코드 검증과 LLM 검수, 재시도와 결과 저장의 책임을 표시했습니다.",
       "alt": "지원자와 운영자 API, 내부 이벤트, 생성 워커, OpenAI API, 검수 정책과 현재 이력서 저장의 연결 구조.",
-      "source": "기존 설계본에서 서비스 역할을 정리한 공개용 구성도",
-      "image": "assets/designs/future-resume-architecture.png"
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "image": "assets/designs/future-resume-architecture.png",
+      "width": 2896,
+      "height": 2112
     },
     {
       "id": "future-resume-plan-user-flow",
-      "title": "미래이력서 사용자 흐름 설계",
-      "date": "2026년 10월 설계 원본",
-      "caption": "로그인, 본인 확인, 열람 가능 상태와 합불 결과에 따라 다음 행동이 달라지는 사용자 흐름입니다. 화면 식별자가 포함된 기획 설계본입니다.",
+      "title": "미래이력서 사용자 흐름",
+      "date": "2026년 10월 설계",
+      "caption": "로그인, 본인 확인, 열람 가능 상태와 합불 결과에 따라 다음 행동이 달라지는 사용자 흐름입니다.",
       "alt": "미래이력서 진입 후 로그인과 본인 여부, 열람 상태, 합격 결과를 확인하고 안내·재지원·고용24 신청으로 이어지는 사용자 흐름.",
-      "source": "사용자 플로우 설계 원본",
-      "image": "assets/designs/future-resume-plan-user-flow.png"
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "image": "assets/designs/future-resume-plan-user-flow.png",
+      "width": 2896,
+      "height": 3392
     },
     {
       "id": "future-resume-plan-admin-flow",
-      "title": "미래이력서 운영자 흐름 설계",
-      "date": "2026년 10월 설계 원본",
+      "title": "미래이력서 운영자 흐름",
+      "date": "2026년 10월 설계",
       "caption": "템플릿 확정, 생성·검수 재시도, 결과 확정과 노출 조건을 나눴습니다. 생성 성공과 사용자에게 공개할 수 있는 상태를 별도로 판단합니다.",
       "alt": "지원 완료 후 템플릿 확인, 생성과 자동 검수, 실패·재시도, 합불 확정과 노출, 열람과 전환 집계로 이어지는 운영자 흐름.",
-      "source": "운영자 플로우 설계 원본",
-      "image": "assets/designs/future-resume-plan-admin-flow.png"
+      "source": "stack-diagram 공통 양식으로 정리한 서비스 구성·흐름",
+      "image": "assets/designs/future-resume-plan-admin-flow.png",
+      "width": 2896,
+      "height": 3752
     }
   ]
 }

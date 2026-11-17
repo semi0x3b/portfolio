@@ -130,6 +130,9 @@ button.card, a.card[data-diagram] { cursor: zoom-in; }
 .skills b { margin-right: var(--sp-8); font-weight: var(--fw-semibold); }
 
 /* 동료 평가: #F7F7F8 면의 인용 블록 */
+.reviews-page { padding-top: var(--sp-40); }
+.reviews-list { margin-top: var(--sp-40); }
+.nav a[aria-current="page"] { color: var(--color-brand-primary); }
 .quote { padding: var(--sp-24); border-radius: var(--radius-card); background: var(--color-background-secondary); }
 .quote p { font: var(--fw-regular) var(--t-body1-reading); letter-spacing: var(--ls-body1-reading); text-indent: -0.4em; }
 .quote--lead { margin-bottom: var(--sp-24); padding: var(--sp-32) var(--sp-40); }

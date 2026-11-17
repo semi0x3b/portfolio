@@ -13,7 +13,7 @@ out = root / '_public'
 if out.exists():
     shutil.rmtree(out)
 out.mkdir(exist_ok=True)
-for filename in ['index.html', 'career.html', 'designs.html', '404.html', 'site.css', 'site.js', 'tokens.css', 'sitemap.xml', 'og.png']:
+for filename in ['index.html', 'career.html', 'designs.html', 'reviews.html', '404.html', 'site.css', 'site.js', 'tokens.css', 'sitemap.xml', 'og.png']:
     shutil.copy2(root / filename, out / filename)
 for directory, pattern in [('work', '*.html'), ('content', '*.json')]:
     (out / directory).mkdir(exist_ok=True)

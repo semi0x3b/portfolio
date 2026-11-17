@@ -3,6 +3,7 @@
 화면을 바꾸기 전에 `DESIGN.md`를 읽는다. GitHub Pages에는 `_public`의 정적 파일만 배포한다.
 
 - 서비스 분류·설명·대표 아키텍처·세부 설계: `content/designs.json`
+- 동료 평가 인용 원문: `reviews.html`. 접기·더보기 없이 모두 표시한다.
 - 서비스 목차·상세 페이지 양식: `templates/service-page.html`
 - 생성 코드: `tools/build-service-pages.py`
 - 생성 결과: `designs.html`, `services/*.html`. 직접 수정하지 않고 데이터·양식을 고친 뒤 빌드한다.

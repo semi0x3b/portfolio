@@ -21,6 +21,8 @@ for directory, pattern in [('work', '*.html'), ('content', '*.json')]:
         shutil.copy2(source, out / directory / source.name)
 (out / 'assets').mkdir(exist_ok=True)
 shutil.copy2(root / 'assets/profile.jpg', out / 'assets/profile.jpg')
+# 경력 상세의 화면 캡처 썸네일. 공개용으로 고른 파일만 이 폴더에 둔다.
+shutil.copytree(root / 'assets/career', out / 'assets/career')
 # 검수한 공개용 도식만 명시된 목록에서 가져온다. 원본 폴더 전체를 복사하지 않는다.
 designs = json.loads((root / 'content/designs.json').read_text())
 (out / 'services').mkdir(exist_ok=True)
